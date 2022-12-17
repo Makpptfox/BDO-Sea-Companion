@@ -1,0 +1,14 @@
+<!-- How to add a new item: -->
+<!-- 1. Add a new item in the item_data.xml file -->
+<!-- 2. Add a new translation in the lang_[language].xml file -->
+<!-- 3. Add a new image in the assets\images\items folder -->
+<items>
+    <gunPowder>
+        <tier>1</tier>
+        <image>gunpowder.png</image>
+    </gunPowder>
+    <bluePill>
+        <tier>1</tier>
+        <image>gunpowder.png</image>
+    </bluePill>
+</items>

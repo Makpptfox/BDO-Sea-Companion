@@ -1,12 +1,9 @@
 :root {
-  // Application
   --app-accent-color: #32639f;
   --app-font-size: 16px;
-  --app-font-family: 'dejavu' , sans-serif;
+  --app-font-family: "dejavu" , sans-serif;
   --app-bgcolor: #2d2d31;
   --app-border-color: #3b3f44;
-
-  // Link not active
   --app-link-color: #c6c0b7;
   --app-link-border: none;
   --app-link-display: flex;
@@ -17,8 +14,6 @@
   --app-link-height: 50px;
   --app-link-width: 150px;
   --app-link-box-sizing: content-box;
-
-  // Link active
   --app-link-active-color: #e3d3be;
   --app-link-active-border: 3px solid #e3d3be;
   --app-link-active-display: flex;
@@ -28,8 +23,6 @@
   --app-link-active-height: 50px;
   --app-link-active-width: 150px;
   --app-link-active-box-sizing: content-box;
-
-  // Navbar
   --navbar-bgcolor: none;
   --navbar-height: 50px;
   --navbar-width: 100%;
@@ -39,24 +32,18 @@
   --navbar-justify-content: flex-start;
   --navbar-margin: 0 0 0 0;
   --navbar-padding: 0 15px;
-
-  // Titlebar
   --titlebar-bgcolor: #94754b;
   --titlebar-border: solid 2px #c6a954;
   --titlebar-height: 50px;
   --titlebar-width: 100%;
-
   --titlebar-title-color: #f8e6cc;
   --titlebar-title-size: 24px;
   --titlebar-title-weight: normal;
-
-  //* Color converted with: https://codepen.io/sosuke/pen/Pjoqqp
-  //* Thanks to: Sosuke (Barrett Sonntag)
-  --titlebar-icon-color: invert(97%) sepia(87%) saturate(563%) hue-rotate(301deg) brightness(99%) contrast(115%);;
+  --titlebar-icon-color: invert(97%) sepia(87%) saturate(563%) hue-rotate(301deg) brightness(99%) contrast(115%);
   --titlebar-icon-width: 8%;
   --titlebar-icon-max-width: 80px;
   --titlebar-icon-min-width: 80px;
   --titlebar-icon-height: 100%;
   --titlebar-icon-max-height: 50px;
   --titlebar-icon-min-height: 50px;
-}
+}/*# sourceMappingURL=Theme.css.map */

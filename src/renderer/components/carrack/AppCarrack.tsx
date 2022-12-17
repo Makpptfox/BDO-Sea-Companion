@@ -3,14 +3,14 @@
 // Create a react placeholder
 import React from "react";
 
-import langDict from "@src/typings/lang";
 import win_ from "@src/typings/win";
+import dataDict from '@src/typings/data';
 
 const win:win_ = window;
 
 // Define the props
 type Props = {
-    dict: langDict;
+    data: dataDict;
 }
 
 const AppCarack: React.FC<Props> = (props: Props) => {

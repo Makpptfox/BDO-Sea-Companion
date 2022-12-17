@@ -6,7 +6,7 @@ import { assert } from "console";
 
 import * as xml2js from 'xml2js';
 
-const xmlPath = path.join(__dirname, '..', '..', 'assets', 'lang');
+const xmlPath = path.join(__dirname, '..', '..', 'assets', 'xml');
 
 // Path: src\main\modules\fileManager.ts
 

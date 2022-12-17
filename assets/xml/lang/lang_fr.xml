@@ -1,0 +1,27 @@
+<root>
+
+    <!-- Traduction du titre de la page -->
+    <pageTitle>
+        <barter>Barter</barter>
+        <carrack>Carrack</carrack>
+    </pageTitle>
+
+    <!-- Traduction de la barre de navigation -->
+    <navigation>
+        <barter>Barter</barter>
+        <carrack>Carrack</carrack>
+    </navigation>
+
+    <!-- Traduction des items -->
+    <items>
+        <gunPowder>
+            <name>Poudre à canon</name>
+            <description>Une poudre à canon</description>
+        </gunPowder>
+        <bluePill>
+            <name>test</name>
+            <description>Une poudre à canon</description>
+        </bluePill>
+    </items>
+    
+</root>

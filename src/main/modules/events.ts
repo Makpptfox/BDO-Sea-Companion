@@ -34,4 +34,20 @@ export function events(){
         return {lang: lang_, dict: lang};
 
     });
+
+    ipcMain.handle('getDataFile', async (e: Electron.IpcMainInvokeEvent, lang_: string | null) => {
+        
+        if (lang_ == null || lang_ == undefined) {
+            const settings = findXmlFile('settings')
+            lang_ = settings.lang;
+        }
+
+        // Get xml lang file
+        const lang = findXmlFile('lang/lang_'+lang_);
+        const item = findXmlFile('data/item_data');
+        const save = findXmlFile('data/save_data');
+
+        return {lang: lang_, langDict: lang, itemDict: item, saveData: save};
+
+    });
 }

@@ -19,15 +19,9 @@
     "TypeScript"
   ],
   "author": {
-    "name": "ward",
-    "url": "https://github.com/codesbiome"
+    "name": "ward & makpptfox",
+    "url": "https://github.com/ward727a & https://github.com/Makpptfox"
   },
-  "contributors": [
-    {
-      "name": "makpptfox",
-      "url": "https://github.com/Makpptfox"
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Makpptfox/BDO_BarterCalculator"
@@ -80,6 +74,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.5.0",
+    "update-electron-app": "^2.0.1",
     "xml2js": "^0.4.23"
   }
 }

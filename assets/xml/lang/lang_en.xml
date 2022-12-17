@@ -1,0 +1,23 @@
+<root>
+
+    <!-- Translation of the page title -->
+    <pageTitle>
+        <barter>Barter</barter>
+        <carrack>Carrack</carrack>
+    </pageTitle>
+
+    <!-- Translation of the navigation bar -->
+    <navigation>
+        <barter>Barter</barter>
+        <carrack>Carrack</carrack>
+    </navigation>
+
+    <!-- Translation of the items -->
+    <items>
+        <gunPowder>
+            <name>Gun Powder</name>
+            <description></description>
+        </gunPowder>
+    </items>
+
+</root>

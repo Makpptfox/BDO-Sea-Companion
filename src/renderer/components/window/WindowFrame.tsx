@@ -4,11 +4,12 @@ import React, {useState} from "react";
 import WindowControls from "./WindowControls";
 
 import "./WindowFrame.scss"
+import dataDict from '@src/typings/data';
 
 
 type Props = {
     children: React.ReactNode;
-    dict: langDict;
+    data: dataDict;
 }
 
 const win:win_ = window;
@@ -19,11 +20,13 @@ const win:win_ = window;
  * - children: the react children
  * @returns the react component
  */
-const WindowFrame: React.FC<Props> = (Props: Props) => {
+const WindowFrame: React.FC<Props> = (props: Props) => {
 
     // title and icon of the window
-    const [title, setTitle] = useState("Barter");
+    const [titleTag, setTitle] = useState("barter");
     const [_icon, setIcon] = useState("chest");
+
+    const title = props.data.lang['pageTitle'][0][titleTag][0];
 
     const changeData = (page: string)=>{
     
@@ -35,15 +38,15 @@ const WindowFrame: React.FC<Props> = (Props: Props) => {
         // Check the page and change the title and icon
         switch (page) {
             case 'barter':
-                setTitle("Barter");
+                setTitle("barter");
                 setIcon("chest");
                 break;
             case 'carrack':
-                setTitle("Carrack");
+                setTitle("carrack");
                 setIcon("anchor");
                 break;
             default:
-                setTitle("Barter");
+                setTitle("barter");
                 setIcon("chest");
                 break;
             }
@@ -79,7 +82,7 @@ const WindowFrame: React.FC<Props> = (Props: Props) => {
                 </div>
             </div>
             <div id='window-frame-content'>
-                {Props.children}
+                {props.children}
             </div>
         </div>
     );

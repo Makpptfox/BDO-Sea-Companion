@@ -11,10 +11,10 @@ const {
 
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getLangFile'];
+const validChannelsSend: string[] = ['pageChange', 'getDataFile'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange'];
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
@@ -24,12 +24,16 @@ contextBridge.exposeInMainWorld(
       // Only allow valid channels
       if (validChannelsSend.includes(channel)) {
         ipcRenderer.send(channel, data);
+      } else {
+        throw new Error('Invalid channel');
       }
     },
     sendSync: (channel: string, data: any) => {
       // Only allow valid channels
       if (validChannelsSend.includes(channel)) {
         return ipcRenderer.sendSync(channel, data);
+      } else {
+        throw new Error('Invalid channel');
       }
     },
     receive: (channel: string, func: any) => {
@@ -37,6 +41,8 @@ contextBridge.exposeInMainWorld(
       if (validChannelsReceive.includes(channel)) {
         // Add new listener
         ipcRenderer.on(channel, (event, ...args) => func(...args));
+      } else {
+        throw new Error('Invalid channel');
       }
     },
     receiveOnce: (channel: string, func: any) => {
@@ -44,24 +50,32 @@ contextBridge.exposeInMainWorld(
       if (validChannelsReceive.includes(channel)) {
         // Add new listener
         ipcRenderer.once(channel, (event, ...args) => func(...args));
+      } else {
+        throw new Error('Invalid channel');
       }
     },
     invoke: (channel: string, data: any) => {
       // Only allow valid channels
       if (validChannelsSend.includes(channel)) {
         return ipcRenderer.invoke(channel, data);
+      } else {
+        throw new Error('Invalid channel');
       }
     },
     remove: (channel: string, func: any) => {
       // Only allow valid channels
       if (validChannelsReceive.includes(channel)) {
         ipcRenderer.removeListener(channel, func);
+      } else {
+        throw new Error('Invalid channel');
       }
     },
     removeAll: (channel: string) => {
       // Only allow valid channels
       if (validChannelsReceive.includes(channel)) {
         ipcRenderer.removeAllListeners(channel);
+      } else {
+        throw new Error('Invalid channel');
       }
     }
   }

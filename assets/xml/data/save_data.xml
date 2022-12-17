@@ -1,0 +1,17 @@
+
+<data>
+    <items>
+        <gunPowder>
+            <qty>100</qty>
+            <iliya>40</iliya>
+            <epheria>40</epheria>
+            <ancado>20</ancado>
+        </gunPowder>
+        <bluePill>
+            <qty>100</qty>
+            <iliya>40</iliya>
+            <epheria>40</epheria>
+            <ancado>20</ancado>
+        </bluePill>
+    </items>
+</data>

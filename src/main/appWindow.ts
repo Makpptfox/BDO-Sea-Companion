@@ -1,7 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { events } from './modules/events';
-import { getXmlFiles } from './modules/fileManager';
 
 // Electron Forge automatically creates these entry points
 declare const APP_WINDOW_WEBPACK_ENTRY: string;
@@ -16,9 +15,9 @@ let appWindow: BrowserWindow;
 export function createAppWindow(): BrowserWindow {
   // Create new window instance
   appWindow = new BrowserWindow({
-    width: 800,
+    width: 1000,
     height: 600,
-    minWidth: 800,
+    minWidth: 1000,
     minHeight: 600,
     backgroundColor: '#202020',
     show: false,
@@ -40,7 +39,9 @@ export function createAppWindow(): BrowserWindow {
   appWindow.loadURL(APP_WINDOW_WEBPACK_ENTRY);
 
   // Show window when its ready to
-  appWindow.on('ready-to-show', () => appWindow.show());
+  appWindow.on('ready-to-show', () => {
+    appWindow.show()
+  });
 
   // Register Inter Process Communication for main process
   registerMainIPC();
@@ -65,4 +66,5 @@ function registerMainIPC() {
 
   events()
 }
+
 
