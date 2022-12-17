@@ -1,0 +1,9 @@
+<!-- Ici c'est un fichier de traduction super simple pour des test -->
+
+<root>
+    <test>Test</test>
+    <test2>Test2</test2>
+    <parent>
+        <child>Child</child>
+    </parent>
+</root>

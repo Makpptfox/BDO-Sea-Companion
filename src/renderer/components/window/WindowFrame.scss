@@ -1,0 +1,78 @@
+@import "../Theme.scss";
+#window-frame-header{
+
+    p, h1, h2, h3, h4, h5, h6, span, div, a, li, ul, ol, button, input, textarea, select, option, label, pre, code, table, tr, td, th, thead, tbody, tfoot {
+        color: var(--titlebar-title-color);
+    }
+
+    border-bottom: var(--titlebar-border);
+    background-color: var(--titlebar-bgcolor);
+    height: var(--titlebar-height);
+    width: var(--titlebar-width);
+    display: flex;
+    flex-direction: row;
+
+    #window-frame-header-title{
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+
+        flex: 1;
+
+
+        height: 100%;
+        h3{
+            font-size: var(--titlebar-title-size);
+            font-weight: var(--titlebar-title-weight);
+
+            text-transform: uppercase;
+        }
+
+        #window-frame-header-title-icon{
+
+            width: var(--titlebar-icon-width);
+            height: var(--titlebar-icon-height);
+
+            max-width: var(--titlebar-icon-max-width);
+            max-height: var(--titlebar-icon-max-height);
+
+            min-width: var(--titlebar-icon-min-width);
+            min-height: var(--titlebar-icon-min-height);
+
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            img{
+                height: 40px;
+                max-width: 40px;
+                filter: var(--titlebar-icon-color)
+            }
+
+
+        }
+    }
+
+    #window-frame-header-actions{
+        .window-controls{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+
+            flex: 1;
+
+            height: 100%;
+        }
+    }
+}
+
+#window-frame{
+    box-sizing: border-box;
+    border: var(--titlebar-border);
+    background-color: var(--app-bgcolor);
+    height: 100vh;
+}
