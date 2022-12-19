@@ -1,0 +1,101 @@
+@import '../Theme.scss';
+
+*{
+    box-sizing: border-box;
+}
+
+#app-barter-center{
+    grid-column: var(--barter-center-grid-column);
+    grid-row: var(--barter-center-grid-row);
+
+    display: var(--barter-center-display);
+    grid-template-rows: var(--barter-center-grid-template-rows);
+    grid-template-columns: var(--barter-center-grid-template-columns);
+}
+
+// Table design
+table{
+
+    border-collapse: var(--barter-table-border-collapse);
+    width: var(--barter-table-width);
+    margin: var(--barter-table-margin);
+    padding: var(--barter-table-padding);
+    border: var(--barter-table-border);
+    border-radius: var(--barter-table-border-radius);
+
+
+    justify-items: var(--barter-table-justify-items);
+
+    font-size: var(--barter-table-font-size);
+
+    // Table header
+    thead{
+        width: var(--barter-table-head-width);
+        height: var(--barter-table-head-height);
+        margin: var(--barter-table-head-margin);
+        padding: var(--barter-table-head-padding);
+        grid-column: var(--barter-table-head-grid-column);
+        grid-row: var(--barter-table-head-grid-row);
+        text-align: var(--barter-table-head-text-align);
+        color: var(--barter-table-head-color);
+        tr{
+            height: var(--barter-table-head-tr-height);
+            align-items: var(--barter-table-head-tr-align-items);
+            display: var(--barter-table-head-tr-display);
+            grid-template-columns: var(--barter-table-head-tr-grid-template-columns);
+        }
+    }
+
+    // Table body
+    tbody{
+        text-align: var(--barter-table-body-text-align);
+        grid-row: var(--barter-table-body-grid-row);
+        width: var(--barter-table-body-width);
+        height: var(--barter-table-body-height);
+        margin: var(--barter-table-body-margin);
+        padding: var(--barter-table-body-padding);
+        grid-column: var(--barter-table-body-grid-column);
+        grid-row: var(--barter-table-body-grid-row);
+        tr{
+            display: var(--barter-table-body-tr-display);
+            grid-template-columns: var(--barter-table-body-tr-grid-template-columns);
+            padding: var(--barter-table-body-tr-padding);
+            font-size: var(--barter-table-body-tr-font-size);
+
+            .table-edit{
+                color: white;
+            }
+            td{
+
+                .input-number-barter{
+                    // Remove ALL the default styles from the input number
+                    
+                    // Remove the arrows from the input number (Firefox)
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+                    -moz-appearance: textfield;
+                    appearance: textfield;
+                    border: none;
+                    background: none;
+                    outline: none;
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    color: var(--barter-table-body-input-font-color);
+                    font-weight: var(--barter-table-body-font-weight);
+
+
+                }
+            }
+        }
+
+        color: var(--barter-table-body-color);
+        background-color: var(--barter-table-body-bgcolor);
+        border: var(--barter-table-body-border);
+    }
+}

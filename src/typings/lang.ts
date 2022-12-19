@@ -32,6 +32,30 @@ type langDict = {
 
         }
     ]
+    barter: [
+        {
+            left:[
+                {
+                    storageTitle: [
+                        string
+                    ]
+                }
+            ]
+            table:[
+                {
+                    name: [
+                        string
+                    ]
+                    tier: [
+                        string
+                    ]
+                    qty: [
+                        string
+                    ]
+                }
+            ]
+        }
+    ]
 }
 
 export default langDict;

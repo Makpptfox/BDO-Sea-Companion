@@ -18,10 +18,13 @@ win.api.invoke('getDataFile').then((data: {lang:string,langDict: {root: langDict
   console.trace('[BDOC] : Language dictionary received', data)
 
   const lang:string = data.lang;
+
+  // Get all dictionaries
   const langDict:langDict = data.langDict['root'];
   const itemDict:itemDict = data.itemDict['items'];
   const saveData:saveData = data.saveData['data'];
 
+  // Create a data dictionary to pass to components
   const dataDict: dataDict ={
     lang: langDict,
     item: itemDict,
@@ -31,9 +34,11 @@ win.api.invoke('getDataFile').then((data: {lang:string,langDict: {root: langDict
   console.log('[BDOC] : Language dictionary received');
   console.log('[BDOC] : Language loaded', lang);
 
-  // If in development mode, trace the dictionary
+  // If in development mode, trace the language dictionary
   if(process.env.NODE_ENV === 'development'){
     console.log('[BDOC] : Language dictionary', dataDict.lang);
+    console.log('[BDOC] : Item dictionary', dataDict.item);
+    console.log('[BDOC] : Save data', dataDict.save);
   }
 
   // Render application in DOM

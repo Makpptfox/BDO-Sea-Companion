@@ -1,0 +1,33 @@
+.barter-right {
+  grid-row: 2;
+  grid-column: 3;
+}
+.barter-right .barter-right__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.barter-right .barter-right__buttons button {
+  margin-bottom: 5px;
+  width: 60px;
+  height: 60px;
+}
+.barter-right .barter-right__buttons .barter-right__button {
+  background: var(--barter-left-header-bgcolor-gradient);
+  border: var(--barter-left-header-border);
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.barter-right .barter-right__buttons .barter-right__button:hover {
+  background-color: #000;
+  color: #fff;
+}
+.barter-right .barter-right__buttons .not-active {
+  opacity: 0.5;
+}
+.barter-right .barter-right__buttons .active {
+  opacity: 1;
+}/*# sourceMappingURL=BarterRight.css.map */

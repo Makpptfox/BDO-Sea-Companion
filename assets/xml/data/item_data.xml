@@ -8,7 +8,19 @@
         <image>gunpowder.png</image>
     </gunPowder>
     <bluePill>
-        <tier>1</tier>
+        <tier>2</tier>
         <image>gunpowder.png</image>
     </bluePill>
+    <bluePill_2>
+        <tier>3</tier>
+        <image>gunpowder.png</image>
+    </bluePill_2>
+    <bluePill_3>
+        <tier>4</tier>
+        <image>gunpowder.png</image>
+    </bluePill_3>
+    <bluePill_4>
+        <tier>5</tier>
+        <image>gunpowder.png</image>
+    </bluePill_4>
 </items>

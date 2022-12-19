@@ -1,0 +1,23 @@
+@import '../Theme.scss';
+
+*{
+    box-sizing: border-box;
+}
+#app-barter{
+    height: 100%
+}
+#app-barter-content{
+    display: var(--barter-display);
+    justify-items: stretch;
+
+    grid-template-columns: var(--barter-grid-template-columns);
+    grid-template-rows: var(--barter-grid-template-rows);
+
+    align-items: var(--barter-align-items);
+    justify-items: var(--barter-justify-content);
+    height: var(--barter-height);
+    width: var(--barter-width);
+    margin: var(--barter-margin);
+    padding: var(--barter-padding);
+    flex-direction: var(--barter-flex-direction);
+}

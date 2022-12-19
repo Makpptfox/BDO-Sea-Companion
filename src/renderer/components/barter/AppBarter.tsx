@@ -9,6 +9,8 @@ import dataDict from '@src/typings/data';
 // Import the stylesheet
 import './AppBarter.scss'
 import BarterCenter from "./BarterCenter";
+import BarterLeft from "./BarterLeft";
+import BarterRight from "./BarterRight";
 
 const win:win_ = window;
 
@@ -30,15 +32,18 @@ const AppBarter:React.FC<Props> = (props: Props) => {
             
             <div id='app-barter-content'>
 
-                <div id='app-barter-left-content'>
-
-                </div>
-                <div id="app-barter-center-content">
-                    <BarterCenter data={props.data} />
-                </div>
-                <div id='app-barter-right-content'>
-
-                </div>
+                <BarterLeft data={props.data} />
+                <BarterCenter data={props.data} />
+                <BarterRight onClick={(tier: number, hide:boolean) => {
+                    Object.keys(document.getElementsByClassName('tier-' + tier)).forEach((value:string, index:number) => {
+                        const element = document.getElementsByClassName('tier-' + tier)[index] as HTMLElement;
+                        if (hide) {
+                            element.style.display = '';
+                        } else {
+                            element.style.display = 'none';
+                        }
+                    });
+                }} />
 
             </div>
 

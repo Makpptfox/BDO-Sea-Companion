@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Here will be the code for the xml file manager
 
 import path from "path";
@@ -14,7 +15,7 @@ const xmlPath = path.join(__dirname, '..', '..', 'assets', 'xml');
 function isValidXML(xml: string) {
     try {
         const parser = new xml2js.Parser();
-        parser.parseString(xml, (err, result) => {
+        parser.parseString(xml, (err) => {
             if (err) {
                 throw new Error('xml2js failed to convert xml to json');
             }
@@ -94,7 +95,7 @@ function findXmlFile(fileName: string):any {
  * @param fileName the name of the file
  * @returns the content of the file
  */
-function getXmlFileContent(fileName: string) {
+function getXmlFileContent(fileName: string):any {
 
     // Check if file ends with .xml
     if (!fileName.endsWith('.xml')) {
@@ -136,30 +137,16 @@ function getXmlFileContent(fileName: string) {
  * @throws Error if fileContent is not a valid json object
  * 
  */
-function saveXmlFileContent(fileName: string, fileContent: unknown) {
+function saveXmlFileContent(fileName: string, fileContent: string) {
 
-    // Check if filecontent is a json object
-    if (typeof fileContent === 'object') {
-        fileContent = JSON.stringify(fileContent);
-    }
-
+    // Check if fileContent is a string 
     assert(typeof fileContent === 'string', 'fileContent must be a string');
 
     // Check if file ends with .xml
     if (!fileName.endsWith('.xml')) {
         fileName += '.xml';
     }
-
-    // Check if fileContent is a string
-    if (typeof fileContent !== 'string') {
-        throw new Error('fileContent is not a string');
-    }
-
-    // Check if fileContent is a valid string
-    if (fileContent.length === 0) {
-        throw new Error('fileContent is not a valid string');
-    }
-
+    
     // Check if fileContent is a valid xml string
     if (!isValidXML(fileContent)) {
         throw new Error('fileContent is not a valid xml string');

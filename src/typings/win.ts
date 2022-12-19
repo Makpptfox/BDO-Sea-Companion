@@ -11,6 +11,9 @@ type channel = {
     "langChange": (event: any, lang: string) => void;
     "getDataFile": (event: any, lang: string) => void;
     "pageChange": (event: any, page: string) => void;
+    "save-item": (event: any, key: string, value: number, type: string) => void;
+    "hide-col-barter": (event: any, hide: boolean, type: string) => void;
+    "r_hide-col-barter": (event: any, hide: boolean, type: string) => void;
 }
 
 /**
@@ -33,9 +36,20 @@ type channelEvent = {
             data: saveData;
         },
     },
-    "pageChange": {
-        page: string;
-    }
+    "pageChange": string;
+    "save-item": {
+        key: string;
+        value: number;
+        type: string;
+    },
+    "hide-col-barter": {
+        hide: boolean;
+        type: string;
+    },
+    "r_hide-col-barter": {
+        hide: boolean;
+        type: string;
+    },
 }
 
 /**
@@ -85,7 +99,7 @@ type win_ = Window & {
          * @returns void
          * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrenderersendchannel-args
          */
-        send: (channel: string, data?: any) => void;
+        send<K extends keyof channel>(channel: K, data?: channelEvent[K]): void;
 
         /**
          * Send data to main process and wait for a response

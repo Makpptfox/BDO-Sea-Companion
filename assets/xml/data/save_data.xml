@@ -1,9 +1,9 @@
-
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <data>
     <items>
         <gunPowder>
             <qty>100</qty>
-            <iliya>40</iliya>
+            <iliya>410</iliya>
             <epheria>40</epheria>
             <ancado>20</ancado>
         </gunPowder>
@@ -13,5 +13,23 @@
             <epheria>40</epheria>
             <ancado>20</ancado>
         </bluePill>
+        <bluePill_2>
+            <qty>100</qty>
+            <iliya>40</iliya>
+            <epheria>40</epheria>
+            <ancado>20</ancado>
+        </bluePill_2>
+        <bluePill_3>
+            <qty>100</qty>
+            <iliya>40</iliya>
+            <epheria>40</epheria>
+            <ancado>20</ancado>
+        </bluePill_3>
+        <bluePill_4>
+            <qty>100</qty>
+            <iliya>40</iliya>
+            <epheria>40</epheria>
+            <ancado>20</ancado>
+        </bluePill_4>
     </items>
 </data>

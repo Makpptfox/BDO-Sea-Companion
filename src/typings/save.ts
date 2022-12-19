@@ -1,25 +1,49 @@
 
-type saveData = {
+import * as xml2js from 'xml2js';
+
+interface saveData {
     items: [
         {
             [key:string]:  [
                 {
                     qty: [
-                        number
+                        string
                     ]
                     iliya: [
-                        number
+                        string
                     ]
                     epheria: [
-                        number
+                        string
                     ]
                     ancado: [
-                        number
+                        string
                     ]
                 }
             ]
         }
     ]
+}
+
+export function stringifySaveData(data: saveData):string {
+    
+    try{
+        const builder = new xml2js.Builder({
+            rootName: 'data',
+            renderOpts: {
+                pretty: true,
+                indent: '    ',
+                newline: '\n'
+            }
+        });
+
+        const xml = builder.buildObject(data);
+
+        return xml;
+    } catch (e) {
+        console.error(e);
+        return '';
+    }
+
 }
 
 export default saveData;

@@ -39,6 +39,10 @@ p, span, div, a, li, ul, ol, button, input, textarea, select, option, label, pre
     justify-content: var(--navbar-justify-content);
 
 
+
+    font-weight: var(--navbar-font-weight);
+    text-transform: var(--navbar-text-transform);
+
     margin: var(--navbar-margin);
     padding: var(--navbar-padding);
 
@@ -58,6 +62,7 @@ p, span, div, a, li, ul, ol, button, input, textarea, select, option, label, pre
       text-decoration: var(--app-link-active-text-decoration);
 
       box-sizing: var(--app-link-active-box-sizing);
+      font-size: var(--navbar-font-size);
     }
     .link{
       height: var(--app-link-height);
@@ -74,10 +79,15 @@ p, span, div, a, li, ul, ol, button, input, textarea, select, option, label, pre
       text-decoration: var(--app-link-text-decoration);
 
       box-sizing: var(--app-link-box-sizing);
+      font-size: var(--navbar-font-size);
 
       &:hover{
         color: var(--app-link-hover-color);
       }
     }
   }
+}
+
+#app-content{
+  height: calc(100% - 50px);
 }

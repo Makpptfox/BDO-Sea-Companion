@@ -11,10 +11,10 @@ const {
 
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getDataFile'];
+const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'hide-col-barter'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter'];
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object

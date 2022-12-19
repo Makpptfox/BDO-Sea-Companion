@@ -2,7 +2,8 @@ import { ipcMain } from "electron";
 
 // Import all events
 import onPagechange from "./events/onPageChange";
-import { findXmlFile, getXmlFiles } from "./fileManager";
+import handleSaveItem from "./events/onSaveItem";
+import { findXmlFile } from "./fileManager";
 
 // Export all events in one function
 export function events(){
@@ -49,5 +50,17 @@ export function events(){
 
         return {lang: lang_, langDict: lang, itemDict: item, saveData: save};
 
+    });
+
+    ipcMain.on('save-item', async (e: Electron.IpcMainEvent, data: {key: string, value:number, type:"iliya"|"epheria"|"ancado"}) => {
+
+
+        handleSaveItem(data['key'], data['value'], data['type'], e);
+    });
+
+    ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, data: {hide: boolean, type:"iliya"|"epheria"|"ancado"}) => {
+
+        
+        e.sender.send('r_hide-col-barter', data);
     });
 }

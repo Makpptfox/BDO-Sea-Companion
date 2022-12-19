@@ -18,6 +18,32 @@
             <name>Gun Powder</name>
             <description></description>
         </gunPowder>
+        <bluePill>
+            <name>test</name>
+            <description>Une poudre à canon</description>
+        </bluePill>
+        <bluePill_2>
+            <name>test</name>
+            <description>Une poudre à canon</description>
+        </bluePill_2>
+        <bluePill_3>
+            <name>test</name>
+            <description>Une poudre à canon</description>
+        </bluePill_3>
+        <bluePill_4>
+            <name>test</name>
+            <description>Une poudre à canon</description>
+        </bluePill_4>
     </items>
+
+    <barter>
+
+        <table>
+            <tier>Tier</tier>
+            <name>name</name>
+            <qty>Qty</qty>
+        </table>
+
+    </barter>
 
 </root>
