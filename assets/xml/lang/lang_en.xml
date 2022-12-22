@@ -38,6 +38,13 @@
 
     <barter>
 
+        <left>
+            <storageTitle>Storages</storageTitle>
+            <lastSpecialBarterAt>Last Special Barter At:</lastSpecialBarterAt>
+            <estimatedNext>Estimated Next</estimatedNext>
+            <searchPlaceholder>Search</searchPlaceholder>
+        </left>
+
         <table>
             <tier>Tier</tier>
             <name>name</name>

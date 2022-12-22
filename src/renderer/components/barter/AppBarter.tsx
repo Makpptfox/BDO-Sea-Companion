@@ -11,6 +11,7 @@ import './AppBarter.scss'
 import BarterCenter from "./BarterCenter";
 import BarterLeft from "./BarterLeft";
 import BarterRight from "./BarterRight";
+import BarterBottom from "./BarterBottom";
 
 const win:win_ = window;
 
@@ -48,7 +49,7 @@ const AppBarter:React.FC<Props> = (props: Props) => {
             </div>
 
             <div id='app-barter-footer'>
-
+                <BarterBottom data={props.data} />
             </div>
         
         </div>

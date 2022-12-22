@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 #app-barter{
-    height: 100%
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 #app-barter-content{
     display: var(--barter-display);
@@ -15,9 +17,12 @@
 
     align-items: var(--barter-align-items);
     justify-items: var(--barter-justify-content);
-    height: var(--barter-height);
+    height: 100%;
     width: var(--barter-width);
-    margin: var(--barter-margin);
-    padding: var(--barter-padding);
     flex-direction: var(--barter-flex-direction);
+    border-bottom: var(--barter-table-body-border);
+}
+
+#app-barter-footer{
+    height: auto;
 }

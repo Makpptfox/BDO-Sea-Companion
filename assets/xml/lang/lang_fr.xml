@@ -1,12 +1,12 @@
 <root>
 
-    <!-- Traduction du titre de la page -->
+    <!-- Traduction du titre de la page - pas obligatoire d'écrire en majuscule (le programme le fera) -->
     <pageTitle>
-        <barter>Barter</barter>
-        <carrack>Carrack</carrack>
+        <barter>Bartering stocks</barter>
+        <carrack>Carrack tracking</carrack>
     </pageTitle>
 
-    <!-- Traduction de la barre de navigation -->
+    <!-- Traduction de la barre de navigation - pas obligatoire d'écrire en majuscule (le programme le fera) -->
     <navigation>
         <barter>Barter</barter>
         <carrack>Carrack</carrack>
@@ -40,6 +40,9 @@
 
         <left>
             <storageTitle>Storages</storageTitle>
+            <lastSpecialBarterAt>Dernier barter special à :</lastSpecialBarterAt>
+            <estimatedNext>Estimation du prochain :</estimatedNext>
+            <searchPlaceholder>Rechercher</searchPlaceholder>
         </left>
 
         <table>
@@ -47,6 +50,15 @@
             <name>Nom</name>
             <qty>Quantité</qty>
         </table>
+
+        <bottom>
+            <left>
+                <title>Thresold warning</title>
+            </left>
+            <right>
+                <totalStoragesValue>Valeur total : </totalStoragesValue>
+            </right>
+        </bottom>
 
     </barter>
     

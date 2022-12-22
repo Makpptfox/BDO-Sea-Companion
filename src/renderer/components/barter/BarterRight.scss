@@ -12,6 +12,11 @@
             margin-bottom: 5px;
             width: 60px;
             height: 60px;
+            &:is(.all){
+                background: var(--barter-right-button-all-background-gradient);
+                height: 30px;
+                border-color: #856348;
+            }
         }
 
         .barter-right__button{
@@ -21,11 +26,8 @@
             cursor: pointer;
             color: #fff;
             transition: all 0.3s ease-in-out;
-            &:hover{
-                background-color: #000;
-                color: #fff;
-            }
         }
+
 
         .not-active{
             opacity: 0.5;

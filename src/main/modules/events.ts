@@ -3,6 +3,8 @@ import { ipcMain } from "electron";
 // Import all events
 import onPagechange from "./events/onPageChange";
 import handleSaveItem from "./events/onSaveItem";
+import handleSaveMisc from "./events/onSaveMisc";
+import handleSaveThreshold from "./events/onSaveThreshold";
 import { findXmlFile } from "./fileManager";
 
 // Export all events in one function
@@ -58,9 +60,34 @@ export function events(){
         handleSaveItem(data['key'], data['value'], data['type'], e);
     });
 
+    ipcMain.on('save-misc', async (e: Electron.IpcMainEvent, data: {key: "lastBarter", value:string}) => {
+        handleSaveMisc(data['key'], data['value'], e);
+    });
+
     ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, data: {hide: boolean, type:"iliya"|"epheria"|"ancado"}) => {
 
         
         e.sender.send('r_hide-col-barter', data);
+    });
+
+
+
+    ipcMain.on('barterItemSelect', async (e: Electron.IpcMainEvent, data: {icon: string, tier: number, name: string}) => {
+            e.sender.send('barterItemSelect', data);
+    });
+
+    ipcMain.on('search-barter', async (e: Electron.IpcMainEvent, data: {search: string}) => {
+        e.sender.send('search-barter', data);
+    });
+
+    ipcMain.on('total-value', async (e: Electron.IpcMainEvent, data: {value: number}) => {
+        e.sender.send('total-value', data);
+    });
+
+    ipcMain.on('threshold-change', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
+
+        handleSaveThreshold(data['name'], data['value']);
+
+        e.sender.send('threshold-change', data);
     });
 }

@@ -3,33 +3,41 @@
     <items>
         <gunPowder>
             <qty>100</qty>
-            <iliya>410</iliya>
-            <epheria>40</epheria>
-            <ancado>20</ancado>
+            <iliya>0</iliya>
+            <epheria>1</epheria>
+            <ancado>0</ancado>
         </gunPowder>
         <bluePill>
             <qty>100</qty>
-            <iliya>40</iliya>
-            <epheria>40</epheria>
-            <ancado>20</ancado>
+            <iliya>0</iliya>
+            <epheria>0</epheria>
+            <ancado>0</ancado>
         </bluePill>
         <bluePill_2>
             <qty>100</qty>
-            <iliya>40</iliya>
-            <epheria>40</epheria>
-            <ancado>20</ancado>
+            <iliya>1</iliya>
+            <epheria>0</epheria>
+            <ancado>0</ancado>
         </bluePill_2>
         <bluePill_3>
             <qty>100</qty>
-            <iliya>40</iliya>
-            <epheria>40</epheria>
-            <ancado>20</ancado>
+            <iliya>0</iliya>
+            <epheria>1</epheria>
+            <ancado>0</ancado>
         </bluePill_3>
         <bluePill_4>
             <qty>100</qty>
-            <iliya>40</iliya>
-            <epheria>40</epheria>
-            <ancado>20</ancado>
+            <iliya>1</iliya>
+            <epheria>0</epheria>
+            <ancado>5</ancado>
         </bluePill_4>
     </items>
+    <misc>
+        <lastBarter>250</lastBarter>
+    </misc>
+    <threshold>
+        <iliya>0</iliya>
+        <epheria>0</epheria>
+        <ancado>0</ancado>
+    </threshold>
 </data>

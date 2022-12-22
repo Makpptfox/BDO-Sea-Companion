@@ -3,7 +3,7 @@
   --app-accent-color: #32639f;
   --app-font-size: 16px;
   --app-font-family: 'dejavu' , sans-serif;
-  --app-bgcolor: #2d2d31;
+  --app-bgcolor: #31302d;
   --app-border-color: #3b3f44;
 
   // Link not active
@@ -68,11 +68,11 @@
   --barter-display: grid;
 
   --barter-grid-template-columns: 225px calc((100% - 225px) - 80px) 80px;
-  --barter-grid-template-rows: 30px calc(100% - 60px);
+  --barter-grid-template-rows: 30px calc(100% - 30px);
 
   --barter-align-items: inherit;
   --barter-justify-content: stretch;
-  --barter-height: 100%;
+  --barter-height: auto;
   --barter-width: 100%;
   --barter-margin: 0 0 0 0;
   --barter-padding: 0 0 0 0;
@@ -163,11 +163,14 @@
       --barter-table-body-margin: 0 0 0 0;
       --barter-table-body-padding: 0 0 0 0;
       --barter-table-body-grid-column: 1 / 7;
-      --barter-table-body-grid-row: 2;
+      --barter-table-body-grid-row: 2 / 3;
         // tr of table body
         --barter-table-body-tr-display: grid;
         --barter-table-body-tr-grid-template-columns: 10% 30% 15% 15% 15% 15%;
         --barter-table-body-tr-padding: 10px 0 0 0;
         --barter-table-body-tr-font-size: 18px;
           --barter-table-body-input-font-color: rgb(185, 190, 211);
+    
+  // BarterRight
+  --barter-right-button-all-background-gradient: linear-gradient(to bottom, #5e483a 60%, #96683e 100%);
 }

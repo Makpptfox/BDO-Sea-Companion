@@ -23,6 +23,9 @@
     &:first-child{
         margin-top: 5px;
     }
+    &:last-child{
+        margin-bottom: 20px;
+    }
 
     label{
         width: 100%;

@@ -12,8 +12,13 @@ type channel = {
     "getDataFile": (event: any, lang: string) => void;
     "pageChange": (event: any, page: string) => void;
     "save-item": (event: any, key: string, value: number, type: string) => void;
+    "save-misc": (event: any, key: string, value: string) => void;
     "hide-col-barter": (event: any, hide: boolean, type: string) => void;
     "r_hide-col-barter": (event: any, hide: boolean, type: string) => void;
+    "barterItemSelect": (event: any, icon: string, tier: number, name: string) => void;
+    "search-barter": (event: any, search: string) => void;
+    "total-value": (event: any, value: number) => void;
+    "threshold-change": (event: any, name: string, value: number) => void;
 }
 
 /**
@@ -42,6 +47,10 @@ type channelEvent = {
         value: number;
         type: string;
     },
+    "save-misc": {
+        key: string;
+        value: string;
+    }
     "hide-col-barter": {
         hide: boolean;
         type: string;
@@ -49,6 +58,21 @@ type channelEvent = {
     "r_hide-col-barter": {
         hide: boolean;
         type: string;
+    },
+    "barterItemSelect": {
+        icon: string;
+        tier: number;
+        name: string;
+    }
+    "search-barter": {
+        search: string;
+    },
+    "total-value": {
+        value: number;
+    },
+    "threshold-change": {
+        name: string,
+        value: number,
     },
 }
 
@@ -149,6 +173,8 @@ type win_ = Window & {
          * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererremovealllistenerschannel
          */
         removeAll: (channel: string) => void;
+
+        eventsRegistered: any;
     }
 }
 export default win_;

@@ -10,6 +10,7 @@ type Props = {
     handleChange: (event?: React.ChangeEvent<HTMLInputElement>) => void;
     handleBlur: (event?: React.FocusEvent<HTMLInputElement>) => void;
     handleDoubleClick: (event?: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+    limit: number;
 }
 
 const ElementMaker: React.FC<Props> = (props: Props) => {
@@ -21,7 +22,7 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                 <input
                     type="number"
                     className="input-number-barter"
-                    value={props.value}
+                    defaultValue={props.value}
                     onChange={props.handleChange}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
@@ -33,7 +34,7 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                     }}
                     onBlur={props.handleBlur}
                     autoFocus
-                />
+                ></input>
                 ) : (
                 <span
                     onDoubleClick={props.handleDoubleClick}

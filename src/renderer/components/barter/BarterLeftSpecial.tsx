@@ -1,0 +1,54 @@
+import React from "react";
+
+import "./BarterLeftSpecial.scss";
+import dataDict from '@src/typings/data';
+import win_ from "@src/typings/win";
+
+type Props = {
+    data: dataDict;
+};
+
+const win:win_ = window;
+
+const BarterLeftSpecial:React.FC<Props> = (props: Props) => {
+
+    // Create a state to store the count of the next special barter
+    const [count, setCount] = React.useState(parseInt(props.data.save.misc[0].lastBarter[0])+250);
+
+    // Each special barter need 250 normal barter
+    // So we need to add 250 to the last special barter
+    const countNewSpecialBarter = (_value: string)=>{
+
+        // If value is empty, set count to 250
+        if(_value === "") return setCount(250);
+        
+        // Convert value to integer
+        const value = parseInt(_value);
+
+        // If value is not a number, set count to 250
+        if(isNaN(value)) return setCount(250);
+
+        // If value is less than 0, set count to 0
+        if(value < 0) return setCount(0);
+
+        setCount(value + 250);
+
+        win.api.send('save-misc', {key: "lastBarter", value: String(value)})
+
+    }
+
+    return (
+        <div className="barter-left-special">
+            <div className="InputSpecialBarter">
+                <label htmlFor="LastSpecialBarter">{props.data.lang.barter[0].left[0].lastSpecialBarterAt[0]}</label>
+                <input id="LastSpecialBarter" type="number" defaultValue={parseInt(props.data.save.misc[0].lastBarter[0])} onChange={(e)=>countNewSpecialBarter(e.target.value)} />
+            </div>
+            <div className="EstimatedNextSpecial">
+                <p>{props.data.lang.barter[0].left[0].estimatedNext[0]}</p>
+                <p className="countEstimated">{count}</p>
+            </div>
+        </div>
+    );
+};
+
+export default BarterLeftSpecial;

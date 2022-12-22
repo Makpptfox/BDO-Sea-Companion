@@ -21,6 +21,26 @@ interface saveData {
                 }
             ]
         }
+    ],
+    misc: [
+        {
+            lastBarter: [
+                string
+            ]
+        }
+    ],
+    threshold: [
+        {
+            iliya: [
+                string
+            ]
+            epheria: [
+                string
+            ]
+            ancado: [
+                string
+            ]
+        }
     ]
 }
 

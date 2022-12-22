@@ -3,8 +3,11 @@ import React from 'react';
 import dataDict from '@src/typings/data';
 
 import './BarterLeft.scss';
-import BarterLeftSelector from './barterLeftSelector';
+import BarterLeftSelector from './BarterLeftSelector';
 import win_ from '@src/typings/win';
+import BarterLeftSpecial from './BarterLeftSpecial';
+import BarterLeftItem from './BarterLeftItem';
+import BarterLeftSearch from './BarterLeftSearch';
 
 const win:win_ = window;
 
@@ -58,7 +61,11 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
                         win.api.send('hide-col-barter', {hide: change, type: 'ancado'});
                     });
                 }} />
+
             </div>
+            <BarterLeftSpecial data={props.data} />
+            <BarterLeftItem data={props.data}/>
+            <BarterLeftSearch data={props.data} search={''}/>
         </div>
     );
 };

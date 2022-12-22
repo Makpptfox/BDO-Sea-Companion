@@ -52,6 +52,8 @@ export function createAppWindow(): BrowserWindow {
     app.quit();
   });
 
+  process.on('warning', e => console.warn(e.stack));
+
   return appWindow;
 }
 

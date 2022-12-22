@@ -11,10 +11,17 @@ const {
 
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'hide-col-barter'];
+const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change'];
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type srcFrom = {
+  from: string,
+  event: string,
+  func: any
+}
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
@@ -77,7 +84,8 @@ contextBridge.exposeInMainWorld(
       } else {
         throw new Error('Invalid channel');
       }
-    }
+    },
+    eventsRegistered: {},
   }
 )
 
