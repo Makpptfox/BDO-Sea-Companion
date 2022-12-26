@@ -9,9 +9,10 @@ type Props = {
     data: dataDict;
 }
 
-const BarterLeftItem: React.FC<Props> = (props: Props) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const BarterLeftItem: React.FC<Props> = (_props: Props) => {
 
-    const [icon, setIcon] = React.useState<any>(require('@assets/images/items/empty.png'));
+    const [icon, setIcon] = React.useState<string>(require('@assets/images/items/empty.png'));
     const [name, setName] = React.useState<string>("");
     const [tier, setTier] = React.useState<number>(1);
 

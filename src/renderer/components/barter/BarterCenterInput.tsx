@@ -15,14 +15,16 @@ type Props = {
 
 const ElementMaker: React.FC<Props> = (props: Props) => {
     
+    const value = isNaN(props.value) ? 0 : props.value;
+
     return(
-        <span>
+        <span className="input-center-item">
             {
                 props.showInputEle ? (
                 <input
                     type="number"
                     className="input-number-barter"
-                    defaultValue={props.value}
+                    defaultValue={value}
                     onChange={props.handleChange}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
@@ -34,13 +36,13 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                     }}
                     onBlur={props.handleBlur}
                     autoFocus
-                ></input>
+                />
                 ) : (
                 <span
-                    onDoubleClick={props.handleDoubleClick}
+                    onClick={props.handleDoubleClick}
                     className="table-edit"
                 >
-                    {props.value}
+                    {value}
                 </span>
                 )
             }

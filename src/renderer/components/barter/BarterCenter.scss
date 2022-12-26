@@ -18,6 +18,7 @@ table{
 
     border-collapse: var(--barter-table-border-collapse);
     width: var(--barter-table-width);
+    height: 100%;
     margin: var(--barter-table-margin);
     padding: var(--barter-table-padding);
     border: var(--barter-table-border);
@@ -50,21 +51,56 @@ table{
     tbody{
         text-align: var(--barter-table-body-text-align);
         width: var(--barter-table-body-width);
+        max-width: var(--barter-table-body-width);
+
+        overflow: auto;
+
+        max-height: var(--barter-table-body-height);
         height: var(--barter-table-body-height);
         margin: var(--barter-table-body-margin);
         padding: var(--barter-table-body-padding);
         grid-column: var(--barter-table-body-grid-column);
         grid-row: var(--barter-table-body-grid-row);
+
+        // Custom scrollbar
+        &::-webkit-scrollbar {
+            width: 10px;
+            margin-top: 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        &::-webkit-scrollbar-track {
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px 10px #404045;
+            border: solid 2px transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            box-shadow: inset 0 0 6px 6px #cca471;
+            border: solid 3px transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            box-shadow: inset 0 0 6px 6px darken(#cca471, 10%);
+            transition: all 0.2s ease-in-out;
+        }
+
+
         tr{
             display: var(--barter-table-body-tr-display);
             grid-template-columns: var(--barter-table-body-tr-grid-template-columns);
             padding: 5px 0;
             margin: 5px 0;
             font-size: var(--barter-table-body-tr-font-size);
+            cursor: pointer;
             .table-edit{
                 color: white;
             }
             td{
+                .input-center-item{
+                    cursor: text;
+                    font-weight: 300;
+                }
 
                 .input-number-barter{
                     // Remove ALL the default styles from the input number
@@ -86,7 +122,7 @@ table{
                     height: 100%;
                     text-align: center;
                     color: var(--barter-table-body-input-font-color);
-                    font-weight: var(--barter-table-body-font-weight);
+                    font-weight: 300;
 
 
                 }
@@ -129,3 +165,7 @@ table{
 }
 
 .hide { display: none;}
+
+.hide-h{
+    display: none;
+}

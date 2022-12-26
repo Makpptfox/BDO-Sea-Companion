@@ -13,6 +13,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 *.css
 *.css.map
 
+# just ignore it
+*.7z
+
 # Runtime data
 pids
 *.pid

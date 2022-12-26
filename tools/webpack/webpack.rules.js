@@ -56,5 +56,6 @@ module.exports = [
     generator: {
       filename: 'assets/[hash][ext][query]',
     },
-  },
+  }
+  
 ];

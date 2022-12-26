@@ -11,9 +11,16 @@ type ControlButtonProps = {
 
 // This is the component itself that will be exported and used in other files
 const ControlButton: React.FunctionComponent<ControlButtonProps> = (props) => {
+    let icon = ""
+    if(props.icon.includes('lang_')){
+        icon = require(`@assets/icons/${props.icon}.png`);
+    }else{
+        icon = require(`@assets/icons/${props.icon}.svg`);
+    }
+
     return (
         <div className='control-button' onClick={props.onClick}>
-            <div className='control-button-icon'>{props.icon}</div>
+            <div className='control-button-icon'><img src={icon} alt={props.icon} height='16'/></div>
         </div>
     );
 };

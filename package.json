@@ -1,6 +1,6 @@
 {
   "name": "bdo_barter-calculator",
-  "productName": "BDO Barter Calculator",
+  "productName": "BDO Sea Companion",
   "version": "0.0.1",
   "description": "An tool for BDO game",
   "main": ".webpack/main",
@@ -11,6 +11,13 @@
     "publish": "electron-forge publish",
     "lint": "eslint src/ --ext .ts,.js,.tsx,.jsx"
   },
+  "files": [
+    "./assets/xml/settings.xml",
+    "./assets/xml/data/item_data.xml",
+    "./assets/xml/data/save_data.xml",
+    "./assets/xml/lang/lang_en.xml",
+    "./assets/xml/lang/lang_fr.xml"
+  ],
   "keywords": [
     "BDO",
     "Electron",
@@ -19,7 +26,7 @@
     "TypeScript"
   ],
   "author": {
-    "name": "ward & makpptfox",
+    "name": "Ward & Makpptfox",
     "url": "https://github.com/ward727a & https://github.com/Makpptfox"
   },
   "repository": {
@@ -48,6 +55,7 @@
     "@typescript-eslint/parser": "^5.41.0",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
     "classnames": "^2.3.2",
+    "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "electron": "^21.2.0",

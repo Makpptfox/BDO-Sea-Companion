@@ -6,6 +6,7 @@ type dataDict = {
     lang: langDict;
     item: itemDict;
     save: saveData;
+    setProps: (lang: langDict, item: itemDict, save: saveData) => void;
 }
 
 export default dataDict;

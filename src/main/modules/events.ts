@@ -2,10 +2,19 @@ import { ipcMain } from "electron";
 
 // Import all events
 import onPagechange from "./events/onPageChange";
+import onSaveDataDict from "./events/onSaveDataDict";
 import handleSaveItem from "./events/onSaveItem";
 import handleSaveMisc from "./events/onSaveMisc";
 import handleSaveThreshold from "./events/onSaveThreshold";
+import onSearchBarter from "./events/onSearchBarter";
+import onThresholdWarning from "./events/onThresholdWarning";
+import onTotalValue from "./events/onTotalValue";
+import onBarterItemSelect from "./events/onBarterItemSelect";
+import onHideColBarter from "./events/onHideColBarter";
+
+// import file manager
 import { findXmlFile } from "./fileManager";
+import onAppQuit from "./events/onAppQuit";
 
 // Export all events in one function
 export function events(){
@@ -32,7 +41,7 @@ export function events(){
         }
 
         // Get xml lang file
-        const lang = findXmlFile('lang_'+lang_);
+        const lang = findXmlFile('lang/lang_'+lang_);
 
         return {lang: lang_, dict: lang};
 
@@ -54,9 +63,9 @@ export function events(){
 
     });
 
+    // SAVE DATA EVENT
+
     ipcMain.on('save-item', async (e: Electron.IpcMainEvent, data: {key: string, value:number, type:"iliya"|"epheria"|"ancado"}) => {
-
-
         handleSaveItem(data['key'], data['value'], data['type'], e);
     });
 
@@ -64,24 +73,22 @@ export function events(){
         handleSaveMisc(data['key'], data['value'], e);
     });
 
-    ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, data: {hide: boolean, type:"iliya"|"epheria"|"ancado"}) => {
+    // FUNCTION EVENT
 
-        
-        e.sender.send('r_hide-col-barter', data);
+    ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, data: {hide: boolean, type:"iliya"|"epheria"|"ancado"}) => {
+        onHideColBarter(e, data);
     });
 
-
-
     ipcMain.on('barterItemSelect', async (e: Electron.IpcMainEvent, data: {icon: string, tier: number, name: string}) => {
-            e.sender.send('barterItemSelect', data);
+        onBarterItemSelect(e, data);
     });
 
     ipcMain.on('search-barter', async (e: Electron.IpcMainEvent, data: {search: string}) => {
-        e.sender.send('search-barter', data);
+        onSearchBarter(e, data);
     });
 
     ipcMain.on('total-value', async (e: Electron.IpcMainEvent, data: {value: number}) => {
-        e.sender.send('total-value', data);
+        onTotalValue(e, data);
     });
 
     ipcMain.on('threshold-change', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
@@ -89,5 +96,43 @@ export function events(){
         handleSaveThreshold(data['name'], data['value']);
 
         e.sender.send('threshold-change', data);
+    });
+
+    ipcMain.on('threshold-warning', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
+        onThresholdWarning(e, data);
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ipcMain.on('save-data-dict', async (e: Electron.IpcMainEvent, data: {dict: any}) => {
+        onSaveDataDict(e, data);
+    });
+
+    ipcMain.on('app-quit', async () => {
+        onAppQuit();
+    });
+
+    ipcMain.on('set-lang', async (e: Electron.IpcMainEvent, data: {lang: string}) => {
+
+        console.log('set-lang', data)
+
+        e.sender.send('set-lang', data);
+    });
+
+    
+
+    // DEPRECATED EVENT
+
+    ipcMain.on('check-threshold', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
+
+        console.error('USING DREPRECATED EVENT: check-threshold');
+
+        e.sender.send('check-threshold', data);
+    });
+
+    ipcMain.on('ask-check-threshold', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
+
+        console.error('USING DREPRECATED EVENT: ask-check-threshold');
+
+        e.sender.send('ask-check-threshold', data);
     });
 }

@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Here will be the code for the xml file manager
 
+import { app } from 'electron';
+
 import path from "path";
 import fs from "fs";
 import { assert } from "console";
 
 import * as xml2js from 'xml2js';
 
-const xmlPath = path.join(__dirname, '..', '..', 'assets', 'xml');
+let userDataPath = ''
 
+if(process.env.NODE_ENV === 'development'){
+    userDataPath = path.join(__dirname,'..', '..','assets');
+} else {
+    userDataPath = app.getPath('userData');
+}
+const xmlPath = path.join(userDataPath, 'xml');
 // Path: src\main\modules\fileManager.ts
 
 
@@ -55,6 +63,9 @@ function getXmlFiles() {
  * @throws Error if xml2js fails to convert xml to json
  */
 function findXmlFile(fileName: string):any {
+
+    console.trace()
+
     // Check if file ends with .xml
     if (!fileName.endsWith('.xml')) {
         fileName += '.xml';

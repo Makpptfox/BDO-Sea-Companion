@@ -35,5 +35,10 @@
         .active{
             opacity: 1;
         }
+
+        .warn{
+            background:linear-gradient(180deg, rgba(144, 68, 68, 1) 0%, rgba(108, 37, 37, 1) 100%);
+            border-color: #8b595c;
+        }
     }
 }

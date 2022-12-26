@@ -1,3 +1,4 @@
+import fs from 'fs';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Say something
 console.log('[ERWT] : Preload execution started');
@@ -11,10 +12,10 @@ const {
 
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change'];
+const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {
@@ -85,7 +86,7 @@ contextBridge.exposeInMainWorld(
         throw new Error('Invalid channel');
       }
     },
-    eventsRegistered: {},
+    eventsRegistered: fs.readdirSync(__dirname),
   }
 )
 

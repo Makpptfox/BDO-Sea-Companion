@@ -8,9 +8,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-import logApi from './modules/logApi';
-
-const log = new logApi(app);
+//new logApi(app);
 
 /**
  * This method will be called when Electron has finished
@@ -26,6 +24,7 @@ app.on('ready', createAppWindow);
  * or clicking on the application's dock or taskbar icon.
  */
 app.on('activate', () => {
+
   /**
    * On OS X it's common to re-create a window in the app when the
    * dock icon is clicked and there are no other windows open.

@@ -13,6 +13,14 @@ module.exports = {
     appCopyright: 'Copyright (C) 2021 Codesbiome, Guasam',
     // Set application icon
     icon: path.resolve('assets/images/appIcon.ico'),
+  
+    extraResource: [
+      path.resolve("assets/xml/settings.xml"),
+      path.resolve("assets/xml/lang/lang_en.xml"),
+      path.resolve("assets/xml/lang/lang_fr.xml"),
+      path.resolve("assets/xml/data/item_data.xml"),
+      path.resolve("assets/xml/data/save_data.xml")
+    ],
   },
   // Forge Makers
   makers: [

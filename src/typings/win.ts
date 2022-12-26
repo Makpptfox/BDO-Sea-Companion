@@ -19,6 +19,14 @@ type channel = {
     "search-barter": (event: any, search: string) => void;
     "total-value": (event: any, value: number) => void;
     "threshold-change": (event: any, name: string, value: number) => void;
+    "threshold-warning": (event: any, name: string) => void;
+    "check-threshold": (event: any, name: string) => void;
+    "ask-check-threshold": (event: any, name: string) => void;
+    "save-data-dict": (event: any, data: string) => void;
+    'app-quit': (event: any) => void;
+    'app-maximize': (event: any, maximize: boolean) => void;
+    'app-maximize-reply': (event: any, maximize: boolean) => void;
+    'set-lang': (event: any, lang: string) => void;
 }
 
 /**
@@ -73,6 +81,28 @@ type channelEvent = {
     "threshold-change": {
         name: string,
         value: number,
+    },
+    "threshold-warning":{
+        name: string,
+    },
+    "check-threshold": {
+        name: string,
+    },
+    'ask-check-threshold': {
+        name: string,
+    },
+    'save-data-dict': {
+        data: string;
+    }
+    'app-quit': void;
+    'app-maximize': {
+        maximize: boolean;
+    },
+    'app-maximize-reply': {
+        maximize: boolean;
+    },
+    'set-lang': {
+        lang: string;
     },
 }
 

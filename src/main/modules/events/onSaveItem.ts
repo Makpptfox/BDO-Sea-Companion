@@ -13,9 +13,14 @@ export default function handleSaveItem(key: string, value: number, type: "iliya"
     // Get the save data
     const data = getXmlFileContent('data/save_data.xml');
     const save:saveData = data['data'];
+    
+    if(!save.items[0][key]) {
+        save.items[0][key] = [{qty: ["0"], iliya: ["0"], epheria: ["0"], ancado: ["0"]}];
+    }
 
     // Save the new value in the save data
     save.items[0][key][0][type][0] = value.toString();
+
 
     // Save the new save data by stringifying it
     saveXmlFileContent('data/save_data.xml', stringifySaveData(save));

@@ -1,6 +1,5 @@
 import saveData, { stringifySaveData } from "@src/typings/save";
 import { getXmlFileContent, saveXmlFileContent } from "../fileManager";
-import IpcMainEvent = Electron.IpcMainEvent;
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

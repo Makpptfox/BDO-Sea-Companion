@@ -13,6 +13,7 @@
     flex-direction: row;
 
     #window-frame-header-title{
+        -webkit-app-region: drag;
         display: flex;
         flex-direction: row;
 
@@ -57,7 +58,9 @@
     }
 
     #window-frame-header-actions{
+        -webkit-app-region: drag;
         .window-controls{
+            -webkit-app-region: drag;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -66,6 +69,12 @@
             flex: 1;
 
             height: 100%;
+            z-index: 1000;
+            .control-button{
+                margin: 0 5px;
+                cursor: pointer;
+                -webkit-app-region: none;
+            }
         }
     }
 }

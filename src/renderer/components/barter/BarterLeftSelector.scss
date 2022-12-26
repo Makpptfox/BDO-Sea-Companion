@@ -67,11 +67,35 @@
             width: 100%;
         }
     }
-    
+
     .display-checkbox-y {
         display: inline-block;
     }
     .display-checkbox-n {
         display: none;
+    }
+}
+    
+.warned{
+    background:linear-gradient(180deg, rgba(144, 68, 68, 1) 0%, rgba(108, 37, 37, 1) 100%);
+    border-color: #8b595c;
+    .checkbox-border {
+        display: inline-block; // set to `inline-block` as `inline elements ignore `height` and `width`
+        height: 20px;
+        width: 20px;
+        background: #232326;
+        border: 1px #8b595c solid;
+        border-radius: 2px;
+        margin-right: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+        img{
+            height: 100%;
+            width: 100%;
+
+            filter: invert(48%) sepia(12%) saturate(1237%) hue-rotate(307deg) brightness(78%) contrast(91%);
+        }
     }
 }

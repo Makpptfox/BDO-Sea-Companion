@@ -17,7 +17,7 @@
 
     align-items: var(--barter-align-items);
     justify-items: var(--barter-justify-content);
-    height: 100%;
+    height: calc(100% - 81px);
     width: var(--barter-width);
     flex-direction: var(--barter-flex-direction);
     border-bottom: var(--barter-table-body-border);

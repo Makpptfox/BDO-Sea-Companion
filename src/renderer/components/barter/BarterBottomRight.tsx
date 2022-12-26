@@ -10,7 +10,7 @@ type Props = {
 }
 
 
-let init = (setTotal: any, props: any)=>{
+let init = (setTotal: React.Dispatch<React.SetStateAction<number>>, props: Props)=>{
     // !!! DO NOT REMOVE THIS LINE OR ELSE THE FUNCTION WILL BE RECALLED EVERYTIME THE COMPONENT IS RENDERED !!! \\
     // !!! MAKING THE APP CRASH !!! \\
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -21,7 +21,7 @@ let init = (setTotal: any, props: any)=>{
     Object.keys(props.data.save.items[0]).forEach((key) => {
 
         const tier = parseInt(props.data.item[key][0].tier[0]);
-        const qty = parseInt(props.data.save.items[0][key][0].iliya[0] + props.data.save.items[0][key][0].epheria[0] + props.data.save.items[0][key][0].ancado[0]);
+        const qty = parseInt(props.data.save.items[0][key][0].iliya[0]) + parseInt(props.data.save.items[0][key][0].epheria[0]) + parseInt(props.data.save.items[0][key][0].ancado[0]);
 
         switch(tier){
             case 3:
@@ -52,28 +52,34 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
 
     barterEventManager.onTotalValue('BarterBottomRight', ()=>{
-        setTotal(0);
-        _total = 0
-        Object.keys(props.data.save.items[0]).forEach((key) => {
-            const tier = parseInt(props.data.item[key][0].tier[0]);
-            const qty = parseInt(props.data.save.items[0][key][0].iliya[0] + props.data.save.items[0][key][0].epheria[0] + props.data.save.items[0][key][0].ancado[0]);
-
-
-            switch(tier){
-                case 3:
-                    _total = _total + (qty * 1000000);
-                    break;
-                case 4:
-                    _total = _total + (qty * 2000000);
-                    break;
-                case 5:
-                    _total = _total + (qty * 5000000);
-                    break;
-            }
-            
-        })
+        new Promise((resolve) => {
         
-        setTotal(_total);
+            setTotal(0);
+            _total = 0
+            Object.keys(props.data.save.items[0]).forEach((key) => {
+                const tier = parseInt(props.data.item[key][0].tier[0]);
+                const qty = parseInt(props.data.save.items[0][key][0].iliya[0] + props.data.save.items[0][key][0].epheria[0] + props.data.save.items[0][key][0].ancado[0]);
+
+
+                switch(tier){
+                    case 3:
+                        _total = _total + (qty * 1000000);
+                        break;
+                    case 4:
+                        _total = _total + (qty * 2000000);
+                        break;
+                    case 5:
+                        _total = _total + (qty * 5000000);
+                        break;
+                }
+                
+            })
+            
+            setTotal(_total);
+
+            resolve(true);
+        
+        })
     })
 
     return(
