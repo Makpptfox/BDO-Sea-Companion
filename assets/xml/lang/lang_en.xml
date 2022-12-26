@@ -2,8 +2,8 @@
 
     <!-- Translation of the page title -->
     <pageTitle>
-        <barter>Barter</barter>
-        <carrack>Carrack</carrack>
+        <barter>Bartering Stocks</barter>
+        <carrack>Carrack Tracking</carrack>
     </pageTitle>
 
     <!-- Translation of the navigation bar -->
@@ -14,43 +14,90 @@
 
     <!-- Translation of the items -->
     <items>
-        <gunPowder>
-            <name>Gun Powder</name>
-            <description></description>
-        </gunPowder>
-        <bluePill>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill>
-        <bluePill_2>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_2>
-        <bluePill_3>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_3>
-        <bluePill_4>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_4>
+    <!-- Items of Tier 1 (Sorted as shown in the game's storage auto-arrange) -->
+        <BlueRose>
+            <name>Blue Rose</name>
+            <description>Dried Blue Rose</description>
+        </BlueRose>
+        <FishBone>
+            <name>Fish Bone</name>
+            <description>Giant Fish Bone</description>
+        </FishBone>
+        <Ration>
+            <name>Naval Ration</name>
+            <description>Naval Ration</description>
+        </Ration>
+        <Seagull>
+            <name>Seagull Figurine</name>
+            <description>Stained Seagull Figurine</description>
+        </Seagull>
+        <RaftToy>
+            <name>Raft Toy</name>
+            <description>Raft Toy</description>
+        </RaftToy>
+        <RawGizzard>
+            <name>Raw Gizzard</name>
+            <description>Chewy Raw Gizzard</description>
+        </RawGizzard>
+        <UrnPiece>
+            <name>Urn Piece</name>
+            <description>Ancient Urn Piece</description>
+        </UrnPiece>
+        <AncientMural>
+            <name>Ancient Mural</name>
+            <description>Unidentified Ancient Mural</description>
+        </AncientMural>
+        <CherrySeed>
+            <name>Cherry Seed</name>
+            <description>Cherry Tree Seed Pouch</description>
+        </CherrySeed>
+        <GoldenSand>
+            <name>Golden Sand</name>
+            <description>Sable doré</description>
+        </GoldenSand>
+        <RoaSeed>
+            <name>Roa Seed</name>
+            <description>Roa Flower Seed Pouch</description>
+        </RoaSeed>
+        <RakeflowerSeed>
+            <name>Rakeflower Seed</name>
+            <description>Rakeflower Seed Pouch</description>
+        </RakeflowerSeed>
+        <FertileSoil>
+            <name>Fertile Soil</name>
+            <description>Fertile Soil</description>
+        </FertileSoil>
+        <Gunpowder>
+            <name>Gunpowder</name>
+            <description>Pirates' Gunpowder</description>
+        </Gunpowder>
+        
     </items>
 
     <barter>
 
         <left>
             <storageTitle>Storages</storageTitle>
-            <lastSpecialBarterAt>Last Special Barter At:</lastSpecialBarterAt>
-            <estimatedNext>Estimated Next</estimatedNext>
+            <lastSpecialBarterAt>Last special barter at:</lastSpecialBarterAt>
+            <estimatedNext>Estimated next:</estimatedNext>
             <searchPlaceholder>Search</searchPlaceholder>
         </left>
 
         <table>
-            <tier>Tier</tier>
-            <name>name</name>
-            <qty>Qty</qty>
+            <tier>Level</tier>
+            <name>Name</name>
+            <qty>Quantity</qty>
         </table>
 
-    </barter>
+        <bottom>
+            <left>
+                <title>Treshold Warning</title>
+            </left>
+            <right>
+                <totalStoragesValue>Total Value : </totalStoragesValue>
+            </right>
+        </bottom>
 
+    </barter>
+    
 </root>

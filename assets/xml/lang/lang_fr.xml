@@ -2,101 +2,83 @@
 
     <!-- Traduction du titre de la page - pas obligatoire d'écrire en majuscule (le programme le fera) -->
     <pageTitle>
-        <barter>Bartering stocks</barter>
-        <carrack>Carrack tracking</carrack>
+        <barter>Stock de Troc</barter>
+        <carrack>Traqueur de Caraque</carrack>
     </pageTitle>
 
     <!-- Traduction de la barre de navigation - pas obligatoire d'écrire en majuscule (le programme le fera) -->
     <navigation>
-        <barter>Barter</barter>
-        <carrack>Carrack</carrack>
+        <barter>Trock</barter>
+        <carrack>Caraque</carrack>
     </navigation>
 
     <!-- Traduction des items -->
     <items>
-        <gunPowder>
+    <!-- Items Niveau 1 (Dans l'ordre d'affichage en jeu) -->
+        <BlueRose>
+            <name>Rose bleue</name>
+            <description>Rose bleue séchée</description>
+        </BlueRose>
+        <FishBone>
+            <name>Arête de poisson</name>
+            <description>Arête de poisson géant</description>
+        </FishBone>
+        <Ration>
+            <name>Ration navale</name>
+            <description>Ration navale</description>
+        </Ration>
+        <Seagull>
+            <name>Figurine de mouette</name>
+            <description>Figurine de mouette tachetée</description>
+        </Seagull>
+        <RaftToy>
+            <name>Jouet radeau</name>
+            <description>Jouet radeau</description>
+        </RaftToy>
+        <RawGizzard>
+            <name>Gésier crues</name>
+            <description>Aloses à gésier crues</description>
+        </RawGizzard>
+        <UrnPiece>
+            <name>Morceau d'urne</name>
+            <description>Morceau d'urne ancienne</description>
+        </UrnPiece>
+        <AncientMural>
+            <name>Fresque ancienne</name>
+            <description>Fresque ancienne non identifiée</description>
+        </AncientMural>
+        <CherrySeed>
+            <name>Graines de cerisier</name>
+            <description>Sachet de graines de cerisier</description>
+        </CherrySeed>
+        <GoldenSand>
+            <name>Sable doré</name>
+            <description>Sable doré</description>
+        </GoldenSand>
+        <RoaSeed>
+            <name>Graines de Roa</name>
+            <description>Sachet de graines de fleur Roa</description>
+        </RoaSeed>
+        <RakeflowerSeed>
+            <name>Graines de râteau</name>
+            <description>Sachet de graines de fleur râteau</description>
+        </RakeflowerSeed>
+        <FertileSoil>
+            <name>Terre fertile</name>
+            <description>Terre fertile</description>
+        </FertileSoil>
+        <Gunpowder>
             <name>Poudre à canon</name>
-            <description>Une poudre à canon</description>
-        </gunPowder>
-        <bluePill>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill>
-        <bluePill_2>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_2>
-        <bluePill_3>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_3>
-        <bluePill_4>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_4>
-        <bluePill_5>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_5>
-        <bluePill_6>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_6>
-        <bluePill_7>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_7>
-        <bluePill_8>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_8>
-        <bluePill_9>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_9>
-        <bluePill_10>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_10>
-        <bluePill_11>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_11>
-        <bluePill_12>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_12>
-        <bluePill_13>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_13>
-        <bluePill_14>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_14>
-        <bluePill_15>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_15>
-        <bluePill_16>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_16>
-        <bluePill_17>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_17>
-        <bluePill_18>
-            <name>test</name>
-            <description>Une poudre à canon</description>
-        </bluePill_18>
+            <description>Poudre à canon des pirates</description>
+        </Gunpowder>
+        
     </items>
 
     <barter>
 
         <left>
-            <storageTitle>Storages</storageTitle>
-            <lastSpecialBarterAt>Dernier barter special à :</lastSpecialBarterAt>
+            <storageTitle>Dépôts</storageTitle>
+            <lastSpecialBarterAt>Dernier barter spécial à :</lastSpecialBarterAt>
             <estimatedNext>Estimation du prochain :</estimatedNext>
             <searchPlaceholder>Rechercher</searchPlaceholder>
         </left>
@@ -109,10 +91,10 @@
 
         <bottom>
             <left>
-                <title>Thresold warning</title>
+                <title>Seuil d'avertissement</title>
             </left>
             <right>
-                <totalStoragesValue>Valeur total : </totalStoragesValue>
+                <totalStoragesValue>Valeur totale : </totalStoragesValue>
             </right>
         </bottom>
 
