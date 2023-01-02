@@ -3,7 +3,7 @@ import React from "react";
 import dataDict from "@src/typings/data";
 
 import "./BarterLeftItem.scss";
-import { barterEventManager } from './barterEventManager';
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
@@ -16,11 +16,12 @@ const BarterLeftItem: React.FC<Props> = (_props: Props) => {
     const [name, setName] = React.useState<string>("");
     const [tier, setTier] = React.useState<number>(1);
 
-    barterEventManager.onBarterItemSelect("BarterLeftItem",(icon, tier, name) => {
+    subEventHelper.getInstance().registerCallback("barterItemSelect",(icon, tier, name) => {
+
         setIcon(require('@assets/images/items/'+icon));
         setName(name);
         setTier(tier);
-    });
+    }, 'BarterLeftItem')
 
     return(
         <div className={`app-barter-left-content-zone-item zone-item-tier-${tier}`}>

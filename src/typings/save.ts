@@ -31,13 +31,7 @@ interface saveData {
     ],
     threshold: [
         {
-            iliya: [
-                string
-            ]
-            epheria: [
-                string
-            ]
-            ancado: [
+            [key:string]: [
                 string
             ]
         }

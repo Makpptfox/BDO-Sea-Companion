@@ -1,7 +1,6 @@
 import React from "react";
 import ControlButton from "./controlButton";
-import win_ from '@src/typings/win';
-import { barterEventManager } from "@components/barter/barterEventManager";
+import subEventHelper from "@common/subEvent";
 
 const WindowControls = () => {
 
@@ -9,23 +8,20 @@ const WindowControls = () => {
 
     const [lang, setLang] = React.useState('en');
 
-    const win:win_ = window;
+    subEventHelper.getInstance().registerCallback('app-maximize-reply', (maximize) => {
 
-    barterEventManager.onAppMaximizeReply('windowControls', (maximize) => {
         setMaximized(maximize)
-    });
 
-    barterEventManager.onSetLang('windowControls', (lang) => {
-        console.log("lang");
+    }, 'windowControls');
+
+    subEventHelper.getInstance().registerCallback('set-lang', (lang) => {
 
         setLang(lang)
-    });
+    }, 'windowControls');
 
     // TODO: Add functionality to the buttons:
         // - Help button should open a help page
         // - Lang button should open a language selection page
-        // - Minimize button should minimize the application
-        // - Close button should close the application
     return(
         <section className="window-controls">
 
@@ -34,13 +30,16 @@ const WindowControls = () => {
                 throw new Error("Function not implemented.");
             } }/>
             <ControlButton icon={"lang_"+lang} onClick={function (): void {
-                throw new Error("Function not implemented.");
+
+                subEventHelper.getInstance().callEvent('open_lang_page');
             } }/>
             <ControlButton icon={maximized? 'minimize' : 'maximize'} onClick={function (): void {
-                win.api.send('app-maximize', {maximize: maximized});
+
+                subEventHelper.getInstance().send('app-maximize', {maximize: maximized});
+
             } }/>
             <ControlButton icon={"close"} onClick={function (): void {
-                win.api.send('app-quit');
+                subEventHelper.getInstance().send('app-quit');
             } }/>
 
         </section>

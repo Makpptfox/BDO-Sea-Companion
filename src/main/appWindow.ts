@@ -1,7 +1,8 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron';
 import path from 'path';
 import { events } from './modules/events';
 import fs from 'fs';
+import { eventSystem } from './modules/eventSystem';
 
 // Electron Forge automatically creates these entry points
 declare const APP_WINDOW_WEBPACK_ENTRY: string;
@@ -93,6 +94,13 @@ function checkDataFiles() {
     fs.copyFileSync(path.join(resources, 'lang_en.xml'), path.join(langFolder, 'lang_en.xml'));
     fs.rmSync(path.join(resources, 'lang_en.xml'));
   }
+
+  // Check if the carrack data exists in the resources folder
+  if(fs.existsSync(path.join(resources, 'carrack_data.xml'))){
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    fs.copyFileSync(path.join(resources, 'carrack_data.xml'), path.join(dataFolder, 'carrack_data.xml'));
+    fs.rmSync(path.join(resources, 'carrack_data.xml'));
+  }
 }
 
 /**
@@ -100,6 +108,9 @@ function checkDataFiles() {
  * @returns {BrowserWindow} Application Window Instance
  */
 export function createAppWindow(): BrowserWindow {
+
+  
+  eventSystem.getInstance().addEvent('app-maximize');
 
   // Check if the data files exist
   checkDataFiles();
@@ -133,18 +144,20 @@ export function createAppWindow(): BrowserWindow {
   appWindow.on('ready-to-show', () => {
     appWindow.show()
 
-    ipcMain.on('app-maximize', (e: Electron.IpcMainEvent, data: {maximize: boolean}) => {
+    eventSystem.getInstance().linkToEvent((e, {maximize})=>{
 
-      console.log(data.maximize ? 'Maximize window' : 'Unmaximize window')
+      console.log(maximize ? 'Maximize window' : 'Unmaximize window')
+
+      const ev = e as IpcMainEvent;
 
       if(appWindow.isMaximized()){
         appWindow.unmaximize();
-        e.sender.send('app-maximize-reply', {maximize: false});
+        ev.sender.send('app-maximize-reply', false);
       } else {
         appWindow.maximize();
-        e.sender.send('app-maximize-reply', {maximize: true});
+        ev.sender.send('app-maximize-reply', true);
       }
-    });
+    }, 'app-maximize', 'appWindow');
   });
 
   // Register Inter Process Communication for main process

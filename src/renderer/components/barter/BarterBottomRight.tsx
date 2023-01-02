@@ -3,7 +3,7 @@ import React from "react";
 import dataDict from "@src/typings/data";
 
 import "./BarterBottomRight.scss";
-import { barterEventManager } from "./barterEventManager";
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
@@ -50,8 +50,11 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
     init(setTotal, props);
 
+    subEventHelper.getInstance().registerCallback("total-value", () => {
 
-    barterEventManager.onTotalValue('BarterBottomRight', ()=>{
+        console.log('total-value event called')
+
+        setTotal(0);
         new Promise((resolve) => {
         
             setTotal(0);
@@ -62,7 +65,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
 
                 switch(tier){
-                    case 3:
+                    case 1:
                         _total = _total + (qty * 1000000);
                         break;
                     case 4:
@@ -74,13 +77,15 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                 }
                 
             })
+            console.log('total-value equal to: ' + _total)
             
             setTotal(_total);
 
             resolve(true);
         
         })
-    })
+    }, 'BarterBottomRight')
+
 
     return(
         <div className="app-barter-bottom-right-content">

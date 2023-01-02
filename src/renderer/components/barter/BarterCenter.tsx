@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from "react";
 import dataDict from "@src/typings/data";
 import './BarterCenter.scss'
 import BarterCenterItem from "./BarterCenterItem";
-import { barterEventManager } from "./barterEventManager";
+import subEventHelper from "@common/subEvent";
 
 
 type Props = {
@@ -85,45 +85,43 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
             switch(tier){
                 case 1:
                     _setValTotal(valTotal + (qty * 0));
-                    barterEventManager.totalValue("BarterCenter", valTotal + (qty * 0));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 0));
                     break;
                 case 2:
                     _setValTotal(valTotal + (qty * 0));
-                    barterEventManager.totalValue("BarterCenter", valTotal + (qty * 0));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 0));
                     break;
                 case 3:
                     _setValTotal(valTotal + (qty * 1000000));
-                    barterEventManager.totalValue("BarterCenter", valTotal + (qty * 1000000));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 1000000));
                     break;
                 case 4:
                     _setValTotal(valTotal + (qty * 2000000));
-                    barterEventManager.totalValue("BarterCenter", valTotal + (qty * 2000000));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 2000000));
                     break;
                 case 5:
                     _setValTotal(valTotal + (qty * 5000000));
-                    barterEventManager.totalValue("BarterCenter", valTotal + (qty * 5000000));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 5000000));
                     break;
                 default:
                     _setValTotal(valTotal + (qty * 0));
-                    barterEventManager.totalValue("BarterCenter", valTotal + (qty * 0));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 0));
                     break;
             }
         })
 
     }
 
+    subEventHelper.getInstance().registerCallback('search-barter', (search)=>{
+        if(search !== undefined ) search = search.trim();
 
-    barterEventManager.onBarterSearch("BarterCenter",(data)=>{
-
-        data = data.trim();
-
-        if(data === "" || data === undefined || data === null){
+        if(search === "" || search === undefined || search === null){
             setIsSearch(false)
         }else{
             setIsSearch(true)
-            setSearch(data)
+            setSearch(search)
         }
-    });
+    }, 'BarterCenter')
 
     return(
         <table id="app-barter-center">

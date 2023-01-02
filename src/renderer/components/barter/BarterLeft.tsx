@@ -8,7 +8,6 @@ import win_ from '@src/typings/win';
 import BarterLeftSpecial from './BarterLeftSpecial';
 import BarterLeftItem from './BarterLeftItem';
 import BarterLeftSearch from './BarterLeftSearch';
-import { barterEventManager } from './barterEventManager';
 
 const win:win_ = window;
 

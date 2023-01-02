@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { barterEventManager } from './barterEventManager';
 
 import './BarterLeftSelector.scss';
 import win_ from '@src/typings/win';

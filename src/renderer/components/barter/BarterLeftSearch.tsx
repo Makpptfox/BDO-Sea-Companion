@@ -4,7 +4,7 @@ import dataDict from "@src/typings/data";
 
 import "./BarterLeftSearch.scss";
 import win_ from "@src/typings/win";
-import { barterEventManager } from "./barterEventManager";
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
@@ -24,7 +24,8 @@ const BarterLeftSearch: React.FC<Props> = (props: Props) => {
                 placeholder={props.data.lang.barter[0].left[0].searchPlaceholder[0]}
                 defaultValue={props.search}
                 onChange={(e) => {
-                    barterEventManager.barterSearch("barterSearch",e.target.value);
+
+                    subEventHelper.getInstance().callEvent("search-barter", e.target.value);
 
 
                     if(e.target.value !== "" || e.target.value.trim() !== ""){

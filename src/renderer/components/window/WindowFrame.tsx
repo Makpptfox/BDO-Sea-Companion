@@ -5,6 +5,7 @@ import WindowControls from "./WindowControls";
 
 import "./WindowFrame.scss"
 import dataDict from '@src/typings/data';
+import subEventHelper from "@common/subEvent";
 
 
 type Props = {
@@ -50,14 +51,9 @@ const WindowFrame: React.FC<Props> = (props: Props) => {
                 setIcon("chest");
                 break;
             }
-        
-        // Remove the listener and add it again
-        win.api.removeAll('pageChange');
-        win.api.receiveOnce('pageChange', changeData);
     }
 
-    // Receive the page change event
-    win.api.receiveOnce('pageChange', changeData);
+    subEventHelper.getInstance().registerCallback('pageChange', changeData, 'windowFrame');
 
     // icon and alt of the icon
     const alt = "icon "+_icon;

@@ -3,7 +3,7 @@ import React from "react";
 import dataDict from "@src/typings/data";
 
 import "./BarterBottomLeft.scss";
-import { barterEventManager } from "./barterEventManager";
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
@@ -27,7 +27,8 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
 
         props.data.save.threshold[0].iliya[0] = event.target.value;
 
-        barterEventManager.thresholdChange("BarterBottomLeft", { name: "iliya", value: event.target.value })
+
+        subEventHelper.getInstance().callEvent("threshold-change", "iliya", event.target.value);
 
         _setIliyaThreshold(event.target.value);
     }
@@ -43,7 +44,7 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
 
         props.data.save.threshold[0].epheria[0] = event.target.value;
 
-        barterEventManager.thresholdChange("BarterBottomLeft", { name: "epheria", value: event.target.value })
+        subEventHelper.getInstance().callEvent("threshold-change", "epheria", event.target.value);
 
         _setEpheriaThreshold(event.target.value);
     }
@@ -59,7 +60,7 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
 
         props.data.save.threshold[0].ancado[0] = event.target.value;
 
-        barterEventManager.thresholdChange("BarterBottomLeft", { name: "ancado", value: event.target.value })
+        subEventHelper.getInstance().send("threshold-change", "ancado", event.target.value);
 
         _setAncadoThreshold(event.target.value);
     }

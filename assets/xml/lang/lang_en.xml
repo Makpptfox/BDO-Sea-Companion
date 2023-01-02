@@ -99,5 +99,20 @@
         </bottom>
 
     </barter>
+    <carrack>
+
+        <selectScreen>
+
+            <title>Choisissez un Caraque à suivre</title>
+
+        </selectScreen>
+        <type>
+            <advance>Advance</advance>
+            <balance>Balance</balance>
+            <volante>Volante</volante>
+            <valor>Valor</valor>
+        </type>
+
+    </carrack>
     
 </root>

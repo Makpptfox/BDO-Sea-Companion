@@ -85,6 +85,33 @@ type langDict = {
             ]
         }
     ]
+    carrack:[
+        {
+            selectScreen: [
+                {
+                    title: [
+                        string
+                    ]
+                }
+            ],
+            type: [
+                {
+                    advance: [
+                        string
+                    ],
+                    balance: [
+                        string
+                    ],
+                    volante: [
+                        string
+                    ],
+                    valor: [
+                        string
+                    ]
+                }
+            ]
+        }
+    ]
 }
 
 export default langDict;

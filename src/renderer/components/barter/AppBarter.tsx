@@ -12,6 +12,8 @@ import BarterCenter from "./BarterCenter";
 import BarterLeft from "./BarterLeft";
 import BarterRight from "./BarterRight";
 import BarterBottom from "./BarterBottom";
+import subEventHelper from "@common/subEvent";
+import LangPage from "@components/lang_page/lang_page";
 
 const win:win_ = window;
 
@@ -24,12 +26,23 @@ type Props = {
 
 const AppBarter:React.FC<Props> = (props: Props) => {
 
+    // Check each item in the save data
+    Object.keys(props.data.item).forEach((value:string, index:number) => {
+        console.trace('Item: ' + value + ' | Index: ' + index + ' | Found in save data: ' + props.data.save.items[0][value]);
+
+        subEventHelper.getInstance().send('save-item', value, parseInt(props.data.save.items[0][value][0].ancado[0]), 'ancado')
+        subEventHelper.getInstance().send('save-item', value, parseInt(props.data.save.items[0][value][0].epheria[0]), 'epheria')
+        subEventHelper.getInstance().send('save-item', value, parseInt(props.data.save.items[0][value][0].iliya[0]), 'iliya')
+
+    });
+
     // Send notification to main process to change page
     win.api.send('pageChange', 'barter');
 
     // Return the react component
     return(
         <div id='app-barter'>
+            <LangPage/>
             
             <div id='app-barter-content'>
 

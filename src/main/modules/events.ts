@@ -1,4 +1,4 @@
-import { ipcMain } from "electron";
+import { app, ipcMain } from "electron";
 
 // Import all events
 import onPagechange from "./events/onPageChange";
@@ -15,6 +15,9 @@ import onHideColBarter from "./events/onHideColBarter";
 // import file manager
 import { findXmlFile } from "./fileManager";
 import onAppQuit from "./events/onAppQuit";
+import subEventHelper from "@common/subEvent";
+import onSaveLang from "./events/onSaveLang";
+import mainEventHelper from '../../common/mainEvent';
 
 // Export all events in one function
 export function events(){
@@ -58,64 +61,72 @@ export function events(){
         const lang = findXmlFile('lang/lang_'+lang_);
         const item = findXmlFile('data/item_data');
         const save = findXmlFile('data/save_data');
+        const carrack = findXmlFile('data/carrack_data');
 
-        return {lang: lang_, langDict: lang, itemDict: item, saveData: save};
+        return {lang: lang_, langDict: lang, itemDict: item, saveData: save, carrackDict: carrack};
 
     });
 
     // SAVE DATA EVENT
 
-    ipcMain.on('save-item', async (e: Electron.IpcMainEvent, data: {key: string, value:number, type:"iliya"|"epheria"|"ancado"}) => {
-        handleSaveItem(data['key'], data['value'], data['type'], e);
+    ipcMain.on('save-item', async (e: Electron.IpcMainEvent, key: string, value:number, type:"iliya"|"epheria"|"ancado") => {
+        handleSaveItem(key, value, type, e);
     });
 
-    ipcMain.on('save-misc', async (e: Electron.IpcMainEvent, data: {key: "lastBarter", value:string}) => {
-        handleSaveMisc(data['key'], data['value'], e);
+    ipcMain.on('save-misc', async (e: Electron.IpcMainEvent, key: "lastBarter", value:string) => {
+        handleSaveMisc(key, value, e);
     });
 
     // FUNCTION EVENT
 
-    ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, data: {hide: boolean, type:"iliya"|"epheria"|"ancado"}) => {
+    ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, hide: boolean, type:"iliya"|"epheria"|"ancado") => {
+        const data = {hide: hide, type: type}
         onHideColBarter(e, data);
     });
 
-    ipcMain.on('barterItemSelect', async (e: Electron.IpcMainEvent, data: {icon: string, tier: number, name: string}) => {
+    ipcMain.on('barterItemSelect', async (e: Electron.IpcMainEvent, icon: string, tier: number, name: string) => {
+        const data = {icon: icon, tier: tier, name: name}
         onBarterItemSelect(e, data);
     });
 
-    ipcMain.on('search-barter', async (e: Electron.IpcMainEvent, data: {search: string}) => {
-        onSearchBarter(e, data);
+    ipcMain.on('search-barter', async (e: Electron.IpcMainEvent, search: string) => {
+        onSearchBarter(e, search);
     });
 
-    ipcMain.on('total-value', async (e: Electron.IpcMainEvent, data: {value: number}) => {
-        onTotalValue(e, data);
+    ipcMain.on('total-value', async (e: Electron.IpcMainEvent, value: number) => {
+        onTotalValue(e, value);
     });
 
-    ipcMain.on('threshold-change', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
+    ipcMain.on('threshold-change', async (e: Electron.IpcMainEvent, name: string, value: number) => {
 
-        handleSaveThreshold(data['name'], data['value']);
+        handleSaveThreshold(name, value);
 
-        e.sender.send('threshold-change', data);
+        e.sender.send('threshold-change', name, value);
     });
 
-    ipcMain.on('threshold-warning', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
+    ipcMain.on('threshold-warning', async (e: Electron.IpcMainEvent, name: "iliya"|"epheria"|"ancado", value: number) => {
+
+        const data = {name: name, value: value}
+
         onThresholdWarning(e, data);
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ipcMain.on('save-data-dict', async (e: Electron.IpcMainEvent, data: {dict: any}) => {
-        onSaveDataDict(e, data);
+    ipcMain.on('save-data-dict', async (e: Electron.IpcMainEvent, dict: any) => {
+        onSaveDataDict(e, dict);
     });
 
     ipcMain.on('app-quit', async () => {
         onAppQuit();
     });
 
-    ipcMain.on('set-lang', async (e: Electron.IpcMainEvent, data: {lang: string}) => {
+    ipcMain.on('set-lang', async (e: Electron.IpcMainEvent, lang: string) => {
 
-        console.log('set-lang', data)
+        console.log('set-lang', lang)
 
-        e.sender.send('set-lang', data);
+        onSaveLang(lang);
+
+        e.sender.send('set-lang', lang);
     });
 
     
@@ -135,4 +146,18 @@ export function events(){
 
         e.sender.send('ask-check-threshold', data);
     });
+
+    mainEventHelper.getInstance().registerCallback('app-restart', ()=>{
+        // if in dev mode, don't do anything and throw an error that explains why it's not working in dev mode
+        if (process.env.NODE_ENV === 'development') {
+        
+            throw new Error('Cannot restart app in development mode, but it\'s working in production mode, so you\'re good!');
+            return;
+        
+        }
+
+        // if not in dev mode, restart the app
+        app.relaunch();
+        app.exit()
+    })
 }

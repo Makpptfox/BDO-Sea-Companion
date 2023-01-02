@@ -1,8 +1,7 @@
 import dataDict from "@src/typings/data";
 import React from "react";
 import ElementMaker from './BarterCenterInput';
-import win_ from '@src/typings/win';
-import { barterEventManager } from './barterEventManager';
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
@@ -14,8 +13,6 @@ type Props = {
     hideEpheria?: boolean;
     hideAncado?: boolean;
 }
-
-const win:win_ = window;
 
 // // TODO: Add the threshold warning for each city
 // // TODO: Add the tier color system for each item
@@ -29,6 +26,8 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     const hideAncado = props.hideAncado
     const hideEpheria = props.hideEpheria
     const hideIliya = props.hideIliya
+
+    const uniqueName = key;
 
     const className="tier-"+props.data.item[key][0].tier[0]
 
@@ -60,7 +59,10 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     const [limitEpheria, setLimitEpheria] = React.useState(parseInt(props.data.save.threshold[0].epheria[0]));
     const [limitAncado, setLimitAncado] = React.useState(parseInt(props.data.save.threshold[0].ancado[0]));
 
-    barterEventManager.onThresholdChange('BarterCenterItem', (type, threshold) => {
+    subEventHelper.getInstance().registerCallback('threshold-change', (type, threshold) => {
+        
+        console.log("threshold-change", type, threshold)
+
         new Promise((resolve)=>{
             switch(type){
                 case "iliya":
@@ -80,10 +82,9 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                     break;
             }
         })
-    })
+    }, uniqueName)
 
-    
-    barterEventManager.onHideColBarter('BarterCenterItem', (hide, type) => {
+    subEventHelper.getInstance().registerCallback('search-barter', ({hide, type}) => {
 
         new Promise((resolve)=>{
             props.hideBool(hide, type)
@@ -106,10 +107,8 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
             }
 
             setQuantity((countIliya?(isNaN(iliya) || iliya <=0)? 0:iliya :0)+(countEpheria?(isNaN(epheria) || epheria <=0)? 0:epheria :0)+(countAncado?(isNaN(ancado) || ancado <=0)? 0:ancado :0))
-
         })
-    })
-
+    }, uniqueName);
 
     const countQuantity = () => {
 
@@ -148,11 +147,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
         // win.api.send('save-data-dict', {data: JSON.stringify(data)});
 
         // save the value to the save file
-        barterEventManager.saveItem('BarterCenterItem',
-            key,
-            value,
-            'iliya'
-        )
+        subEventHelper.getInstance().send('save-item', key, value, 'iliya');
     }
 
     const setEpheriaCenter = (value: number)=>{
@@ -164,11 +159,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
         // win.api.send('save-data-dict', {data: JSON.stringify(data)});
 
         // save the value to the save file
-        barterEventManager.saveItem('BarterCenterItem',
-            key,
-            value,
-            'epheria'
-        )
+        subEventHelper.getInstance().send('save-item', key, value, 'epheria');
     }
 
     const setAncadoCenter = (value: number)=>{
@@ -180,20 +171,16 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
         // win.api.send('save-data-dict', {data: JSON.stringify(data)});
 
         // save the value to the save file
-        barterEventManager.saveItem('BarterCenterItem', 
-            key,
-            value,
-            'ancado'
-        )
+        subEventHelper.getInstance().send('save-item', key, value, 'ancado');
     }
 
     return(
         <tr key={index} className={className + ` ${props.hide ? 'hide' : ''}`} onClick={()=>{
 
-            barterEventManager.barterItemSelect("BarterCenterItem",
+            subEventHelper.getInstance().callEvent('barterItemSelect', 
                 props.data.item[key][0].image[0],
                 parseInt(props.data.item[key][0].tier[0]),
-                props.data.lang.items[0][key][0].name[0],
+                props.data.lang.items[0][key][0].description[0]
             )
 
         }}>

@@ -2,13 +2,11 @@ import React from "react";
 
 import "./BarterLeftSpecial.scss";
 import dataDict from '@src/typings/data';
-import win_ from "@src/typings/win";
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
 };
-
-const win:win_ = window;
 
 const BarterLeftSpecial:React.FC<Props> = (props: Props) => {
 
@@ -33,7 +31,7 @@ const BarterLeftSpecial:React.FC<Props> = (props: Props) => {
 
         setCount(value + 250);
 
-        win.api.send('save-misc', {key: "lastBarter", value: String(value)})
+        subEventHelper.getInstance().send('save-misc', "lastBarter", String(value));
 
     }
 

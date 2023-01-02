@@ -8,7 +8,9 @@ import langDict from '@src/typings/lang';
 import itemDict from '@src/typings/item';
 import dataDict from '@src/typings/data';
 import saveData from '@src/typings/save';
-import { barterEventManager } from '@components/barter/barterEventManager';
+import subEventHelper from '@common/subEvent';
+import mainEventHelper from '@common/mainEvent';
+import carrackDict from '@src/typings/carrack';
 
 
 const log = console.log;
@@ -56,55 +58,76 @@ window.console.warn = function(...args: any[]){
 
 const win:win_ = window;
 
+const eventHelper = subEventHelper.getInstance(window);
 
 
 // const dict:langDict = ;
+function init(){
+  win.api.invoke('getDataFile').then((data: {lang:string,langDict: {root: langDict}, itemDict: {items: itemDict}, saveData: {data: saveData}, carrackDict: {carrack: carrackDict}}) => {
 
-win.api.invoke('getDataFile').then((data: {lang:string,langDict: {root: langDict}, itemDict: {items: itemDict}, saveData: {data: saveData}}) => {
+    console.trace('[BDOC] : Language dictionary received', data)
 
-  console.trace('[BDOC] : Language dictionary received', data)
+    const lang:string = data.lang;
 
-  const lang:string = data.lang;
+    // Get all dictionaries
+    const langDict:langDict = data.langDict['root'];
+    const itemDict:itemDict = data.itemDict['items'];
+    const saveData:saveData = data.saveData['data'];
+    const carrackDict:carrackDict = data.carrackDict['carrack'];
 
-  // Get all dictionaries
-  const langDict:langDict = data.langDict['root'];
-  const itemDict:itemDict = data.itemDict['items'];
-  const saveData:saveData = data.saveData['data'];
+    // Create a data dictionary to pass to components
+    let dataDict: dataDict ={
+      lang: langDict,
+      item: itemDict,
+      save: saveData,
+      carrack: carrackDict,
+      setProps(lang, item, save, carrack) {
+        this.lang = lang;
+        this.item = item;
+        this.save = save;
+        this.carrack = carrack
+      },
+    }
 
-  // Create a data dictionary to pass to components
-  let dataDict: dataDict ={
-    lang: langDict,
-    item: itemDict,
-    save: saveData,
-    setProps(lang, item, save) {
-      this.lang = lang;
-      this.item = item;
-      this.save = save;
-    },
-  }
+    win.api.receive('save-data-dict', (data: string) => {
+      dataDict = JSON.parse(data);
+    });
 
-  win.api.receive('save-data-dict', (data: string) => {
-    dataDict = JSON.parse(data);
+    console.log('[BDOC] : Language dictionary received');
+    console.log('[BDOC] : Language loaded', lang);
+
+    eventHelper.registerEvent('total-value')
+    eventHelper.registerEvent('threshold-change')
+    eventHelper.registerEvent('barterItemSelect')
+    eventHelper.registerEvent('search-barter')
+    eventHelper.registerEvent('threshold-change')
+    eventHelper.registerEvent('r_hide-col-barter')
+    eventHelper.registerEvent('set-lang');
+
+    eventHelper.callEvent('set-lang', lang);
+    
+    eventHelper.registerCallback('set-lang', () => {
+
+      eventHelper.removeAllEvents();
+      eventHelper.send('app-restart');
+    }, 'appRenderer', true);
+
+    // If in development mode, trace the language dictionary
+    if(process.env.NODE_ENV === 'development'){
+      console.log('[BDOC] : Language dictionary', dataDict.lang);
+      console.log('[BDOC] : Item dictionary', dataDict.item);
+      console.log('[BDOC] : Save data', dataDict.save);
+    }
+
+    // Render application in DOM
+    createRoot(document.getElementById('app')).render(app(dataDict));
+
   });
-
-  console.log('[BDOC] : Language dictionary received');
-  console.log('[BDOC] : Language loaded', lang);
-
-  barterEventManager.setLang('appRenderer', lang);
-
-  // If in development mode, trace the language dictionary
-  if(process.env.NODE_ENV === 'development'){
-    console.log('[BDOC] : Language dictionary', dataDict.lang);
-    console.log('[BDOC] : Item dictionary', dataDict.item);
-    console.log('[BDOC] : Save data', dataDict.save);
-  }
-
-  // Render application in DOM
-  createRoot(document.getElementById('app')).render(app(dataDict));
-
-});
+}
 
 console.log('[ERWT] : Renderer execution started');
+init();
+
 
 // Create a window object
 function app(dict: dataDict): React.ReactNode{

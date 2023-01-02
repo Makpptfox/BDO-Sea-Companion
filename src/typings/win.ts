@@ -7,7 +7,7 @@ import saveData from '@src/typings/save';
 /**
  * The channel object that is sent to the main process
  */
-type channel = {
+export type channel = {
     "langChange": (event: any, lang: string) => void;
     "getDataFile": (event: any, lang: string) => void;
     "pageChange": (event: any, page: string) => void;
@@ -32,7 +32,7 @@ type channel = {
 /**
  * The event object that is sent to the renderer process
  */
-type channelEvent = {
+export type channelEvent = {
     "langChange": {
         lang: string;
         dict: langDict;
@@ -153,7 +153,7 @@ type win_ = Window & {
          * @returns void
          * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrenderersendchannel-args
          */
-        send<K extends keyof channel>(channel: K, data?: channelEvent[K]): void;
+        send<K extends keyof channel>(channel: K|string, data?: channelEvent[K]|any): void;
 
         /**
          * Send data to main process and wait for a response
@@ -170,7 +170,7 @@ type win_ = Window & {
          * @returns void
          * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendereronchannel-listener
          */
-        receive<K extends keyof channel>(channel: K, func: (event: any, args: channelEvent[K]) => void): void;
+        receive<K extends keyof channel>(channel: K|string, func: (event: any, args: channelEvent[K]|any) => void): void;
         /**
          * Receive data from main process once
          * @param channel the channel to receive data from
@@ -179,7 +179,7 @@ type win_ = Window & {
          * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendereroncesyncchannel-listener
          */
 
-        receiveOnce<K extends keyof channel>(channel: K, func: (event: any, args: channelEvent[K]) => void): void;
+        receiveOnce<K extends keyof channel>(channel: K|string, func: (event: any, args: channelEvent[K]|any) => void): void;
         /**
          * Invoke a function in the main process and return the result to the renderer process
          * @param channel the channel to invoke the function in the main process
@@ -187,7 +187,7 @@ type win_ = Window & {
          * @returns `Promise<any>` the result of the function in the main process
          * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args
          */
-        invoke<K extends keyof channel>(channel: K, data?: any): Promise<channelEvent[K]>;
+        invoke<K extends keyof channel>(channel: K|string, data?: any): Promise<channelEvent[K]|any>;
         /**
          * Remove a listener from a channel
          * @param channel the channel to remove the listener from

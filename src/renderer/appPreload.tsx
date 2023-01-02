@@ -9,13 +9,11 @@ const {
   ipcRenderer
 } = require("electron");
 
-
-
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang'];
+const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang', 'open_lang_page', 'app-restart'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {
@@ -28,12 +26,12 @@ type srcFrom = {
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld(
   "api", {
-    send: (channel: string, data: any) => {
+    send: (channel: string, ...data: any[]) => {
       // Only allow valid channels
       if (validChannelsSend.includes(channel)) {
-        ipcRenderer.send(channel, data);
+        ipcRenderer.send(channel, ...data);
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     sendSync: (channel: string, data: any) => {
@@ -41,7 +39,7 @@ contextBridge.exposeInMainWorld(
       if (validChannelsSend.includes(channel)) {
         return ipcRenderer.sendSync(channel, data);
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     receive: (channel: string, func: any) => {
@@ -50,7 +48,7 @@ contextBridge.exposeInMainWorld(
         // Add new listener
         ipcRenderer.on(channel, (event, ...args) => func(...args));
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     receiveOnce: (channel: string, func: any) => {
@@ -59,7 +57,7 @@ contextBridge.exposeInMainWorld(
         // Add new listener
         ipcRenderer.once(channel, (event, ...args) => func(...args));
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     invoke: (channel: string, data: any) => {
@@ -67,7 +65,7 @@ contextBridge.exposeInMainWorld(
       if (validChannelsSend.includes(channel)) {
         return ipcRenderer.invoke(channel, data);
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     remove: (channel: string, func: any) => {
@@ -75,7 +73,7 @@ contextBridge.exposeInMainWorld(
       if (validChannelsReceive.includes(channel)) {
         ipcRenderer.removeListener(channel, func);
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     removeAll: (channel: string) => {
@@ -83,7 +81,7 @@ contextBridge.exposeInMainWorld(
       if (validChannelsReceive.includes(channel)) {
         ipcRenderer.removeAllListeners(channel);
       } else {
-        throw new Error('Invalid channel');
+        throw new Error('Invalid channel ' + channel);
       }
     },
     eventsRegistered: fs.readdirSync(__dirname),
