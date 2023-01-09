@@ -84,6 +84,11 @@ export default class subEventHelper {
 
     if(this.isStarted(name)) return;
 
+    if(this.getEvent(name) === undefined) {
+      this.registerEvent(name);
+      return;
+    }
+
     this.getEvent(name).started = true;
 
     this.window.api.receive(name, (event: any, ...args: any[]) => {
@@ -106,10 +111,18 @@ export default class subEventHelper {
     
     // If the queue is not empty, we check the name of the event and if it is the same as the name of the event we are starting, we send the arguments to the event then remove it from the queue
     if(this.queue.length > 0) {
+
+
       this.queue.forEach((queueCallback, index) => {
+        console.table(queueCallback);
         if(queueCallback.name === name) {
-          this.callEvent(name, ...queueCallback.args);
-          this.queue.splice(index, 1);
+
+          console.log('CALLING EVENT FROM QUEUE')
+          if(this.hasAnyCallback(name)) {
+            console.table(this.getEvent(name).callbacks);
+            this.callEvent(name, ...queueCallback.args);
+            this.queue.splice(index, 1);
+          }
         }
       });
     }
@@ -125,6 +138,8 @@ export default class subEventHelper {
   }
 
   private isStarted(name: string): boolean {
+
+    if(this.getEvent(name) === undefined) return false;
     return this.getEvent(name).started;
   }
 
@@ -316,18 +331,14 @@ export default class subEventHelper {
    */
   public callEvent(name: string, ...args: any[]) {
 
-    if (!this.isRegistered(name)) {
-      console.error(`The event '${name}' is not registered, registering it is required to call it`);
+    if(!this.isRegistered(name) || !this.hasAnyCallback(name)) {
+      console.warn(`The event '${name}' has no callback, registering one is required to call it...`);
+      console.warn(`The event callback requested will be set in the queue and will be called when a callback is registered...`);
+      this.queue.push({name, args});
     }
 
     if(!this.isStarted(name)) {
       this.startEvent(name);
-    }
-
-    if(!this.hasAnyCallback(name)) {
-      console.warn(`The event '${name}' has no callback, registering one is required to call it...`);
-      console.warn(`The event callback requested will be set in the queue and will be called when a callback is registered...`);
-      this.queue.push({name, args});
     }
 
     this.getEvent(name).callbacks.forEach(callback => {

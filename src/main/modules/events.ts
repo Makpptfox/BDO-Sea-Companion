@@ -18,6 +18,7 @@ import onAppQuit from "./events/onAppQuit";
 import subEventHelper from "@common/subEvent";
 import onSaveLang from "./events/onSaveLang";
 import mainEventHelper from '../../common/mainEvent';
+import handleSaveCarrackItem from "./events/handleSaveCarrackItem";
 
 // Export all events in one function
 export function events(){
@@ -75,6 +76,12 @@ export function events(){
 
     ipcMain.on('save-misc', async (e: Electron.IpcMainEvent, key: "lastBarter", value:string) => {
         handleSaveMisc(key, value, e);
+    });
+
+    mainEventHelper.getInstance().registerCallback('carrack-inventory-save-qty', (key: string, value: number) => {
+        console.log('carrack-inventory-save-qty', key, value)
+
+        handleSaveCarrackItem(key, value);
     });
 
     // FUNCTION EVENT

@@ -7,6 +7,7 @@ import AppCarack from "@components/carrack/AppCarrack";
 import AppBarter from "@components/barter/AppBarter";
 import langDict from '@src/typings/lang';
 import dataDict from '@src/typings/data';
+import LangPage from './lang_page/lang_page';
 
 
 // Define the props
@@ -21,6 +22,7 @@ const Application: React.FC<Props> = (props: Props) => {
   // Return the component to render
   return (
     <div id='erwt'>
+      <LangPage/>
       
       <HashRouter>
       

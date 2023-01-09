@@ -35,7 +35,14 @@ interface saveData {
                 string
             ]
         }
-    ]
+    ],
+    inventory: [
+        {
+            [key:string]: [
+                string
+            ]
+        }
+    ],
 }
 
 export function stringifySaveData(data: saveData):string {

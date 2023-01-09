@@ -106,12 +106,45 @@
             <title>Choisissez un Caraque à suivre</title>
 
         </selectScreen>
+        <menu>
+            <inventory>Inventaire</inventory>
+            <tracker>Traqueur</tracker>
+        </menu>
+        <totalNeeded>
+            <title>Total requis</title>
+            <coin>Achat</coin>
+            <daily>Journalier</daily>
+            <barter>Echange</barter>
+        </totalNeeded>
         <type>
             <advance>Advance</advance>
             <balance>Balance</balance>
             <volante>Volante</volante>
             <valor>Valor</valor>
         </type>
+        <items>
+            <cherrySeed>
+                <name>Test 1</name>
+            </cherrySeed>
+            <fishBone>
+                <name>Test 2</name>
+            </fishBone>
+            <ration>
+                <name>Test 3</name>
+            </ration>
+            <t>
+                <name>Test 4</name>
+            </t>
+            <g>
+                <name>Test 5</name>
+            </g>
+            <x>
+                <name>Test 6</name>
+            </x>
+            <e>
+                <name>Test 7</name>
+            </e>
+        </items>
 
     </carrack>
     

@@ -94,6 +94,32 @@ type langDict = {
                     ]
                 }
             ],
+            menu: [
+                {
+                    inventory: [
+                        string
+                    ],
+                    tracker: [
+                        string
+                    ],
+                }
+            ]
+            totalNeeded:[
+                {
+                    title: [
+                        string
+                    ],
+                    daily: [
+                        string
+                    ],
+                    coin: [
+                        string
+                    ],
+                    barter: [
+                        string
+                    ]
+                }
+            ]
             type: [
                 {
                     advance: [
@@ -107,6 +133,20 @@ type langDict = {
                     ],
                     valor: [
                         string
+                    ]
+                }
+            ],
+            items: [
+                {
+                    [key:string]:  [
+                        {
+                            name: [
+                                string
+                            ]
+                            description: [
+                                string
+                            ]
+                        }
                     ]
                 }
             ]

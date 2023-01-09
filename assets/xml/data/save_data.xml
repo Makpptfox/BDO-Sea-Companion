@@ -94,4 +94,12 @@
         <epheria>8</epheria>
         <ancado>8</ancado>
     </threshold>
+    <inventory>
+        <cherrySeed>120</cherrySeed>
+        <ration>9999999</ration>
+        <fishBone>5087</fishBone>
+        <t>5</t>
+        <g>0</g>
+        <x>0</x>
+    </inventory>
 </data>

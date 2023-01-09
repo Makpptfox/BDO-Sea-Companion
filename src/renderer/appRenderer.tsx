@@ -103,6 +103,7 @@ function init(){
     eventHelper.registerEvent('threshold-change')
     eventHelper.registerEvent('r_hide-col-barter')
     eventHelper.registerEvent('set-lang');
+    eventHelper.registerEvent('carrack-inventory-save-qty');
 
     eventHelper.callEvent('set-lang', lang);
     

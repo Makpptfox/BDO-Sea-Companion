@@ -18,9 +18,15 @@
             <image>valor.png</image>
             <need>
                 <cherrySeed>
+                    <need> <!-- FOR 1 MAIN ITEM WE NEED X OF SUB ITEM -->
+                        <fishBone>50</fishBone>
+                    </need>
                     <quantity>100</quantity>
                 </cherrySeed>
                 <fishBone>
+                    <need> <!-- FOR 1 MAIN ITEM WE NEED X OF SUB ITEM -->
+                        <fishBone>2</fishBone>
+                    </need>
                     <quantity>10</quantity>
                 </fishBone>
                 <ration>
@@ -59,14 +65,41 @@
     </boat>
     <items>
         <cherrySeed>
-            <image>cherry_seed.png</image>
+            <image>CherrySeed.png</image>
+            <daily>1</daily>
+            <coin>0</coin>
+            <barter>1</barter>
         </cherrySeed>
         <fishBone>
-            <image>fish_bone.png</image>
+            <image>FishBone.png</image>
+            <daily>1</daily>
+            <coin>0</coin>
+            <barter>1</barter>
         </fishBone>
-        <ration>
-            <image>ration.png</image>
-        </ration>
+        <t>
+            <image>Ration.png</image>
+            <daily>1</daily>
+            <coin>0</coin>
+            <barter>1</barter>
+        </t>
+        <e>
+            <image>Ration.png</image>
+            <daily>1</daily>
+            <coin>0</coin>
+            <barter>1</barter>
+        </e>
+        <x>
+            <image>Ration.png</image>
+            <daily>1</daily>
+            <coin>0</coin>
+            <barter>1</barter>
+        </x>
+        <g>
+            <image>Ration.png</image>
+            <daily>1</daily>
+            <coin>0</coin>
+            <barter>1</barter>
+        </g>
     </items>
 
 

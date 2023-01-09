@@ -59,7 +59,7 @@ export default class mainEventHelper {
 
 			// Execute all callbacks
 			callbacks.forEach((callback) => {
-				callback.fun(event, ...args);
+				callback.fun(...args);
 				if (callback.once) {
 					this.unregisterCallback(name, callback.fun);
 				}

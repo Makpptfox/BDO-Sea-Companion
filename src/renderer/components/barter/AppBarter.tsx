@@ -42,7 +42,6 @@ const AppBarter:React.FC<Props> = (props: Props) => {
     // Return the react component
     return(
         <div id='app-barter'>
-            <LangPage/>
             
             <div id='app-barter-content'>
 

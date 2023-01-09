@@ -12,6 +12,13 @@ type carrackDict = {
                         {
                             [key: string]: [
                                 {
+                                    need: [
+                                        {
+                                            [key: string]: [
+                                                string
+                                            ]
+                                        }
+                                    ]
                                     quantity: [
                                         string
                                     ]
@@ -30,6 +37,13 @@ type carrackDict = {
                         {
                             [key: string]: [
                                 {
+                                    need: [
+                                        {
+                                            [key: string]: [
+                                                string
+                                            ]
+                                        }
+                                    ]
                                     quantity: [
                                         string
                                     ]
@@ -48,6 +62,13 @@ type carrackDict = {
                         {
                             [key: string]: [
                                 {
+                                    need: [
+                                        {
+                                            [key: string]: [
+                                                string
+                                            ]
+                                        }
+                                    ]
                                     quantity: [
                                         string
                                     ]
@@ -66,6 +87,13 @@ type carrackDict = {
                         {
                             [key: string]: [
                                 {
+                                    need: [
+                                        {
+                                            [key: string]: [
+                                                string
+                                            ]
+                                        }
+                                    ]
                                     quantity: [
                                         string
                                     ]
@@ -82,6 +110,15 @@ type carrackDict = {
             [key: string]: [
                 {
                     image: [
+                        string
+                    ],
+                    daily: [
+                        string
+                    ],
+                    coin: [
+                        string
+                    ],
+                    barter: [
                         string
                     ],
                 }
