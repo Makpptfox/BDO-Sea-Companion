@@ -203,9 +203,21 @@ const CarrackNeed  = (props: Props) => {
             }
 
             contents.push(
-                <div key={item.name}>
-                    <p>{`${item.name_lang}`} - {havingQTY}/{`${item.qty}`}</p>
-                    <div className={`detail-${item.name} hidden`}>
+                <div key={item.name} className={`total-needed-item ${havingQTY == item.qty? 'complete':''}`} onClick={()=>{
+                    const detail = document.querySelector(`.detail-${item.name}`);
+
+                    if(detail !== null) {
+                        if(detail.classList.contains("hidden")) {
+                            detail.classList.remove("hidden");
+                        } else {
+                            detail.classList.add("hidden");
+                        }
+                    }
+                }}>
+                    <div className='info-item'>
+                    <p>{`${item.name_lang}`}</p><p>{havingQTY}/{`${item.qty}`}</p>
+                    </div>
+                    <div className={`detail-${item.name} hidden detail-item`}>
                         <div className='detail-daily'>
                             <p>{props.data.lang.carrack[0].totalNeeded[0].daily[0]}</p>
                             <img src={item.daily === "1" ? check : not_check}/>
@@ -238,7 +250,9 @@ const CarrackNeed  = (props: Props) => {
     return (
         <div className="carrack-need">
             <h3>{props.data.lang.carrack[0].totalNeeded[0].title[0]}</h3>
+            <div className='carrack-need-content'>
             {content}
+            </div>
         </div>
     );
 };

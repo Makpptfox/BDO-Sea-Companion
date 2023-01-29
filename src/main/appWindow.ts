@@ -42,19 +42,24 @@ function checkDataFiles() {
   }
 
   // Check if the save data exists in the user data folder
-  if(fs.existsSync(path.join(dataFolder, 'save_data.xml'))){
+  // eslint-disable-next-line no-constant-condition
+  if(fs.existsSync(path.join(xmlFolder, 'save_data.xml')) && false){
     // If it does, delete the one in the resources folder
     console.log('Save data exists');
     if(fs.existsSync(path.join(resources, 'save_data.xml'))){
       fs.rmSync(path.join(resources, 'save_data.xml'));
     }
   } else {
-    // If it doesn't, copy the one in the resources folder to the user data folder then delete it from the resources folder
-    console.log('Save data does not exist');
-    fs.copyFileSync(path.join(resources, 'save_data.xml'), path.join(dataFolder, 'save_data.xml'));
-    
-    if(fs.existsSync(path.join(resources, 'save_data.xml'))){
-      fs.rmSync(path.join(resources, 'save_data.xml'));
+
+    if(fs.existsSync(path.join(xmlFolder, 'save_data.xml'))){
+
+      // If it doesn't, copy the one in the resources folder to the user data folder then delete it from the resources folder
+      console.log('Save data does not exist');
+      fs.copyFileSync(path.join(resources, 'save_data.xml'), path.join(dataFolder, 'save_data.xml'));
+      
+      if(fs.existsSync(path.join(resources, 'save_data.xml'))){
+        fs.rmSync(path.join(resources, 'save_data.xml'));
+      }
     }
   }
 

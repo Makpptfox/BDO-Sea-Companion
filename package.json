@@ -16,7 +16,8 @@
     "./assets/xml/data/item_data.xml",
     "./assets/xml/data/save_data.xml",
     "./assets/xml/lang/lang_en.xml",
-    "./assets/xml/lang/lang_fr.xml"
+    "./assets/xml/lang/lang_fr.xml",
+    "./assets/xml/data/carrack_data.xml"
   ],
   "keywords": [
     "BDO",

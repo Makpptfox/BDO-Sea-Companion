@@ -30,6 +30,14 @@ const AppBarter:React.FC<Props> = (props: Props) => {
     Object.keys(props.data.item).forEach((value:string, index:number) => {
         console.trace('Item: ' + value + ' | Index: ' + index + ' | Found in save data: ' + props.data.save.items[0][value]);
 
+        if(props.data.save.items[0][value] == undefined) {
+            props.data.save.items[0][value] = [{
+                'qty': ['0'],
+                'ancado': ['0'],
+                'epheria': ['0'],
+                'iliya': ['0']
+            }];
+        }
         subEventHelper.getInstance().send('save-item', value, parseInt(props.data.save.items[0][value][0].ancado[0]), 'ancado')
         subEventHelper.getInstance().send('save-item', value, parseInt(props.data.save.items[0][value][0].epheria[0]), 'epheria')
         subEventHelper.getInstance().send('save-item', value, parseInt(props.data.save.items[0][value][0].iliya[0]), 'iliya')

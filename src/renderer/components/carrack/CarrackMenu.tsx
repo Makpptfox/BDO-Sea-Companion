@@ -4,21 +4,32 @@ import React, { useEffect } from "react";
 import dataDict from "@src/typings/data";
 
 import "./CarrackMenu.scss"
+import subEventHelper from "@common/subEvent";
 
 type Props = {
     data: dataDict;
     state: string;
+    boatType: string;
     setState: (state: string) => void;
 }
 
 const CarrackMenu = (props: Props) => {
     
+        const [imageCarrack, setImageCarrack] = React.useState<string>(require('@assets/images/carrack/'+props.data.carrack.boat[0][props.boatType][0].image[0]));
         const [content, setContent] = React.useState<JSX.Element>(<div><p>loading...</p></div> as JSX.Element);
-
-        const [item, setItem] = React.useState(<div><p>nothing...</p></div>);
 
         useEffect(() => {
             console.log("CarrackMenu: ", props.state)
+
+            const item = (
+                <div className={`carrack-menu-item ${props.boatType}`} onClick={()=>{
+                    subEventHelper.getInstance().callEvent('returnCarrackType');
+                }}>
+                    <img src={imageCarrack} alt="carrack" />
+                    <p>{props.boatType}</p>
+                </div>
+            )
+
             setContent(
                 <div className="carrack-menu">
                     <div className="carrack-menu-header">

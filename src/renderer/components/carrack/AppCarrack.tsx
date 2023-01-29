@@ -9,6 +9,7 @@ import dataDict from '@src/typings/data';
 // Import the styles
 import './AppCarrack.scss';
 import CarrackTracker from "./CarrackTracker";
+import subEventHelper from "@common/subEvent";
 
 const win:win_ = window;
 
@@ -36,6 +37,10 @@ const AppCarack = (props: Props) => {
     console.table(props.data.carrack)
 
     useEffect(() => {
+
+        subEventHelper.getInstance().registerCallback('returnCarrackType', () => {
+            setCarrackType('none');
+        }, 'AppCarrack')
         if(carrackType === 'none') {
             setContent(
             <div id='app-carrack'>
@@ -91,7 +96,9 @@ const AppCarack = (props: Props) => {
             </div>
             )
         }
-
+        return () => {
+            subEventHelper.getInstance().unregisterAllCallbacks('returnCarrackType')
+        }
     }, [carrackType]);
 
     // Return the react component

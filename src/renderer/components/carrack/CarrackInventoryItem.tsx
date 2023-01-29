@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 
 import dataDict from '@src/typings/data';
 import subEventHelper from '@common/subEvent';
-import Module from 'module';
 
 type Props = {
     data: dataDict;
@@ -19,12 +18,10 @@ const CarrackInventoryItem = (props: Props) => {
     const item_img_src = props.data.carrack.items[0][props.index][0].image[0];
     const item_name = props.data.lang.carrack[0].items[0][props.index][0].name[0];
 
-    import(`@assets/images/items/${item_img_src}`).then((img: any) => {
+    import(`@assets/images/items/${item_img_src}`).then((img) => {
 
         const item_img = img['default'];
-
-        console.log(props.index);
-    
+        
         const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
             
             const target = e.target;

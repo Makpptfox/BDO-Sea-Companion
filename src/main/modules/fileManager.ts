@@ -77,7 +77,7 @@ function findXmlFile(fileName: string):any {
 
     // Check if file exists
     if (!fs.existsSync(path.join(xmlPath, fileName))) {
-        throw new Error('file does not exist');
+        throw new Error('file ' + fileName + ' does not exist at ' + xmlPath + '/' + fileName);
     }
 
     // Read file

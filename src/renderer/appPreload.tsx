@@ -13,7 +13,7 @@ const {
 const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang', 'open_lang_page', 'app-restart', 'carrack-inventory-save-qty'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart', 'update-carrack-need'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart', 'update-carrack-need', 'returnCarrackType'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {

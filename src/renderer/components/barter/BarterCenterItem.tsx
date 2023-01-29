@@ -14,10 +14,6 @@ type Props = {
     hideAncado?: boolean;
 }
 
-// // TODO: Add the threshold warning for each city
-// // TODO: Add the tier color system for each item
-// // TODO: Add the sort by tier system for each item
-
 const BarterCenterItem: React.FC<Props> = (props: Props) => {
 
     const key = Object.keys(props.data.item)[props.index];
@@ -174,6 +170,10 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
         subEventHelper.getInstance().send('save-item', key, value, 'ancado');
     }
 
+    if(props.data.lang.items[0][key] == undefined){
+        props.data.lang.items[0][key] = [{name: [key], description: [key+' description']}]
+    }
+
     return(
         <tr key={index} className={className + ` ${props.hide ? 'hide' : ''}`} onClick={()=>{
 
@@ -185,7 +185,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
 
         }}>
             <td>{props.data.item[key][0].tier[0]}</td>
-            <td>{props.data.lang.items[0][key][0].name[0]}</td>
+            <td>{props.data.lang.items[0][key]? props.data.lang.items[0][key][0].name[0] : key}</td>
             <td>{quantity}</td>
             <td className={`iliya-table-viewer ${iliya <= limitIliya ? 'warning-thresold ' : ' '}` + (!countIliya ? 'hide-h' : '')}>
                 <ElementMaker
@@ -194,7 +194,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                         if(isNaN(parseInt(e.target.value))){
                             setIliyaCenter(0)
                         }else{
-                        setIliyaCenter(parseInt(e.target.value))
+                            setIliyaCenter(parseInt(e.target.value))
                         }
                     }}
                     handleDoubleClick={() =>

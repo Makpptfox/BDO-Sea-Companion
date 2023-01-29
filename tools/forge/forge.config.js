@@ -19,7 +19,8 @@ module.exports = {
       path.resolve("assets/xml/lang/lang_en.xml"),
       path.resolve("assets/xml/lang/lang_fr.xml"),
       path.resolve("assets/xml/data/item_data.xml"),
-      path.resolve("assets/xml/data/save_data.xml")
+      path.resolve("assets/xml/data/save_data.xml"),
+      path.resolve("assets/xml/data/carrack_data.xml"),
     ],
   },
   // Forge Makers

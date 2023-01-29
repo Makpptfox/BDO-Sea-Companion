@@ -1,4 +1,68 @@
 
 
 .carrack-need{
+    display: flex;
+    flex-direction: column;
+    h3{
+        width: 100%;
+        border-bottom: 3px solid #444348;
+        margin: 0;
+        padding: 10px 0;
+        color: #e3d3be;
+        font-size: 18px;
+        font-weight: 100;
+    }
+
+    .total-needed-item{
+        background: linear-gradient(180deg, #45464f 60%, #3d3d47 100%);
+        border: solid 2px #686975;
+        border-radius: 4px;
+        padding: 8px;
+        cursor: pointer;
+        .info-item{
+            display: flex;
+            justify-content: space-around;
+            p{
+                width: 50%;
+                font-size: 14px;
+            }
+        }
+        p{
+
+            margin: 0;
+            padding: 8px 0;
+        }
+        color: white;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5px;
+        .detail-item{
+            display: flex;
+            justify-content: space-around;
+
+            img{
+                height: 16px;
+            }
+
+            p{
+                font-size: 14px;
+            }
+        }
+
+        .hidden{
+            display: none;
+        }
+        transition: all 0.5s ease-in-out;
+    }
+
+    .complete{
+        background: linear-gradient(180deg, #5e483a 60%, #96683e 100%);
+        border-color: #856348;
+    }
+
+    .carrack-need-content{
+        padding: 10px 10px;
+        margin: 0;
+    }
+
 }

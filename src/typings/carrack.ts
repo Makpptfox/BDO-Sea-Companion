@@ -3,7 +3,7 @@
 type carrackDict = {
     boat: [
         {
-            advance: [
+            [key: string]: [
                 {
                     image: [
                         string

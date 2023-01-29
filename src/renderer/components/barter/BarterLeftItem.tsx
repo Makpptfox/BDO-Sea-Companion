@@ -18,7 +18,12 @@ const BarterLeftItem: React.FC<Props> = (_props: Props) => {
 
     subEventHelper.getInstance().registerCallback("barterItemSelect",(icon, tier, name) => {
 
-        setIcon(require('@assets/images/items/'+icon));
+        try{
+            setIcon(require('@assets/images/items/'+icon));
+        } catch (e) {
+            setIcon(require('@assets/images/items/empty.png'));
+        }
+        
         setName(name);
         setTier(tier);
     }, 'BarterLeftItem')

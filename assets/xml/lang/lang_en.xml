@@ -71,6 +71,234 @@
             <name>Gunpowder</name>
             <description>Pirates' Gunpowder</description>
         </Gunpowder>
+    <!-- Level 2 Items -->
+        <Lunchbox>
+            <name>Lunchbox</name>
+            <description></description>
+        </Lunchbox>
+        <CronCoin>
+            <name>Cron Coin</name>
+            <description></description>
+        </CronCoin>
+        <ShipMast>
+            <name>Ship Mast</name>
+            <description></description>
+        </ShipMast>
+        <Marble>
+            <name>Marble</name>
+            <description></description>
+        </Marble>
+        <FilteredWater>
+            <name>Filtered Water</name>
+            <description></description>
+        </FilteredWater>
+        <ConchShell>
+            <name>Conch Shell</name>
+            <description></description>
+        </ConchShell>
+        <OysterBox>
+            <name>Oyster Box</name>
+            <description></description>
+        </OysterBox>
+        <StoneSlab>
+            <name>Stone Slab</name>
+            <description></description>
+        </StoneSlab>
+        <SeaCucumber>
+            <name>Sea Cucumber</name>
+            <description></description>
+        </SeaCucumber>
+        <BalancedStone>
+            <name>Balanced Stone</name>
+            <description></description>
+        </BalancedStone>
+        <SurvivalKit>
+            <name>Survival Kit</name>
+            <description></description>
+        </SurvivalKit>
+        <Tentacle>
+            <name>Tentacle</name>
+            <description></description>
+        </Tentacle>
+        <PirateCoin>
+            <name>Pirate Coin</name>
+            <description></description>
+        </PirateCoin>
+        <UrchinSpine>
+            <name>Urchin Spine</name>
+            <description></description>
+        </UrchinSpine>
+    <!-- Level 3 Items -->
+        <Hourglass>
+            <name>Hourglass</name>
+            <description></description>
+        </Hourglass>
+        <TreasureMap>
+            <name>Treasure Map</name>
+            <description></description>
+        </TreasureMap>
+        <SupplyBox>
+            <name>Supply Box</name>
+            <description></description>
+        </SupplyBox>
+        <Binoculars>
+            <name>Binoculars</name>
+            <description></description>
+        </Binoculars>
+        <Stalactite>
+            <name>Stalactite</name>
+            <description></description>
+        </Stalactite>
+        <Teacup>
+            <name>Teacup</name>
+            <description></description>
+        </Teacup>
+        <RoundKnife>
+            <name>Round Knife</name>
+            <description></description>
+        </RoundKnife>
+        <Blood>
+            <name>Blood</name>
+            <description></description>
+        </Blood>
+        <Coat>
+            <name>Coat</name>
+            <description></description>
+        </Coat>
+        <SkullCarpet>
+            <name>Skull Carpet</name>
+            <description></description>
+        </SkullCarpet>
+        <HerbPile>
+            <name>HerbPile</name>
+            <description></description>
+        </HerbPile>
+        <Fishnet>
+            <name>Fishnet</name>
+            <description></description>
+        </Fishnet>
+        <AncientOrders>
+            <name>Ancient Orders</name>
+            <description></description>
+        </AncientOrders>
+        <BlueCandle>
+            <name>Blue Candle</name>
+            <description></description>
+        </BlueCandle>
+    <!-- Level 4 Items -->
+        <MarineHelmet>
+            <name>Marine Helmet</name>
+            <description></description>
+        </MarineHelmet>
+        <PirateDagger>
+            <name>Pirate Dagger</name>
+            <description></description>
+        </PirateDagger>
+        <ThreadSpool>
+            <name>Thread Spool</name>
+            <description></description>
+        </ThreadSpool>
+        <Amethyst>
+            <name>Amethyst</name>
+            <description></description>
+        </Amethyst>
+        <MarineSpear>
+            <name>Marine Spear</name>
+            <description></description>
+        </MarineSpear>
+        <Lava>
+            <name>Lava</name>
+            <description></description>
+        </Lava>
+        <GreenSalt>
+            <name>Green Salt</name>
+            <description></description>
+        </GreenSalt>
+        <ManualBook>
+            <name>Manual Book</name>
+            <description></description>
+        </ManualBook>
+        <CoinChest>
+            <name>Coin Chest</name>
+            <description></description>
+        </CoinChest>
+        <Seashell>
+            <name>Seashell</name>
+            <description></description>
+        </Seashell>
+        <Panacea>
+            <name>Panacea</name>
+            <description></description>
+        </Panacea>
+        <DragonFigure>
+            <name>Dragon Figure</name>
+            <description></description>
+        </DragonFigure>
+        <BronzeCandlestick>
+            <name>Bronze Candlestick</name>
+            <description></description>
+        </BronzeCandlestick>
+        <PiratesKey>
+            <name>Pirate's Key</name>
+            <description></description>
+        </PiratesKey>
+    <!-- Level 5 Items -->
+        <OctogonalBox>
+            <name>Octogonal Box</name>
+            <description></description>
+        </OctogonalBox>
+        <HerbalWine>
+            <name>Herbal Wine</name>
+            <description></description>
+        </HerbalWine>
+        <AzureQuartz>
+            <name>Azure Quartz</name>
+            <description></description>
+        </AzureQuartz>
+        <Butterfly>
+            <name>Butterfly</name>
+            <description></description>
+        </Butterfly>
+        <Tear>
+            <name>Tear</name>
+            <description></description>
+        </Tear>
+        <GoldCandlestick>
+            <name>Gold Candlestick</name>
+            <description></description>
+        </GoldCandlestick>
+        <GoldDragon>
+            <name>Gold Dragon</name>
+            <description></description>
+        </GoldDragon>
+        <Caterpillar>
+            <name>Caterpillar</name>
+            <description></description>
+        </Caterpillar>
+        <FishScale>
+            <name>Fish Scale</name>
+            <description></description>
+        </FishScale>
+        <GoldenHerb>
+            <name>Golden Herb</name>
+            <description></description>
+        </GoldenHerb>
+        <Portrait>
+            <name>Portrait</name>
+            <description></description>
+        </Portrait>
+        <Elixir>
+            <name>Elixir</name>
+            <description></description>
+        </Elixir>
+        <Fabric>
+            <name>Fabric</name>
+            <description></description>
+        </Fabric>
+        <Rock>
+            <name>Rock</name>
+            <description></description>
+        </Rock>
         
     </items>
 

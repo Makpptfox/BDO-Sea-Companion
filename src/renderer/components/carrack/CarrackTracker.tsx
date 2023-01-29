@@ -6,6 +6,7 @@ import CarrackMenu from "./CarrackMenu";
 import CarrackNeed from "./CarrackNeed";
 
 import "./CarrackTracker.scss"
+import CarrackTrackerContent from "./CarrackTrackerContent";
 
 
 type Props = {
@@ -31,7 +32,7 @@ const CarrackTracker = (props: Props) => {
                 setContent(
                     <div className="carrack">
                         <div className="carrack-left">
-                            <CarrackMenu data={props.data} state="inventory" setState={setState} />
+                            <CarrackMenu data={props.data} state="inventory" setState={setState} boatType={props.boatType} />
                         </div>
                         <div className="carrack-center">
                             <CarrackInventory data={props.data} />
@@ -46,10 +47,10 @@ const CarrackTracker = (props: Props) => {
                 setContent(
                     <div className="carrack">
                         <div className="carrack-left">
-                            <CarrackMenu data={props.data} state="tracker" setState={setState} />
+                            <CarrackMenu data={props.data} state="tracker" setState={setState} boatType={props.boatType} />
                         </div>
                         <div className="carrack-center">
-                            <p>Tracker</p>
+                            <CarrackTrackerContent data={props.data} boatType={boatType} />
                         </div>
                         <div className="carrack-right">
                             <CarrackNeed data={props.data} boatType={boatType} />
