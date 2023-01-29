@@ -3,15 +3,17 @@ import { getXmlFileContent, saveXmlFileContent } from "../fileManager";
 
 export default function onSaveLang(lang: string) {
     // Get xml setting file
-    const setting = getXmlFileContent('settings');
+    getXmlFileContent('settings').then((data) => {
+        const setting = data;
 
-    // Update lang
-    setting.lang = lang;
-
-    const toSend = JSONToXML(setting);
-
-    // Save xml setting file
-    saveXmlFileContent('settings', toSend);
+        // Update lang
+        setting.lang = lang;
+    
+        const toSend = JSONToXML(setting);
+    
+        // Save xml setting file
+        saveXmlFileContent('settings', toSend);
+    });
 }
 
 function JSONToXML(obj: any) {

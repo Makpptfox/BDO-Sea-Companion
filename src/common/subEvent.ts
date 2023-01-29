@@ -100,6 +100,10 @@ export default class subEventHelper {
         const eventObj = this.getEvent(name);
   
         const callbacks = eventObj.callbacks;
+
+        if(callbacks === undefined) {
+          throw new Error('No callback registered for event ' + name);
+        }
   
         callbacks.forEach(callback => {
           callback.fun(...args);
@@ -114,6 +118,9 @@ export default class subEventHelper {
 
 
       this.queue.forEach((queueCallback, index) => {
+        console.log('QUEUE CALLBACK NAME: ' + queueCallback.name);
+        console.log('EVENT NAME: ' + name);
+
         console.table(queueCallback);
         if(queueCallback.name === name) {
 
@@ -200,6 +207,8 @@ export default class subEventHelper {
   public unregisterEvent(name: string) {
     if (this.isRegistered(name)) {
       this.events = this.events.filter(event => event.name !== name);
+
+      this.window.api.removeAll(name);
 
       if (this.isStarted(name)) {
         this.stopEvent(name);
@@ -289,7 +298,6 @@ export default class subEventHelper {
   public unregisterAllCallbacks(name: string) {
     if (this.isRegistered(name)) {
       this.getEvent(name).callbacks = [];
-
       this.unregisterEvent(name);
     }
   }

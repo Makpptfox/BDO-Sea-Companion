@@ -106,7 +106,7 @@ function findXmlFile(fileName: string):any {
  * @param fileName the name of the file
  * @returns the content of the file
  */
-function getXmlFileContent(fileName: string):any {
+async function getXmlFileContent(fileName: string):Promise<any> {
 
     // Check if file ends with .xml
     if (!fileName.endsWith('.xml')) {
@@ -120,23 +120,31 @@ function getXmlFileContent(fileName: string):any {
 
     // Read file
     const filePath = path.join(xmlPath, fileName);
-    const fileContent = fs.readFileSync(filePath, 'utf8');
+    return await new Promise<string>((resolve) => {
+            fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                throw new Error(err.message);
+            }
 
-    // Check if fileContent is a valid xml string
-    if (!isValidXML(fileContent)) {
-        throw new Error('fileContent is not a valid xml string');
-    }
+            const fileContent = data;
 
-    // Convert xml to json
-    let jsonContent: unknown;
-    xml2js.parseString(fileContent, (err, result) => {
-        if (err) {
-            throw new Error(err.message);
-        }
-        jsonContent = result;
+            // Check if fileContent is a valid xml string
+            if (!isValidXML(fileContent)) {
+                throw new Error('fileContent is not a valid xml string');
+            }
+        
+            // Convert xml to json
+            let jsonContent: unknown;
+            xml2js.parseString(fileContent, (err, result) => {
+                if (err) {
+                    throw new Error(err.message);
+                }
+                jsonContent = result;
+            });
+        
+            return jsonContent;
+        });
     });
-
-    return jsonContent;
 }
 
 /**
@@ -164,7 +172,11 @@ function saveXmlFileContent(fileName: string, fileContent: string) {
     }
 
     const filePath = path.join(xmlPath, fileName);
-    fs.writeFileSync(filePath, fileContent);
+    fs.writeFile(filePath, fileContent, (err) => {
+        if (err) {
+            throw new Error(err.message);
+        }
+    });
 }
 
 /**

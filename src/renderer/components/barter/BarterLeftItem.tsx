@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import dataDict from "@src/typings/data";
 
@@ -17,19 +17,25 @@ const BarterLeftItem: React.FC<Props> = (_props: Props) => {
     const [tier, setTier] = React.useState<number>(1);
 
     subEventHelper.getInstance().registerCallback("barterItemSelect",(icon, tier, name) => {
-
+        document.getElementsByClassName('app-barter-left-content-zone-item')[0].setAttribute('style', 'opacity: 1;');
         try{
             setIcon(require('@assets/images/items/'+icon));
         } catch (e) {
             setIcon(require('@assets/images/items/empty.png'));
         }
-        
+
         setName(name);
         setTier(tier);
     }, 'BarterLeftItem')
 
+    
+    
+    useEffect(()=>()=>{
+        subEventHelper.getInstance().unregisterAllCallbacks("barterItemSelect");
+    })
+
     return(
-        <div className={`app-barter-left-content-zone-item zone-item-tier-${tier}`}>
+        <div className={`app-barter-left-content-zone-item zone-item-tier-${tier}`} style={{opacity: '0'}}>
 
             <div className="app-barter-left-content-zone-item-icon">
                 <img src={icon} />

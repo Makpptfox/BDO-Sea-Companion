@@ -123,6 +123,11 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
         }
     }, 'BarterCenter')
 
+    
+    useEffect(()=>()=>{
+        subEventHelper.getInstance().unregisterAllCallbacks("search-barter");
+    })
+
     return(
         <table id="app-barter-center">
             <thead>

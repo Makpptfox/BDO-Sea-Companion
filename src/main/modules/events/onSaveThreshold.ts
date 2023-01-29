@@ -10,12 +10,14 @@ export default function handleSaveThreshold(key: string, value: number) {
     }
 
     // Get the save data
-    const data = getXmlFileContent('data/save_data.xml');
-    const save:saveData = data['data'];
+    const data = getXmlFileContent('data/save_data.xml').then((data) => {
 
-    // Save the new value in the save data
-    save.threshold[0][key][0] = value.toString()
+        const save:saveData = data['data'];
 
-    // Save the new save data by stringifying it
-    saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
+        // Save the new value in the save data
+        save.threshold[0][key][0] = value.toString()
+
+        // Save the new save data by stringifying it
+        saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
+    });
 }

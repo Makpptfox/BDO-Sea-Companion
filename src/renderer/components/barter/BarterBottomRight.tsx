@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import dataDict from "@src/typings/data";
 
@@ -86,6 +86,9 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
         })
     }, 'BarterBottomRight')
 
+    useEffect(()=>()=>{
+        subEventHelper.getInstance().unregisterAllCallbacks("total-value");
+    })
 
     return(
         <div className="app-barter-bottom-right-content">

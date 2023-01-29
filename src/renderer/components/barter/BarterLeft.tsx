@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import dataDict from '@src/typings/data';
 
@@ -8,6 +8,7 @@ import win_ from '@src/typings/win';
 import BarterLeftSpecial from './BarterLeftSpecial';
 import BarterLeftItem from './BarterLeftItem';
 import BarterLeftSearch from './BarterLeftSearch';
+import subEventHelper from '@common/subEvent';
 
 const win:win_ = window;
 
@@ -48,6 +49,10 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
     const [iliya, setIliya] = React.useState(false);
     const [epheria, setEpheria] = React.useState(false);
     const [ancado, setAncado] = React.useState(false);    
+
+    const [iliyaSelector, setIliyaSelector] = React.useState(<p>Loading...</p>);
+    const [epheriaSelector, setEpheriaSelector] = React.useState(<p>Loading...</p>);
+    const [ancadoSelector, setAncadoSelector] = React.useState(<p>Loading...</p>);
     
     let iliyaTable:boolean[] = []
     let epheriaTable:boolean[] = []
@@ -124,39 +129,35 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
 
     });
 
-    // Launch the observer script on the body once before observing it
-    observer.observe(document.body, {
-        attributes: true,
-        childList: false,
-        subtree: true
-    });
-        
+    useEffect(() => {
+        subEventHelper.getInstance().registerEvent('rAskStatusSelector-iliya');
+        subEventHelper.getInstance().registerEvent('rAskStatusSelector-epheria');
+        subEventHelper.getInstance().registerEvent('rAskStatusSelector-ancado');
 
-    
-    const icon = require(`@assets/icons/chest.svg`);
-    return(
-        <div id='app-barter-left-content'>
-            <div id='app-barter-left-content-zone-header'>
-                <p>{props.data.lang.barter[0].left[0].storageTitle[0]}</p>
-                <img src={icon} />
-            </div>
-            <div id='app-barter-left-content-zone-selector'>
-                <BarterLeftSelector default={true} for="Iliya" onChange={(change:boolean)=>{
+        subEventHelper.getInstance().registerCallback('rAskStatusSelector-iliya', (data) => {
+            setIliyaSelector(
+                <BarterLeftSelector default={data} for="Iliya" onChange={(change:boolean)=>{
                     new Promise((resolve) => {
-                        Object.keys(document.getElementsByClassName('iliya-table-viewer')).forEach((value:string, index:number) => {
-                            const element = document.getElementsByClassName('iliya-table-viewer')[index] as HTMLElement;
-                            if (!change) {
-                                element.style.display = 'none';
-                            } else {
-                                element.style.display = '';
-                            }
+                            Object.keys(document.getElementsByClassName('iliya-table-viewer')).forEach((value:string, index:number) => {
+                                const element = document.getElementsByClassName('iliya-table-viewer')[index] as HTMLElement;
+                                if (!change) {
+                                    element.style.display = 'none';
+                                } else {
+                                    element.style.display = '';
+                                }
 
-                            win.api.send('hide-col-barter', {hide: change, type: 'iliya'});
-                        });
+                                win.api.send('hide-col-barter', {hide: change, type: 'iliya'});
+                                subEventHelper.getInstance().send('sStatusSelector', 'iliya', change);
+                            });
                         resolve(true);
                     });
                 }} warn={iliya}/>
-                <BarterLeftSelector default={true} for="Epheria" onChange={(change:boolean)=>{
+            );
+        }, 'BarterLeft', true);
+
+        subEventHelper.getInstance().registerCallback('rAskStatusSelector-epheria', (data) => {
+            setEpheriaSelector(
+                <BarterLeftSelector default={data} for="Epheria" onChange={(change:boolean)=>{
                     new Promise((resolve) => {
                         Object.keys(document.getElementsByClassName('epheria-table-viewer')).forEach((value:string, index:number) => {
                             const element = document.getElementsByClassName('epheria-table-viewer')[index] as HTMLElement;
@@ -167,11 +168,17 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
                             }
 
                             win.api.send('hide-col-barter', {hide: change, type: 'epheria'});
+                            subEventHelper.getInstance().send('sStatusSelector', 'epheria', change);
                         });
                         resolve(true);
                     });
                 }} warn={epheria}/>
-                <BarterLeftSelector default={true} for="Ancado" onChange={(change:boolean)=>{
+            );
+        }, 'BarterLeft', true);
+
+        subEventHelper.getInstance().registerCallback('rAskStatusSelector-ancado', (data) => {
+            setAncadoSelector(
+                <BarterLeftSelector default={data} for="Ancado" onChange={(change:boolean)=>{
                     new Promise((resolve) => {
                         Object.keys(document.getElementsByClassName('ancado-table-viewer')).forEach((value:string, index:number) => {
                             const element = document.getElementsByClassName('ancado-table-viewer')[index] as HTMLElement;
@@ -182,10 +189,56 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
                             }
 
                             win.api.send('hide-col-barter', {hide: change, type: 'ancado'});
+                            subEventHelper.getInstance().send('sStatusSelector', 'ancado', change);
                         });
                         resolve(true);
                     });
                 }} warn={ancado}/>
+            );
+        }, 'BarterLeft', true);
+
+
+        
+        subEventHelper.getInstance().send('sAskStatusSelector', 'iliya');
+        subEventHelper.getInstance().send('sAskStatusSelector', 'epheria');
+        subEventHelper.getInstance().send('sAskStatusSelector', 'ancado');
+
+        return () => {
+            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-ancado");
+            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-epheria");
+            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-iliya");
+            subEventHelper.getInstance().unregisterAllCallbacks('rAskStatusSelector');
+        };
+    }, [])
+
+    // Launch the observer script on the body once before observing it
+    observer.observe(document.body, {
+        attributes: true,
+        childList: false,
+        subtree: true
+    });
+        
+
+                    
+    subEventHelper.getInstance().registerEvent('rAskStatusSelector');
+    
+    const icon = require(`@assets/icons/chest.svg`);
+    return(
+        <div id='app-barter-left-content'>
+            <div id='app-barter-left-content-zone-header'>
+                <p>{props.data.lang.barter[0].left[0].storageTitle[0]}</p>
+                <img src={icon} />
+            </div>
+            <div id='app-barter-left-content-zone-selector'>
+                {
+                    iliyaSelector
+                }
+                {
+                    epheriaSelector
+                }
+                {
+                    ancadoSelector
+                }
 
             </div>
             <BarterLeftSpecial data={props.data} />

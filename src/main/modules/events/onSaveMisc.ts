@@ -11,12 +11,15 @@ export default function handleSaveMisc(key: "lastBarter", value: string,  _event
     }
 
     // Get the save data
-    const data = getXmlFileContent('data/save_data.xml');
-    const save:saveData = data['data'];
+    const data = getXmlFileContent('data/save_data.xml').then((data) => {
+        
+        const save:saveData = data['data'];
 
-    // Save the new value in the save data
-    save.misc[0][key][0] = value
+        // Save the new value in the save data
+        save.misc[0][key][0] = value
 
-    // Save the new save data by stringifying it
-    saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
+        // Save the new save data by stringifying it
+        saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
+    });
+        
 }

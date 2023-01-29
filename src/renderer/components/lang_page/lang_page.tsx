@@ -1,5 +1,5 @@
 import subEventHelper from "@common/subEvent";
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./lang_page.scss";
 
@@ -14,6 +14,12 @@ const LangPage: React.FunctionComponent = () => {
 
         setShow(state? state : show_);
     }, 'langPage');
+
+    
+    
+    useEffect(()=>()=>{
+        subEventHelper.getInstance().unregisterAllCallbacks("open_lang_page");
+    })
 
     if(!show){
         return null;

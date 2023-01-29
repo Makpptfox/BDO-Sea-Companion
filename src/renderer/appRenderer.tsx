@@ -22,8 +22,10 @@ const warn = console.warn;
 // Override console.log to add a prefix
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 window.console.log = function(...args: any[]){
-
-  log('%c[BDOC] :%c'+ args, 'color: #32a852;font-weight: bold', 'color: #ffffff');
+    new Promise((resolve) => {
+      resolve(
+        log('%c[BDOC] :%c'+ args, 'color: #32a852;font-weight: bold', 'color: #ffffff'))
+    })
 }
 
 // Override console.trace to add a prefix and only show in development mode
@@ -31,7 +33,11 @@ window.console.log = function(...args: any[]){
 window.console.trace = function(...args: any[]){
   // Trace only if in development mode
   if(process.env.NODE_ENV === 'development'){
-    trace('%c[BDOC] :%c'+ args, 'color: #8b32a8;font-weight: bold', 'color: #ffffff');
+    new Promise((resolve) => {
+      resolve(
+        trace('%c[BDOC] :%c'+ args, 'color: #8b32a8;font-weight: bold', 'color: #ffffff')
+      )
+    })
   }
 }
 
@@ -40,20 +46,32 @@ window.console.trace = function(...args: any[]){
 window.console.debug = function(...args: any[]){
   // Debug only if in development mode
   if(process.env.NODE_ENV === 'development'){
-    debug('%c[BDOC] :%c'+ args, 'color: #5a32a8;font-weight: bold', 'color: #ffffff');
+    new Promise((resolve) => {
+      resolve(
+        debug('%c[BDOC] :%c'+ args, 'color: #5a32a8;font-weight: bold', 'color: #ffffff')
+      )
+    })
   }
 }
 
 // Override console.info to add a prefix
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 window.console.info = function(...args: any[]){
-  info('%c[BDOC] :%c'+ args, 'color: #9ba832;font-weight: bold', 'color: #ffffff');
+  new Promise((resolve) => {
+    resolve(
+      info('%c[BDOC] :%c'+ args, 'color: #9ba832;font-weight: bold', 'color: #ffffff')
+    )
+  })
 }
 
 // Override console.warn to add a prefix
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 window.console.warn = function(...args: any[]){
-  warn('%c[BDOC] :%c'+ args, 'color: #a85e32;font-weight: bold', 'color: #ffffff');
+  new Promise((resolve) => {
+    resolve(
+      warn('%c[BDOC] :%c'+ args, 'color: #a85e32;font-weight: bold', 'color: #ffffff')
+    )
+  })
 }
 
 const win:win_ = window;

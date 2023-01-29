@@ -10,10 +10,10 @@ const {
 } = require("electron");
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang', 'open_lang_page', 'app-restart', 'carrack-inventory-save-qty'];
+const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang', 'open_lang_page', 'app-restart', 'carrack-inventory-save-qty',  'sAskStatusSelector', 'sStatusSelector'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart', 'update-carrack-need', 'returnCarrackType'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart', 'update-carrack-need', 'returnCarrackType', 'rAskStatusSelector-iliya', 'rAskStatusSelector-ancado', 'rAskStatusSelector-epheria', 'carrack-inventory-save-qty', 'rAskStatusSelector'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {
@@ -29,6 +29,7 @@ contextBridge.exposeInMainWorld(
     send: (channel: string, ...data: any[]) => {
       // Only allow valid channels
       if (validChannelsSend.includes(channel)) {
+        console.log('[ERWT] : Send ipc event to main process : ' + channel + ' : ' + data)
         ipcRenderer.send(channel, ...data);
       } else {
         throw new Error('Invalid channel ' + channel);

@@ -1,5 +1,5 @@
 import dataDict from "@src/typings/data";
-import React from "react";
+import React, { useEffect } from "react";
 import ElementMaker from './BarterCenterInput';
 import subEventHelper from "@common/subEvent";
 
@@ -105,6 +105,11 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
             setQuantity((countIliya?(isNaN(iliya) || iliya <=0)? 0:iliya :0)+(countEpheria?(isNaN(epheria) || epheria <=0)? 0:epheria :0)+(countAncado?(isNaN(ancado) || ancado <=0)? 0:ancado :0))
         })
     }, uniqueName);
+    
+    useEffect(()=>()=>{
+        subEventHelper.getInstance().unregisterAllCallbacks("threshold-change");
+        subEventHelper.getInstance().unregisterAllCallbacks("search-barter");
+    })
 
     const countQuantity = () => {
 

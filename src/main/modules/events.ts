@@ -1,4 +1,4 @@
-import { app, ipcMain } from "electron";
+import { app, ipcMain, IpcMainEvent, session } from "electron";
 
 // Import all events
 import onPagechange from "./events/onPageChange";
@@ -19,6 +19,8 @@ import subEventHelper from "@common/subEvent";
 import onSaveLang from "./events/onSaveLang";
 import mainEventHelper from '../../common/mainEvent';
 import handleSaveCarrackItem from "./events/handleSaveCarrackItem";
+
+const eventHelper = mainEventHelper.getInstance();
 
 // Export all events in one function
 export function events(){
@@ -78,10 +80,31 @@ export function events(){
         handleSaveMisc(key, value, e);
     });
 
-    mainEventHelper.getInstance().registerCallback('carrack-inventory-save-qty', (key: string, value: number) => {
+    mainEventHelper.getInstance().registerCallback('carrack-inventory-save-qty', (e, key: string, value: number) => {
         console.log('carrack-inventory-save-qty', key, value)
 
         handleSaveCarrackItem(key, value);
+    });
+
+    eventHelper.registerCallback('sAskStatusSelector', (e: IpcMainEvent, type: "iliya"|"epheria"|"ancado") => {
+        const ses  = session.defaultSession.cookies;
+
+
+        ses.get({url: 'localhost'})
+        .then((cookies) => {
+            console.trace(cookies)
+            const cookie = cookies.find((cookie) => cookie.name == 'statusSelector-'+type);
+            if (cookie) {
+                const value = cookie.value;
+
+                e.sender.send('rAskStatusSelector-'+type, value);
+            } else {
+                console.log('no cookie')
+                e.sender.send('rAskStatusSelector-'+type, '0');
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
     });
 
     // FUNCTION EVENT
