@@ -15,7 +15,6 @@ const win:win_ = window;
 const BarterLeftSelector:React.FC<Props> = (props: Props) => {
 
     const [checked, setChecked] = useState(props.default);
-    const [warning, setWarning] = useState(false);
     const icon = require(`../../../../assets/icons/checkbox-cross.svg`);
 
 

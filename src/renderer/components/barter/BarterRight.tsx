@@ -1,46 +1,11 @@
 // TODO : Add the thresold warning for the barter tier button
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import './BarterRight.scss';
 
 type Props = {
     onClick: (tier: number, hide:boolean) => void;
 };
-
-
-let doOnce = (setTier1Warning: (value: boolean) => void, setTier2Warning: (value: boolean) => void, setTier3Warning: (value: boolean) => void, setTier4Warning: (value: boolean) => void, setTier5Warning: (value: boolean) => void) => {
-    doOnce = ()=>{return null}
-
-
-    const parent = document.getElementsByTagName('tbody')[0].children
-
-    let setWarning = setTier1Warning;
-
-    for (let i = 0; i < parent.length; i++) {
-        const targets = parent[i].children
-
-        if(parent[i].classList.contains('tier-1')) {
-            setWarning = setTier1Warning;
-        } else if (parent[i].classList.contains('tier-2')) {
-            setWarning = setTier2Warning;
-        } else if (parent[i].classList.contains('tier-3')) {
-            setWarning = setTier3Warning;
-        } else if (parent[i].classList.contains('tier-4')) {
-            setWarning = setTier4Warning;
-        } else if (parent[i].classList.contains('tier-5')) {
-            setWarning = setTier5Warning;
-        }
-        for (let i = 0; i < targets.length; i++) {
-
-
-            const target = targets[i] as HTMLTableCellElement;
-            if (target.classList.contains('warning-thresold')) {
-                setWarning(true)
-            }
-        }
-    }
-
-}
 
 const BarterRight:React.FC<Props> = (props: Props) => {
 
@@ -66,24 +31,93 @@ const BarterRight:React.FC<Props> = (props: Props) => {
     let tier5Table:boolean[] = []
 
 
-    setTimeout(() => {
-        doOnce(setTier1Warning, setTier2Warning, setTier3Warning, setTier4Warning, setTier5Warning);
-    }, 150);
+    useEffect(() => {
+        setTimeout(onLoaded, 150);
+    }, []);
+
+    const onLoaded = () => {
+        
+
+        const parent = document.getElementsByTagName('tbody')[0].children
+
+        tier1Table = []
+        tier2Table = []
+        tier3Table = []
+        tier4Table = []
+        tier5Table = []
+        for (let i = 0; i < parent.length; i++) {
+            const targets = parent[i] as HTMLTableRowElement;
+            for (let i = 0; i < targets.children.length; i++) {
+    
+    
+                const target = targets.children[i] as HTMLTableCellElement;
+                if (target.classList.contains('warning-thresold')) {
+
+
+                    if(target.style.display !== 'none') {
+
+                        if(targets.classList.contains('tier-1')) {
+                            tier1Table.push(true)
+                        } else if (targets.classList.contains('tier-2')) {
+                            tier2Table.push(true)
+                        } else if (targets.classList.contains('tier-3')) {
+                            tier3Table.push(true)
+                        } else if (targets.classList.contains('tier-4')) {
+                            tier4Table.push(true)
+                        } else if (targets.classList.contains('tier-5')) {
+                            tier5Table.push(true)
+                        }
+                    }
+                }
+            }
+        }
+        if (tier1Table.length > 0) {
+            if(tier1Table.includes(true)) {
+                setTier1Warning(true)
+            }
+        } else {
+            setTier1Warning(false)
+        }
+        if (tier2Table.length > 0) {
+            if(tier2Table.includes(true)) {
+                setTier2Warning(true)
+            }
+        } else {
+            setTier2Warning(false)
+        }
+        if (tier3Table.length > 0) {
+            if(tier3Table.includes(true)) {
+                setTier3Warning(true)
+            }
+        } else {
+            setTier3Warning(false)
+        }
+        if (tier4Table.length > 0) {
+            if(tier4Table.includes(true)) {
+                setTier4Warning(true)
+            }
+        } else {
+            setTier4Warning(false)
+        }
+        if (tier5Table.length > 0) {
+            if(tier5Table.includes(true)) {
+                setTier5Warning(true)
+            }
+        } else {
+            setTier5Warning(false)
+        }
+    }
 
     // Check change of in class of the element with MutationObserver and set the state accordingly
-    const observer = new MutationObserver(async (mutations) => {
+    const observer = new MutationObserver((mutations) => {
 
-        let continueLoop = true;
-
-        await mutations.forEach((mutation) => {
+        mutations.forEach((mutation) => {
 
             if (mutation.type === 'attributes') {
                 if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
                     const parent = mutation.target.parentElement.parentElement as HTMLTableElement;
 
-                    if(!parent.classList.contains('table-body')){
-                        continueLoop = false;
-                    } else {
+                    if(parent.classList.contains('table-body')){
                         tier1Table = []
                         tier2Table = []
                         tier3Table = []

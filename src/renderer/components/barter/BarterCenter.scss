@@ -18,7 +18,7 @@ table{
 
     border-collapse: var(--barter-table-border-collapse);
     width: var(--barter-table-width);
-    height: 100%;
+    min-height: 100%;
     margin: var(--barter-table-margin);
     padding: var(--barter-table-padding);
     border: var(--barter-table-border);
@@ -55,6 +55,7 @@ table{
 
         overflow: auto;
 
+        min-height: var(--barter-table-body-height);
         max-height: var(--barter-table-body-height);
         height: var(--barter-table-body-height);
         margin: var(--barter-table-body-margin);
@@ -87,6 +88,9 @@ table{
 
 
         tr{
+            span{
+                font-weight: lighter!important;
+            }
             display: var(--barter-table-body-tr-display);
             grid-template-columns: var(--barter-table-body-tr-grid-template-columns);
             padding: 5px 0;
@@ -99,7 +103,6 @@ table{
             td{
                 .input-center-item{
                     cursor: text;
-                    font-weight: 300;
                 }
 
                 .input-number-barter{
@@ -152,7 +155,7 @@ table{
 
         .warning-thresold{
             *{
-                color: red!important;
+                color: rgb(255, 128, 128)!important;
             }
         }
 

@@ -47,69 +47,43 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     const [showInputEleEpheria, setShowInputEleEpheria] = React.useState(false);
     const [showInputEleAncado, setShowInputEleAncado] = React.useState(false);
 
-    const [countIliya, setCountIliya] = React.useState<boolean>(hideIliya);
-    const [countEpheria, setCountEpheria] = React.useState<boolean>(hideEpheria);
-    const [countAncado, setCountAncado] = React.useState<boolean>(hideAncado);
+    const [countIliya] = React.useState<boolean>(hideIliya);
+    const [countEpheria] = React.useState<boolean>(hideEpheria);
+    const [countAncado] = React.useState<boolean>(hideAncado);
 
     const [limitIliya, setLimitIliya] = React.useState(parseInt(props.data.save.threshold[0].iliya[0]));
     const [limitEpheria, setLimitEpheria] = React.useState(parseInt(props.data.save.threshold[0].epheria[0]));
     const [limitAncado, setLimitAncado] = React.useState(parseInt(props.data.save.threshold[0].ancado[0]));
-
-    subEventHelper.getInstance().registerCallback('threshold-change', (type, threshold) => {
-        
-        console.log("threshold-change", type, threshold)
-
-        new Promise((resolve)=>{
-            switch(type){
-                case "iliya":
-                    setLimitIliya(threshold)
-                    resolve(true)
-                    break;
-                case "epheria":
-                    setLimitEpheria(threshold)
-                    resolve(true)
-                    break;
-                case "ancado":
-                    setLimitAncado(threshold)
-                    resolve(true)
-                    break;
-                default:
-                    resolve(false)
-                    break;
-            }
-        })
-    }, uniqueName)
-
-    subEventHelper.getInstance().registerCallback('search-barter', ({hide, type}) => {
-
-        new Promise((resolve)=>{
-            props.hideBool(hide, type)
-            switch(type){
-                case "iliya":
-                    setCountIliya(hide)
-                    resolve(true)
-                    break;
-                case "epheria":
-                    setCountEpheria(hide)
-                    resolve(true)
-                    break;
-                case "ancado":
-                    setCountAncado(hide)
-                    resolve(true)
-                    break;
-                default:
-                    resolve(false)
-                    break;
-            }
-
-            setQuantity((countIliya?(isNaN(iliya) || iliya <=0)? 0:iliya :0)+(countEpheria?(isNaN(epheria) || epheria <=0)? 0:epheria :0)+(countAncado?(isNaN(ancado) || ancado <=0)? 0:ancado :0))
-        })
-    }, uniqueName);
     
-    useEffect(()=>()=>{
-        subEventHelper.getInstance().unregisterAllCallbacks("threshold-change");
-        subEventHelper.getInstance().unregisterAllCallbacks("search-barter");
-    })
+    useEffect(()=>{
+
+        subEventHelper.getInstance().registerCallback('threshold-change', (type, threshold) => {
+    
+            new Promise((resolve)=>{
+                switch(type){
+                    case "iliya":
+                        setLimitIliya(threshold)
+                        resolve(true)
+                        break;
+                    case "epheria":
+                        setLimitEpheria(threshold)
+                        resolve(true)
+                        break;
+                    case "ancado":
+                        setLimitAncado(threshold)
+                        resolve(true)
+                        break;
+                    default:
+                        resolve(false)
+                        break;
+                }
+            })
+        }, uniqueName)
+    
+        return(()=>{
+            subEventHelper.getInstance().unregisterAllCallbacks("threshold-change");
+        })
+    }, [])
 
     const countQuantity = () => {
 

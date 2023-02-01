@@ -16,23 +16,29 @@ const BarterLeftItem: React.FC<Props> = (_props: Props) => {
     const [name, setName] = React.useState<string>("");
     const [tier, setTier] = React.useState<number>(1);
 
-    subEventHelper.getInstance().registerCallback("barterItemSelect",(icon, tier, name) => {
-        document.getElementsByClassName('app-barter-left-content-zone-item')[0].setAttribute('style', 'opacity: 1;');
-        try{
-            setIcon(require('@assets/images/items/'+icon));
-        } catch (e) {
-            setIcon(require('@assets/images/items/empty.png'));
-        }
-
-        setName(name);
-        setTier(tier);
-    }, 'BarterLeftItem')
-
     
     
-    useEffect(()=>()=>{
-        subEventHelper.getInstance().unregisterAllCallbacks("barterItemSelect");
-    })
+    useEffect(()=>{
+        
+
+        subEventHelper.getInstance().registerCallback("barterItemSelect",(icon, tier, name) => {
+            document.getElementsByClassName('app-barter-left-content-zone-item')[0].setAttribute('style', 'opacity: 1;');
+            try{
+                setIcon(require('@assets/images/items/'+icon));
+            } catch (e) {
+                setIcon(require('@assets/images/items/empty.png'));
+            }
+
+            setName(name);
+            setTier(tier);
+        }, 'BarterLeftItem')
+
+        return(
+            ()=>{
+                subEventHelper.getInstance().unregisterAllCallbacks("barterItemSelect");
+            }
+        )
+    }, [])
 
     return(
         <div className={`app-barter-left-content-zone-item zone-item-tier-${tier}`} style={{opacity: '0'}}>
@@ -41,12 +47,12 @@ const BarterLeftItem: React.FC<Props> = (_props: Props) => {
                 <img src={icon} />
             </div>
 
-            <div className="app-barter-left-content-zone-item-name">
-                <p>{name}</p>
-            </div>
 
             <div className="app-barter-left-content-zone-item-tier">
                 <p>Tier {tier}</p>
+            </div>
+            <div className="app-barter-left-content-zone-item-name">
+                <p>{name}</p>
             </div>
         </div>
 

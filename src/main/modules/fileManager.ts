@@ -120,7 +120,7 @@ async function getXmlFileContent(fileName: string):Promise<any> {
 
     // Read file
     const filePath = path.join(xmlPath, fileName);
-    return await new Promise<string>((resolve) => {
+    return await new Promise<unknown>((resolve) => {
             fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
                 throw new Error(err.message);
@@ -142,7 +142,7 @@ async function getXmlFileContent(fileName: string):Promise<any> {
                 jsonContent = result;
             });
         
-            return jsonContent;
+            resolve(jsonContent);
         });
     });
 }

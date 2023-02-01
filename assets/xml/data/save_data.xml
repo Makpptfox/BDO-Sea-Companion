@@ -11,7 +11,7 @@
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>9</ancado>
+            <ancado>0</ancado>
         </FishBone>
         <Ration>
             <qty>0</qty>
@@ -87,7 +87,7 @@
         </Gunpowder>
         <Lunchbox>
             <qty>0</qty>
-            <iliya>9</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Lunchbox>
@@ -172,7 +172,7 @@
         <Hourglass>
             <qty>0</qty>
             <iliya>0</iliya>
-            <epheria>9</epheria>
+            <epheria>0</epheria>
             <ancado>0</ancado>
         </Hourglass>
         <TreasureMap>
@@ -213,7 +213,7 @@
         </RoundKnife>
         <Blood>
             <qty>0</qty>
-            <iliya>9</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Blood>
@@ -279,7 +279,7 @@
         </Amethyst>
         <MarineSpear>
             <qty>0</qty>
-            <iliya>9</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </MarineSpear>

@@ -118,15 +118,9 @@ export default class subEventHelper {
 
 
       this.queue.forEach((queueCallback, index) => {
-        console.log('QUEUE CALLBACK NAME: ' + queueCallback.name);
-        console.log('EVENT NAME: ' + name);
-
-        console.table(queueCallback);
         if(queueCallback.name === name) {
 
-          console.log('CALLING EVENT FROM QUEUE')
           if(this.hasAnyCallback(name)) {
-            console.table(this.getEvent(name).callbacks);
             this.callEvent(name, ...queueCallback.args);
             this.queue.splice(index, 1);
           }
@@ -318,7 +312,6 @@ export default class subEventHelper {
    * // => The console will print 'test test2'
    */
   public send(name: string, ...args: any[]) {
-    console.log('send', name, args);
     this.window.api.send(name, ...args);
   }
 

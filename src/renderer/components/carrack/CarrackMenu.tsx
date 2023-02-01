@@ -15,11 +15,10 @@ type Props = {
 
 const CarrackMenu = (props: Props) => {
     
-        const [imageCarrack, setImageCarrack] = React.useState<string>(require('@assets/images/carrack/'+props.data.carrack.boat[0][props.boatType][0].image[0]));
+        const [imageCarrack] = React.useState<string>(require('@assets/images/carrack/'+props.data.carrack.boat[0][props.boatType][0].image[0]));
         const [content, setContent] = React.useState<JSX.Element>(<div><p>loading...</p></div> as JSX.Element);
 
         useEffect(() => {
-            console.log("CarrackMenu: ", props.state)
 
             const item = (
                 <div className={`carrack-menu-item ${props.boatType}`} onClick={()=>{

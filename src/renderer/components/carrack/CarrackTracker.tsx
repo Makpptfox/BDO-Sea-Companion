@@ -11,6 +11,7 @@ import CarrackTrackerContent from "./CarrackTrackerContent";
 
 type Props = {
     data: dataDict;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     boatType: any;
 }
 
@@ -28,7 +29,6 @@ const CarrackTracker = (props: Props) => {
     useEffect(() => {
         switch(state) {
             case "inventory":
-                console.log("CarrackTracker: ", inventory);
                 setContent(
                     <div className="carrack">
                         <div className="carrack-left">

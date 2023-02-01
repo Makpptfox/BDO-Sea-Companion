@@ -1,5 +1,3 @@
-import langDict from "@src/typings/lang";
-import win_ from "@src/typings/win";
 import React, {useState} from "react";
 import WindowControls from "./WindowControls";
 
@@ -12,8 +10,6 @@ type Props = {
     children: React.ReactNode;
     data: dataDict;
 }
-
-const win:win_ = window;
 
 /**
  * The window frame component
@@ -30,11 +26,6 @@ const WindowFrame: React.FC<Props> = (props: Props) => {
     const title = props.data.lang['pageTitle'][0][titleTag][0];
 
     const changeData = (page: string)=>{
-    
-        // If in development mode, log the page change
-        if (process.env.NODE_ENV === 'development'){
-            console.log("Page change to: " + page);
-        }
     
         // Check the page and change the title and icon
         switch (page) {

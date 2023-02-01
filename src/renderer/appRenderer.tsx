@@ -9,7 +9,6 @@ import itemDict from '@src/typings/item';
 import dataDict from '@src/typings/data';
 import saveData from '@src/typings/save';
 import subEventHelper from '@common/subEvent';
-import mainEventHelper from '@common/mainEvent';
 import carrackDict from '@src/typings/carrack';
 
 

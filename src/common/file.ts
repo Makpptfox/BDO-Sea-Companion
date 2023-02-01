@@ -83,14 +83,34 @@ export default class fileHelper {
 
     const data = _data.trim();
 
-    fs.writeFile(filepath,
-      data,
-      (err) => {
-        if (err) {
-          throw (err);
-        }
+    const dir = path.dirname(filepath);
+    fs.access(path.join(dir), (err)=>{
+      if (err) {
+        fs.mkdir(path.join(dir), { recursive: true }, ()=>{
+
+
+          fs.writeFile(filepath,
+            data,
+            (err) => {
+              if (err) {
+                throw (err);
+              }
+            }
+          );
+        });
+        return;
+      } else {
+        fs.writeFile(filepath,
+          data,
+          (err) => {
+            if (err) {
+              throw (err);
+            }
+          }
+        );
       }
-    );
+
+    })
   }
 
   /**
@@ -195,12 +215,19 @@ export default class fileHelper {
    * fileHelper.getInstance(app).checkFileExists('test.txt');
    * // => Error: EROFS: read-only file system, open 'C:\Users\username\AppData\Roaming\appname\test.txt'
    **/
-  public checkFileExists(filename: string): boolean {
+  public checkFileExists(filename: string): Promise<boolean> {
       
     const userdir = this.app.getPath('userData');
     const filepath = path.join(userdir, filename);
 
-    return fs.existsSync(filepath);
+    return new Promise<boolean>((resolve) => {
+      fs.access(filepath, (err) => {
+        if (err) {
+          resolve(false);
+        }
+        resolve(true);
+      });
+    });
 
   }
 

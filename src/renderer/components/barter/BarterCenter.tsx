@@ -112,21 +112,23 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
 
     }
 
-    subEventHelper.getInstance().registerCallback('search-barter', (search)=>{
-        if(search !== undefined ) search = search.trim();
-
-        if(search === "" || search === undefined || search === null){
-            setIsSearch(false)
-        }else{
-            setIsSearch(true)
-            setSearch(search)
-        }
-    }, 'BarterCenter')
-
     
-    useEffect(()=>()=>{
-        subEventHelper.getInstance().unregisterAllCallbacks("search-barter");
-    })
+    useEffect(()=>{
+
+        subEventHelper.getInstance().registerCallback('search-barter', (search)=>{
+            if(search !== undefined ) search = search.trim();
+    
+            if(search === "" || search === undefined || search === null){
+                setIsSearch(false)
+            }else{
+                setIsSearch(true)
+                setSearch(search)
+            }
+        }, 'BarterCenter')
+        return(()=>{
+            subEventHelper.getInstance().unregisterAllCallbacks("search-barter");
+        })
+    },[])
 
     return(
         <table id="app-barter-center">

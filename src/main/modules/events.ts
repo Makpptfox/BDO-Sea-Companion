@@ -1,4 +1,4 @@
-import { app, ipcMain, IpcMainEvent, session } from "electron";
+import { app, ipcMain, IpcMainEvent } from "electron";
 
 // Import all events
 import onPagechange from "./events/onPageChange";
@@ -15,10 +15,11 @@ import onHideColBarter from "./events/onHideColBarter";
 // import file manager
 import { findXmlFile } from "./fileManager";
 import onAppQuit from "./events/onAppQuit";
-import subEventHelper from "@common/subEvent";
 import onSaveLang from "./events/onSaveLang";
 import mainEventHelper from '../../common/mainEvent';
 import handleSaveCarrackItem from "./events/handleSaveCarrackItem";
+import tempHelper from "@common/temp";
+import fileHelper from "@common/file";
 
 const eventHelper = mainEventHelper.getInstance();
 
@@ -87,26 +88,39 @@ export function events(){
     });
 
     eventHelper.registerCallback('sAskStatusSelector', (e: IpcMainEvent, type: "iliya"|"epheria"|"ancado") => {
-        const ses  = session.defaultSession.cookies;
+        const temp = tempHelper.getInstance();
 
-
-        ses.get({url: 'localhost'})
-        .then((cookies) => {
-            console.trace(cookies)
-            const cookie = cookies.find((cookie) => cookie.name == 'statusSelector-'+type);
-            if (cookie) {
-                const value = cookie.value;
-
-                e.sender.send('rAskStatusSelector-'+type, value);
-            } else {
-                console.log('no cookie')
-                e.sender.send('rAskStatusSelector-'+type, '0');
-            }
-        }).catch((err) => {
-            console.log(err);
-        });
+        if(temp.has('statusSelector-'+type)) {
+            e.sender.send('rAskStatusSelector-'+type, temp.get('statusSelector-'+type));
+        } else {
+            e.sender.send('rAskStatusSelector-'+type, 1);
+        }
+        
     });
 
+    eventHelper.registerCallback('sStatusSelector', (e: IpcMainEvent, type: 'iliya'|'epheria'|'ancado', status: number) => {
+        const temp = tempHelper.getInstance();
+
+        temp.set('statusSelector-'+type, status);
+    })
+
+    eventHelper.registerCallback('sSaveInLog', (e: IpcMainEvent, log: string) => {
+
+        const file = fileHelper.getInstance(app);
+
+        const dateFull = new Date(Date.now())
+
+        const date = dateFull.getDay()+"-"+dateFull.getMonth()+"-"+dateFull.getFullYear()
+
+        file.checkFileExists('log/'+date+'.txt').then((exists) => {
+            if(exists){
+                file.appendFileToUserdir('log/'+date+'.txt', log);
+            }
+            else{
+                file.setFileToUserdir('log/'+date+'.txt', log);
+            }
+        });
+    })
     // FUNCTION EVENT
 
     ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, hide: boolean, type:"iliya"|"epheria"|"ancado") => {

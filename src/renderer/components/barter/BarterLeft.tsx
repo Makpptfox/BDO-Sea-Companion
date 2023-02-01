@@ -16,37 +16,9 @@ type Props = {
     data: dataDict;
 }
 
-let doOnce = (setIliya: any, setEpheria: any, setAncado: any) => {
-    doOnce = ()=>{return null}
-
-
-    const parent = document.getElementsByTagName('tbody')[0].children
-
-    for (let i = 0; i < parent.length; i++) {
-        const targets = parent[i].children
-        for (let i = 0; i < targets.length; i++) {
-            const target = targets[i] as HTMLTableCellElement;
-            if(target.classList.contains('iliya-table-viewer')) {
-                if (target.classList.contains('warning-thresold')) {
-                    setIliya(true)
-                }
-            } else if (target.classList.contains('epheria-table-viewer')) {
-                if (target.classList.contains('warning-thresold')) {
-                    setEpheria(true)
-                }
-            } else if (target.classList.contains('ancado-table-viewer')) {
-                if (target.classList.contains('warning-thresold')) {
-                    setAncado(true)
-                }
-            }
-        }
-    }
-
-}
-
 const BarterLeft:React.FC<Props> = (props: Props) => {
 
-    const [iliya, setIliya] = React.useState(false);
+    const [iliya, setIliya] = React.useState(null);
     const [epheria, setEpheria] = React.useState(false);
     const [ancado, setAncado] = React.useState(false);    
 
@@ -57,84 +29,42 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
     let iliyaTable:boolean[] = []
     let epheriaTable:boolean[] = []
     let ancadoTable:boolean[] = []
-
-
-    setTimeout(() => {
-        doOnce(setIliya, setEpheria, setAncado);
-    }, 150);
-
-    // Check change of in class of the element with MutationObserver and set the state accordingly
-    const observer = new MutationObserver(async (mutations) => {
-        iliyaTable = []
-        epheriaTable = []
-        ancadoTable = []
-        await mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes') {
-                if (mutation.attributeName === 'class') {
-                    const parent = mutation.target.parentElement.parentElement as HTMLTableElement;
-                    for (let i = 0; i < parent.children.length; i++) {
-                        const targets = parent.children[i] as HTMLTableRowElement;
-                        for (let i = 0; i < targets.children.length; i++) {
-                            const target = targets.children[i] as HTMLTableCellElement;
-
-                            if(target.classList.contains('iliya-table-viewer')) {
-                                if (target.classList.contains('warning-thresold')) {
-                                    iliyaTable.push(false)
-                                } else {
-                                    iliyaTable.push(true)
-                                }
-                            }
-                            if(target.classList.contains('epheria-table-viewer')) {
-                                if (target.classList.contains('warning-thresold')) {
-                                    epheriaTable.push(false)
-                                } else {
-                                    epheriaTable.push(true)
-                                }
-                            }
-                            if(target.classList.contains('ancado-table-viewer')) {
-                                if (target.classList.contains('warning-thresold')) {
-                                    ancadoTable.push(false)
-                                } else {
-                                    ancadoTable.push(true)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        });
+    
+    useEffect(() => {
         
+            setTimeout(() => {
 
-        if (iliyaTable.length > 0) {
-            if(iliyaTable.includes(false)) {
-                setIliya(true);
-            } else {
-                setIliya(false);
-            }
-        }
-        if (epheriaTable.length > 0) {
-            if(epheriaTable.includes(false)) {
-                setEpheria(true);
-            } else {
-                setEpheria(false);
-            }
-        }
-        if (ancadoTable.length > 0) {
-            if(ancadoTable.includes(false)) {
-                setAncado(true);
-            } else {
-                setAncado(false);
-            }
-        }
+                document.getElementsByClassName('iliya-table-viewer warning-thresold').length > 0 ? setIliya(true) : setIliya(false);
+                document.getElementsByClassName('epheria-table-viewer warning-thresold').length > 0 ? setEpheria(true) : setEpheria(false);
+                document.getElementsByClassName('ancado-table-viewer warning-thresold').length > 0 ? setAncado(true) : setAncado(false);
 
-    });
+            }, 100  );
+        return () => {
+            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-ancado");
+            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-epheria");
+            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-iliya");
+            subEventHelper.getInstance().unregisterAllCallbacks('rAskStatusSelector');
+        };
+    }, [])
+
+    
 
     useEffect(() => {
+        
+        if (iliya === null) return;
+
         subEventHelper.getInstance().registerEvent('rAskStatusSelector-iliya');
         subEventHelper.getInstance().registerEvent('rAskStatusSelector-epheria');
         subEventHelper.getInstance().registerEvent('rAskStatusSelector-ancado');
 
         subEventHelper.getInstance().registerCallback('rAskStatusSelector-iliya', (data) => {
+            if(!data) {
+                Object.keys(document.getElementsByClassName('iliya-table-viewer')).forEach((value:string, index:number) => {
+                    const element = document.getElementsByClassName('iliya-table-viewer')[index] as HTMLElement;
+                    element.style.display = 'none';
+                    win.api.send('hide-col-barter', {hide: true, type: 'iliya'});
+                });
+            }
             setIliyaSelector(
                 <BarterLeftSelector default={data} for="Iliya" onChange={(change:boolean)=>{
                     new Promise((resolve) => {
@@ -156,6 +86,15 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
         }, 'BarterLeft', true);
 
         subEventHelper.getInstance().registerCallback('rAskStatusSelector-epheria', (data) => {
+            
+
+            if(!data) {
+                Object.keys(document.getElementsByClassName('epheria-table-viewer')).forEach((value:string, index:number) => {
+                    const element = document.getElementsByClassName('epheria-table-viewer')[index] as HTMLElement;
+                    element.style.display = 'none';
+                    win.api.send('hide-col-barter', {hide: true, type: 'epheria'});
+                });
+            }
             setEpheriaSelector(
                 <BarterLeftSelector default={data} for="Epheria" onChange={(change:boolean)=>{
                     new Promise((resolve) => {
@@ -177,6 +116,15 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
         }, 'BarterLeft', true);
 
         subEventHelper.getInstance().registerCallback('rAskStatusSelector-ancado', (data) => {
+
+            if(!data) {
+                Object.keys(document.getElementsByClassName('ancado-table-viewer')).forEach((value:string, index:number) => {
+                    const element = document.getElementsByClassName('ancado-table-viewer')[index] as HTMLElement;
+                    element.style.display = 'none';
+                    win.api.send('hide-col-barter', {hide: true, type: 'ancado'});
+                });
+            }
+
             setAncadoSelector(
                 <BarterLeftSelector default={data} for="Ancado" onChange={(change:boolean)=>{
                     new Promise((resolve) => {
@@ -189,35 +137,93 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
                             }
 
                             win.api.send('hide-col-barter', {hide: change, type: 'ancado'});
-                            subEventHelper.getInstance().send('sStatusSelector', 'ancado', change);
                         });
+                        subEventHelper.getInstance().send('sStatusSelector', 'ancado', change);
                         resolve(true);
                     });
                 }} warn={ancado}/>
             );
         }, 'BarterLeft', true);
 
-
+            // Check change of in class of the element with MutationObserver and set the state accordingly
+                const observer = new MutationObserver(async (mutations) => {
+                    iliyaTable = []
+                    epheriaTable = []
+                    ancadoTable = []
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes') {
+                            if (mutation.attributeName === 'class') {
+                                const parent = mutation.target.parentElement.parentElement as HTMLTableElement;
         
+                                for (let i = 0; i < parent.children.length; i++) {
+                                    const targets = parent.children[i] as HTMLTableRowElement;
+                                    for (let i = 0; i < targets.children.length; i++) {
+                                        const target = targets.children[i] as HTMLTableCellElement;
+        
+                                        if(target.classList.contains('iliya-table-viewer')) {
+                                            if (target.classList.contains('warning-thresold')) {
+                                                iliyaTable.push(false)
+                                            } else {
+                                                iliyaTable.push(true)
+                                            }
+                                        }
+                                        if(target.classList.contains('epheria-table-viewer')) {
+                                            if (target.classList.contains('warning-thresold')) {
+                                                epheriaTable.push(false)
+                                            } else {
+                                                epheriaTable.push(true)
+                                            }
+                                        }
+                                        if(target.classList.contains('ancado-table-viewer')) {
+                                            if (target.classList.contains('warning-thresold')) {
+                                                ancadoTable.push(false)
+                                            } else {
+                                                ancadoTable.push(true)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+        
+                    if (iliyaTable.length > 0) {
+                        if(iliyaTable.includes(false)) {
+                            setIliya(true);
+                        } else {
+                            setIliya(false);
+                        }
+                    }
+                    if (epheriaTable.length > 0) {
+                        if(epheriaTable.includes(false)) {
+                            setEpheria(true);
+                        } else {
+                            setEpheria(false);
+                        }
+                    }
+                    if (ancadoTable.length > 0) {
+                        if(ancadoTable.includes(false)) {
+                            setAncado(true);
+                        } else {
+                            setAncado(false);
+                        }
+                    }
+        
+                });
+            // Launch the observer script on the body once before observing it
+            observer.observe(document.body, {
+                attributes: true,
+                childList: false,
+                subtree: true
+            });
+
         subEventHelper.getInstance().send('sAskStatusSelector', 'iliya');
         subEventHelper.getInstance().send('sAskStatusSelector', 'epheria');
         subEventHelper.getInstance().send('sAskStatusSelector', 'ancado');
 
-        return () => {
-            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-ancado");
-            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-epheria");
-            subEventHelper.getInstance().unregisterAllCallbacks("rAskStatusSelector-iliya");
-            subEventHelper.getInstance().unregisterAllCallbacks('rAskStatusSelector');
-        };
-    }, [])
+    }, [iliya, epheria, ancado]);
 
-    // Launch the observer script on the body once before observing it
-    observer.observe(document.body, {
-        attributes: true,
-        childList: false,
-        subtree: true
-    });
-        
 
                     
     subEventHelper.getInstance().registerEvent('rAskStatusSelector');
