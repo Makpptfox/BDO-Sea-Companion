@@ -331,18 +331,18 @@
 
         <selectScreen>
 
-            <title>Choisissez un Caraque à suivre</title>
+            <title>Select a Carrack you wish to track:</title>
 
         </selectScreen>
         <menu>
-            <inventory>Inventaire</inventory>
-            <tracker>Traqueur</tracker>
+            <inventory>Inventory</inventory>
+            <tracker>Tracker</tracker>
         </menu>
         <totalNeeded>
-            <title>Total requis</title>
-            <coin>Achat</coin>
-            <daily>Journalier</daily>
-            <barter>Echange</barter>
+            <title>Total needed</title>
+            <coin>Coins</coin>
+            <daily>Daily</daily>
+            <barter>Barter</barter>
         </totalNeeded>
         <type>
             <advance>Advance</advance>
