@@ -203,10 +203,10 @@
         <tier>4</tier>
         <image>GreenSalt.png</image>
     </GreenSalt>
-    <ManualBook>
+    <Manual>
         <tier>4</tier>
-        <image>ManualBook.png</image>
-    </ManualBook>
+        <image>Manual.png</image>
+    </Manual>
     <CoinChest>
         <tier>4</tier>
         <image>CoinChest.png</image>
@@ -219,10 +219,10 @@
         <tier>4</tier>
         <image>Panacea.png</image>
     </Panacea>
-    <DragonFigure>
+    <DragonFigurine>
         <tier>4</tier>
-        <image>DragonFigure.png</image>
-    </DragonFigure>
+        <image>DragonFigurine.png</image>
+    </DragonFigurine>
     <BronzeCandlestick>
         <tier>4</tier>
         <image>BronzeCandlestick.png</image>
