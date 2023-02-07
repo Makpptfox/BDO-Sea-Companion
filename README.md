@@ -9,12 +9,5 @@
 
   <p align="center">
     An easy to use Windows app to help you keep track of your Bartering stock and assists you on your journey to get your Carrack(s?).
-    <br />
-    <br />
-    <a href="https://www.youtube.com/watch?v=HeRC33A4Gvs">View Demo</a>
-    ·
-    <a href="https://github.com/Makpptfox/New-World-Refining-Calculator/releases/latest">Download the lastest release</a>
-    ·
-    <a href="https://github.com/Makpptfox/New-World-Refining-Calculator/issues">Report an issue or a give suggestion</a>
   </p>
 </p>
