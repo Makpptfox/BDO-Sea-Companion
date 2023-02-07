@@ -74,230 +74,230 @@
     <!-- Level 2 Items -->
         <Lunchbox>
             <name>Lunchbox</name>
-            <description></description>
+            <description>Islanders' Lunchbox</description>
         </Lunchbox>
         <CronCoin>
             <name>Cron Coin</name>
-            <description></description>
+            <description>Cron Castle Gold Coin</description>
         </CronCoin>
         <ShipMast>
             <name>Ship Mast</name>
-            <description></description>
+            <description>Pirate Ship Mast</description>
         </ShipMast>
         <Marble>
             <name>Marble</name>
-            <description></description>
+            <description>Opulent Marble</description>
         </Marble>
         <FilteredWater>
             <name>Filtered Water</name>
-            <description></description>
+            <description>Filtered Drinking Water</description>
         </FilteredWater>
         <ConchShell>
             <name>Conch Shell</name>
-            <description></description>
+            <description>Conch Shell Ornament</description>
         </ConchShell>
         <OysterBox>
             <name>Oyster Box</name>
-            <description></description>
+            <description>Supreme Oyster Box</description>
         </OysterBox>
         <StoneSlab>
             <name>Stone Slab</name>
-            <description></description>
+            <description>Big Stone Slab</description>
         </StoneSlab>
         <SeaCucumber>
             <name>Sea Cucumber</name>
-            <description></description>
+            <description>Narvo Sea Cucumber</description>
         </SeaCucumber>
         <BalancedStone>
             <name>Balanced Stone</name>
-            <description></description>
+            <description>Balanced Stone Pagoda</description>
         </BalancedStone>
         <SurvivalKit>
             <name>Survival Kit</name>
-            <description></description>
+            <description>Sea Survival Kit</description>
         </SurvivalKit>
         <Tentacle>
             <name>Tentacle</name>
-            <description></description>
+            <description>Monster Tentacle</description>
         </Tentacle>
         <PirateCoin>
             <name>Pirate Coin</name>
-            <description></description>
+            <description>Pirate Gold Coin</description>
         </PirateCoin>
         <UrchinSpine>
             <name>Urchin Spine</name>
-            <description></description>
+            <description>Urchin Spine</description>
         </UrchinSpine>
     <!-- Level 3 Items -->
         <Hourglass>
             <name>Hourglass</name>
-            <description></description>
+            <description>Old Hourglass</description>
         </Hourglass>
         <TreasureMap>
             <name>Treasure Map</name>
-            <description></description>
+            <description>Torn Pirate Treasure Map</description>
         </TreasureMap>
         <SupplyBox>
             <name>Supply Box</name>
-            <description></description>
+            <description>Pirates' Supply Box</description>
         </SupplyBox>
         <Binoculars>
             <name>Binoculars</name>
-            <description></description>
+            <description>Scout Binoculars</description>
         </Binoculars>
         <Stalactite>
             <name>Stalactite</name>
-            <description></description>
+            <description>Stalactite Fragment</description>
         </Stalactite>
         <Teacup>
             <name>Teacup</name>
-            <description></description>
+            <description>Skull Decorated Teacup</description>
         </Teacup>
         <RoundKnife>
             <name>Round Knife</name>
-            <description></description>
+            <description>Round Knife</description>
         </RoundKnife>
         <Blood>
             <name>Blood</name>
-            <description></description>
+            <description>Gooey Monster Blood</description>
         </Blood>
         <Coat>
             <name>Coat</name>
-            <description></description>
+            <description>Weasel Leather Coat</description>
         </Coat>
         <SkullCarpet>
             <name>Skull Carpet</name>
-            <description></description>
+            <description>Skull Symbol Carpet</description>
         </SkullCarpet>
         <HerbPile>
-            <name>HerbPile</name>
-            <description></description>
+            <name>Herb Pile</name>
+            <description>Rare Herb Pile</description>
         </HerbPile>
         <Fishnet>
             <name>Fishnet</name>
-            <description></description>
+            <description>Lopsters Fishnet</description>
         </Fishnet>
         <AncientOrders>
             <name>Ancient Orders</name>
-            <description></description>
+            <description>Ancient Orders</description>
         </AncientOrders>
         <BlueCandle>
             <name>Blue Candle</name>
-            <description></description>
+            <description>Blue Candle Bundle</description>
         </BlueCandle>
     <!-- Level 4 Items -->
         <MarineHelmet>
             <name>Marine Helmet</name>
-            <description></description>
+            <description>Marine Knights' Helmet</description>
         </MarineHelmet>
         <PirateDagger>
             <name>Pirate Dagger</name>
-            <description></description>
+            <description>Stolen Pirate Dagger</description>
         </PirateDagger>
         <ThreadSpool>
             <name>Thread Spool</name>
-            <description></description>
+            <description>Opulent Thread Spool</description>
         </ThreadSpool>
         <Amethyst>
             <name>Amethyst</name>
-            <description></description>
+            <description>Amethyst Fragment</description>
         </Amethyst>
         <MarineSpear>
             <name>Marine Spear</name>
-            <description></description>
+            <description>Marine Knights' Spear</description>
         </MarineSpear>
         <Lava>
             <name>Lava</name>
-            <description></description>
+            <description>Solidified Lava</description>
         </Lava>
         <GreenSalt>
             <name>Green Salt</name>
-            <description></description>
+            <description>Green Salt Lump</description>
         </GreenSalt>
-        <ManualBook>
-            <name>Manual Book</name>
-            <description></description>
-        </ManualBook>
+        <Manual>
+            <name>Manual</name>
+            <description>Boatman's Manual</description>
+        </Manual>
         <CoinChest>
             <name>Coin Chest</name>
-            <description></description>
+            <description>Old Chest with Gold Coins</description>
         </CoinChest>
         <Seashell>
             <name>Seashell</name>
-            <description></description>
+            <description>Seashell Deco</description>
         </Seashell>
         <Panacea>
             <name>Panacea</name>
             <description></description>
         </Panacea>
-        <DragonFigure>
-            <name>Dragon Figure</name>
-            <description></description>
-        </DragonFigure>
+        <DragonFigurine>
+            <name>Dragon Figurine</name>
+            <description>Headless Dragon Figurine</description>
+        </DragonFigurine>
         <BronzeCandlestick>
             <name>Bronze Candlestick</name>
-            <description></description>
+            <description>Bronze Candlestick</description>
         </BronzeCandlestick>
         <PiratesKey>
             <name>Pirate's Key</name>
-            <description></description>
+            <description>Pirate's Key</description>
         </PiratesKey>
     <!-- Level 5 Items -->
         <OctogonalBox>
             <name>Octogonal Box</name>
-            <description></description>
+            <description>Octogonal Box</description>
         </OctogonalBox>
         <HerbalWine>
             <name>Herbal Wine</name>
-            <description></description>
+            <description>37 Year Old Herbal Wine</description>
         </HerbalWine>
         <AzureQuartz>
             <name>Azure Quartz</name>
-            <description></description>
+            <description>Azure Quartz</description>
         </AzureQuartz>
         <Butterfly>
             <name>Butterfly</name>
-            <description></description>
+            <description>Taxidermied Morpho Butterfly</description>
         </Butterfly>
         <Tear>
             <name>Tear</name>
-            <description></description>
+            <description>Statue's Tear</description>
         </Tear>
         <GoldCandlestick>
             <name>Gold Candlestick</name>
-            <description></description>
+            <description>Supreme Gold Candlestick</description>
         </GoldCandlestick>
         <GoldDragon>
             <name>Gold Dragon</name>
-            <description></description>
+            <description>Faded Gold Dragon Figurine</description>
         </GoldDragon>
         <Caterpillar>
             <name>Caterpillar</name>
-            <description></description>
+            <description>Taxidermied White Caterpillar</description>
         </Caterpillar>
         <FishScale>
             <name>Fish Scale</name>
-            <description></description>
+            <description>Golden Fish Scale</description>
         </FishScale>
         <GoldenHerb>
             <name>Golden Herb</name>
-            <description></description>
+            <description>102 Year Old Golden Herb</description>
         </GoldenHerb>
         <Portrait>
             <name>Portrait</name>
-            <description></description>
+            <description>Portrait of the Ancien</description>
         </Portrait>
         <Elixir>
             <name>Elixir</name>
-            <description></description>
+            <description>Elixir of Youth</description>
         </Elixir>
         <Fabric>
             <name>Fabric</name>
-            <description></description>
+            <description>Luxury Patterned Fabric</description>
         </Fabric>
         <Rock>
             <name>Rock</name>
-            <description></description>
+            <description>Mysterious Rock</description>
         </Rock>
         
     </items>
