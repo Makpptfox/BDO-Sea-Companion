@@ -5,6 +5,7 @@ import dataDict from "@src/typings/data";
 
 import "./CarrackMenu.scss"
 import subEventHelper from "@common/subEvent";
+import tempHelper from "@common/temp";
 
 type Props = {
     data: dataDict;
@@ -23,9 +24,10 @@ const CarrackMenu = (props: Props) => {
             const item = (
                 <div className={`carrack-menu-item ${props.boatType}`} onClick={()=>{
                     subEventHelper.getInstance().callEvent('returnCarrackType');
+                    tempHelper.getInstance().delete('carrackType');
                 }}>
                     <img src={imageCarrack} alt="carrack" />
-                    <p>{props.boatType}</p>
+                    <p>{props.data.lang.carrack[0].advancedType[0][props.boatType as 'advance'|'valor'|'balance'|'volante'][0]}</p>
                 </div>
             )
 

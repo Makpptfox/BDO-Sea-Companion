@@ -64,8 +64,6 @@ function getXmlFiles() {
  */
 function findXmlFile(fileName: string):any {
 
-    console.trace()
-
     // Check if file ends with .xml
     if (!fileName.endsWith('.xml')) {
         fileName += '.xml';
@@ -126,7 +124,7 @@ async function getXmlFileContent(fileName: string):Promise<any> {
                 throw new Error(err.message);
             }
 
-            const fileContent = data;
+            const fileContent = data.replaceAll('\\r', '').replaceAll('\\n', '').replaceAll('\\t', '');
 
             // Check if fileContent is a valid xml string
             if (!isValidXML(fileContent)) {

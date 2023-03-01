@@ -25,6 +25,25 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
     
         Object.keys(props.data.save.items[0]).forEach((key) => {
     
+            if(props.data.item[key] === undefined){
+                console.log("Error: " + key + " has no data");
+                console.log("Please report this to the developer...");
+
+                props.data.save.items[0][key] = undefined;
+
+                return;
+            }
+
+            if(props.data.item[key][0].tier === undefined){
+                console.log("Error: " + key + " has no tier");
+                console.log("Please report this to the developer...");
+
+                props.data.save.items[0][key] = undefined;
+
+
+                return;
+            }
+
             const tier = parseInt(props.data.item[key][0].tier[0]);
             const qty = parseInt(props.data.save.items[0][key][0].iliya[0]) + parseInt(props.data.save.items[0][key][0].epheria[0]) + parseInt(props.data.save.items[0][key][0].ancado[0]);
     
@@ -51,7 +70,15 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                 setTotal(0);
                 _total = 0
                 Object.keys(props.data.save.items[0]).forEach((key) => {
+
+                    if(props.data.item[key] === undefined){
+                        console.log("Error: " + key + " has no data");
+                        console.log("Please report this to the developer...");
+                        return;
+                    }
+
                     const tier = parseInt(props.data.item[key][0].tier[0]);
+
                     const qty = parseInt(props.data.save.items[0][key][0].iliya[0] + props.data.save.items[0][key][0].epheria[0] + props.data.save.items[0][key][0].ancado[0]);
     
     
@@ -84,7 +111,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
         <div className="app-barter-bottom-right-content">
             <p>{props.data.lang.barter[0].bottom[0].right[0].totalStoragesValue[0]}</p>
 
-            <p className="last">{total.toLocaleString('us-US')}</p>
+            <p className="last">{total.toLocaleString().replaceAll(' ', ',')}</p>
             <img src={silver} />
         </div>
     )

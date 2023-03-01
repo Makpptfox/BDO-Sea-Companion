@@ -54,6 +54,45 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     const [limitIliya, setLimitIliya] = React.useState(parseInt(props.data.save.threshold[0].iliya[0]));
     const [limitEpheria, setLimitEpheria] = React.useState(parseInt(props.data.save.threshold[0].epheria[0]));
     const [limitAncado, setLimitAncado] = React.useState(parseInt(props.data.save.threshold[0].ancado[0]));
+
+    let enableThresholdIliya: unknown
+    let setEnableThresholdIliya: (arg0: boolean) => void;
+
+    let enableThresholdEpheria: unknown
+    let setEnableThresholdEpheria: (arg0: boolean) => void;
+
+    if(props.data.item[key][0].tier[0] === '5') {
+
+        [enableThresholdIliya, setEnableThresholdIliya] = React.useState<boolean>((props.data.settings.settings.ignoreIliya[0] === "false") ? true : false);
+        [enableThresholdEpheria, setEnableThresholdEpheria] = React.useState<boolean>(props.data.settings.settings.ignoreEpheria[0] === "false" ? true : false);
+
+    } else {
+
+        [enableThresholdIliya, setEnableThresholdIliya] = React.useState<boolean>(true);
+        [enableThresholdEpheria, setEnableThresholdEpheria] = React.useState<boolean>(true);
+
+    }
+    const [enableThresholdAncado, setEnableThresholdAncado] = React.useState<boolean>(props.data.settings.settings.ignoreAncado[0] === "false" ? true : false);
+
+    const [content, setContent] = React.useState(null)
+
+    subEventHelper.getInstance().registerCallback('set-setting', (_key, value) => {
+        switch(_key){
+            case "ignoreIliya":
+                if(props.data.item[key][0].tier[0] !== '5') return;
+                setEnableThresholdIliya(!value)
+                break;
+            case "ignoreEpheria":
+                if(props.data.item[key][0].tier[0] !== '5') return;
+                setEnableThresholdEpheria(!value)
+                break;
+            case "ignoreAncado":
+                setEnableThresholdAncado(!value)
+                break;
+            default:
+                break;
+        }
+    }, uniqueName)
     
     useEffect(()=>{
 
@@ -84,6 +123,84 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
             subEventHelper.getInstance().unregisterAllCallbacks("threshold-change");
         })
     }, [])
+
+    useEffect(()=>{
+        setContent(
+            <tr key={index} className={className + ` ${props.hide ? 'hide' : ''}`} onClick={()=>{
+    
+                subEventHelper.getInstance().callEvent('barterItemSelect', 
+                    props.data.item[key][0].image[0],
+                    parseInt(props.data.item[key][0].tier[0]),
+                    props.data.lang.items[0][key][0].description[0]
+                )
+    
+            }}>
+                <td>{props.data.item[key][0].tier[0]}</td>
+                <td>{props.data.lang.items[0][key]? props.data.lang.items[0][key][0].name[0] : key}</td>
+                <td>{quantity}</td>
+                <td className={`iliya-table-viewer ${(iliya <= limitIliya && (enableThresholdIliya)) ? 'warning-thresold ' : ' '}` + (!countIliya ? 'hide-h' : '')}>
+                    <ElementMaker
+                        value={iliya}
+                        handleChange={(e) =>{
+                            if(isNaN(parseInt(e.target.value))){
+                                setIliyaCenter(0)
+                            }else{
+                                setIliyaCenter(parseInt(e.target.value))
+                            }
+                        }}
+                        handleDoubleClick={() =>
+                            setShowInputEleIliya(true)
+                        }
+                        handleBlur={() => {
+                            setShowInputEleIliya(false)
+                            countQuantity()
+                            }
+                        }
+                        showInputEle={showInputEleIliya}
+                        limit={limitIliya}
+                    />
+                </td>
+                <td className={`epheria-table-viewer  ${!countEpheria ? 'hide-h' : ''} ${(epheria <= limitEpheria && enableThresholdEpheria) ? 'warning-thresold' : ''}`}>
+                    
+                    <ElementMaker
+                        value={epheria}
+                        handleChange={(e) =>
+                            setEpheriaCenter(parseInt(e.target.value))
+                        }
+                        handleDoubleClick={() =>
+                            setShowInputEleEpheria(true)
+                        }
+                        handleBlur={() => {
+                            setShowInputEleEpheria(false)
+                            countQuantity()
+                            }
+                        }
+                        showInputEle={showInputEleEpheria}
+                        limit={limitEpheria}
+                    />
+                </td>
+                <td className={`ancado-table-viewer  ${!countAncado ? 'hide-h' : ''} ${(ancado <= limitAncado && enableThresholdAncado) ? 'warning-thresold' : ''}`}>
+                    <ElementMaker
+                        value={ancado}
+                        handleChange={(e) =>
+                            setAncadoCenter(parseInt(e.target.value))
+                        }
+                        handleDoubleClick={() =>
+                            setShowInputEleAncado(true)
+                        }
+                        handleBlur={() => {
+                            setShowInputEleAncado(false)
+                            countQuantity()
+                            }
+                        }
+                        showInputEle={showInputEleAncado}
+                        limit={limitAncado}
+                    />
+                </td>
+            </tr>
+            )
+
+    }, [quantity, iliya, epheria, ancado, showInputEleIliya, showInputEleEpheria, showInputEleAncado, limitIliya, limitEpheria, limitAncado, countIliya, countEpheria, countAncado, enableThresholdAncado, enableThresholdEpheria, enableThresholdIliya]);
 
     const countQuantity = () => {
 
@@ -154,78 +271,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     }
 
     return(
-        <tr key={index} className={className + ` ${props.hide ? 'hide' : ''}`} onClick={()=>{
-
-            subEventHelper.getInstance().callEvent('barterItemSelect', 
-                props.data.item[key][0].image[0],
-                parseInt(props.data.item[key][0].tier[0]),
-                props.data.lang.items[0][key][0].description[0]
-            )
-
-        }}>
-            <td>{props.data.item[key][0].tier[0]}</td>
-            <td>{props.data.lang.items[0][key]? props.data.lang.items[0][key][0].name[0] : key}</td>
-            <td>{quantity}</td>
-            <td className={`iliya-table-viewer ${iliya <= limitIliya ? 'warning-thresold ' : ' '}` + (!countIliya ? 'hide-h' : '')}>
-                <ElementMaker
-                    value={iliya}
-                    handleChange={(e) =>{
-                        if(isNaN(parseInt(e.target.value))){
-                            setIliyaCenter(0)
-                        }else{
-                            setIliyaCenter(parseInt(e.target.value))
-                        }
-                    }}
-                    handleDoubleClick={() =>
-                        setShowInputEleIliya(true)
-                    }
-                    handleBlur={() => {
-                        setShowInputEleIliya(false)
-                        countQuantity()
-                        }
-                    }
-                    showInputEle={showInputEleIliya}
-                    limit={limitIliya}
-                />
-            </td>
-            <td className={`epheria-table-viewer  ${!countEpheria ? 'hide-h' : ''} ${epheria <= limitEpheria ? 'warning-thresold' : ''}`}>
-                
-                <ElementMaker
-                    value={epheria}
-                    handleChange={(e) =>
-                        setEpheriaCenter(parseInt(e.target.value))
-                    }
-                    handleDoubleClick={() =>
-                        setShowInputEleEpheria(true)
-                    }
-                    handleBlur={() => {
-                        setShowInputEleEpheria(false)
-                        countQuantity()
-                        }
-                    }
-                    showInputEle={showInputEleEpheria}
-                    limit={limitEpheria}
-                />
-            </td>
-            <td className={`ancado-table-viewer  ${!countAncado ? 'hide-h' : ''} ${ancado <= limitAncado ? 'warning-thresold' : ''}`}>
-                <ElementMaker
-                    value={ancado}
-                    handleChange={(e) =>
-                        setAncadoCenter(parseInt(e.target.value))
-                    }
-                    handleDoubleClick={() =>
-                        setShowInputEleAncado(true)
-                    }
-                    handleBlur={() => {
-                        setShowInputEleAncado(false)
-                        countQuantity()
-                        }
-                    }
-                    showInputEle={showInputEleAncado}
-                    limit={limitAncado}
-                />
-            </td>
-        </tr>
+        content
     )
 }
 

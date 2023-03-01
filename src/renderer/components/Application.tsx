@@ -5,9 +5,10 @@ import {HashRouter,NavLink,Route, Routes, Navigate} from "react-router-dom";
 
 import AppCarack from "@components/carrack/AppCarrack";
 import AppBarter from "@components/barter/AppBarter";
-import langDict from '@src/typings/lang';
 import dataDict from '@src/typings/data';
 import LangPage from './lang_page/lang_page';
+import SettingTier from './setting-tier/settingTier';
+import ChangeLog from './changeLog/changelog';
 
 
 // Define the props
@@ -18,11 +19,12 @@ type Props = {
 // Create the component to render
 const Application: React.FC<Props> = (props: Props) => {
 
-
   // Return the component to render
   return (
     <div id='erwt'>
-      <LangPage/>
+      <LangPage data={props.data}/>
+      <SettingTier data={props.data}/>
+      <ChangeLog changelog={props.data.changelog} update={props.data.update}/>
       
       <HashRouter>
       

@@ -13,13 +13,15 @@ import onBarterItemSelect from "./events/onBarterItemSelect";
 import onHideColBarter from "./events/onHideColBarter";
 
 // import file manager
-import { findXmlFile } from "./fileManager";
+import { findXmlFile, getXmlFileContent, saveXmlFileContent } from "./fileManager";
 import onAppQuit from "./events/onAppQuit";
 import onSaveLang from "./events/onSaveLang";
 import mainEventHelper from '../../common/mainEvent';
 import handleSaveCarrackItem from "./events/handleSaveCarrackItem";
 import tempHelper from "@common/temp";
 import fileHelper from "@common/file";
+import { settings } from "@src/typings/settings";
+import onSetSetting from "./events/onSetSetting";
 
 const eventHelper = mainEventHelper.getInstance();
 
@@ -56,9 +58,10 @@ export function events(){
 
     ipcMain.handle('getDataFile', async (e: Electron.IpcMainInvokeEvent, lang_: string | null) => {
         
+        const _settings = findXmlFile('settings') as settings;
+
         if (lang_ == null || lang_ == undefined) {
-            const settings = findXmlFile('settings')
-            lang_ = settings.lang;
+            lang_ = _settings.settings.lang[0];
         }
 
         // Get xml lang file
@@ -66,8 +69,11 @@ export function events(){
         const item = findXmlFile('data/item_data');
         const save = findXmlFile('data/save_data');
         const carrack = findXmlFile('data/carrack_data');
+        const update = findXmlFile('update');
 
-        return {lang: lang_, langDict: lang, itemDict: item, saveData: save, carrackDict: carrack};
+        const changelog = JSON.parse(fileHelper.getInstance(app).readFileFromUserdir('changelog.json'));
+
+        return {lang: lang_, langDict: lang, itemDict: item, saveData: save, carrackDict: carrack, settings: _settings, update: update, changelog: changelog};
 
     });
 
@@ -121,7 +127,61 @@ export function events(){
             }
         });
     })
+
+    eventHelper.registerCallback('sCheckUpdate', (e: IpcMainEvent) => {
+        const file = fileHelper.getInstance(app);
+
+        file.checkFileExists('update.xml').then((exists) => {
+            if(exists){
+                const data = file.readFileFromUserdir('update.xml');
+
+                e.sender.send('rCheckUpdate', data);
+            }
+            else{
+                e.sender.send('rCheckUpdate', null);
+            }
+        });
+    })
     // FUNCTION EVENT
+
+    eventHelper.registerCallback('set-setting', (e, data: {key: string, value: string}) => {
+
+        onSetSetting(e, data.key, data.value);
+    });
+
+    eventHelper.registerCallback('set-update', (e)=>{
+        // This is a function to set the "firstlaunch" property to false
+
+        getXmlFileContent('update.xml').then((content) => {
+
+            console.log(content);
+
+            content.update.firstLaunch[0] = "false";
+
+            saveXmlFileContent('update.xml', JSONToXML(content));
+        });
+
+        function JSONToXML(obj: any) {
+            let xml = '';
+            for (const prop in obj) {
+                // eslint-disable-next-line no-prototype-builtins
+                if (obj.hasOwnProperty(prop)) {
+                    if (isNaN(Number(prop))) {
+                        xml += "<" + prop + ">";
+                    }
+                    if (typeof obj[prop] == "object") {
+                        xml += JSONToXML(new Object(obj[prop]));
+                    } else {
+                        xml += obj[prop];
+                    }
+                    if (isNaN(Number(prop))) {
+                        xml += "</" + prop + ">";
+                    }
+                }
+            }
+            return xml;
+        }
+    })
 
     ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, hide: boolean, type:"iliya"|"epheria"|"ancado") => {
         const data = {hide: hide, type: type}
@@ -175,6 +235,20 @@ export function events(){
 
     
 
+    mainEventHelper.getInstance().registerCallback('app-restart', ()=>{
+        // if in dev mode, don't do anything and throw an error that explains why it's not working in dev mode
+        if (process.env.NODE_ENV === 'development') {
+        
+            throw new Error('Cannot restart app in development mode, but it\'s working in production mode, so you\'re good!');
+            return;
+        
+        }
+
+        // if not in dev mode, restart the app
+        app.relaunch();
+        app.exit()
+    })
+
     // DEPRECATED EVENT
 
     ipcMain.on('check-threshold', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
@@ -190,18 +264,4 @@ export function events(){
 
         e.sender.send('ask-check-threshold', data);
     });
-
-    mainEventHelper.getInstance().registerCallback('app-restart', ()=>{
-        // if in dev mode, don't do anything and throw an error that explains why it's not working in dev mode
-        if (process.env.NODE_ENV === 'development') {
-        
-            throw new Error('Cannot restart app in development mode, but it\'s working in production mode, so you\'re good!');
-            return;
-        
-        }
-
-        // if not in dev mode, restart the app
-        app.relaunch();
-        app.exit()
-    })
 }

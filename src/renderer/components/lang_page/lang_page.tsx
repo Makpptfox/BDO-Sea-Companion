@@ -1,25 +1,38 @@
 import subEventHelper from "@common/subEvent";
+import dataDict from "@src/typings/data";
 import React, { useEffect } from "react";
 
 import "./lang_page.scss";
 
-const LangPage: React.FunctionComponent = () => {
+type Props = {
+    data: dataDict;
+}
+
+const LangPage: React.FunctionComponent<Props> = (props: Props) => {
 
     const [show, setShow] = React.useState(false);
 
     let show_ = false;
 
-    subEventHelper.getInstance().registerCallback('open_lang_page', (state?) => {
-        show_ = state? state : !show_;
 
-        setShow(state? state : show_);
-    }, 'langPage');
+    useEffect(()=>{
 
-    
-    
-    useEffect(()=>()=>{
-        subEventHelper.getInstance().unregisterAllCallbacks("open_lang_page");
-    })
+        subEventHelper.getInstance().registerCallback('open_lang_page', (state?) => {
+            show_ = state? state : !show_;
+
+            setShow(state? state : show_);
+        }, 'langPage');
+
+        if(props.data.update.firstLaunch[0] === "true"){
+            subEventHelper.getInstance().callEvent('open_lang_page', true);
+            subEventHelper.getInstance().send('set-update');
+        }
+
+        return(()=>{
+            
+            subEventHelper.getInstance().unregisterAllCallbacks("open_lang_page");
+        })
+    },[])
 
     if(!show){
         return null;

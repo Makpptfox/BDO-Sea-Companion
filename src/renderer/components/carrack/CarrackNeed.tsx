@@ -88,9 +88,6 @@ const CarrackNeed  = (props: Props) => {
                         inventoryHave = inventoryNeed;
                     }
 
-                    // Update the inventory data with the difference
-                    // inventory[key2] = [`${diff}`];
-
                     // Get the item data for the current sub-need
                     const info = itemDict[key2][0];
 
@@ -117,38 +114,7 @@ const CarrackNeed  = (props: Props) => {
                         }
                         totalNeeded.push(item);
                     }
-
-
-
-                    // Create a JSX element for the current sub-need
-                    // subContent.push(
-                    // <div key={key2}>
-                    //     <p>{`${key2}`}: {`${inventoryHave}`}/{`${inventoryNeed}`}</p>
-                    //     <div className={`detail-${key2} hidden`}>
-                    //         <div className='detail-daily'>
-                    //             <p>daily</p>
-                    //             <img src={daily}/>
-                    //         </div>
-                    //         <div className='detail-coin'>
-                    //             <p>coin</p>
-                    //             <img src={coin}/>
-                    //         </div>
-                    //         <div className='detail-barter'>
-                    //             <p>barter</p>
-                    //             <img src={barter}/>
-                    //         </div>
-                    //     </div>
-                    // </div>);
                 });
-                // Create a JSX element for the current need type and add the sub-content to it
-                contents.push(
-                    // <div key={key}>
-                    //     <p>
-                    //         {`${key}`}: {`${need[key][0].quantity[0]}`}
-                    //     </p>
-                    //     {subContent}
-                    // </div>
-                );
                 } else {
 
                     if(itemDict[key] === undefined) {
@@ -178,15 +144,6 @@ const CarrackNeed  = (props: Props) => {
                         }
                         totalNeeded.push(item);
                     }
-
-                // Create a JSX element for the current need type without sub-content
-                contents.push(
-                    // <div key={key}>
-                    //     <p>
-                    //         {`${key}`}: {`${need[key][0].quantity[0]}`}
-                    //     </p>
-                    // </div>
-                );
                 }
         });
 
@@ -205,17 +162,22 @@ const CarrackNeed  = (props: Props) => {
             contents.push(
                 <div key={item.name} className={`total-needed-item ${havingQTY == item.qty? 'complete':''}`} onClick={()=>{
                     const detail = document.querySelector(`.detail-${item.name}`);
+                    const arrow = document.querySelector(`.arrow-${item.name}`);
 
                     if(detail !== null) {
                         if(detail.classList.contains("hidden")) {
                             detail.classList.remove("hidden");
+                            arrow.textContent = "ᐱ";
+                            
                         } else {
                             detail.classList.add("hidden");
+                            arrow.textContent = "ᐯ";
                         }
                     }
                 }}>
                     <div className='info-item'>
                     <p>{`${item.name_lang}`}</p><p>{havingQTY}/{`${item.qty}`}</p>
+                    <p className={`arrow-${item.name}`}>ᐯ</p>
                     </div>
                     <div className={`detail-${item.name} hidden detail-item`}>
                         <div className='detail-daily'>

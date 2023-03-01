@@ -10,6 +10,7 @@ import dataDict from '@src/typings/data';
 import './AppCarrack.scss';
 import CarrackTracker from "./CarrackTracker";
 import subEventHelper from "@common/subEvent";
+import tempHelper from "@common/temp";
 
 const win:win_ = window;
 
@@ -38,6 +39,10 @@ const AppCarack = (props: Props) => {
 
     useEffect(() => {
 
+        if(tempHelper.getInstance().get('carrackType') !== undefined) {
+            setCarrackType(tempHelper.getInstance().get('carrackType'));
+        }
+
         subEventHelper.getInstance().registerCallback('returnCarrackType', () => {
             setCarrackType('none');
         }, 'AppCarrack')
@@ -48,19 +53,31 @@ const AppCarack = (props: Props) => {
                     {props.data.lang.carrack[0].selectScreen[0].title[0]}
                 </div>
                 <div id='app-carrack-content'>
-                    <div className='app-carrack-box carrack-advance' onClick={()=>{setCarrackType('advance')}}>
+                    <div className='app-carrack-box carrack-advance' onClick={()=>{
+                        setCarrackType('advance')
+                        tempHelper.getInstance().set('carrackType', 'advance');
+                        }}>
                         <p>{props.data.lang.carrack[0].type[0].advance[0]}</p>
                         <img src={carrackAdvance} alt='Advance Carrack Image' />
                     </div>
-                    <div className='app-carrack-box carrack-balance' onClick={()=>{setCarrackType('balance')}}>
+                    <div className='app-carrack-box carrack-balance' onClick={()=>{
+                        setCarrackType('balance')
+                        tempHelper.getInstance().set('carrackType', 'balance');
+                    }}>
                         <p>{props.data.lang.carrack[0].type[0].balance[0]}</p>
                         <img src={carrackBalance} alt='Balance Carrack Image' />
                     </div>
-                    <div className='app-carrack-box carrack-volante' onClick={()=>{setCarrackType('volante')}}>
+                    <div className='app-carrack-box carrack-volante' onClick={()=>{
+                        setCarrackType('volante'); 
+                        tempHelper.getInstance().set('carrackType', 'volante');
+                        }}>
                         <p>{props.data.lang.carrack[0].type[0].volante[0]}</p>
                         <img src={carrackVolante} alt='Volante Carrack Image' />
                     </div>
-                    <div className='app-carrack-box carrack-valor' onClick={()=>{setCarrackType('valor')}}>
+                    <div className='app-carrack-box carrack-valor' onClick={()=>{
+                        setCarrackType('valor')
+                        tempHelper.getInstance().set('carrackType', 'valor');
+                        }}>
                         <p>{props.data.lang.carrack[0].type[0].valor[0]}</p>
                         <img src={carrackValor} alt='Valor Carrack Image' />
                     </div>

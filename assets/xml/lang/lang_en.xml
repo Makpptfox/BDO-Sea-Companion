@@ -326,6 +326,12 @@
             </right>
         </bottom>
 
+        <settings>
+            <ignoreAncado>Ignore Ancado</ignoreAncado>
+            <ignoreIliya>Ignore Iliya</ignoreIliya>
+            <ignoreEpheria>Ignore Epheria</ignoreEpheria>
+        </settings>
+
     </barter>
     <carrack>
 

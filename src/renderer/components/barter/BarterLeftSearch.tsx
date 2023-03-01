@@ -38,6 +38,9 @@ const BarterLeftSearch: React.FC<Props> = (props: Props) => {
                         img.style.display = "inherit";
                     }
                 }}
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck="false"
             />
             <img src={searchIco} />
         </div>

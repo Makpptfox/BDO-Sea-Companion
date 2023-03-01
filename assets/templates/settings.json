@@ -1,0 +1,15 @@
+{
+    "for": "settings.xml",
+    "versions": [
+        {
+            "0.0.3": {
+                "settings":{
+                    "lang": "en", 
+                    "ignoreAncado": "false", 
+                    "ignoreIliya": "false", 
+                    "ignoreEpheria": "false"
+                }
+            }
+        }
+    ]
+}

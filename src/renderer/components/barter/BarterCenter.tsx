@@ -44,11 +44,11 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
     // Use the useEffect to load the table in a async way
     useEffect(() => {
         setState('loading');
-        
 
         new Promise<ReactNode[]>((resolve) => {
             const data:ReactNode[] = [];
             Object.keys(props.data.item).map((key, index) => {
+
                 if(!isSearch){
                     data.push(
                         // eslint-disable-next-line react/jsx-key
@@ -56,17 +56,25 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
                     )
                 } else {
                     const itemName = props.data.lang.items[0][key][0].name[0].toLowerCase();
-                    if(itemName.toLowerCase().includes(search.toLowerCase())){
-                        data.push(
+                    const itemSubName = props.data.lang.items[0][key][0].description[0].toLowerCase();
 
-                            // eslint-disable-next-line react/jsx-key
-                            <BarterCenterItem data={props.data} index={index} key={key} setValTotal={setValTotal} hideBool={tagueuleetmarche} hideIliya={hideIliya} hideEpheria={hideEpheria} hideAncado={hideAncado} />
-                        )
+                    const _search: string | string[] = search.split("+");
+
+                    if(_search instanceof Array){
+                        if(_search.find((s) => itemName.toLowerCase().includes(s.toLowerCase().trim())) || _search.find((s) => itemSubName.toLowerCase().includes(s.toLowerCase().trim()))){                            
+                            data.push(
+                                // eslint-disable-next-line react/jsx-key
+                                <BarterCenterItem data={props.data} index={index} key={key} setValTotal={setValTotal} hideBool={tagueuleetmarche} hideIliya={hideIliya} hideEpheria={hideEpheria} hideAncado={hideAncado} />
+                            )
+                        }
                     } else {
-                        data.push(
-                        // eslint-disable-next-line react/jsx-key
-                            <BarterCenterItem data={props.data} index={index} key={key} setValTotal={setValTotal} hideBool={tagueuleetmarche} hideIliya={hideIliya} hideEpheria={hideEpheria} hideAncado={hideAncado} hide={true} />
-                        )
+                        if(itemName.toLowerCase().includes(search.toLowerCase().trim()) || itemSubName.toLowerCase().includes(search.toLowerCase().trim())){
+                            data.push(
+
+                                // eslint-disable-next-line react/jsx-key
+                                <BarterCenterItem data={props.data} index={index} key={key} setValTotal={setValTotal} hideBool={tagueuleetmarche} hideIliya={hideIliya} hideEpheria={hideEpheria} hideAncado={hideAncado} />
+                            )
+                        }
                     }
                 }
             })
@@ -74,6 +82,7 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
             resolve(data);
         }).then((data)=>{
             setTable(data);
+            // console.trace(data)
             setState('loaded');
         });
     }, [isSearch, search]);
@@ -116,6 +125,9 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
     useEffect(()=>{
 
         subEventHelper.getInstance().registerCallback('search-barter', (search)=>{
+
+            console.log(search)
+
             if(search !== undefined ) search = search.trim();
     
             if(search === "" || search === undefined || search === null){

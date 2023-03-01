@@ -3,6 +3,7 @@ import path from 'path';
 import { events } from './modules/events';
 import fs from 'fs';
 import { eventSystem } from './modules/eventSystem';
+import { templateCheck } from './modules/templateChecker';
 
 // Electron Forge automatically creates these entry points
 declare const APP_WINDOW_WEBPACK_ENTRY: string;
@@ -34,16 +35,18 @@ function checkDataFiles() {
   const xmlFolder = path.join(userDataPath, 'xml');
   const dataFolder = path.join(xmlFolder, 'data');
   const langFolder = path.join(xmlFolder, 'lang');
+  const templateFolder = path.join(userDataPath, 'templates');
 
   if(!fs.existsSync(xmlFolder)){
     fs.mkdirSync(xmlFolder);
     fs.mkdirSync(dataFolder);
     fs.mkdirSync(langFolder);
+    fs.mkdirSync(templateFolder);
   }
 
   // Check if the save data exists in the user data folder
   // eslint-disable-next-line no-constant-condition
-  if(fs.existsSync(path.join(xmlFolder, 'save_data.xml')) && false){
+  if(fs.existsSync(path.join(dataFolder, 'save_data.xml'))){
     // If it does, delete the one in the resources folder
     console.log('Save data exists');
     if(fs.existsSync(path.join(resources, 'save_data.xml'))){
@@ -51,7 +54,7 @@ function checkDataFiles() {
     }
   } else {
 
-    if(fs.existsSync(path.join(xmlFolder, 'save_data.xml'))){
+    if(!fs.existsSync(path.join(dataFolder, 'save_data.xml'))){
 
       // If it doesn't, copy the one in the resources folder to the user data folder then delete it from the resources folder
       console.log('Save data does not exist');
@@ -106,6 +109,30 @@ function checkDataFiles() {
     fs.copyFileSync(path.join(resources, 'carrack_data.xml'), path.join(dataFolder, 'carrack_data.xml'));
     fs.rmSync(path.join(resources, 'carrack_data.xml'));
   }
+
+  if(fs.existsSync(path.join(resources, 'carrack_data.json'))){
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    fs.copyFileSync(path.join(resources, 'carrack_data.json'), path.join(templateFolder, 'carrack_data.json'));
+    fs.rmSync(path.join(resources, 'carrack_data.json'));
+  }
+
+  if(fs.existsSync(path.join(resources, 'settings.json'))){
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    fs.copyFileSync(path.join(resources, 'settings.json'), path.join(templateFolder, 'settings.json'));
+    fs.rmSync(path.join(resources, 'settings.json'));
+  }
+
+  if(fs.existsSync(path.join(resources, 'item_data.json'))){
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    fs.copyFileSync(path.join(resources, 'item_data.json'), path.join(templateFolder, 'item_data.json'));
+    fs.rmSync(path.join(resources, 'item_data.json'));
+  }
+
+  if(fs.existsSync(path.join(resources, 'update.xml'))){
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    fs.copyFileSync(path.join(resources, 'update.xml'), path.join(xmlFolder, 'update.xml'));
+    fs.rmSync(path.join(resources, 'update.xml'));
+  }
 }
 
 /**
@@ -133,6 +160,7 @@ export function createAppWindow(): BrowserWindow {
     titleBarStyle: 'hidden',
     icon: path.resolve('assets/images/appIcon.ico'),
     webPreferences: {
+      devTools: true,
       nodeIntegration: false,
       contextIsolation: true,
       nodeIntegrationInWorker: false,
@@ -175,6 +203,9 @@ export function createAppWindow(): BrowserWindow {
   });
 
   process.on('warning', e => console.warn(e.stack));
+
+  // Check the template with the app version
+  templateCheck(process.env.npm_package_version);
 
   return appWindow;
 }

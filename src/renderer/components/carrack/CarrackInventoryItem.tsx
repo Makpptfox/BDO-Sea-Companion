@@ -91,8 +91,6 @@ const CarrackInventoryItem = (props: Props) => {
                 } else if (e.key === 'ArrowDown') {
                     value = (parseInt(value) - 1).toString();
                 }
-            } else {
-                e.preventDefault();
             }
     
             if(value === 'NaN' || value === '' || value.includes('-')){
@@ -108,6 +106,7 @@ const CarrackInventoryItem = (props: Props) => {
             <div className="carrack-inventory-item">
                 <div className="carrack-inventory-item-img">
                     <img src={item_img} alt={item_name + " image"} />
+                    <p>{item_name}</p>
                 </div>
                 <div className='carrack-inventory-item-qty' onClick={clickHandler} onBlur={blurHandler} onKeyDown={keyDownHandler} >
                     {/* Here, the qty need to be changed to an input when clicking on it */}

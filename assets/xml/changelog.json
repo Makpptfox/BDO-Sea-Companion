@@ -1,0 +1,22 @@
+{
+    "version": "0.0.3",
+    "date": "17/02/2023",
+    "removals": [
+        "Removed the 'firstLaunch' property from the 'settings' object in the 'settings.json' file."
+    ],
+    "additions": [
+        "Added the 'update.xml' file to contain the 'firstLaunch' property.",
+        "Added the 'changelog.json' file to contain the changelog.",
+        "Added an changelog window that will open when the program is launched for the first time after an update.",
+        "Added the ability to drag and drop the items needed in the carrack tracker.",
+        "You can now use a \"+\" in the search bar to search for multiple item (example: \"blue candle bundle +ancient orders\")."
+    ],
+    "fixes": [
+        "Fixed the need to delete all data file every time that we update the program data. Now it will automatically adjust to the new data structure.",
+        "Fixed some problem with the language selection window. Now it should work properly."
+    ],
+    "notes": [
+        "The verification of all the data files is in test, so if you find any problem, please report it on GitHub.",
+        "This software is still in development, so if you find any problem, please report it on GitHub. Thank you!"
+    ]
+}

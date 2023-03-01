@@ -142,8 +142,16 @@ export default class fileHelper {
    */
   public readFileFromUserdir(filename: string): string {
     
-    const userdir = this.app.getPath('userData');
-    const filepath = path.join(userdir, filename);
+
+    let userDataPath = ''
+
+    if(process.env.NODE_ENV === 'development'){
+      userDataPath = path.join(__dirname,'..', '..','assets');
+    } else {
+      userDataPath = this.app.getPath('userData');
+    }
+    const xmlPath = path.join(userDataPath, 'xml');
+    const filepath = path.join(xmlPath, filename);
 
     return fs.readFileSync(filepath, 'utf8');
   }

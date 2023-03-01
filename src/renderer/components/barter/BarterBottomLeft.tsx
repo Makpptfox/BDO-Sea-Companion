@@ -15,6 +15,8 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
     const [epheriaThreshold, _setEpheriaThreshold] = React.useState(props.data.save.threshold[0].epheria[0]);
     const [ancadoThreshold, _setAncadoThreshold] = React.useState(props.data.save.threshold[0].ancado[0]);
 
+    const cog = require('../../../../assets/icons/cog.svg')
+
     
     /**
      * Set Iliya Threshold
@@ -65,24 +67,33 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
         _setAncadoThreshold(event.target.value);
     }
 
+    const openSettingTier = () => {
+        subEventHelper.getInstance().callEvent("open_setTier_page");
+    }
+
         return(
-            <div className="app-barter-bottom-left-content-zone">
-                <div className="app-barter-bottom-left-content-zone-title">
-                    <p>{props.data.lang.barter[0].bottom[0].left[0].title[0]}</p>
+            <div className="app-barter-bottom-left">
+                <div className="app-barter-bottom-left-content-zone">
+                    <div className="app-barter-bottom-left-content-zone-title">
+                        <p>{props.data.lang.barter[0].bottom[0].left[0].title[0]}</p>
+                    </div>
+                    <div className="app-barter-bottom-left-content-zone-content">
+                        <div className="app-barter-bottom-left-content-zone-content-item">
+                            <input type="number" placeholder="0" defaultValue={iliyaThreshold} min="0" onChange={setIliyaThreshold}/>
+                            <p>Iliya</p>
+                        </div>
+                        <div className="app-barter-bottom-left-content-zone-content-item">
+                            <input type="number" placeholder="0" defaultValue={epheriaThreshold} min="0" onChange={setEpheriaThreshold}/>
+                            <p>Epheria</p>
+                        </div>
+                        <div className="app-barter-bottom-left-content-zone-content-item">
+                            <input type="number" placeholder="0" defaultValue={ancadoThreshold} min="0" onChange={setAncadoThreshold}/>
+                            <p>Ancado</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="app-barter-bottom-left-content-zone-content">
-                    <div className="app-barter-bottom-left-content-zone-content-item">
-                        <input type="number" placeholder="0" defaultValue={iliyaThreshold} min="0" onChange={setIliyaThreshold}/>
-                        <p>Iliya</p>
-                    </div>
-                    <div className="app-barter-bottom-left-content-zone-content-item">
-                        <input type="number" placeholder="0" defaultValue={epheriaThreshold} min="0" onChange={setEpheriaThreshold}/>
-                        <p>Epheria</p>
-                    </div>
-                    <div className="app-barter-bottom-left-content-zone-content-item">
-                        <input type="number" placeholder="0" defaultValue={ancadoThreshold} min="0" onChange={setAncadoThreshold}/>
-                        <p>Ancado</p>
-                    </div>
+                <div className="app-barter-bottom-left-cog">
+                    <img src={cog} alt="cog" width="32" height="32" onClick={openSettingTier}/>
                 </div>
             </div>
         )

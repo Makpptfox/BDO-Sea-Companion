@@ -1,4 +1,5 @@
 // TODO : Add the thresold warning for the barter tier button
+import tempHelper from '@common/temp';
 import React, {useEffect} from 'react';
 
 import './BarterRight.scss';
@@ -11,12 +12,12 @@ const BarterRight:React.FC<Props> = (props: Props) => {
 
     const { onClick } = props;
 
-    const [All, setAll] = React.useState(true);
-    const [Tier1, setTier1] = React.useState(true);
-    const [Tier2, setTier2] = React.useState(true);
-    const [Tier3, setTier3] = React.useState(true);
-    const [Tier4, setTier4] = React.useState(true);
-    const [Tier5, setTier5] = React.useState(true);
+    const [All, setAll] = React.useState(tempHelper.getInstance().get('barterAll') == false? tempHelper.getInstance().get('barterAll') : true);
+    const [Tier1, setTier1] = React.useState(tempHelper.getInstance().get('barterTier1') == false? tempHelper.getInstance().get('barterTier1') : true);
+    const [Tier2, setTier2] = React.useState(tempHelper.getInstance().get('barterTier2') == false? tempHelper.getInstance().get('barterTier2') : true);
+    const [Tier3, setTier3] = React.useState(tempHelper.getInstance().get('barterTier3') == false? tempHelper.getInstance().get('barterTier3') : true);
+    const [Tier4, setTier4] = React.useState(tempHelper.getInstance().get('barterTier4') == false? tempHelper.getInstance().get('barterTier4') : true);
+    const [Tier5, setTier5] = React.useState(tempHelper.getInstance().get('barterTier5') == false? tempHelper.getInstance().get('barterTier5') : true);
 
     const [tier1Warning, setTier1Warning] = React.useState(false);
     const [tier2Warning, setTier2Warning] = React.useState(false);
@@ -32,11 +33,18 @@ const BarterRight:React.FC<Props> = (props: Props) => {
 
 
     useEffect(() => {
-        setTimeout(onLoaded, 150);
+
+
+        setTimeout(onLoaded, 250);
     }, []);
 
     const onLoaded = () => {
         
+        onClick(1, Tier1);
+        onClick(2, Tier2);
+        onClick(3, Tier3);
+        onClick(4, Tier4);
+        onClick(5, Tier5);
 
         const parent = document.getElementsByTagName('tbody')[0].children
 
@@ -204,6 +212,8 @@ const BarterRight:React.FC<Props> = (props: Props) => {
             <div className="barter-right__buttons">
                 <button className={`barter-right__button all ${All? 'active':'not-active'}`} onClick={() => {
                     setAll(!All);
+
+                    tempHelper.getInstance().set('barterAll', !All);
                     if (All) {
                         setTier1(false);
                         setTier2(false);
@@ -216,6 +226,13 @@ const BarterRight:React.FC<Props> = (props: Props) => {
                         onClick(3, false);
                         onClick(4, false);
                         onClick(5, false);
+
+                        tempHelper.getInstance().set('barterTier1', false);
+                        tempHelper.getInstance().set('barterTier2', false);
+                        tempHelper.getInstance().set('barterTier3', false);
+                        tempHelper.getInstance().set('barterTier4', false);
+                        tempHelper.getInstance().set('barterTier5', false);
+                        tempHelper.getInstance().set('barterAll', false);
                     } else {
                         setTier1(true);
                         setTier2(true);
@@ -228,6 +245,12 @@ const BarterRight:React.FC<Props> = (props: Props) => {
                         onClick(3, true);
                         onClick(4, true);
                         onClick(5, true);
+                        tempHelper.getInstance().set('barterTier1', true);
+                        tempHelper.getInstance().set('barterTier2', true);
+                        tempHelper.getInstance().set('barterTier3', true);
+                        tempHelper.getInstance().set('barterTier4', true);
+                        tempHelper.getInstance().set('barterTier5', true);
+                        tempHelper.getInstance().set('barterAll', true);
                     }
 
                     
@@ -236,26 +259,40 @@ const BarterRight:React.FC<Props> = (props: Props) => {
                     setTier1(!Tier1);
                     onClick(1, !Tier1);
 
+                    tempHelper.getInstance().set('barterTier1', !Tier1);
+                    tempHelper.getInstance().set('barterAll', (!Tier1 && Tier2 && Tier3 && Tier4 && Tier5));
                     setAll((!Tier1 && Tier2 && Tier3 && Tier4 && Tier5));
                 }}>Tier 1</button>
                 <button className={`barter-right__button ${Tier2 ? 'active' : 'not-active'} ${tier2Warning? 'warn' : ''}`} onClick={() => {
                     setTier2(!Tier2);
                     onClick(2, !Tier2);
+
+                    tempHelper.getInstance().set('barterTier2', !Tier2);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && !Tier2 && Tier3 && Tier4 && Tier5));
                     setAll((Tier1 && !Tier2 && Tier3 && Tier4 && Tier5));
                 }}>Tier 2</button>
                 <button className={`barter-right__button ${Tier3 ? 'active' : 'not-active'} ${tier3Warning? 'warn' : ''}`} onClick={() => {
                     setTier3(!Tier3);
                     onClick(3, !Tier3);
+
+                    tempHelper.getInstance().set('barterTier3', !Tier3);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && !Tier3 && Tier4 && Tier5));
                     setAll((Tier1 && Tier2 && !Tier3 && Tier4 && Tier5));
                 }}>Tier 3</button>
                 <button className={`barter-right__button ${Tier4 ? 'active' : 'not-active'} ${tier4Warning? 'warn' : ''}`} onClick={() => {
                     setTier4(!Tier4);
                     onClick(4, !Tier4);
+
+                    tempHelper.getInstance().set('barterTier4', !Tier4);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && Tier3 && !Tier4 && Tier5));
                     setAll((Tier1 && Tier2 && Tier3 && !Tier4 && Tier5));
                 }}>Tier 4</button>
                 <button className={`barter-right__button ${Tier5 ? 'active' : 'not-active'} ${tier5Warning? 'warn' : ''}`} onClick={() => {
                     setTier5(!Tier5);
                     onClick(5, !Tier5);
+
+                    tempHelper.getInstance().set('barterTier5', !Tier5);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && Tier3 && Tier4 && !Tier5));
                     setAll((Tier1 && Tier2 && Tier3 && Tier4 && !Tier5));
                 }}>Tier 5</button>
             </div>

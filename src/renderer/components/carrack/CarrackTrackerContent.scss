@@ -3,11 +3,15 @@
         width: auto;
         margin-right: 20px;
     }
+    .drag{
+        float: right;
+        cursor: n-resize;
+    }
     .complete-solo{
         background: linear-gradient(180deg, #484f45 60%, #3f473d 100%)!important;
         border-color: #6b7568!important;
     }
-    .subItem, .solo-content-item{
+    .subItem{
     width: 100%;
     background: linear-gradient(180deg, #45464f 60%, #3d3d47 100%);
     border: solid 2px #686975;
@@ -21,19 +25,41 @@
     cursor: default;
 
     }
+    .solo-content-item{
+        
+        width: 100%;
+        background: linear-gradient(180deg, #45464f 60%, #3d3d47 100%);
+        border: solid 2px #686975;
+        border-radius: 4px;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 12.5px;
+        margin-top: 12.5px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+
+        cursor: default;
+
+    }
 
     &.multi-content-item{
-        .title{
+        .content-header{
             background: linear-gradient(180deg, #4f4f4f 80%, #666666 100%);
             width: 100%;
             border: solid 2px #6d6d6d;
             border-radius: 4px;
-            padding: 16px;
+            padding: 0px;
             cursor: pointer;
             color: white;
             display: flex;
             flex-direction: row;
-            margin-bottom: 5px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12.5px;
+            margin-top: 12.5px;
+            padding: 0 10px;
         }
         .complete{
             background: linear-gradient(180deg, #5e483a 60%, #96683e 100%)!important;

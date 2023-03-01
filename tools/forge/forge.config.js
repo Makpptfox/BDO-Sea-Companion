@@ -21,6 +21,10 @@ module.exports = {
       path.resolve("assets/xml/data/item_data.xml"),
       path.resolve("assets/xml/data/save_data.xml"),
       path.resolve("assets/xml/data/carrack_data.xml"),
+      path.resolve("assets/xml/changelog.json"),
+      path.resolve("assets/templates/carrack_data.json"),
+      path.resolve("assets/templates/item_data.json"),
+      path.resolve("assets/templates/settings.json"),
     ],
   },
   // Forge Makers
@@ -59,7 +63,7 @@ module.exports = {
       config: {
         // Fix content-security-policy error when image or video src isn't same origin
         // Remove 'unsafe-eval' to get rid of console warning in development mode.
-        devContentSecurityPolicy: `default-src 'self' 'unsafe-inline' data:; script-src 'self' 'unsafe-inline' data:`,
+        devContentSecurityPolicy: ``,
         // Ports
         port: 3000, // Webpack Dev Server port
         loggerPort: 9000, // Logger port

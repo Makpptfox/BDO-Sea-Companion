@@ -7,7 +7,7 @@ export default function onSaveLang(lang: string) {
         const setting = data;
 
         // Update lang
-        setting.lang = lang;
+        setting.settings.lang[0] = lang;
     
         const toSend = JSONToXML(setting);
     

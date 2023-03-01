@@ -82,6 +82,19 @@ type langDict = {
                         }
                     ]
                 }
+            ],
+            settings:[
+                {
+                    ignoreAncado: [
+                        string
+                    ],
+                    ignoreIliya: [
+                        string
+                    ],
+                    ignoreEpheria: [
+                        string
+                    ]
+                }
             ]
         }
     ]
@@ -136,6 +149,22 @@ type langDict = {
                     ]
                 }
             ],
+            advancedType:[
+                {
+                    advance: [
+                        string
+                    ],
+                    balance: [
+                        string
+                    ],
+                    volante: [
+                        string
+                    ],
+                    valor: [
+                        string
+                    ]
+                }
+            ]
             items: [
                 {
                     [key:string]:  [

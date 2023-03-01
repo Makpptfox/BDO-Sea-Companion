@@ -24,8 +24,6 @@ const CarrackTracker = (props: Props) => {
 
     const inventory = props.data.save.inventory[0];
 
-
-
     useEffect(() => {
         switch(state) {
             case "inventory":

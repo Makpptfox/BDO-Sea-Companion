@@ -421,6 +421,18 @@
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Rock>
+        <Manual>
+            <qty>0</qty>
+            <iliya>0</iliya>
+            <epheria>0</epheria>
+            <ancado>0</ancado>
+        </Manual>
+        <DragonFigurine>
+            <qty>0</qty>
+            <iliya>0</iliya>
+            <epheria>0</epheria>
+            <ancado>0</ancado>
+        </DragonFigurine>
     </items>
     <misc>
         <lastBarter>250</lastBarter>
@@ -433,7 +445,7 @@
     <inventory>
         <cherrySeed>120</cherrySeed>
         <ration>9999999</ration>
-        <fishBone>5022</fishBone>
+        <fishBone>5000</fishBone>
         <t>5</t>
         <g>0</g>
         <x>0</x>

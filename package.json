@@ -1,7 +1,7 @@
 {
   "name": "bdo_barter-calculator",
   "productName": "BDO Sea Companion",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An tool for BDO game",
   "main": ".webpack/main",
   "scripts": {
@@ -83,6 +83,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.5.0",
+    "semver": "^7.3.8",
     "update-electron-app": "^2.0.1",
     "xml2js": "^0.4.23"
   }

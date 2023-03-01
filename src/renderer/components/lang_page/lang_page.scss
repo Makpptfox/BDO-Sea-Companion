@@ -21,6 +21,14 @@
     box-shadow: #000000 0px 0px 16px 0px;
     color: white;
 }
+.lang-page-content-list{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 16px);
+}
 .lang-page-content-item{
     margin: 10px;
     font-size: 20px;

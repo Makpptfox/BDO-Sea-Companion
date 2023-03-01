@@ -10,6 +10,9 @@ import dataDict from '@src/typings/data';
 import saveData from '@src/typings/save';
 import subEventHelper from '@common/subEvent';
 import carrackDict from '@src/typings/carrack';
+import { settings } from '@src/typings/settings';
+import update from '@src/typings/update';
+import { changeLog } from '@src/typings/changelog';
 
 
 const log = console.log;
@@ -80,7 +83,7 @@ const eventHelper = subEventHelper.getInstance(window);
 
 // const dict:langDict = ;
 function init(){
-  win.api.invoke('getDataFile').then((data: {lang:string,langDict: {root: langDict}, itemDict: {items: itemDict}, saveData: {data: saveData}, carrackDict: {carrack: carrackDict}}) => {
+  win.api.invoke('getDataFile').then((data: {lang:string,langDict: {root: langDict}, itemDict: {items: itemDict}, saveData: {data: saveData}, carrackDict: {carrack: carrackDict}, settings: settings, update: {update: update}, changelog: changeLog}) => {
 
     console.trace('[BDOC] : Language dictionary received', data)
 
@@ -91,6 +94,10 @@ function init(){
     const itemDict:itemDict = data.itemDict['items'];
     const saveData:saveData = data.saveData['data'];
     const carrackDict:carrackDict = data.carrackDict['carrack'];
+    const settings: settings = data.settings;
+    const update: update = data.update['update'];
+    
+    const changelog: changeLog = data.changelog;
 
     // Create a data dictionary to pass to components
     let dataDict: dataDict ={
@@ -98,11 +105,15 @@ function init(){
       item: itemDict,
       save: saveData,
       carrack: carrackDict,
-      setProps(lang, item, save, carrack) {
+      settings: settings,
+      update: update,
+      changelog: changelog,
+      setProps(lang, item, save, carrack, settings) {
         this.lang = lang;
         this.item = item;
         this.save = save;
         this.carrack = carrack
+        this.settings = settings;
       },
     }
 
