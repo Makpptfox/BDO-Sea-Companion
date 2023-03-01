@@ -356,6 +356,12 @@
             <volante>Volante</volante>
             <valor>Valor</valor>
         </type>
+        <advancedType>
+            <advance>Advance</advance>
+            <balance>Balance</balance>
+            <volante>Volante</volante>
+            <valor>Valor</valor>
+        </advancedType>
         <items>
             <cherrySeed>
                 <name>Test 1</name>

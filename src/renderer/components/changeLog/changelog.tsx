@@ -17,6 +17,12 @@ const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
             document.getElementById("changelog-back").style.display = "flex";
         }
 
+        const eventHelper = subEventHelper.getInstance();
+
+        eventHelper.registerCallback('rOpenUpdate', ()=>{
+            document.getElementById("changelog-back").style.display = "flex";
+        }, "changelog");
+
     },[])
 
     const close = (e: React.MouseEvent) => {

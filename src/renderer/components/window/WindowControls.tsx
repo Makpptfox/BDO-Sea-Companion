@@ -27,7 +27,7 @@ const WindowControls = () => {
 
             
             <ControlButton icon={"help"} onClick={function (): void {
-                throw new Error("Function not implemented.");
+                subEventHelper.getInstance().callEvent('rOpenUpdate');
             } }/>
             <ControlButton icon={"lang_"+lang} onClick={function (): void {
 

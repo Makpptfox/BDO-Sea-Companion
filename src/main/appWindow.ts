@@ -111,6 +111,12 @@ function checkDataFiles() {
   }
 
   if(fs.existsSync(path.join(resources, 'carrack_data.json'))){
+
+    // It's the first object that need the "template" folder, so we need to check if it's exist, and if not, create it
+    if(!fs.existsSync(templateFolder)){
+      fs.mkdirSync(templateFolder);
+    }
+
     // If it does, copy it to the user data folder then delete it from the resources folder
     fs.copyFileSync(path.join(resources, 'carrack_data.json'), path.join(templateFolder, 'carrack_data.json'));
     fs.rmSync(path.join(resources, 'carrack_data.json'));
@@ -126,6 +132,12 @@ function checkDataFiles() {
     // If it does, copy it to the user data folder then delete it from the resources folder
     fs.copyFileSync(path.join(resources, 'item_data.json'), path.join(templateFolder, 'item_data.json'));
     fs.rmSync(path.join(resources, 'item_data.json'));
+  }
+
+  if(fs.existsSync(path.join(resources, 'changelog.json'))){
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    fs.copyFileSync(path.join(resources, 'changelog.json'), path.join(xmlFolder, 'changelog.json'));
+    fs.rmSync(path.join(resources, 'changelog.json'));
   }
 
   if(fs.existsSync(path.join(resources, 'update.xml'))){
@@ -205,7 +217,7 @@ export function createAppWindow(): BrowserWindow {
   process.on('warning', e => console.warn(e.stack));
 
   // Check the template with the app version
-  templateCheck(process.env.npm_package_version);
+  templateCheck(app.getVersion());
 
   return appWindow;
 }
