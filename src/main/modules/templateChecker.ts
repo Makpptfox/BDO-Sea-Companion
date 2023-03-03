@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /**
  * @file templateChecker.ts
  * @description This module is used to check the template version of the data files. (Not the SAVE file!!!)
@@ -15,7 +16,7 @@ import { app } from 'electron';
 import * as fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import { getXmlFileContent, saveXmlFileContent } from './fileManager';
+import { getXmlFileContent, saveXmlFileContent, xmlFileExist } from './fileManager';
 
 function getTemplatePath(): string{
     let userDataPath: string;
@@ -45,11 +46,22 @@ export function templateCheck(version: string){
 
         const files: string[] = _files.filter(file => file.endsWith('.json'));
 
+        const promises: Promise<void>[] = [];
+
         // Navigate through each file
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
-            readTemplate(version, file);
+
+            const readPromise = new Promise<void>((resolve) => {
+                readTemplate(version, file, resolve);
+            });
+
+            promises.push(readPromise);
         }
+
+        Promise.all(promises).then(() => {
+            console.log('All templates are up to date');
+        });
     });
 
 }
@@ -59,7 +71,7 @@ export function templateCheck(version: string){
  * @param version La version du projet
  * @param file Le nom du fichier template
  */
-function readTemplate(version: string, file: string){
+function readTemplate(version: string, file: string, callback?: Function){
 
     // Link the path to the template file
     const templatePath = getTemplatePath();
@@ -71,7 +83,7 @@ function readTemplate(version: string, file: string){
         const template = JSON.parse(data);
         const name = file.split('.')[0];
 
-        checkTemplate(version, template, name)
+        checkTemplate(version, template, name, callback)
 
     });
 
@@ -83,7 +95,7 @@ function readTemplate(version: string, file: string){
  * @param content Le contenu du fichier template
  * @param name Le nom du fichier template
  */
-function checkTemplate(version: string, content: any, name: string){
+function checkTemplate(version: string, content: any, name: string, callback?: Function){
     // Get each version referenced in the template
     const versions = Object.keys(content.versions);
 
@@ -94,7 +106,7 @@ function checkTemplate(version: string, content: any, name: string){
         const xmlFile = content.for;
         if(semver.gte(version, usedVersion)){
             // If the version is compatible, check if the template is up to date
-            checkTemplateVersion(version, content.versions[templateVersion], xmlFile);
+            checkTemplateVersion(version, content.versions[templateVersion], xmlFile, callback);
         } else {
             // If the version is not compatible, send an error
             app.quit();
@@ -109,13 +121,22 @@ function checkTemplate(version: string, content: any, name: string){
  * @param content Le contenu du fichier template
  * @param xmlFile Le nom du fichier xml à vérifier
  */
-function checkTemplateVersion(version: string, content: any, xmlFile: string){
+function checkTemplateVersion(version: string, content: any, xmlFile: string, callback?: Function){
 
     // Get each keys referenced in the template
     const keys = Object.keys(content);
 
     // Navigate through each key, and check if the data file is compatible with the template and if the object has the correct properties and children
     for (let i = 0; i < keys.length; i++) {
+
+
+        if(!xmlFileExist(xmlFile)){
+            saveXmlFileContent(xmlFile, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+
+            checkTemplateVersion(version, content, xmlFile, callback);
+
+            return;
+        }
 
         // Get the data file
         getXmlFileContent(xmlFile).then((data) => {
@@ -127,7 +148,7 @@ function checkTemplateVersion(version: string, content: any, xmlFile: string){
             const template = content[key];
 
             // Check if the data file has the correct properties
-            checkProperties(version, key, data, template, xmlFile);
+            checkProperties(version, key, data, template, xmlFile, undefined, callback);
 
         });
 
@@ -142,7 +163,7 @@ function checkTemplateVersion(version: string, content: any, xmlFile: string){
  * @param data The content of the data file to check
  * @param template The content of the template used to check the data file
  */
-function checkProperties(version: string, key: string, data: any, template: any, xmlFile: string, rootTag?: string){
+function checkProperties(version: string, key: string, data: any, template: any, xmlFile: string, rootTag?: string, callback?: Function){
     
     // Get each properties referenced in the template
     const properties = Object.keys(template);
@@ -174,6 +195,10 @@ function checkProperties(version: string, key: string, data: any, template: any,
                 rootTag = properties[i];
             }
 
+            // For debug purpose
+            console.log('rootTag', rootTag);
+            console.log('properties[i]', properties[i]);
+
             // Check if it's an definition property
             if(properties[i].includes("_")){
                 continue;
@@ -195,31 +220,34 @@ function checkProperties(version: string, key: string, data: any, template: any,
                             data = []
                             data[template[properties[i]]['_default']] = [];
                             data[template[properties[i]]['_default']][0] = [];
-                            data[template[properties[i]]['_default']][0] = checkProperties(version, key, data[template[properties[i]]['_default']][0], template[properties[i]], xmlFile, rootTag);
+                            data[template[properties[i]]['_default']][0] = checkProperties(version, key, data[template[properties[i]]['_default']][0], template[properties[i]], xmlFile, rootTag, callback);
                             stop = true;
                             return;
                         }
 
                         // Check if the data property has the correct properties
-                        data[key][0] = checkProperties(version, key, data[key][0], template[properties[i]], xmlFile, rootTag);
+                        data[key][0] = checkProperties(version, key, data[key][0], template[properties[i]], xmlFile, rootTag, callback);
                     });
                 }
             } else {
                 // Check if the data file has the correct properties
-                if(Object.keys(data).includes(properties[i])){
+                if(data !== null && Object.keys(data) !== null && Object.keys(data).includes(properties[i])){
                     // Check if the data property is an object and if the data property has the correct properties
                     if(Object.keys(properties[i]).length !== 0){
                         // Check if the data property is a valid type (not undefined, or empty in the xml file)
                         if(Array.isArray(data[properties[i]])){
-                            data[properties[i]][0] = checkProperties(version, key, data[properties[i]][0], template[properties[i]], xmlFile, rootTag);
+                            data[properties[i]][0] = checkProperties(version, key, data[properties[i]][0], template[properties[i]], xmlFile, rootTag, callback);
                         } else {
-                            data[properties[i]] = checkProperties(version, key, data[properties[i]], template[properties[i]], xmlFile, rootTag);
+                            data[properties[i]] = checkProperties(version, key, data[properties[i]], template[properties[i]], xmlFile, rootTag, callback);
                         }
                     }
                 } else {
 
                     // If the property is not found, try to create it with the default value
-                    if(data[properties[i]] === undefined){
+                    if(data == undefined){
+                        data = {};
+                    }
+                    if(data == null || data[properties[i]] === undefined){
                         data[properties[i]] = [];
                     }
 
@@ -230,17 +258,21 @@ function checkProperties(version: string, key: string, data: any, template: any,
     }
 
     if(setInFile){
-        saveEditedFile(data, xmlFile);
+        saveEditedFile(data, xmlFile, callback);
     } else {
         return data;
     }
 }
 
-function saveEditedFile(data: string, file: string){
+function saveEditedFile(data: string, file: string, callback?: Function){
+
+    console.log("Données à sauvegarder: ", data)
 
     console.log("Vérification effectuer du fichier: ", file);
 
     saveXmlFileContent(file, JSONToXML(data));
+
+    callback();
 
 }
 

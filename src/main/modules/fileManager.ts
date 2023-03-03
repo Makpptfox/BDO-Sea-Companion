@@ -146,6 +146,27 @@ async function getXmlFileContent(fileName: string):Promise<any> {
 }
 
 /**
+ * Get xml file content
+ * @param fileName the name of the file
+ * @returns the content of the file
+ */
+function XmlFileExist(fileName: string):boolean {
+
+    // Check if file ends with .xml
+    if (!fileName.endsWith('.xml')) {
+        fileName += '.xml';
+    }
+
+    // Check if file exists
+    if (!fs.existsSync(path.join(xmlPath, fileName))) {
+        return false
+    }
+
+    return true
+}
+
+
+/**
  * Save xml file content
  * @param fileName the name of the file
  * @param fileContent the content of the file
@@ -268,5 +289,6 @@ export {
     saveXmlFileContent,
     deleteXmlFile,
     getXmlFileNames,
-    getXmlFileNamesWithContent
+    getXmlFileNamesWithContent,
+    XmlFileExist as xmlFileExist
 }

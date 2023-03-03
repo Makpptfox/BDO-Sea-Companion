@@ -62,18 +62,21 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
         subEventHelper.getInstance().send('set-setting', {key: "ignoreAncado", value: state});
         props.data.settings.settings.ignoreAncado[0] = state.toString();
         setIgnoreAncado(state);
+        subEventHelper.getInstance().callEvent('rRefresh-itemList');
     }
 
     const ignoreIliya = (state: boolean) => {
         subEventHelper.getInstance().send('set-setting', {key: "ignoreIliya", value: state});
         props.data.settings.settings.ignoreIliya[0] = state.toString();
         setIgnoreIliya(state);
+        subEventHelper.getInstance().callEvent('rRefresh-itemList');
     }
 
     const ignoreEpheria = (state: boolean) => {
         subEventHelper.getInstance().send('set-setting', {key: "ignoreEpheria", value: state});
         props.data.settings.settings.ignoreEpheria[0] = state.toString();
         setIgnoreEpheria(state);
+        subEventHelper.getInstance().callEvent('rRefresh-itemList');
     }
 
 
@@ -81,15 +84,6 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
         <div className="settingTier-page" onClick={(e: React.MouseEvent)=>{if(e.currentTarget === e.target){subEventHelper.getInstance().callEvent('open_setTier_page', false);}}}>
             <div className="settingTier-page-content">
                 <div className="settingTier-page-content-list">
-                    <div className="settingTier-page-content-item">
-                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].settings[0].ignoreAncado[0]}</div>
-                        <div className="settingTier-page-content-item-switch">
-                            <label className="switch">
-                                <input type="checkbox" checked={_ignoreAncado} onChange={(e)=>{ignoreAncado(e.target.checked)}}/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
                     <div className="settingTier-page-content-item">
                         <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].settings[0].ignoreIliya[0]}</div>
                         <div className="settingTier-page-content-item-switch">
@@ -104,6 +98,15 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
                         <div className="settingTier-page-content-item-switch">
                             <label className="switch">
                                 <input type="checkbox" checked={_ignoreEpheria} onChange={(e)=>{ignoreEpheria(e.target.checked)}}/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="settingTier-page-content-item">
+                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].settings[0].ignoreAncado[0]}</div>
+                        <div className="settingTier-page-content-item-switch">
+                            <label className="switch">
+                                <input type="checkbox" checked={_ignoreAncado} onChange={(e)=>{ignoreAncado(e.target.checked)}}/>
                                 <span className="slider round"></span>
                             </label>
                         </div>

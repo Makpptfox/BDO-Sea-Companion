@@ -15,7 +15,9 @@ type Props = {
 }
 
 const BarterCenterItem: React.FC<Props> = (props: Props) => {
+    
 
+                    
     const key = Object.keys(props.data.item)[props.index];
     const index = props.index;
 
@@ -32,6 +34,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     if(!props.data.save.items[0][key]) {
         props.data.save.items[0][key] = [{qty: ["0"], iliya: ["0"], epheria: ["0"], ancado: ["0"]}]
     }
+
 
     // Create state for each city
     const [iliya, _setIliya] = React.useState(parseInt(save[key][0].iliya[0]? save[key][0].iliya[0] : "0"));
@@ -55,45 +58,50 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     const [limitEpheria, setLimitEpheria] = React.useState(parseInt(props.data.save.threshold[0].epheria[0]));
     const [limitAncado, setLimitAncado] = React.useState(parseInt(props.data.save.threshold[0].ancado[0]));
 
-    let enableThresholdIliya: unknown
+    const [content, setContent] = React.useState(null)
+
+    let enableThresholdIliya: boolean
     let setEnableThresholdIliya: (arg0: boolean) => void;
 
     let enableThresholdEpheria: unknown
     let setEnableThresholdEpheria: (arg0: boolean) => void;
 
+    let enableThresholdAncado: unknown
+    let setEnableThresholdAncado: (arg0: boolean) => void;
+
+    
+
+    subEventHelper.getInstance().registerCallback('rRefresh-itemList', ()=>{
+        if(props.data.item[key][0].tier[0] === '5') {
+
+            setEnableThresholdIliya(props.data.settings.settings.ignoreIliya[0] === "false" ? true : false);
+            setEnableThresholdEpheria(props.data.settings.settings.ignoreEpheria[0] === "false" ? true : false);
+            setEnableThresholdAncado(true);
+
+        } else {
+
+            setEnableThresholdIliya(true);
+            setEnableThresholdEpheria(true);
+            setEnableThresholdAncado(props.data.settings.settings.ignoreAncado[0] === "false" ? true : false)
+
+        }
+    }, uniqueName)
+
+    
     if(props.data.item[key][0].tier[0] === '5') {
 
         [enableThresholdIliya, setEnableThresholdIliya] = React.useState<boolean>((props.data.settings.settings.ignoreIliya[0] === "false") ? true : false);
         [enableThresholdEpheria, setEnableThresholdEpheria] = React.useState<boolean>(props.data.settings.settings.ignoreEpheria[0] === "false" ? true : false);
+        [enableThresholdAncado, setEnableThresholdAncado] = React.useState<boolean>(true);
 
     } else {
 
         [enableThresholdIliya, setEnableThresholdIliya] = React.useState<boolean>(true);
         [enableThresholdEpheria, setEnableThresholdEpheria] = React.useState<boolean>(true);
+        [enableThresholdAncado, setEnableThresholdAncado] = React.useState<boolean>(props.data.settings.settings.ignoreAncado[0] === "false" ? true : false);
 
     }
-    const [enableThresholdAncado, setEnableThresholdAncado] = React.useState<boolean>(props.data.settings.settings.ignoreAncado[0] === "false" ? true : false);
 
-    const [content, setContent] = React.useState(null)
-
-    subEventHelper.getInstance().registerCallback('set-setting', (_key, value) => {
-        switch(_key){
-            case "ignoreIliya":
-                if(props.data.item[key][0].tier[0] !== '5') return;
-                setEnableThresholdIliya(!value)
-                break;
-            case "ignoreEpheria":
-                if(props.data.item[key][0].tier[0] !== '5') return;
-                setEnableThresholdEpheria(!value)
-                break;
-            case "ignoreAncado":
-                setEnableThresholdAncado(!value)
-                break;
-            default:
-                break;
-        }
-    }, uniqueName)
-    
     useEffect(()=>{
 
         subEventHelper.getInstance().registerCallback('threshold-change', (type, threshold) => {
@@ -121,6 +129,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     
         return(()=>{
             subEventHelper.getInstance().unregisterAllCallbacks("threshold-change");
+            subEventHelper.getInstance().unregisterAllCallbacks("rRefresh-itemList");
         })
     }, [])
 

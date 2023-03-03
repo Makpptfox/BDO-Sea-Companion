@@ -39,12 +39,20 @@ const AppCarack = (props: Props) => {
 
     useEffect(() => {
 
+        if(props.data.settings.settings.boatType[0].toLowerCase() !== undefined){
+            setCarrackType(props.data.settings.settings.boatType[0].toLowerCase() as 'advance' | 'balance' | 'volante' | 'valor' | 'none');
+        }
+
         if(tempHelper.getInstance().get('carrackType') !== undefined) {
             setCarrackType(tempHelper.getInstance().get('carrackType'));
         }
 
         subEventHelper.getInstance().registerCallback('returnCarrackType', () => {
             setCarrackType('none');
+            props.data.settings.settings.boatType[0] = 'none';
+
+            subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'none'});
+
         }, 'AppCarrack')
         if(carrackType === 'none') {
             setContent(
@@ -56,6 +64,8 @@ const AppCarack = (props: Props) => {
                     <div className='app-carrack-box carrack-advance' onClick={()=>{
                         setCarrackType('advance')
                         tempHelper.getInstance().set('carrackType', 'advance');
+                        props.data.settings.settings.boatType[0] = 'advance';
+                        subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'advance'});
                         }}>
                         <p>{props.data.lang.carrack[0].type[0].advance[0]}</p>
                         <img src={carrackAdvance} alt='Advance Carrack Image' />
@@ -63,6 +73,8 @@ const AppCarack = (props: Props) => {
                     <div className='app-carrack-box carrack-balance' onClick={()=>{
                         setCarrackType('balance')
                         tempHelper.getInstance().set('carrackType', 'balance');
+                        props.data.settings.settings.boatType[0] = 'balance';
+                        subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'balance'});
                     }}>
                         <p>{props.data.lang.carrack[0].type[0].balance[0]}</p>
                         <img src={carrackBalance} alt='Balance Carrack Image' />
@@ -70,6 +82,8 @@ const AppCarack = (props: Props) => {
                     <div className='app-carrack-box carrack-volante' onClick={()=>{
                         setCarrackType('volante'); 
                         tempHelper.getInstance().set('carrackType', 'volante');
+                        props.data.settings.settings.boatType[0] = 'volante';
+                        subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'volante'});
                         }}>
                         <p>{props.data.lang.carrack[0].type[0].volante[0]}</p>
                         <img src={carrackVolante} alt='Volante Carrack Image' />
@@ -77,6 +91,8 @@ const AppCarack = (props: Props) => {
                     <div className='app-carrack-box carrack-valor' onClick={()=>{
                         setCarrackType('valor')
                         tempHelper.getInstance().set('carrackType', 'valor');
+                        props.data.settings.settings.boatType[0] = 'valor';
+                        subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'valor'});
                         }}>
                         <p>{props.data.lang.carrack[0].type[0].valor[0]}</p>
                         <img src={carrackValor} alt='Valor Carrack Image' />

@@ -4,9 +4,6 @@ export type settings = {
         lang: [
             string
         ],
-        firstLaunch: [
-            string
-        ],
         ignoreAncado: [
             string
         ],
@@ -15,6 +12,9 @@ export type settings = {
         ],
         ignoreEpheria: [
             string
-        ]
+        ],
+        boatType: [
+            string
+        ],
     }
 }

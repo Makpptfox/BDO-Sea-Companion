@@ -76,8 +76,8 @@ function checkDataFiles() {
   } else {
     // If it doesn't, copy the one in the resources folder to the user data folder then delete it from the resources folder
     console.log('Settings data does not exist');
-    fs.copyFileSync(path.join(resources, 'settings.xml'), path.join(xmlFolder, 'settings.xml'));
     if(fs.existsSync(path.join(resources, 'settings.xml'))){
+      fs.copyFileSync(path.join(resources, 'settings.xml'), path.join(xmlFolder, 'settings.xml'));
       fs.rmSync(path.join(resources, 'settings.xml'));
     }
   }
@@ -153,6 +153,8 @@ function checkDataFiles() {
  */
 export function createAppWindow(): BrowserWindow {
 
+  // Check the template with the app version
+  templateCheck(app.getVersion());
   
   eventSystem.getInstance().addEvent('app-maximize');
 
@@ -216,8 +218,6 @@ export function createAppWindow(): BrowserWindow {
 
   process.on('warning', e => console.warn(e.stack));
 
-  // Check the template with the app version
-  templateCheck(app.getVersion());
 
   return appWindow;
 }
