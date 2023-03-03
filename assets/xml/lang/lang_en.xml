@@ -327,9 +327,9 @@
         </bottom>
 
         <settings>
-            <ignoreAncado>Ignore Ancado</ignoreAncado>
-            <ignoreIliya>Ignore Iliya</ignoreIliya>
-            <ignoreEpheria>Ignore Epheria</ignoreEpheria>
+            <ignoreIliya>Ignore Iliya's T5</ignoreIliya>
+            <ignoreEpheria>Ignore Epheria's T5</ignoreEpheria>
+            <ignoreAncado>Ignore Ancado's T1-4</ignoreAncado>
         </settings>
 
     </barter>
@@ -363,27 +363,21 @@
             <valor>Valor</valor>
         </advancedType>
         <items>
-            <cherrySeed>
-                <name>Test 1</name>
-            </cherrySeed>
-            <fishBone>
-                <name>Test 2</name>
-            </fishBone>
-            <ration>
-                <name>Test 3</name>
-            </ration>
-            <t>
-                <name>Test 4</name>
-            </t>
-            <g>
-                <name>Test 5</name>
-            </g>
-            <x>
-                <name>Test 6</name>
-            </x>
-            <e>
-                <name>Test 7</name>
-            </e>
+            <MoonVeinFlaxFabric>
+                <name>Moon Fabric</name>
+            </MoonVeinFlaxFabric>
+            <DeepTideDyedStandardizedTimberSquare>
+                <name>Deep Timber</name>
+            </DeepTideDyedStandardizedTimberSquare>
+            <BrilliantRockSaltIngot>
+                <name>Brillant Rock</name>
+            </BrilliantRockSaltIngot>
+            <TearoftheOcean>
+                <name>Tear</name>
+            </TearoftheOcean>
+            <BrilliantPearlShard>
+                <name>Pearl Shard</name>
+            </BrilliantPearlShard>
         </items>
 
     </carrack>
