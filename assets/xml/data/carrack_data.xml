@@ -3,81 +3,80 @@
         <advance>
             <image>advance.png</image>
             <need>
-                <MoonVeinFlaxFabric>
-                    <quantity>180</quantity>
-                </MoonVeinFlaxFabric>
-                <DeepTideDyedStandardizedTimberSquare>
-                    <quantity>144</quantity>
-                </DeepTideDyedStandardizedTimberSquare>
-                <BrilliantRockSaltIngot>
-                    <quantity>35</quantity>
-                </BrilliantRockSaltIngot>
-                <TearoftheOcean>
-                    <quantity>42</quantity>
-                </TearoftheOcean>
-                <BrilliantPearlShard>
-                    <quantity>35</quantity>
-                </BrilliantPearlShard>
+            <!-- Trackable component, called back bellow -->
+                <CarrackTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <MoonVeinFlaxFabric>180</MoonVeinFlaxFabric>
+                        <DeepTideDyedStandardizedTimberSquare>144</DeepTideDyedStandardizedTimberSquare>
+                        <BrilliantRockSaltIngot>35</BrilliantRockSaltIngot>
+                        <TearoftheOcean>42</TearoftheOcean>
+                        <BrilliantPearlShard>35</BrilliantPearlShard>
+                    </need>
+                </CarrackTracking>
+                <CaravelProwTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <RuddyManganeseNodule>50</RuddyManganeseNodule>
+                        <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
+                        <SeaweedStalk>125</SeaweedStalk>
+                        <GreatOceanDarkIron>150</GreatOceanDarkIron>
+                    </need>
+                </CaravelProwTracking>
             </need>
         </advance>
         <balance>
             <image>balance.png</image>
             <need>
-                <MoonVeinFlaxFabric>
-                    <quantity>180</quantity>
-                </MoonVeinFlaxFabric>
-                <DeepTideDyedStandardizedTimberSquare>
-                    <quantity>144</quantity>
-                </DeepTideDyedStandardizedTimberSquare>
-                <BrilliantRockSaltIngot>
-                    <quantity>30</quantity>
-                </BrilliantRockSaltIngot>
-                <TearoftheOcean>
-                    <quantity>50</quantity>
-                </TearoftheOcean>
-                <BrilliantPearlShard>
-                    <quantity>30</quantity>
-                </BrilliantPearlShard>
+                <CarrackTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <MoonVeinFlaxFabric>180</MoonVeinFlaxFabric>
+                        <DeepTideDyedStandardizedTimberSquare>144</DeepTideDyedStandardizedTimberSquare>
+                        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
+                        <TearoftheOcean>50</TearoftheOcean>
+                        <BrilliantPearlShard>30</BrilliantPearlShard>
+                    </need>
+                </CarrackTracking>
+                <CaravelProwTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <RuddyManganeseNodule>50</RuddyManganeseNodule>
+                        <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
+                        <SeaweedStalk>125</SeaweedStalk>
+                        <GreatOceanDarkIron>150</GreatOceanDarkIron>
+                    </need>
+                </CaravelProwTracking>
             </need>
         </balance>
         <valor>
             <image>valor.png</image>
             <need>
-                <MoonVeinFlaxFabric>
-                    <quantity>180</quantity>
-                </MoonVeinFlaxFabric>
-                <DeepTideDyedStandardizedTimberSquare>
-                    <quantity>170</quantity>
-                </DeepTideDyedStandardizedTimberSquare>
-                <BrilliantRockSaltIngot>
-                    <quantity>30</quantity>
-                </BrilliantRockSaltIngot>
-                <TearoftheOcean>
-                    <quantity>42</quantity>
-                </TearoftheOcean>
-                <BrilliantPearlShard>
-                    <quantity>30</quantity>
-                </BrilliantPearlShard>
+                <CarrackTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <MoonVeinFlaxFabric>180</MoonVeinFlaxFabric>
+                        <DeepTideDyedStandardizedTimberSquare>170</DeepTideDyedStandardizedTimberSquare>
+                        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
+                        <TearoftheOcean>42</TearoftheOcean>
+                        <BrilliantPearlShard>30</BrilliantPearlShard>
+                    </need>
+                </CarrackTracking>
             </need>
         </valor>
         <volante>
             <image>volante.png</image>
             <need>
-                <MoonVeinFlaxFabric>
-                    <quantity>210</quantity>
-                </MoonVeinFlaxFabric>
-                <DeepTideDyedStandardizedTimberSquare>
-                    <quantity>144</quantity>
-                </DeepTideDyedStandardizedTimberSquare>
-                <BrilliantRockSaltIngot>
-                    <quantity>30</quantity>
-                </BrilliantRockSaltIngot>
-                <TearoftheOcean>
-                    <quantity>42</quantity>
-                </TearoftheOcean>
-                <BrilliantPearlShard>
-                    <quantity>30</quantity>
-                </BrilliantPearlShard>
+                <CarrackTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <MoonVeinFlaxFabric>180</MoonVeinFlaxFabric>
+                        <DeepTideDyedStandardizedTimberSquare>144</DeepTideDyedStandardizedTimberSquare>
+                        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
+                        <TearoftheOcean>50</TearoftheOcean>
+                        <BrilliantPearlShard>30</BrilliantPearlShard>
+                    </need>
+                </CarrackTracking>
             </need>
         </volante>
     </boat>
@@ -87,30 +86,80 @@
             <daily>1</daily>
             <coin>1</coin>
             <barter>1</barter>
+            <trackable>0</trackable>
         </MoonVeinFlaxFabric>
         <DeepTideDyedStandardizedTimberSquare>
             <image>DeepTideDyedStandardizedTimberSquare.png</image>
             <daily>1</daily>
             <coin>1</coin>
             <barter>0</barter>
+            <trackable>0</trackable>
         </DeepTideDyedStandardizedTimberSquare>
         <BrilliantRockSaltIngot>
             <image>BrilliantRockSaltIngot.png</image>
             <daily>0</daily>
             <coin>1</coin>
             <barter>1</barter>
+            <trackable>0</trackable>
+            <!-- Is NOT a trackable component in itself, so trackable is 0 -->
         </BrilliantRockSaltIngot>
         <TearoftheOcean>
             <image>TearoftheOcean.png</image>
             <daily>1</daily>
             <coin>1</coin>
             <barter>1</barter>
+            <trackable>0</trackable>
         </TearoftheOcean>
         <BrilliantPearlShard>
             <image>BrilliantPearlShard.png</image>
             <daily>0</daily>
             <coin>1</coin>
             <barter>1</barter>
+            <trackable>0</trackable>
         </BrilliantPearlShard>
+        <RuddyManganeseNodule>
+            <image>RuddyManganeseNodule.png</image>
+            <daily>0</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </RuddyManganeseNodule>
+        <EnhancedIslandTreeCoatedPlywood>
+            <image>EnhancedIslandTreeCoatedPlywood.png</image>
+            <daily>0</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </EnhancedIslandTreeCoatedPlywood>
+        <SeaweedStalk>
+            <image>SeaweedStalk.png</image>
+            <daily>0</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </SeaweedStalk>
+        <GreatOceanDarkIron>
+            <image>GreatOceanDarkIron.png</image>
+            <daily>0</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </GreatOceanDarkIron>
+        <!--Trackable components-->
+        <CarrackTracking>
+            <image>ToDo.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <!-- Is a trackable component needing it's own line, so trackable is 1 -->
+            <trackable>1</trackable>
+        </CarrackTracking>
+        <CaravelProwTracking>
+            <image>ToDo.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>1</trackable>
+        </CaravelProwTracking>
     </items>
 </carrack>
