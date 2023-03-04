@@ -53,7 +53,7 @@
         </CherrySeed>
         <GoldenSand>
             <name>Golden Sand</name>
-            <description>Sable doré</description>
+            <description>Golden Sand</description>
         </GoldenSand>
         <RoaSeed>
             <name>Roa Seed</name>
@@ -327,9 +327,9 @@
         </bottom>
 
         <settings>
-            <ignoreIliya>Ignore Iliya's T5</ignoreIliya>
-            <ignoreEpheria>Ignore Epheria's T5</ignoreEpheria>
-            <ignoreAncado>Ignore Ancado's T1-4</ignoreAncado>
+            <ignoreIliya>Ignore Iliya's T 5</ignoreIliya>
+            <ignoreEpheria>Ignore Epheria's T 5</ignoreEpheria>
+            <ignoreAncado>Ignore Ancado's T 1-4</ignoreAncado>
         </settings>
 
     </barter>
@@ -363,6 +363,7 @@
             <valor>Valor</valor>
         </advancedType>
         <items>
+        <!-- For the Carrack part -->
             <MoonVeinFlaxFabric>
                 <name>Moon Fabric</name>
             </MoonVeinFlaxFabric>
@@ -378,6 +379,25 @@
             <BrilliantPearlShard>
                 <name>Pearl Shard</name>
             </BrilliantPearlShard>
+            <RuddyManganeseNodule>
+                <name>Ruddy Nodule</name>
+            </RuddyManganeseNodule>
+            <EnhancedIslandTreeCoatedPlywood>
+                <name>Enhanced Plywood</name>
+            </EnhancedIslandTreeCoatedPlywood>
+            <SeaweedStalk>
+                <name>Seaweed Stalk</name>
+            </SeaweedStalk>
+            <GreatOceanDarkIron>
+                <name>Dark Iron</name>
+            </GreatOceanDarkIron>
+        <!-- Tracker part -->
+            <CarrackTracking>
+                <name>Carrack</name>
+            </CarrackTracking>
+            <CaravelProwTracking>
+                <name>Blue Caravel Prow</name>
+            </CaravelProwTracking>
         </items>
 
     </carrack>
