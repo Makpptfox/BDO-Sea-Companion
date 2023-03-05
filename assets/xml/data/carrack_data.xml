@@ -17,6 +17,7 @@
                 <CaravelPlatingTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelEnhancedPlating>1</EpheriaCaravelEnhancedPlating>
                         <PurePearlCrystal>45</PurePearlCrystal>
                         <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
                         <MoonScalePlywood>200</MoonScalePlywood>
@@ -26,6 +27,7 @@
                 <CaravelProwTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelBrassFigurehead>1</EpheriaCaravelBrassFigurehead>
                         <RuddyManganeseNodule>50</RuddyManganeseNodule>
                         <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
                         <SeaweedStalk>125</SeaweedStalk>
@@ -35,6 +37,7 @@
                 <CaravelCannonTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelVerishaCannon>1</EpheriaCaravelVerishaCannon>
                         <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
                         <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
                         <MoonScalePlywood>200</MoonScalePlywood>
@@ -44,6 +47,7 @@
                 <CaravelSailTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelWhiteWindSail>1</EpheriaCaravelWhiteWindSail>
                         <RuddyManganeseNodule>40</RuddyManganeseNodule>
                         <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
                         <SeaweedStalk>80</SeaweedStalk>
@@ -68,6 +72,7 @@
                 <CaravelPlatingTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelEnhancedPlating>1</EpheriaCaravelEnhancedPlating>
                         <PurePearlCrystal>45</PurePearlCrystal>
                         <CoxPiratesArtifactParleyBeginner>60</CoxPiratesArtifactParleyBeginner>
                         <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
@@ -77,6 +82,7 @@
                 <CaravelProwTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelBrassFigurehead>1</EpheriaCaravelBrassFigurehead>
                         <RuddyManganeseNodule>50</RuddyManganeseNodule>
                         <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
                         <SeaweedStalk>125</SeaweedStalk>
@@ -86,6 +92,7 @@
                 <CaravelCannonTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelVerishaCannon>1</EpheriaCaravelVerishaCannon>
                         <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
                         <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
                         <MoonScalePlywood>200</MoonScalePlywood>
@@ -95,6 +102,7 @@
                 <CaravelSailTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaCaravelWhiteWindSail>1</EpheriaCaravelWhiteWindSail>
                         <RuddyManganeseNodule>40</RuddyManganeseNodule>
                         <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
                         <SeaweedStalk>80</SeaweedStalk>
@@ -119,6 +127,7 @@
                 <GalleassPlatingTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaGalleassEnhancedPlating>1</EpheriaGalleassEnhancedPlating>
                         <PurePearlCrystal>45</PurePearlCrystal>
                         <CoxPiratesArtifactParleyBeginner>60</CoxPiratesArtifactParleyBeginner>
                         <CoxPiratesArtifactCombat>125</CoxPiratesArtifactCombat>
@@ -128,6 +137,7 @@
                 <GalleassProwTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaGalleassWhiteHornFigurehead>1</EpheriaGalleassWhiteHornFigurehead>
                         <RuddyManganeseNodule>50</RuddyManganeseNodule>
                         <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
                         <SeaweedStalk>125</SeaweedStalk>
@@ -137,6 +147,7 @@
                 <GalleassCannonTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaGalleassVerishaCannon>1</EpheriaGalleassVerishaCannon>
                         <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
                         <CoxPiratesArtifactCombat>125</CoxPiratesArtifactCombat>
                         <MoonScalePlywood>300</MoonScalePlywood>
@@ -146,6 +157,7 @@
                 <GalleassSailTracking>
                     <quantity>1</quantity>
                     <need>
+                        <EpheriaGalleassWhiteWindSail>1</EpheriaGalleassWhiteWindSail>
                         <RuddyManganeseNodule>50</RuddyManganeseNodule>
                         <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
                         <SeaweedStalk>125</SeaweedStalk>
@@ -167,6 +179,46 @@
                         <BrilliantPearlShard>30</BrilliantPearlShard>
                     </need>
                 </CarrackTracking>
+                <GalleassPlatingTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <EpheriaGalleassEnhancedPlating>1</EpheriaGalleassEnhancedPlating>
+                        <PurePearlCrystal>45</PurePearlCrystal>
+                        <CoxPiratesArtifactParleyBeginner>60</CoxPiratesArtifactParleyBeginner>
+                        <CoxPiratesArtifactCombat>125</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>300</MoonScalePlywood>
+                    </need>
+                </GalleassPlatingTracking>
+                <GalleassProwTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <EpheriaGalleassWhiteHornFigurehead>1</EpheriaGalleassWhiteHornFigurehead>
+                        <RuddyManganeseNodule>50</RuddyManganeseNodule>
+                        <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
+                        <SeaweedStalk>125</SeaweedStalk>
+                        <GreatOceanDarkIron>150</GreatOceanDarkIron>
+                    </need>
+                </GalleassProwTracking>
+                <GalleassCannonTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <EpheriaGalleassVerishaCannon>1</EpheriaGalleassVerishaCannon>
+                        <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
+                        <CoxPiratesArtifactCombat>125</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>300</MoonScalePlywood>
+                        <BrightReefPiece>180</BrightReefPiece>
+                    </need>
+                </GalleassCannonTracking>
+                <GalleassSailTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <EpheriaGalleassWhiteWindSail>1</EpheriaGalleassWhiteWindSail>
+                        <RuddyManganeseNodule>50</RuddyManganeseNodule>
+                        <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
+                        <SeaweedStalk>125</SeaweedStalk>
+                        <LuminousCobaltIngot>30</LuminousCobaltIngot>
+                    </need>
+                </GalleassSailTracking>
             </need>
         </volante>
     </boat>
