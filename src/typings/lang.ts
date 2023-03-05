@@ -49,6 +49,9 @@ type langDict = {
                     ],
                     searchPlaceholder: [
                         string
+                    ],
+                    searchAdvice: [
+                        string
                     ]
                 }
             ]
@@ -62,6 +65,9 @@ type langDict = {
                     ]
                     qty: [
                         string
+                    ],
+                    tableAdvice: [
+                        string
                     ]
                 }
             ],
@@ -70,6 +76,9 @@ type langDict = {
                     left: [
                         {
                             title: [
+                                string
+                            ],
+                            tresholdAdvice: [
                                 string
                             ]
                         }
@@ -83,7 +92,7 @@ type langDict = {
                     ]
                 }
             ],
-            settings:[
+            filters:[
                 {
                     ignoreAncado: [
                         string
@@ -115,6 +124,9 @@ type langDict = {
                     tracker: [
                         string
                     ],
+                    carrackAdvice: [
+                        string
+                    ]
                 }
             ]
             totalNeeded:[
@@ -130,26 +142,13 @@ type langDict = {
                     ],
                     barter: [
                         string
+                    ],
+                    totalNeededAdvice: [
+                        string
                     ]
                 }
             ]
             type: [
-                {
-                    advance: [
-                        string
-                    ],
-                    balance: [
-                        string
-                    ],
-                    volante: [
-                        string
-                    ],
-                    valor: [
-                        string
-                    ]
-                }
-            ],
-            advancedType:[
                 {
                     advance: [
                         string
@@ -176,6 +175,13 @@ type langDict = {
                                 string
                             ]
                         }
+                    ]
+                }
+            ],
+            tracker: [
+                {
+                    trackerAdvice: [
+                        string
                     ]
                 }
             ]

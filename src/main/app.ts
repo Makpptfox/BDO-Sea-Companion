@@ -1,5 +1,6 @@
+import mainEventHelper from '@common/mainEvent';
 import { app, BrowserWindow } from 'electron';
-import { createAppWindow } from './appWindow';
+import { createAppWindow, createUpdateWindow } from './appWindow';
 
 require('update-electron-app')()
 
@@ -8,6 +9,8 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+let updateWindow: BrowserWindow;
+
 //new logApi(app);
 
 /**
@@ -15,7 +18,16 @@ if (require('electron-squirrel-startup')) {
  * initialization and is ready to create browser windows.
  * Some APIs can only be used after this event occurs.
  */
-app.on('ready', createAppWindow);
+app.on('ready', ()=>{
+  updateWindow = createUpdateWindow();
+});
+
+mainEventHelper.getInstance().registerCallback('sUpdater', () => {
+
+  console.log('sUpdate');
+
+  createAppWindow(updateWindow);
+});
 
 /**
  * Emitted when the application is activated. Various actions can
@@ -30,7 +42,7 @@ app.on('activate', () => {
    * dock icon is clicked and there are no other windows open.
    */
   if (BrowserWindow.getAllWindows().length === 0) {
-    createAppWindow();
+    updateWindow = createUpdateWindow();
   }
 });
 

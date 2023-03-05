@@ -9,6 +9,8 @@ import dataDict from '@src/typings/data';
 import LangPage from './lang_page/lang_page';
 import SettingTier from './setting-tier/settingTier';
 import ChangeLog from './changeLog/changelog';
+import subEventHelper from '../../common/subEvent';
+import Advice from './advice/advice';
 
 
 // Define the props
@@ -33,6 +35,7 @@ const Application: React.FC<Props> = (props: Props) => {
             <nav>
               <NavLink className={({ isActive }) => isActive ? "activeLink" : "link" } to="/barter">{props.data.lang.navigation[0].barter[0]}</NavLink>
               <NavLink className={({ isActive }) => isActive ? "activeLink" : "link" } to="/carrack">{props.data.lang.navigation[0].carrack[0]}</NavLink>
+              <Advice/>
             </nav>
           </div>
           <div id='app-content'>

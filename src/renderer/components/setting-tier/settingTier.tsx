@@ -85,7 +85,7 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
             <div className="settingTier-page-content">
                 <div className="settingTier-page-content-list">
                     <div className="settingTier-page-content-item">
-                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].settings[0].ignoreIliya[0]}</div>
+                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].filters[0].ignoreIliya[0]}</div>
                         <div className="settingTier-page-content-item-switch">
                             <label className="switch">
                                 <input type="checkbox" checked={_ignoreIliya} onChange={(e)=>{ignoreIliya(e.target.checked)}}/>
@@ -94,7 +94,7 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
                         </div>
                     </div>
                     <div className="settingTier-page-content-item">
-                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].settings[0].ignoreEpheria[0]}</div>
+                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].filters[0].ignoreEpheria[0]}</div>
                         <div className="settingTier-page-content-item-switch">
                             <label className="switch">
                                 <input type="checkbox" checked={_ignoreEpheria} onChange={(e)=>{ignoreEpheria(e.target.checked)}}/>
@@ -103,7 +103,7 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
                         </div>
                     </div>
                     <div className="settingTier-page-content-item">
-                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].settings[0].ignoreAncado[0]}</div>
+                        <div className="settingTier-page-content-item-text">{props.data.lang.barter[0].filters[0].ignoreAncado[0]}</div>
                         <div className="settingTier-page-content-item-switch">
                             <label className="switch">
                                 <input type="checkbox" checked={_ignoreAncado} onChange={(e)=>{ignoreAncado(e.target.checked)}}/>

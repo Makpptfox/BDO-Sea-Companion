@@ -17,8 +17,20 @@ const BarterLeftSearch: React.FC<Props> = (props: Props) => {
 
     const searchIco = require("../../../../assets/icons/search.svg");
 
+    const mouseHover = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.barter[0].left[0].searchAdvice[0]);
+    };
+
+    const mouseOut = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", "");
+    };
+
     return (
-        <div id="app-barter-left-content-zone-search">
+        <div id="app-barter-left-content-zone-search" onMouseOver={mouseHover} onMouseOut={mouseOut} onClick={()=>{
+            const input = win.document.getElementById("app-barter-left-content-zone-search")?.children[0] as HTMLInputElement;
+
+            input.focus();
+        }}>
             <input
                 type="text"
                 placeholder={props.data.lang.barter[0].left[0].searchPlaceholder[0]}
@@ -42,7 +54,7 @@ const BarterLeftSearch: React.FC<Props> = (props: Props) => {
                 autoCorrect="off"
                 spellCheck="false"
             />
-            <img src={searchIco} />
+            <img src={searchIco}  draggable={false}/>
         </div>
     );
 };

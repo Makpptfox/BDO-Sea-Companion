@@ -121,6 +121,9 @@ type carrackDict = {
                     barter: [
                         string
                     ],
+                    trackable?:[
+                        string
+                    ]
                 }
             ]
         }

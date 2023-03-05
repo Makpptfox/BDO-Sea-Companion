@@ -21,6 +21,12 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
     useEffect(()=>{ 
 
+        const titleThresoldWarning = document.getElementsByClassName('app-barter-bottom-left-content-zone-title')[0] as HTMLElement;
+
+        const content = document.getElementsByClassName('app-barter-bottom-right-content')[0] as HTMLElement;
+
+        content.style.marginTop = titleThresoldWarning.offsetHeight + 11 + "px";
+
         let _total = 0;
     
         Object.keys(props.data.save.items[0]).forEach((key) => {
@@ -112,7 +118,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
             <p>{props.data.lang.barter[0].bottom[0].right[0].totalStoragesValue[0]}</p>
 
             <p className="last">{total.toLocaleString().replaceAll(' ', ',')}</p>
-            <img src={silver} />
+            <img src={silver}  draggable={false}/>
         </div>
     )
 }

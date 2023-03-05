@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import dataDict from '@src/typings/data';
 
 import './BarterLeft.scss';
-import BarterLeftSelector from './BarterLeftSelector';
+import BarterLeftSelector from './barterLeftSelector';
 import win_ from '@src/typings/win';
 import BarterLeftSpecial from './BarterLeftSpecial';
 import BarterLeftItem from './BarterLeftItem';
@@ -233,7 +233,7 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
         <div id='app-barter-left-content'>
             <div id='app-barter-left-content-zone-header'>
                 <p>{props.data.lang.barter[0].left[0].storageTitle[0]}</p>
-                <img src={icon} />
+                <img src={icon}  draggable={false}/>
             </div>
             <div id='app-barter-left-content-zone-selector'>
                 {

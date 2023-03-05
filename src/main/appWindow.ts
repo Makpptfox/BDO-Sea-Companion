@@ -4,10 +4,13 @@ import { events } from './modules/events';
 import fs from 'fs';
 import { eventSystem } from './modules/eventSystem';
 import { templateCheck } from './modules/templateChecker';
+import mainEventHelper from '@common/mainEvent';
 
 // Electron Forge automatically creates these entry points
 declare const APP_WINDOW_WEBPACK_ENTRY: string;
 declare const APP_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
+declare const UPDATE_WINDOW_WEBPACK_ENTRY: string;
+declare const UPDATE_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 let appWindow: BrowserWindow;
 
@@ -151,28 +154,21 @@ function checkDataFiles() {
  * Create Application Window
  * @returns {BrowserWindow} Application Window Instance
  */
-export function createAppWindow(): BrowserWindow {
-
-  // Check the template with the app version
-  templateCheck(app.getVersion());
+export function createAppWindow(updateWindow: BrowserWindow): BrowserWindow {
   
   eventSystem.getInstance().addEvent('app-maximize');
 
-  // Check if the data files exist
-  checkDataFiles();
-
   // Create new window instance
   appWindow = new BrowserWindow({
-    width: 1000,
-    height: 800,
-    minWidth: 1000,
-    minHeight: 800,
+    width: 1100,
+    height: 900,
+    minWidth: 1100,
+    minHeight: 900,
     backgroundColor: '#202020',
     show: false,
     autoHideMenuBar: true,
     frame: false,
     titleBarStyle: 'hidden',
-    icon: path.resolve('assets/images/appIcon.ico'),
     webPreferences: {
       devTools: true,
       nodeIntegration: false,
@@ -205,10 +201,9 @@ export function createAppWindow(): BrowserWindow {
         ev.sender.send('app-maximize-reply', true);
       }
     }, 'app-maximize', 'appWindow');
-  });
 
-  // Register Inter Process Communication for main process
-  registerMainIPC();
+    if(!updateWindow.isDestroyed()) updateWindow.close();
+  });
 
   // Close all windows when main window is closed
   appWindow.on('close', () => {
@@ -220,6 +215,60 @@ export function createAppWindow(): BrowserWindow {
 
 
   return appWindow;
+}
+
+export function createUpdateWindow(): BrowserWindow {
+
+  // Create new window instance
+  let updateWindow = new BrowserWindow({
+    width: 350,
+    height: 400,
+    minWidth: 350,
+    minHeight: 400,
+    backgroundColor: '#000',
+    show: false,
+    autoHideMenuBar: true,
+    frame: false,
+    resizable: false,
+    maximizable: false,
+    fullscreenable: false,
+    titleBarStyle: 'hidden',
+    webPreferences: {
+      devTools: true,
+      nodeIntegration: false,
+      contextIsolation: true,
+      nodeIntegrationInWorker: false,
+      nodeIntegrationInSubFrames: false,
+      preload: UPDATE_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      sandbox: false,
+    },
+  });
+
+  // Load the index.html of the app window.
+  updateWindow.loadURL(UPDATE_WINDOW_WEBPACK_ENTRY);
+
+  // Show window when its ready to
+  updateWindow.on('ready-to-show', () => {
+    updateWindow.show()
+
+    // Check the template with the app version
+    // templateCheck(app.getVersion());
+  
+    // Check if the data files exist
+    checkDataFiles();
+  
+    // Register Inter Process Communication for main process
+    registerMainIPC();
+  });
+
+  // Close all windows when main window is closed
+  updateWindow.on('close', () => {
+    updateWindow = null;
+  });
+
+  process.on('warning', e => console.warn(e.stack));
+
+  return updateWindow;
 }
 
 /**

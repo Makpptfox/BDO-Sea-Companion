@@ -26,7 +26,8 @@
           ["@main", "./src/main"],
           ["@src", "./src"],
           ["@misc", "./misc"],
-          ["@assets", "./assets"]
+          ["@assets", "./assets"],
+          ["@updater", "./src/updater/components"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

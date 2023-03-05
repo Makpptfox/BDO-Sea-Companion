@@ -48,7 +48,8 @@
                             "image": "CherrySeed.png",
                             "daily": "0",
                             "coin": "0",
-                            "barter": "0"
+                            "barter": "0",
+                            "trackable": "0"
                         }
                     }
                 }

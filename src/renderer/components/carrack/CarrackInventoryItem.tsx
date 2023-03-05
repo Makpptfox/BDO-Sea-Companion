@@ -46,6 +46,7 @@ const CarrackInventoryItem = (props: Props) => {
     
                 qty.replaceWith(input)
                 input.focus();
+                input.select();
             }
     
         }
@@ -98,6 +99,8 @@ const CarrackInventoryItem = (props: Props) => {
             }
     
             subEventHelper.getInstance().send('carrack-inventory-save-qty', props.index, parseInt(value))
+            props.data.save.inventory[0] = props.data.save.inventory[0] || {};
+            props.data.save.inventory[0][props.index] = props.data.save.inventory[0][props.index] || ["0"];
             props.data.save.inventory[0][props.index][0] = value;
             subEventHelper.getInstance().callEvent('update-carrack-need', props.data.save.inventory[0])
         }
@@ -105,7 +108,7 @@ const CarrackInventoryItem = (props: Props) => {
         setContent(
             <div className="carrack-inventory-item">
                 <div className="carrack-inventory-item-img">
-                    <img src={item_img} alt={item_name + " image"} />
+                    <img src={item_img} alt={item_name + " image"} draggable={false}/>
                     <p>{item_name}</p>
                 </div>
                 <div className='carrack-inventory-item-qty' onClick={clickHandler} onBlur={blurHandler} onKeyDown={keyDownHandler} >

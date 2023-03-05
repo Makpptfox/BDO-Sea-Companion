@@ -15,7 +15,7 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
     const [epheriaThreshold, _setEpheriaThreshold] = React.useState(props.data.save.threshold[0].epheria[0]);
     const [ancadoThreshold, _setAncadoThreshold] = React.useState(props.data.save.threshold[0].ancado[0]);
 
-    const cog = require('../../../../assets/icons/cog.svg')
+    const filter = require('../../../../assets/icons/filter.svg')
 
     
     /**
@@ -67,9 +67,18 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
         _setAncadoThreshold(event.target.value);
     }
 
-    const openSettingTier = () => {
+    const openFilter = () => {
         subEventHelper.getInstance().callEvent("open_setTier_page");
     }
+
+    
+    const mouseHover = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.barter[0].bottom[0].left[0].tresholdAdvice[0]);
+    };
+
+    const mouseOut = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", "");
+    };
 
         return(
             <div className="app-barter-bottom-left">
@@ -79,21 +88,21 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
                     </div>
                     <div className="app-barter-bottom-left-content-zone-content">
                         <div className="app-barter-bottom-left-content-zone-content-item">
-                            <input type="number" placeholder="0" defaultValue={iliyaThreshold} min="0" onChange={setIliyaThreshold}/>
+                            <input type="number" placeholder="0" defaultValue={iliyaThreshold} min="0" onChange={setIliyaThreshold} onMouseOver={mouseHover} onMouseOut={mouseOut}/>
                             <p>Iliya</p>
                         </div>
                         <div className="app-barter-bottom-left-content-zone-content-item">
-                            <input type="number" placeholder="0" defaultValue={epheriaThreshold} min="0" onChange={setEpheriaThreshold}/>
+                            <input type="number" placeholder="0" defaultValue={epheriaThreshold} min="0" onChange={setEpheriaThreshold} onMouseOver={mouseHover} onMouseOut={mouseOut}/>
                             <p>Epheria</p>
                         </div>
                         <div className="app-barter-bottom-left-content-zone-content-item">
-                            <input type="number" placeholder="0" defaultValue={ancadoThreshold} min="0" onChange={setAncadoThreshold}/>
+                            <input type="number" placeholder="0" defaultValue={ancadoThreshold} min="0" onChange={setAncadoThreshold} onMouseOver={mouseHover} onMouseOut={mouseOut}/>
                             <p>Ancado</p>
                         </div>
                     </div>
                 </div>
-                <div className="app-barter-bottom-left-cog">
-                    <img src={cog} alt="cog" width="32" height="32" onClick={openSettingTier}/>
+                <div className="app-barter-bottom-left-filter">
+                    <img src={filter} alt="cog" width="48" height="48" onClick={openFilter}/>
                 </div>
             </div>
         )

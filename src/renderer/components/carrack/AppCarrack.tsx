@@ -68,7 +68,7 @@ const AppCarack = (props: Props) => {
                         subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'advance'});
                         }}>
                         <p>{props.data.lang.carrack[0].type[0].advance[0]}</p>
-                        <img src={carrackAdvance} alt='Advance Carrack Image' />
+                        <img src={carrackAdvance} alt='Advance Carrack Image'  draggable={false}/>
                     </div>
                     <div className='app-carrack-box carrack-balance' onClick={()=>{
                         setCarrackType('balance')
@@ -77,7 +77,7 @@ const AppCarack = (props: Props) => {
                         subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'balance'});
                     }}>
                         <p>{props.data.lang.carrack[0].type[0].balance[0]}</p>
-                        <img src={carrackBalance} alt='Balance Carrack Image' />
+                        <img src={carrackBalance} alt='Balance Carrack Image'  draggable={false}/>
                     </div>
                     <div className='app-carrack-box carrack-volante' onClick={()=>{
                         setCarrackType('volante'); 
@@ -86,7 +86,7 @@ const AppCarack = (props: Props) => {
                         subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'volante'});
                         }}>
                         <p>{props.data.lang.carrack[0].type[0].volante[0]}</p>
-                        <img src={carrackVolante} alt='Volante Carrack Image' />
+                        <img src={carrackVolante} alt='Volante Carrack Image'  draggable={false}/>
                     </div>
                     <div className='app-carrack-box carrack-valor' onClick={()=>{
                         setCarrackType('valor')
@@ -95,7 +95,7 @@ const AppCarack = (props: Props) => {
                         subEventHelper.getInstance().send('set-setting', {key: 'boatType', value: 'valor'});
                         }}>
                         <p>{props.data.lang.carrack[0].type[0].valor[0]}</p>
-                        <img src={carrackValor} alt='Valor Carrack Image' />
+                        <img src={carrackValor} alt='Valor Carrack Image'  draggable={false}/>
                     </div>
                 </div>
             </div>

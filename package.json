@@ -34,7 +34,7 @@
     "type": "git",
     "url": "https://github.com/Makpptfox/BDO_BarterCalculator"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "config": {
     "forge": "./tools/forge/forge.config.js"
   },

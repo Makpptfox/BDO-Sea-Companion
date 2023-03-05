@@ -10,10 +10,9 @@ module.exports = {
     // Set executable name
     executableName: 'BDO Sea Companion',
     // Set application copyright
-    appCopyright: '',
+    appCopyright: 'GPL-3.0 license',
     // Set application icon
-    icon: path.resolve('assets/images/appIcon.ico'),
-  
+    icon: path.resolve('assets/icons/appIcon'),
     extraResource: [
       path.resolve("assets/xml/settings.xml"),
       path.resolve("assets/xml/lang/lang_en.xml"),
@@ -91,6 +90,21 @@ module.exports = {
                 js: path.join(rootDir, 'src/renderer/appPreload.tsx'),
               },
             },
+            {
+              // Window process name
+              name: 'update_window',
+              // React Hot Module Replacement (HMR)
+              rhmr: 'react-hot-loader/patch',
+              // HTML index file template
+              html: path.join(rootDir, 'src/updater/updater.html'),
+              // Renderer
+              js: path.join(rootDir, 'src/updater/updaterRenderer.tsx'),
+              // Main Window
+              // Preload
+              preload: {
+                js: path.join(rootDir, 'src/updater/updaterPreload.tsx'),
+              },
+            }
           ],
         },
         devServer: {

@@ -40,6 +40,14 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
         }
     };
 
+    
+    const mouseHover = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.barter[0].table[0].tableAdvice[0]);
+    };
+
+    const mouseOut = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", "");
+    };
 
     // Use the useEffect to load the table in a async way
     useEffect(() => {
@@ -143,7 +151,7 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
     },[])
 
     return(
-        <table id="app-barter-center">
+        <table id="app-barter-center" onMouseOver={mouseHover} onMouseOut={mouseOut}>
             <thead>
                 <tr>
                     <th>{props.data.lang.barter[0].table[0].tier[0]}</th>

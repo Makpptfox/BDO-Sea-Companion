@@ -28,7 +28,7 @@ const BarterLeftSelector:React.FC<Props> = (props: Props) => {
                     }} />
                 <p>{props.for}</p>
                 <div className='checkbox-border'>
-                    <img className={`display-checkbox-${checked ? 'y' : 'n'}`} src={icon}/>
+                    <img className={`display-checkbox-${checked ? 'y' : 'n'}`} src={icon} draggable={false}/>
                 </div>
             </label>
         </div>

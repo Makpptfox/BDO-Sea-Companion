@@ -33,7 +33,7 @@ const CarrackTracker = (props: Props) => {
                             <CarrackMenu data={props.data} state="inventory" setState={setState} boatType={props.boatType} />
                         </div>
                         <div className="carrack-center">
-                            <CarrackInventory data={props.data} />
+                            <CarrackInventory data={props.data} boatType={props.boatType} />
                         </div>
                         <div className="carrack-right">
                             <CarrackNeed data={props.data} boatType={boatType} />

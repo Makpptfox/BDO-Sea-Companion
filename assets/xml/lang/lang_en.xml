@@ -348,6 +348,9 @@
             <coin>Coins</coin>
             <daily>Daily</daily>
             <barter>Barter</barter>
+            <totalNeededAdvice>
+                You can expend one of the lines to see how they are obtainable!
+            </totalNeededAdvice>
         </totalNeeded>
         <!-- Will show on the select screen but also on the inventory screen when selected (bot left) • So put the first letter in CAPS -->
         <type>
@@ -467,6 +470,12 @@
                 <name>Blue Galleass Sail</name>
             </GalleassSailTracking>
         </items>
+
+        <tracker>
+            <trackerAdvice>
+                You can drag to change the order in which the inventory consume the items and click on an item to directly update it!
+            </trackerAdvice>
+        </tracker>
 
     </carrack>
     

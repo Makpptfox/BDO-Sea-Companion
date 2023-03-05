@@ -48,11 +48,11 @@ const LangPage: React.FunctionComponent<Props> = (props: Props) => {
                 <div className="lang-page-title">Select Language</div>
                 <div className="lang-page-content-list">
                     <div className="lang-page-content-item" onClick={()=>{changeLang("en")}}>
-                        <div className="lang-page-content-item-icon"><img src={require("@assets/icons/lang_en.png")} alt="lang_en" height="16"/></div>
+                        <div className="lang-page-content-item-icon"><img src={require("@assets/icons/lang_en.png")} alt="lang_en" height="16" draggable={false}/></div>
                         <div className="lang-page-content-item-text">English</div>
                     </div>
                     <div className="lang-page-content-item" onClick={()=>{changeLang("fr")}}>
-                        <div className="lang-page-content-item-icon"><img src={require("@assets/icons/lang_fr.png")} alt="lang_fr" height="16"/></div>
+                        <div className="lang-page-content-item-icon"><img src={require("@assets/icons/lang_fr.png")} alt="lang_fr" height="16" draggable={false}/></div>
                         <div className="lang-page-content-item-text">Français</div>
                     </div>
                 </div>
