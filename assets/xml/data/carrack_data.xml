@@ -14,6 +14,15 @@
                         <BrilliantPearlShard>35</BrilliantPearlShard>
                     </need>
                 </CarrackTracking>
+                <CaravelPlatingTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <PurePearlCrystal>45</PurePearlCrystal>
+                        <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>200</MoonScalePlywood>
+                        <CoxPiratesArtifactParleyBeginner>150</CoxPiratesArtifactParleyBeginner>
+                    </need>
+                </CaravelPlatingTracking>
                 <CaravelProwTracking>
                     <quantity>1</quantity>
                     <need>
@@ -23,6 +32,24 @@
                         <GreatOceanDarkIron>150</GreatOceanDarkIron>
                     </need>
                 </CaravelProwTracking>
+                <CaravelCannonTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
+                        <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>200</MoonScalePlywood>
+                        <BrightReefPiece>180</BrightReefPiece>
+                    </need>
+                </CaravelCannonTracking>
+                <CaravelSailTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <RuddyManganeseNodule>40</RuddyManganeseNodule>
+                        <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
+                        <SeaweedStalk>80</SeaweedStalk>
+                        <LuminousCobaltIngot>30</LuminousCobaltIngot>
+                    </need>
+                </CaravelSailTracking>
             </need>
         </advance>
         <balance>
@@ -38,6 +65,15 @@
                         <BrilliantPearlShard>30</BrilliantPearlShard>
                     </need>
                 </CarrackTracking>
+                <CaravelPlatingTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <PurePearlCrystal>45</PurePearlCrystal>
+                        <CoxPiratesArtifactParleyBeginner>60</CoxPiratesArtifactParleyBeginner>
+                        <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>200</MoonScalePlywood>
+                    </need>
+                </CaravelPlatingTracking>
                 <CaravelProwTracking>
                     <quantity>1</quantity>
                     <need>
@@ -47,6 +83,24 @@
                         <GreatOceanDarkIron>150</GreatOceanDarkIron>
                     </need>
                 </CaravelProwTracking>
+                <CaravelCannonTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
+                        <CoxPiratesArtifactCombat>60</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>200</MoonScalePlywood>
+                        <BrightReefPiece>180</BrightReefPiece>
+                    </need>
+                </CaravelCannonTracking>
+                <CaravelSailTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <RuddyManganeseNodule>40</RuddyManganeseNodule>
+                        <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
+                        <SeaweedStalk>80</SeaweedStalk>
+                        <LuminousCobaltIngot>30</LuminousCobaltIngot>
+                    </need>
+                </CaravelSailTracking>
             </need>
         </balance>
         <valor>
@@ -62,6 +116,42 @@
                         <BrilliantPearlShard>30</BrilliantPearlShard>
                     </need>
                 </CarrackTracking>
+                <GalleassPlatingTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <PurePearlCrystal>45</PurePearlCrystal>
+                        <CoxPiratesArtifactParleyBeginner>60</CoxPiratesArtifactParleyBeginner>
+                        <CoxPiratesArtifactCombat>125</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>300</MoonScalePlywood>
+                    </need>
+                </GalleassPlatingTracking>
+                <GalleassProwTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <RuddyManganeseNodule>50</RuddyManganeseNodule>
+                        <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
+                        <SeaweedStalk>125</SeaweedStalk>
+                        <GreatOceanDarkIron>150</GreatOceanDarkIron>
+                    </need>
+                </GalleassProwTracking>
+                <GalleassCannonTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
+                        <CoxPiratesArtifactCombat>125</CoxPiratesArtifactCombat>
+                        <MoonScalePlywood>300</MoonScalePlywood>
+                        <BrightReefPiece>180</BrightReefPiece>
+                    </need>
+                </GalleassCannonTracking>
+                <GalleassSailTracking>
+                    <quantity>1</quantity>
+                    <need>
+                        <RuddyManganeseNodule>50</RuddyManganeseNodule>
+                        <CoxPiratesArtifactParleyExpert>30</CoxPiratesArtifactParleyExpert>
+                        <SeaweedStalk>125</SeaweedStalk>
+                        <LuminousCobaltIngot>30</LuminousCobaltIngot>
+                    </need>
+                </GalleassSailTracking>
             </need>
         </valor>
         <volante>
@@ -81,6 +171,65 @@
         </volante>
     </boat>
     <items>
+    <!-- +10 Caravel Gear -->
+        <EpheriaCaravelEnhancedPlating>
+            <image>EpheriaCaravelEnhancedPlating.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaCaravelEnhancedPlating>
+        <EpheriaCaravelBrassFigurehead>
+            <image>EpheriaCaravelBrassFigurehead.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaCaravelBrassFigurehead>
+        <EpheriaCaravelVerishaCannon>
+            <image>EpheriaCaravelVerishaCannon.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaCaravelVerishaCannon>
+        <EpheriaCaravelWhiteWindSail>
+            <image>EpheriaCaravelWhiteWindSail.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaCaravelWhiteWindSail>
+    <!-- +10 Galleass Gear -->
+        <EpheriaGalleassEnhancedPlating>
+            <image>EpheriaGalleassEnhancedPlating.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaGalleassEnhancedPlating>
+        <EpheriaGalleassWhiteHornFigurehead>
+            <image>EpheriaGalleassWhiteHornFigurehead.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaGalleassWhiteHornFigurehead>
+        <EpheriaGalleassVerishaCannon>
+            <image>EpheriaGalleassVerishaCannon.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaGalleassVerishaCannon>
+        <EpheriaGalleassWhiteWindSail>
+            <image>EpheriaGalleassWhiteWindSail.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>0</trackable>
+        </EpheriaGalleassWhiteWindSail>
+    <!-- Standard items from then on -->
         <MoonVeinFlaxFabric>
             <image>MoonVeinFlaxFabric.png</image>
             <daily>1</daily>
@@ -100,8 +249,8 @@
             <daily>0</daily>
             <coin>1</coin>
             <barter>1</barter>
-            <trackable>0</trackable>
             <!-- Is NOT a trackable component in itself, so trackable is 0 -->
+            <trackable>0</trackable>
         </BrilliantRockSaltIngot>
         <TearoftheOcean>
             <image>TearoftheOcean.png</image>
@@ -119,21 +268,21 @@
         </BrilliantPearlShard>
         <RuddyManganeseNodule>
             <image>RuddyManganeseNodule.png</image>
-            <daily>0</daily>
+            <daily>1</daily>
             <coin>1</coin>
             <barter>1</barter>
             <trackable>0</trackable>
         </RuddyManganeseNodule>
         <EnhancedIslandTreeCoatedPlywood>
             <image>EnhancedIslandTreeCoatedPlywood.png</image>
-            <daily>0</daily>
+            <daily>1</daily>
             <coin>1</coin>
             <barter>1</barter>
             <trackable>0</trackable>
         </EnhancedIslandTreeCoatedPlywood>
         <SeaweedStalk>
             <image>SeaweedStalk.png</image>
-            <daily>0</daily>
+            <daily>1</daily>
             <coin>1</coin>
             <barter>1</barter>
             <trackable>0</trackable>
@@ -145,21 +294,99 @@
             <barter>1</barter>
             <trackable>0</trackable>
         </GreatOceanDarkIron>
-        <!--Trackable components-->
+        <TideDyedStandardizedTimberSquare>
+            <image>TideDyedStandardizedTimberSquare.png</image>
+            <daily>1</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </TideDyedStandardizedTimberSquare>
+        <CoxPiratesArtifactCombat>
+            <image>CoxPiratesArtifactCombat.png</image>
+            <daily>1</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </CoxPiratesArtifactCombat>
+        <MoonScalePlywood>
+            <image>MoonScalePlywood.png</image>
+            <daily>1</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </MoonScalePlywood>
+        <BrightReefPiece>
+            <image>BrightReefPiece.png</image>
+            <daily>1</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </BrightReefPiece>
+        <PurePearlCrystal>
+            <image>PurePearlCrystal.png</image>
+            <daily>1</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </PurePearlCrystal>
+        <CoxPiratesArtifactParleyBeginner>
+            <image>CoxPiratesArtifactParleyBeginner.png</image>
+            <daily>0</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </CoxPiratesArtifactParleyBeginner>
+        <CoxPiratesArtifactParleyExpert>
+            <image>CoxPiratesArtifactParleyExpert.png</image>
+            <daily>1</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </CoxPiratesArtifactParleyExpert>
+        <LuminousCobaltIngot>
+            <image>LuminousCobaltIngot.png</image>
+            <daily>0</daily>
+            <coin>1</coin>
+            <barter>1</barter>
+            <trackable>0</trackable>
+        </LuminousCobaltIngot>
+        
+    <!--Trackable components listing-->
         <CarrackTracking>
-            <image>ToDo.png</image>
+            <image>DoNotDelete.png</image>
             <daily>0</daily>
             <coin>0</coin>
             <barter>0</barter>
             <!-- Is a trackable component needing it's own line, so trackable is 1 -->
             <trackable>1</trackable>
         </CarrackTracking>
+        <CaravelPlatingTracking>
+            <image>DoNotDelete.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>1</trackable>
+        </CaravelPlatingTracking>
         <CaravelProwTracking>
-            <image>ToDo.png</image>
+            <image>DoNotDelete.png</image>
             <daily>0</daily>
             <coin>0</coin>
             <barter>0</barter>
             <trackable>1</trackable>
         </CaravelProwTracking>
+        <CaravelCannonTracking>
+            <image>DoNotDelete.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>1</trackable>
+        </CaravelCannonTracking>
+        <CaravelSailTracking>
+            <image>DoNotDelete.png</image>
+            <daily>0</daily>
+            <coin>0</coin>
+            <barter>0</barter>
+            <trackable>1</trackable>
+        </CaravelSailTracking>
     </items>
 </carrack>
