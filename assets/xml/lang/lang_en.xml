@@ -301,48 +301,47 @@
         </Rock>
         
     </items>
-
+    
+    <!-- Barter menu strings -->
     <barter>
-
         <left>
             <storageTitle>Storages</storageTitle>
             <lastSpecialBarterAt>Last special barter at:</lastSpecialBarterAt>
             <estimatedNext>Estimated next:</estimatedNext>
             <searchPlaceholder>Search</searchPlaceholder>
+            <searchAdvice>You can use + between multiples items' name to search them simultaneously!</searchAdvice>
         </left>
-
         <table>
             <tier>Level</tier>
             <name>Name</name>
             <qty>Quantity</qty>
+            <tableAdvice>You can use the arrow up and down key to navigate faster between items!</tableAdvice>
         </table>
-
         <bottom>
             <left>
                 <title>Treshold Warning</title>
+                <tresholdAdvice>Any item below this limit will trigger the warning and put the concerned Storage in Red!</tresholdAdvice>
             </left>
             <right>
                 <totalStoragesValue>Total Value : </totalStoragesValue>
             </right>
         </bottom>
-
-        <settings>
+        <filters>
             <ignoreIliya>Ignore Iliya's T 5</ignoreIliya>
             <ignoreEpheria>Ignore Epheria's T 5</ignoreEpheria>
             <ignoreAncado>Ignore Ancado's T 1-4</ignoreAncado>
-        </settings>
-
+        </filters>
     </barter>
+    
+    <!-- Carrack menu strings -->
     <carrack>
-
         <selectScreen>
-
             <title>Select a Carrack you wish to track:</title>
-
         </selectScreen>
         <menu>
             <inventory>Inventory</inventory>
             <tracker>Tracker</tracker>
+            <carrackAdvice>You can click on the Carrack's picture to change your choice!</carrackAdvice>
         </menu>
         <totalNeeded>
             <title>Total needed</title>
@@ -350,20 +349,40 @@
             <daily>Daily</daily>
             <barter>Barter</barter>
         </totalNeeded>
+        <!-- Will show on the select screen but also on the inventory screen when selected (bot left) • So put the first letter in CAPS -->
         <type>
             <advance>Advance</advance>
             <balance>Balance</balance>
             <volante>Volante</volante>
             <valor>Valor</valor>
         </type>
-        <advancedType>
-            <advance>Advance</advance>
-            <balance>Balance</balance>
-            <volante>Volante</volante>
-            <valor>Valor</valor>
-        </advancedType>
+        
         <items>
-        <!-- For the Carrack part -->
+        <!-- Inventory Part -->
+            <EpheriaCaravelEnhancedPlating>
+                <name>+10 Green Plating</name>
+            </EpheriaCaravelEnhancedPlating>
+            <EpheriaCaravelBrassFigurehead>
+                <name>+10 Green Prow</name>
+            </EpheriaCaravelBrassFigurehead>
+            <EpheriaCaravelVerishaCannon>
+                <name>+10 Green Cannon</name>
+            </EpheriaCaravelVerishaCannon>
+            <EpheriaCaravelWhiteWindSail>
+                <name>+10 Green Sail</name>
+            </EpheriaCaravelWhiteWindSail>
+            <EpheriaGalleassEnhancedPlating>
+                <name>+10 Green Plating</name>
+            </EpheriaGalleassEnhancedPlating>
+            <EpheriaGalleassWhiteHornFigurehead>
+                <name>+10 Green Prow</name>
+            </EpheriaGalleassWhiteHornFigurehead>
+            <EpheriaGalleassVerishaCannon>
+                <name>+10 Green Cannon</name>
+            </EpheriaGalleassVerishaCannon>
+            <EpheriaGalleassWhiteWindSail>
+                <name>+10 Green Sail</name>
+            </EpheriaGalleassWhiteWindSail>
             <MoonVeinFlaxFabric>
                 <name>Moon Fabric</name>
             </MoonVeinFlaxFabric>
@@ -391,13 +410,62 @@
             <GreatOceanDarkIron>
                 <name>Dark Iron</name>
             </GreatOceanDarkIron>
+            <TideDyedStandardizedTimberSquare>
+                <name>Timber</name>
+            </TideDyedStandardizedTimberSquare>
+            <CoxPiratesArtifactCombat>
+                <name>Cox's Combat</name>
+            </CoxPiratesArtifactCombat>
+            <MoonScalePlywood>
+                <name>Moon Plywood</name>
+            </MoonScalePlywood>
+            <BrightReefPiece>
+                <name>Reef Piece</name>
+            </BrightReefPiece>
+            <PurePearlCrystal>
+                <name>Pearl Crystal</name>
+            </PurePearlCrystal>
+            <CoxPiratesArtifactParleyBeginner>
+                <name>Cox's Parley Beginner</name>
+            </CoxPiratesArtifactParleyBeginner>
+            <CoxPiratesArtifactParleyExpert>
+                <name>Cox's Parley Expert</name>
+            </CoxPiratesArtifactParleyExpert>
+            <LuminousCobaltIngot>
+                <name>Luminous Cobalt</name>
+            </LuminousCobaltIngot>
+            
+            
         <!-- Tracker part -->
             <CarrackTracking>
                 <name>Carrack</name>
             </CarrackTracking>
+            
+            <CaravelPlatingTracking>
+                <name>Blue Caravel Plating</name>
+            </CaravelPlatingTracking>
             <CaravelProwTracking>
                 <name>Blue Caravel Prow</name>
             </CaravelProwTracking>
+            <CaravelCannonTracking>
+                <name>Blue Caravel Cannon</name>
+            </CaravelCannonTracking>
+            <CaravelSailTracking>
+                <name>Blue Caravel Sail</name>
+            </CaravelSailTracking>
+            
+            <GalleassPlatingTracking>
+                <name>Blue Galleass Plating</name>
+            </GalleassPlatingTracking>
+            <GalleassProwTracking>
+                <name>Blue Galleass Prow</name>
+            </GalleassProwTracking>
+            <GalleassCannonTracking>
+                <name>Blue Galleass Cannon</name>
+            </GalleassCannonTracking>
+            <GalleassSailTracking>
+                <name>Blue Galleass Sail</name>
+            </GalleassSailTracking>
         </items>
 
     </carrack>
