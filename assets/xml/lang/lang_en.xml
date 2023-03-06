@@ -285,7 +285,7 @@
         </GoldenHerb>
         <Portrait>
             <name>Portrait</name>
-            <description>Portrait of the Ancien</description>
+            <description>Portrait of the Ancient</description>
         </Portrait>
         <Elixir>
             <name>Elixir</name>
@@ -299,7 +299,6 @@
             <name>Rock</name>
             <description>Mysterious Rock</description>
         </Rock>
-        
     </items>
     
     <!-- Barter menu strings -->
@@ -309,13 +308,14 @@
             <lastSpecialBarterAt>Last special barter at:</lastSpecialBarterAt>
             <estimatedNext>Estimated next:</estimatedNext>
             <searchPlaceholder>Search</searchPlaceholder>
-            <searchAdvice>You can use + between multiples items' name to search them simultaneously!</searchAdvice>
+            <searchAdvice>You can use the plus sign (+) to search for multiple items at the same time!</searchAdvice>
+            <specialBarterAdvice>You can enter here your total barters at which you were the last time you had your special barter to get an approximation on the next one!</specialBarterAdvice>
         </left>
         <table>
             <tier>Level</tier>
             <name>Name</name>
             <qty>Quantity</qty>
-            <tableAdvice>You can use the arrow up and down key to navigate faster between items!</tableAdvice>
+            <tableAdvice>You can use the arrow up and down key to navigate faster between amounts!</tableAdvice>
         </table>
         <bottom>
             <left>
@@ -323,13 +323,13 @@
                 <tresholdAdvice>Any item below this limit will trigger the warning and put the concerned Storage in Red!</tresholdAdvice>
             </left>
             <right>
-                <totalStoragesValue>Total Value : </totalStoragesValue>
+                <totalStoragesValue>Total Value:</totalStoragesValue>
             </right>
         </bottom>
         <filters>
-            <ignoreIliya>Ignore Iliya's T 5</ignoreIliya>
-            <ignoreEpheria>Ignore Epheria's T 5</ignoreEpheria>
-            <ignoreAncado>Ignore Ancado's T 1-4</ignoreAncado>
+            <ignoreIliya>Ignore Iliya's T 5?</ignoreIliya>
+            <ignoreEpheria>Ignore Epheria's T 5?</ignoreEpheria>
+            <ignoreAncado>Ignore Ancado's T 1-4?</ignoreAncado>
         </filters>
     </barter>
     
@@ -349,7 +349,7 @@
             <daily>Daily</daily>
             <barter>Barter</barter>
             <totalNeededAdvice>
-                You can expend one of the lines to see how they are obtainable!
+                You can expand one of the lines to see how they are obtainable!
             </totalNeededAdvice>
         </totalNeeded>
         <!-- Will show on the select screen but also on the inventory screen when selected (bot left) • So put the first letter in CAPS -->
@@ -396,7 +396,7 @@
                 <name>Brillant Rock</name>
             </BrilliantRockSaltIngot>
             <TearoftheOcean>
-                <name>Tear</name>
+                <name>Tear of the Ocean</name>
             </TearoftheOcean>
             <BrilliantPearlShard>
                 <name>Pearl Shard</name>
