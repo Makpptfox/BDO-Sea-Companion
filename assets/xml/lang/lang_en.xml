@@ -348,9 +348,12 @@
             <coin>Coins</coin>
             <daily>Daily</daily>
             <barter>Barter</barter>
-            <totalNeededAdvice>
+            <totalNeededAdviceContent>
                 You can expand one of the lines to see how they are obtainable!
-            </totalNeededAdvice>
+            </totalNeededAdviceContent>
+            <totalNeededAdviceTitle>
+                You can check this box to hide the completed items!
+            </totalNeededAdviceTitle>
         </totalNeeded>
         <!-- Will show on the select screen but also on the inventory screen when selected (bot left) • So put the first letter in CAPS -->
         <type>
