@@ -24,6 +24,8 @@ const CarrackInventoryItem = (props: Props) => {
         
         const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
             
+            subEventHelper.getInstance().callEvent('focus-need', props.index);
+
             const target = e.target;
     
             let qty = null;
@@ -68,6 +70,8 @@ const CarrackInventoryItem = (props: Props) => {
             if (input) {
                 input.replaceWith(qty);
             }
+            
+            subEventHelper.getInstance().callEvent('focus-need', '');
         }
     
         const keyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -105,8 +109,15 @@ const CarrackInventoryItem = (props: Props) => {
             subEventHelper.getInstance().callEvent('update-carrack-need', props.data.save.inventory[0])
         }
     
+
+        const clickHandlerItem = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
+
+            const input = e.currentTarget.querySelector('.carrack-inventory-item-qty') as HTMLDivElement;
+            input.click();
+        }
+
         setContent(
-            <div className="carrack-inventory-item">
+            <div className="carrack-inventory-item" onClick={clickHandlerItem}>
                 <div className="carrack-inventory-item-img">
                     <img src={item_img} alt={item_name + " image"} draggable={false}/>
                     <p>{item_name}</p>

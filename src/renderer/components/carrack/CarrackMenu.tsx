@@ -26,14 +26,22 @@ const CarrackMenu = (props: Props) => {
         const mouseOut = () => {
             subEventHelper.getInstance().callEvent("rAdvice", "");
         };
+        
+        useEffect(() => {
 
-        subEventHelper.getInstance().registerCallback('focus-item', (itemName: string)=>{
+            subEventHelper.getInstance().registerCallback('focus-item', (itemName: string)=>{
 
-            props.setState("inventory");
+                props.setState("inventory");
 
-            tempHelper.getInstance().set('focusItem', itemName);
+                tempHelper.getInstance().set('focusItem', itemName);
 
-        }, 'carrackMenu');
+            }, 'carrackMenu');
+
+            return () => {
+                subEventHelper.getInstance().unregisterAllCallbacks('focus-item');
+            }
+
+        }, []);
 
         useEffect(() => {
 

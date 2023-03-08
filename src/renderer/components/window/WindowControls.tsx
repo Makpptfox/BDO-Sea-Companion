@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ControlButton from "./controlButton";
 import subEventHelper from "@common/subEvent";
+import tempHelper from '../../../common/temp';
 
 const WindowControls = () => {
 
     const [maximized, setMaximized] = React.useState(false);
 
-    const [lang, setLang] = React.useState('en');
+    const [lang, setLang] = React.useState(tempHelper.getInstance().has('lang') ? tempHelper.getInstance().get('lang') : 'en');
 
     subEventHelper.getInstance().registerCallback('app-maximize-reply', (maximize) => {
 
@@ -14,10 +15,12 @@ const WindowControls = () => {
 
     }, 'windowControls');
 
-    subEventHelper.getInstance().registerCallback('set-lang', (lang) => {
+    useEffect(() => {
+        subEventHelper.getInstance().registerCallback('set-lang', (lang) => {
 
-        setLang(lang)
-    }, 'windowControls');
+            setLang(lang)
+        }, 'windowControls');
+    }, []);
 
     // TODO: Add functionality to the buttons:
         // - Help button should open a help page
@@ -32,6 +35,9 @@ const WindowControls = () => {
             <ControlButton icon={"lang_"+lang} onClick={function (): void {
 
                 subEventHelper.getInstance().callEvent('open_lang_page');
+            } }/>
+            <ControlButton icon={"hBar"} onClick={function (): void {
+                subEventHelper.getInstance().send('app-hide');
             } }/>
             <ControlButton icon={maximized? 'minimize' : 'maximize'} onClick={function (): void {
 

@@ -202,6 +202,10 @@ export function createAppWindow(updateWindow: BrowserWindow): BrowserWindow {
       }
     }, 'app-maximize', 'appWindow');
 
+    mainEventHelper.getInstance().registerCallback('app-hide', () => {
+      appWindow.minimize();
+    });
+
     if(!updateWindow.isDestroyed()) updateWindow.close();
   });
 
@@ -280,7 +284,7 @@ function registerMainIPC() {
    * to Communicate asynchronously from the main process to renderer processes.
    */
 
-  events()
+  events(appWindow);
 }
 
 

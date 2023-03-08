@@ -12,7 +12,7 @@
     border-radius: 4px;
 
     .app-barter-left-content-zone-item-icon{
-        margin: 16px 0 8px 0;
+        margin: 8px 0 8px 0;
     }
 
     .app-barter-left-content-zone-item-name{
@@ -22,11 +22,19 @@
         font-weight: bold;
         color: white;
         margin-bottom: 5px;
+        text-align: center;
     }
     .app-barter-left-content-zone-item-tier{
         width: 90%;
         font-size: 16px;
-        color: #8d8d8d
+        color: #afafaf;
+        margin-top: 10px;
+        p{
+            width: fit-content;
+            padding: 0 5px;
+            border-radius: 4px;
+            background-color: rgba(0,0,0,0.4);
+        }
     }
 }
 

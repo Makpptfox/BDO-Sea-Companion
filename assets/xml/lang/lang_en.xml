@@ -347,10 +347,13 @@
             <title>Total needed</title>
             <coin>Coins</coin>
             <daily>Daily</daily>
-            <barter>Barter</barter>
-            <totalNeededAdvice>
-                You can expand one of the lines to see how they are obtainable!
-            </totalNeededAdvice>
+            <barter>Barter</barter>            
+            <totalNeededAdviceContent>
+                You can expend one of the lines to see how they are obtainable!
+            </totalNeededAdviceContent>
+            <totalNeededAdviceTitle>
+                totalNeededAdviceTitle
+            </totalNeededAdviceTitle>
         </totalNeeded>
         <!-- Will show on the select screen but also on the inventory screen when selected (bot left) • So put the first letter in CAPS -->
         <type>

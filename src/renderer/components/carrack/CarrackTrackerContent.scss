@@ -1,3 +1,23 @@
+.border{
+    background-color: blue;
+    width: 0px;
+    height: 0px;
+
+    transition: all 0.5s ease;
+}
+
+@keyframes border-anim {
+    // this animation will be used in JS to add more height to the border
+    0% {
+        margin-top: 70px;
+        margin-bottom: 0px;
+    }
+    100% {
+        margin-top: 70px;
+        margin-bottom: 56px;
+    }
+}
+
 .carrack-tracker-content-item{
     span:first-child{
         width: auto;
@@ -53,7 +73,6 @@
         color: white;
         display: flex;
         flex-direction: row;
-        margin-bottom: 12.5px;
         margin-top: 12.5px;
         justify-content: space-between;
         align-items: center;
@@ -64,6 +83,8 @@
     }
 
     &.multi-content-item{
+        position: relative; 
+        z-index: 100;
         .content-header{
             background: linear-gradient(180deg, #4f4f4f 80%, #666666 100%);
             width: 100%;
@@ -79,6 +100,7 @@
             margin-bottom: 12.5px;
             margin-top: 12.5px;
             padding: 0 10px;
+            z-index: 100;
         }
         .complete{
             background: linear-gradient(180deg, #5e483a 60%, #96683e 100%)!important;

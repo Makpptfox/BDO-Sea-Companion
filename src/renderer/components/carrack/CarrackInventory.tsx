@@ -46,6 +46,7 @@ const CarrackInventory = (props: Props) => {
                 console.log('hasFocusItem')
 
                 const focusItem = tempHelper.getInstance().get('focusItem');
+                tempHelper.getInstance().delete('focusItem');
 
                 console.log('focusItem: ' + focusItem)
 
@@ -60,7 +61,6 @@ const CarrackInventory = (props: Props) => {
                     }
                 });
 
-                tempHelper.getInstance().delete('focusItem');
             }
         }, 10);
     }, []);

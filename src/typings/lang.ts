@@ -52,6 +52,9 @@ type langDict = {
                     ],
                     searchAdvice: [
                         string
+                    ],
+                    specialBarterAdvice: [
+                        string
                     ]
                 }
             ]
@@ -143,7 +146,10 @@ type langDict = {
                     barter: [
                         string
                     ],
-                    totalNeededAdvice: [
+                    totalNeededAdviceContent: [
+                        string
+                    ],
+                    totalNeededAdviceTitle: [
                         string
                     ]
                 }

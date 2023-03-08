@@ -26,7 +26,7 @@ import onSetSetting from "./events/onSetSetting";
 const eventHelper = mainEventHelper.getInstance();
 
 // Export all events in one function
-export function events(){
+export function events(window: Electron.BrowserWindow){
 
     // Register page change event
     ipcMain.on('pageChange', (event, page) => {
@@ -232,22 +232,6 @@ export function events(){
 
         e.sender.send('set-lang', lang);
     });
-
-    
-
-    mainEventHelper.getInstance().registerCallback('app-restart', ()=>{
-        // if in dev mode, don't do anything and throw an error that explains why it's not working in dev mode
-        if (process.env.NODE_ENV === 'development') {
-        
-            throw new Error('Cannot restart app in development mode, but it\'s working in production mode, so you\'re good!');
-            return;
-        
-        }
-
-        // if not in dev mode, restart the app
-        app.relaunch();
-        app.exit()
-    })
 
     // DEPRECATED EVENT
 

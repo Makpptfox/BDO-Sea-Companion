@@ -21,6 +21,22 @@ type Props = {
 // Create the component to render
 const Application: React.FC<Props> = (props: Props) => {
 
+
+
+  document.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    return false;
+  }, false);
+
+  document.addEventListener("drop", (e: any) => {
+    e.preventDefault();
+  });
+
+  document.addEventListener("dragenter", (e: any) => {
+    e.preventDefault();
+    // Change the cursor 
+    e.dataTransfer.dropEffect = "move";
+  });
   // Return the component to render
   return (
     <div id='erwt'>

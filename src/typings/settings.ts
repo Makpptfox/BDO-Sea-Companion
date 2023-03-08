@@ -16,5 +16,23 @@ export type settings = {
         boatType: [
             string
         ],
+        hideTier1: [
+            string
+        ],
+        hideTier2: [
+            string
+        ],
+        hideTier3: [
+            string
+        ],
+        hideTier4: [
+            string
+        ],
+        hideTier5: [
+            string
+        ],
+        "carrack-need-hide-completed": [
+            string
+        ]
     }
 }

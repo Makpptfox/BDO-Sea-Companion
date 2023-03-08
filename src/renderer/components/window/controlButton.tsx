@@ -20,7 +20,7 @@ const ControlButton: React.FunctionComponent<ControlButtonProps> = (props) => {
 
     return (
         <div className='control-button' onClick={props.onClick}>
-            <div className='control-button-icon'><img src={icon} alt={props.icon} height='16' draggable={false}/></div>
+            <div className='control-button-icon'><img src={icon} alt={props.icon} width='16' height='16' draggable={false}/></div>
         </div>
     );
 };

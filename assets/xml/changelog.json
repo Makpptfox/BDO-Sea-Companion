@@ -9,12 +9,19 @@
         "Added the 'changelog.json' file to contain the changelog.",
         "Added an changelog window that will open when the program is launched for the first time after an update or when click on the \"?\" icon.",
         "Added the ability to drag and drop the items needed in the carrack tracker.",
-        "You can now use a \"+\" in the search bar to search for multiple item (example: \"blue candle bundle +ancient orders\")."
+        "You can now use a \"+\" in the search bar to search for multiple item (example: \"blue candle bundle +ancient orders\").",
+        "Added some advices, look at the right of the navigation bar.",
+        "Added an arrow to the tracker components bar, to show you that you can click on to open them.",
+        "Added many new items to the Carrack tracker.",
+        "Added many translation lines.",
+        "Added an window to check the integrity of the data files and if an update is available."
     ],
     "fixes": [
         "Fixed the need to delete all data file every time that we update the program data. Now it will automatically adjust to the new data structure.",
         "Fixed some problem with the language selection window. Now it should work properly.",
-        "Now you can CTRL + A and other shortcuts in the number input field in the carrack - inventory section."
+        "Now you can CTRL + A and other shortcuts in the number input field in the carrack - inventory section.",
+        "Resize of the window to fit the content.",
+        "Change the icon of the filter in the barter section."
     ],
     "notes": [
         "The verification of all the data files is in test, so if you find any problem, please report it on GitHub.",

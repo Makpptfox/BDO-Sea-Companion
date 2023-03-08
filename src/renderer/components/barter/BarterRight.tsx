@@ -199,12 +199,18 @@ const BarterRight:React.FC<Props> = (props: Props) => {
 
     });
 
-    // Launch the observer script on the body once before observing it
-    observer.observe(document.body, {
-        attributes: true,
-        childList: true,
-        subtree: true
-    });
+
+    useEffect(() => {
+        
+        // Launch the observer script on the body once before observing it
+        observer.observe(document.body, {
+            attributes: true,
+            childList: true,
+            subtree: true
+        });
+        
+        return(() => { observer.disconnect() });
+    }, []);
 
 
     return (

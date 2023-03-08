@@ -349,9 +349,12 @@
             <coin>Pièces</coin>
             <daily>Journa</daily>
             <barter>Troc</barter>
-            <totalNeededAdvice>
+            <totalNeededAdviceContent>
                 Vous pouvez dérouler l'une des lignes pour en savoir plus sur la façon d'obtenir l'objet correspondant !
-            </totalNeededAdvice>
+            </totalNeededAdviceContent>
+            <totalNeededAdviceTitle>
+                totalNeededAdviceTitle
+            </totalNeededAdviceTitle>
         </totalNeeded>
         <!-- Sera affiché à la fois sur l'écran de sélection et sur l'écran d'inventaire lorsqu'il est sélectionné (en bas à gauche) • Mettez donc la première lettre en MAJUSCULES -->
         <type>

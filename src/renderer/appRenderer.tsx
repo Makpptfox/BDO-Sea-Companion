@@ -13,7 +13,7 @@ import carrackDict from '@src/typings/carrack';
 import { settings } from '@src/typings/settings';
 import update from '@src/typings/update';
 import { changeLog } from '@src/typings/changelog';
-
+import tempHelper from '../common/temp';
 
 const log = console.log;
 const trace = console.trace;
@@ -89,6 +89,8 @@ function init(){
 
     const lang:string = data.lang;
 
+    tempHelper.getInstance().set('lang', lang);
+
     // Get all dictionaries
     const langDict:langDict = data.langDict['root'];
     const itemDict:itemDict = data.itemDict['items'];
@@ -96,6 +98,47 @@ function init(){
     const carrackDict:carrackDict = data.carrackDict['carrack'];
     const settings: settings = data.settings;
     const update: update = data.update['update'];
+    
+    if(settings.settings.hideTier1?.[0] !== undefined){
+      const b = settings.settings.hideTier1[0] === 'false';
+      tempHelper.getInstance().set('barterTier1', b);
+      if(!b){
+        tempHelper.getInstance().set('barterAll', b);
+      }
+    }
+    if(settings.settings.hideTier2?.[0] !== undefined){ 
+      const b = settings.settings.hideTier2[0] === 'false';
+      tempHelper.getInstance().set('barterTier2', b);
+      if(!b){
+        tempHelper.getInstance().set('barterAll', b);
+      }
+    }
+    if(settings.settings.hideTier3?.[0] !== undefined){
+      const b = settings.settings.hideTier3[0] === 'false';
+      tempHelper.getInstance().set('barterTier3', b);
+      if(!b){
+        tempHelper.getInstance().set('barterAll', b);
+      }
+    }
+    if(settings.settings.hideTier4?.[0] !== undefined){
+      const b = settings.settings.hideTier4[0] === 'false';
+      tempHelper.getInstance().set('barterTier4', b);
+      if(!b){
+        tempHelper.getInstance().set('barterAll', b);
+      }
+    }
+    if(settings.settings.hideTier5?.[0] !== undefined){
+      const b = settings.settings.hideTier5[0] === 'false';
+      tempHelper.getInstance().set('barterTier5', b);
+      if(!b){
+        tempHelper.getInstance().set('barterAll', b);
+      }
+    }
+
+    if(settings.settings['carrack-need-hide-completed']?.[0] !== undefined){
+      const b = settings.settings['carrack-need-hide-completed'][0] === '1';
+      tempHelper.getInstance().set('carrack-need-hide-completed', b);
+    }
     
     const changelog: changeLog = data.changelog;
 
@@ -138,7 +181,8 @@ function init(){
     eventHelper.registerCallback('set-lang', () => {
 
       eventHelper.removeAllEvents();
-      eventHelper.send('app-restart');
+      window.location.reload();
+
     }, 'appRenderer', true);
 
     // If in development mode, trace the language dictionary

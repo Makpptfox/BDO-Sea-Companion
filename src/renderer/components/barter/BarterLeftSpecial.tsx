@@ -35,8 +35,17 @@ const BarterLeftSpecial:React.FC<Props> = (props: Props) => {
 
     }
 
+    
+    const mouseHover = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.barter[0].left[0].specialBarterAdvice[0]);
+    };
+
+    const mouseOut = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", "");
+    };
+
     return (
-        <div className="barter-left-special">
+        <div className="barter-left-special" onMouseOver={mouseHover} onMouseOut={mouseOut}>
             <div className="InputSpecialBarter">
                 <label htmlFor="LastSpecialBarter">{props.data.lang.barter[0].left[0].lastSpecialBarterAt[0]}</label>
                 <input id="LastSpecialBarter" type="number" defaultValue={parseInt(props.data.save.misc[0].lastBarter[0])} onChange={(e)=>countNewSpecialBarter(e.target.value)} />

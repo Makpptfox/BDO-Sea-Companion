@@ -40,6 +40,12 @@ const CarrackTrackerContent  = (props: Props) => {
 
     // Register a callback to update the need data when the 'update-carrack-need' event is emitted
     useEffect(() => {
+        
+
+        const borderElem = document.createElement('div');
+        borderElem.classList.add('border');
+
+        let borderAdded = false;
 
         console.log("Registering update-carrack-need callback")
 
@@ -179,6 +185,8 @@ const CarrackTrackerContent  = (props: Props) => {
     
                                 const onClick = () => {
 
+                                    console.log("Clicked on " + item_name)
+
                                     subEventHelper.getInstance().callEvent('focus-item', item_name);
 
                                 }
@@ -208,6 +216,8 @@ const CarrackTrackerContent  = (props: Props) => {
                                     const item_image = image['default'];
     
                                     const onClick = () => {
+
+                                        console.log("Clicked on " + item_name)
     
                                         subEventHelper.getInstance().callEvent('focus-item', item_name);
     
@@ -257,7 +267,10 @@ const CarrackTrackerContent  = (props: Props) => {
                     })
 
                     let dragY = 0;
-
+                    let dragX = 0;
+                    let currentId = "";
+                    let saveElm: HTMLElement | null = null;
+                    let next:HTMLElement = null;
 
                     Promise.all(promises).then(() => {
                         console.log('promise all');
@@ -281,43 +294,152 @@ const CarrackTrackerContent  = (props: Props) => {
                                     </p>
                                     <span id={`arrow-${key}`} className='arrow'>ᐯ</span>
                                     <span id={`drag-${key}`} className='drag' onDragStart={(e:React.DragEvent)=>{
+
                                         const img = document.createElement("img");
                                         e.dataTransfer.setDragImage(img, 0, 0);
+
+                                        currentId = key;
+
+                                        e.dataTransfer.effectAllowed = "move";
+
+                                        borderElem.style.display = "block";
     
                                         dragY = e.currentTarget.getBoundingClientRect().top;
-                                        e.currentTarget.parentElement.parentElement.style.zIndex = "100";
-                                        e.currentTarget.parentElement.parentElement.style.opacity = "0.8";
+                                        dragX = e.currentTarget.getBoundingClientRect().left;
+                                        e.currentTarget.parentElement.parentElement.style.zIndex = "1";
+
+                                        if(e.currentTarget.parentElement.parentElement.nextSibling !== null) {
+                                            next = e.currentTarget.parentElement.parentElement.nextSibling as HTMLElement;
+                                        }
+                                        
+                                            
+                                        borderAdded = false;
                                     }} onDrag={(e: React.DragEvent) => {
                                         const img = document.createElement("img");
                                         e.dataTransfer.setDragImage(img, 0, 0);
     
                                         e.currentTarget.parentElement.parentElement.style.transform = `translateY(${e.clientY - dragY}px)`;
+
+                                        const posX = dragX;
+                                            
+                                        // Add the border element to the element behind the grabbed element
+                                        let dropElement = document.elementFromPoint(posX, e.clientY) as HTMLElement;
+                                        let test = 0;
+
+
+                                        while (!dropElement.classList?.contains("carrack-tracker-content-item") || test > 10) {
+                                            dropElement = dropElement.parentElement;
+                                            if(dropElement === null){
+                                                test += 1;
+                                                return;
+                                            }
+                                            test += 1;
+                                        }
+
+                                        if(test > 10) {
+                                            console.log("too many loops");
+                                            return;
+                                        }
+
+                                        if(dropElement.id === key) {
+                                            console.log("same element");
+                                            return;
+                                        }
+
+                                        let parent = e.currentTarget.parentElement;
     
+                                        while(!parent.classList.contains("carrack-tracker-content-item")){
+                                            parent = parent.parentElement;
+                                        }
+                                        
+                                        const mainParent = parent.parentElement;
+    
+                                        if(mainParent !== null){
+
+                                            if(!borderAdded && !(next !== null && next.id === dropElement.id) && dropElement.nextSibling !== null && (dropElement.nextSibling as HTMLElement).id !== key){
+                                                dragY +=  70;
+                                                borderAdded = true;
+                                            }
+
+                                            borderElem.remove();
+
+                                            // Check if the dragged element is in the top half or bottom half of the element that is dropped on
+                                            if((dropElement.getBoundingClientRect().height / 2) < e.clientY - dropElement.getBoundingClientRect().top) {
+                                                
+                                                if(next !== null && next.id === dropElement.id && e.currentTarget.parentElement.parentElement.previousSibling !== null) { /* empty */ } else {
+
+                                                    if(!borderAdded && !(next !== null && next.id === dropElement.id) && (dropElement.nextSibling === null || (dropElement.nextSibling as HTMLElement).id !== key)){
+                                                        dragY +=  70;
+                                                        borderAdded = true;
+                                                    }
+    
+                                                    if(dropElement.nextSibling !== null && (dropElement.nextSibling as HTMLElement).id !== key) {
+                                                        mainParent.insertBefore(borderElem, dropElement.nextSibling);
+                                                    } else {
+                                                        if(e.currentTarget.parentElement.parentElement.previousSibling === null){
+                                                            mainParent.insertBefore(borderElem, dropElement.nextSibling);
+                                                        }
+                                                        if(borderAdded){
+                                                            dragY -= 70;
+                                                            borderAdded = false;
+                                                        }
+                                                    }
+                                                }
+                                                
+                                            } else {
+                                                    
+                                                if(next !== null && next.id === dropElement.id) { /* empty */ } else {
+                                                    if(!borderAdded){
+                                                        dragY +=  70;
+                                                        borderAdded = true;
+                                                    }
+    
+                                                    mainParent.insertBefore(borderElem, dropElement);
+                                                }
+                                            }
+                                            
+                                            borderElem.style.animation = "border-anim 0.2s ease-in-out forwards";
+
+                                            if((e.clientY - dragY) > 0) {
+                                                if(borderAdded){
+                                                    dragY -= 70;
+                                                    borderAdded = false;
+                                                }
+                                            }
+                                        }
+                                        
+                                        
+
                                     }} onDragEnd={(e:React.DragEvent)=>{
     
+                                        if(next !== null) next.style.transform = "";
+                                        next = null;
+                                        borderElem.remove();
+                                        saveElm = null;
+
                                         e.currentTarget.parentElement.parentElement.style.transform = `translateY(0px)`;
-                                        e.currentTarget.parentElement.parentElement.style.zIndex = "0";
-                                        e.currentTarget.parentElement.parentElement.style.opacity = "1";
+                                        e.currentTarget.parentElement.parentElement.style.zIndex = "100";
                                         // get the element where the element is dropped
-                                        let dropElement = document.elementFromPoint(e.clientX, e.clientY);
+                                        let dropElement = document.elementFromPoint(dragX, e.clientY);
                                         let test = 0;
     
+                                        borderElem.style.display = "none";
     
                                         if(dropElement === null){
+                                            console.log("drop element is null");
                                             return;
                                         }
     
                                         while (!dropElement.classList?.contains("carrack-tracker-content-item") || test > 10) {
                                             dropElement = dropElement.parentElement;
                                             if(dropElement === null){
+                                                console.log("drop element is null");
                                                 return;
                                             }
                                             test += 1;
                                         }
     
                                         const newPositionY = e.clientY - e.currentTarget.getBoundingClientRect().top;
-    
-                                        const oldPositionY = e.currentTarget.getBoundingClientRect().top
     
                                         if(newPositionY < -20){
                                             let parent = e.currentTarget.parentElement;
@@ -331,6 +453,7 @@ const CarrackTrackerContent  = (props: Props) => {
     
                                                 if(mainParent !== null){
                                                     parent.remove();
+
                                                     mainParent.insertBefore(parent, dropElement);
     
                                                     const newOrder: any[] = [];
@@ -388,7 +511,8 @@ const CarrackTrackerContent  = (props: Props) => {
                                                 }
                                             }
                                         }
-                                    }} draggable={true}>&#9776;</span>
+                                    }}
+                                        draggable={true}>&#9776;</span>
                                 </div>
                                 <div className={`sub-content-${key} hidden`}>
                                     {subContent}
@@ -446,8 +570,7 @@ const CarrackTrackerContent  = (props: Props) => {
                                         const img = document.createElement("img");
                                         e.dataTransfer.setDragImage(img, 0, 0);
                                         dragY = e.currentTarget.getBoundingClientRect().top;
-                                        e.currentTarget.parentElement.parentElement.style.zIndex = "100";
-                                        e.currentTarget.parentElement.parentElement.style.opacity = "0.8";
+                                        e.currentTarget.parentElement.parentElement.style.zIndex = "0";
                                     }} onDrag={(e: React.DragEvent) => {
                                         const img = document.createElement("img");
                                         e.dataTransfer.setDragImage(img, 0, 0);
@@ -474,8 +597,6 @@ const CarrackTrackerContent  = (props: Props) => {
                                         }
 
                                         const newPositionY = e.clientY - e.currentTarget.getBoundingClientRect().top;
-
-                                        const oldPositionY = e.currentTarget.getBoundingClientRect().top
 
                                         if(newPositionY < -20){
                                             let parent = e.currentTarget.parentElement;
@@ -586,17 +707,6 @@ const CarrackTrackerContent  = (props: Props) => {
         </div>
     );
 };
-
-function array_move(arr: Array<any>, old_index: number, new_index: number): Array<any> {
-    if (new_index >= arr.length) {
-        let k = new_index - arr.length + 1;
-        while (k--) {
-            arr.push(undefined);
-        }
-    }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-    return arr; // for testing
-}
 
 
 export default CarrackTrackerContent;

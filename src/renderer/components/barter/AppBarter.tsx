@@ -58,8 +58,11 @@ const AppBarter:React.FC<Props> = (props: Props) => {
                         const element = document.getElementsByClassName('tier-' + tier)[index] as HTMLElement;
                         if (hide) {
                             element.style.display = '';
+
+                            subEventHelper.getInstance().send('set-setting', {key: 'hideTier' + tier, value: false})
                         } else {
                             element.style.display = 'none';
+                            subEventHelper.getInstance().send('set-setting', {key: 'hideTier' + tier, value: true})
                         }
                     });
                 }} />

@@ -5,6 +5,7 @@ import dataDict from '@src/typings/data';
 
 import './CarrackNeed.scss'
 import subEventHelper from '@common/subEvent';
+import tempHelper from '../../../common/temp';
 
 type Props = {
     data: dataDict;
@@ -36,6 +37,8 @@ const CarrackNeed  = (props: Props) => {
     
     // Initialize the content state with a loading message
     const [content, setContent] = React.useState([<p key={"null"}>loading...</p>]);
+
+    const [checked, setChecked] = React.useState(tempHelper.getInstance().get('carrack-need-hide-completed'));
     
     // Get the current inventory data
     let inventory = data.save.inventory[0];
@@ -44,8 +47,32 @@ const CarrackNeed  = (props: Props) => {
     const check = require('@assets/icons/check.svg');
     const not_check = require('@assets/icons/not-check.svg');
 
+    const icon = require(`../../../../assets/icons/checkbox-cross.svg`);
+
     // Register a callback to update the need data when the 'update-carrack-need' event is emitted
     useEffect(() => {
+
+        subEventHelper.getInstance().registerCallback('focus-need', (itemName: string)=>{
+
+            if(tempHelper.getInstance().has('focusNeed')){
+                const item = document.getElementById('item-'+tempHelper.getInstance().get('focusNeed')) as HTMLElement;
+                if(item !== null){
+                    item.classList.remove('focus');
+                }
+            }
+
+            if(itemName == '') return;
+
+            tempHelper.getInstance().set('focusNeed', itemName);
+
+            const item = document.getElementById('item-'+itemName) as HTMLElement;
+
+            if(item !== null){
+                item.classList.add('focus');
+            }
+
+        }, 'carrackNeed');
+        
         subEventHelper.getInstance().registerCallback('update-carrack-need', (data: any) => {
 
             // Update the inventory data
@@ -174,8 +201,13 @@ const CarrackNeed  = (props: Props) => {
                 }
             }, item.name);
                 if(item.qty <= 1) return;
+
+                let classS = '';
+
+                if(tempHelper.getInstance().get('carrack-need-hide-completed') && havingQTY == item.qty) classS = 'hidden';
+
                 contents.push(
-                    <div key={item.name} className={`total-needed-item ${havingQTY == item.qty? 'complete':''}`} onClick={()=>{
+                    <div key={item.name} id={`item-${item.name}`} className={`total-needed-item ${havingQTY == item.qty? 'complete':''} ${classS}`} onClick={()=>{
                         const detail = document.querySelector(`.detail-${item.name}`);
                         const arrow = document.querySelector(`.arrow-${item.name}`);
 
@@ -226,18 +258,41 @@ const CarrackNeed  = (props: Props) => {
     }, []); // The empty array ensures the effect only runs on mount
     
     
-    const mouseHover = () => {
-        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.carrack[0].totalNeeded[0].totalNeededAdvice[0]);
+    const mouseHoverContent = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.carrack[0].totalNeeded[0].totalNeededAdviceContent[0]);
     };
 
-    const mouseOut = () => {
+    const mouseOutContent = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", "");
+    };
+    const mouseHoverTitle = () => {
+        subEventHelper.getInstance().callEvent("rAdvice", props.data.lang.carrack[0].totalNeeded[0].totalNeededAdviceTitle[0]);
+    };
+
+    const mouseOutTitle = () => {
         subEventHelper.getInstance().callEvent("rAdvice", "");
     };
 
     return (
-        <div className="carrack-need" onMouseOver={mouseHover} onMouseOut={mouseOut}>
-            <h3>{props.data.lang.carrack[0].totalNeeded[0].title[0]}</h3>
-            <div className='carrack-need-content'>
+        <div className="carrack-need">
+            <div onMouseOver={mouseHoverTitle} onMouseOut={mouseOutTitle} className='carrack-need-title'>
+                <label>
+                    <input type='checkbox' checked={checked} onChange={() => {
+                        setChecked(!checked)
+
+                        subEventHelper.getInstance().send('set-setting', {key: 'carrack-need-hide-completed', value: checked ? '0' : '1'})
+
+                        tempHelper.getInstance().set('carrack-need-hide-completed', !checked ? true : false);
+                        subEventHelper.getInstance().callEvent('update-carrack-need', data.save.inventory[0]);
+
+                        }} />
+                    <h3>{props.data.lang.carrack[0].totalNeeded[0].title[0]}</h3>
+                    <div className='checkbox-border'>
+                        <img className={`display-checkbox-${checked ? 'y' : 'n'}`} src={icon} draggable={false}/>
+                    </div>
+                </label>
+            </div>
+            <div className='carrack-need-content'  onMouseOver={mouseHoverContent} onMouseOut={mouseOutContent}>
             {content}
             </div>
         </div>

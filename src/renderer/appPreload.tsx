@@ -10,10 +10,10 @@ const {
 } = require("electron");
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang', 'open_lang_page', 'app-restart', 'carrack-inventory-save-qty',  'sAskStatusSelector', 'sStatusSelector', 'sSaveInLog', 'set-setting', 'sCheckUpdate', 'set-update'];
+const validChannelsSend: string[] = ['app-hide', 'pageChange', 'getDataFile', 'save-item', 'save-misc', 'hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize', 'app-quit', 'set-lang', 'open_lang_page', 'app-restart', 'carrack-inventory-save-qty',  'sAskStatusSelector', 'sStatusSelector', 'sSaveInLog', 'set-setting', 'sCheckUpdate', 'set-update'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart', 'update-carrack-need', 'returnCarrackType', 'rAskStatusSelector-iliya', 'rAskStatusSelector-ancado', 'rAskStatusSelector-epheria', 'carrack-inventory-save-qty', 'rAskStatusSelector', 'set-setting', 'open_setTier_page', 'rCheckUpdate', 'rOpenUpdate', 'rRefresh-itemList', 'rOpenCarrackNeed', 'rAdvice', 'focus-item'];
+const validChannelsReceive: string[] = ['pageChange', 'langChange', 'r_hide-col-barter', 'barterItemSelect', 'search-barter', 'total-value', 'threshold-change', 'threshold-warning', 'check-threshold', 'ask-check-threshold', 'save-data-dict', 'app-maximize-reply', 'set-lang', 'app-quit', 'open_lang_page', 'app-restart', 'update-carrack-need', 'returnCarrackType', 'rAskStatusSelector-iliya', 'rAskStatusSelector-ancado', 'rAskStatusSelector-epheria', 'carrack-inventory-save-qty', 'rAskStatusSelector', 'set-setting', 'open_setTier_page', 'rCheckUpdate', 'rOpenUpdate', 'rRefresh-itemList', 'rOpenCarrackNeed', 'rAdvice', 'focus-item', 'focus-need'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {

@@ -1,1 +1,1 @@
-<settings><lang>en</lang><ignoreAncado>false</ignoreAncado><ignoreIliya>true</ignoreIliya><ignoreEpheria>true</ignoreEpheria><boatType>balance</boatType></settings>
+<settings><lang>en</lang><ignoreAncado>true</ignoreAncado><ignoreIliya>true</ignoreIliya><ignoreEpheria>true</ignoreEpheria><boatType>valor</boatType><hideTier5>false</hideTier5><hideTier4>false</hideTier4><hideTier3>false</hideTier3><hideTier2>false</hideTier2><hideTier1>false</hideTier1><carrack-need-hide-completed>1</carrack-need-hide-completed></settings>
