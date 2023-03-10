@@ -12,6 +12,10 @@
         <carrack>Caraque</carrack>
     </navigation>
 
+    <language>
+        <selectLanguage>Choisir une langue</selectLanguage>
+    </language>
+
     <!-- Traduction des items -->
     <items>
     <!-- Items Niveau 1 (Dans l'ordre d'affichage en jeu) -->
@@ -306,11 +310,11 @@
     <barter>
         <left>
             <storageTitle>Dépôts</storageTitle>
-            <lastSpecialBarterAt>Dernier barter spécial à :</lastSpecialBarterAt>
+            <lastSpecialBarterAt>Dernier troc spécial à :</lastSpecialBarterAt>
             <estimatedNext>Estimation du prochain :</estimatedNext>
             <searchPlaceholder>Rechercher</searchPlaceholder>
             <searchAdvice>Utilisez le signe plus (+) pour rechercher plusieurs objets en même temps !</searchAdvice>
-            <specialBarterAdvice>Entrez ici le nombre total de Trocs auquel vous étiez la dernière fois que vous avez eu votre <!-- TL à check--> barter spécial pour obtenir une approximation du prochain !</specialBarterAdvice>
+            <specialBarterAdvice>Entrez ici le nombre total de Trocs auquel vous étiez la dernière fois que vous avez eu votre troc spécial pour obtenir une approximation du prochain !</specialBarterAdvice>
         </left>
         <table>
             <tier>Niveau</tier>
@@ -367,28 +371,28 @@
         <items>
         <!-- Inventory Part -->
             <EpheriaCaravelEnhancedPlating>
-                <name>Plaquage vert +10</name>
+                <name>+10 Plaquage vert</name>
             </EpheriaCaravelEnhancedPlating>
             <EpheriaCaravelBrassFigurehead>
-                <name>Proue verte +10</name>
+                <name>+10 Proue verte</name>
             </EpheriaCaravelBrassFigurehead>
             <EpheriaCaravelVerishaCannon>
-                <name>Canon vert +10</name>
+                <name>+10 Canon vert</name>
             </EpheriaCaravelVerishaCannon>
             <EpheriaCaravelWhiteWindSail>
-                <name>Voile verte +10</name>
+                <name>+10 Voile verte</name>
             </EpheriaCaravelWhiteWindSail>
             <EpheriaGalleassEnhancedPlating>
-                <name>Plaquage vert +10</name>
+                <name>+10 Plaquage vert</name>
             </EpheriaGalleassEnhancedPlating>
             <EpheriaGalleassWhiteHornFigurehead>
-                <name>Proue verte +10</name>
+                <name>+10 Proue verte</name>
             </EpheriaGalleassWhiteHornFigurehead>
             <EpheriaGalleassVerishaCannon>
-                <name>Canon vert +10</name>
+                <name>+10 Canon vert</name>
             </EpheriaGalleassVerishaCannon>
             <EpheriaGalleassWhiteWindSail>
-                <name>Voile verte +10</name>
+                <name>+10 Voile verte</name>
             </EpheriaGalleassWhiteWindSail>
             <MoonVeinFlaxFabric>
                 <name>Tissu lunaire</name>
