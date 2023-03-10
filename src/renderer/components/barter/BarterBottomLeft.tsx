@@ -1,3 +1,13 @@
+/**
+ * @file BarterBottomLeft.tsx
+ * @description Barter page bottom left component.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import React from "react";
 
 import dataDict from "@src/typings/data";
@@ -9,8 +19,14 @@ type Props = {
     data: dataDict;
 }
 
+/**
+ * Barter Bottom Left Component.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterBottomLeft: React.FC<Props> = (props: Props) => {
 
+    // Thresholds states
     const [iliyaThreshold, _setIliyaThreshold] = React.useState(props.data.save.threshold[0].iliya[0]);
     const [epheriaThreshold, _setEpheriaThreshold] = React.useState(props.data.save.threshold[0].epheria[0]);
     const [ancadoThreshold, _setAncadoThreshold] = React.useState(props.data.save.threshold[0].ancado[0]);
@@ -27,12 +43,18 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
      */
     const setIliyaThreshold = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-        props.data.save.threshold[0].iliya[0] = event.target.value;
+        let value = event.target.value;
+
+        if(value === "" || value.includes("-")){
+            value = "0";
+        }
+
+        props.data.save.threshold[0].iliya[0] = value;
 
 
-        subEventHelper.getInstance().callEvent("threshold-change", "iliya", event.target.value);
+        subEventHelper.getInstance().callEvent("threshold-change", "iliya", value);
 
-        _setIliyaThreshold(event.target.value);
+        _setIliyaThreshold(value);
     }
 
     /**
@@ -44,11 +66,17 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
      */
     const setEpheriaThreshold = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-        props.data.save.threshold[0].epheria[0] = event.target.value;
+        let value = event.target.value;
 
-        subEventHelper.getInstance().callEvent("threshold-change", "epheria", event.target.value);
+        if(value === "" || value.includes("-")){
+            value = "0";
+        }
 
-        _setEpheriaThreshold(event.target.value);
+        props.data.save.threshold[0].epheria[0] = value;
+
+        subEventHelper.getInstance().callEvent("threshold-change", "epheria", value);
+
+        _setEpheriaThreshold(value);
     }
 
     /**
@@ -60,15 +88,31 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
      */
     const setAncadoThreshold = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-        props.data.save.threshold[0].ancado[0] = event.target.value;
+        let value = event.target.value;
 
-        subEventHelper.getInstance().send("threshold-change", "ancado", event.target.value);
+        if(value === "" || value.includes("-")){
+            value = "0";
+        }
 
-        _setAncadoThreshold(event.target.value);
+        props.data.save.threshold[0].ancado[0] = value;
+
+        subEventHelper.getInstance().send("threshold-change", "ancado", value);
+
+        _setAncadoThreshold(value);
     }
 
-    const openFilter = () => {
+    const openFilter = (e: React.MouseEvent) => {
+
+        const icon = e.currentTarget as HTMLImageElement;
+
+        icon.style.transition = "transform 0.1s ease-in-out";
+        icon.style.transform = "scale(0.8, 0.8)";
+
         subEventHelper.getInstance().callEvent("open_setTier_page");
+
+        setTimeout(() => {
+            icon.style.transform = "scale(1, 1)";
+        }, 100);
     }
 
     

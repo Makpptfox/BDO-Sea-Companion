@@ -1,3 +1,13 @@
+/**
+ * @file BarterLeftSpecial.tsx
+ * @description Barter page left special barter component, It's used to display the next special barter component, the input and result.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import React from "react";
 
 import "./BarterLeftSpecial.scss";
@@ -8,6 +18,11 @@ type Props = {
     data: dataDict;
 };
 
+/**
+ * Barter page left special barter component, It's used to display the next special barter component, the input and result.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterLeftSpecial:React.FC<Props> = (props: Props) => {
 
     // Create a state to store the count of the next special barter

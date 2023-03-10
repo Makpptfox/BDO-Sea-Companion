@@ -22,6 +22,7 @@ import tempHelper from "@common/temp";
 import fileHelper from "@common/file";
 import { settings } from "@src/typings/settings";
 import onSetSetting from "./events/onSetSetting";
+import onSaveCarrackOrder from "./events/onSaveCarrackOrder";
 
 const eventHelper = mainEventHelper.getInstance();
 
@@ -149,14 +150,14 @@ export function events(window: Electron.BrowserWindow){
         onSetSetting(e, data.key, data.value);
     });
 
-    eventHelper.registerCallback('set-update', (e)=>{
+    eventHelper.registerCallback('set-update', (e, state)=>{
         // This is a function to set the "firstlaunch" property to false
 
         getXmlFileContent('update.xml').then((content) => {
 
             console.log(content);
 
-            content.update.firstLaunch[0] = "false";
+            content.update.firstLaunch[0] = state;
 
             saveXmlFileContent('update.xml', JSONToXML(content));
         });
@@ -231,6 +232,12 @@ export function events(window: Electron.BrowserWindow){
         onSaveLang(lang);
 
         e.sender.send('set-lang', lang);
+    });
+
+    ipcMain.on('save-carrack-order', async (e: Electron.IpcMainEvent, order: string[]) => {
+        console.log('save-carrack-order', order)
+
+        onSaveCarrackOrder(e, order);
     });
 
     // DEPRECATED EVENT

@@ -1,3 +1,14 @@
+/**
+ * @file BarterLeftSearch.tsx
+ * @description Barter page left search component, used to search for items in the barter page.
+ * @description We can use a "+" to search for multiple items at the same time.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import React from "react";
 
 import dataDict from "@src/typings/data";
@@ -13,6 +24,13 @@ type Props = {
 
 const win: win_ = window;
 
+/**
+ * Barter page left search component, used to search for items in the barter page.
+ * 
+ * We can use a "+" to search for multiple items at the same time.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterLeftSearch: React.FC<Props> = (props: Props) => {
 
     const searchIco = require("../../../../assets/icons/search.svg");

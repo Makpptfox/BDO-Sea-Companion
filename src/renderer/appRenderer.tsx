@@ -164,6 +164,18 @@ function init(){
       dataDict = JSON.parse(data);
     });
 
+    if(dataDict.save.carrackOrder !== undefined){
+      const carrackItemsOrder = dataDict.save.carrackOrder[0].items[0].split(',');
+
+      const carrackOrder = {
+        boat: dataDict.save.carrackOrder[0].boat[0],
+        items: carrackItemsOrder
+      }
+    
+
+      tempHelper.getInstance().set('carrack-order', carrackOrder);
+    }
+
     console.log('[BDOC] : Language dictionary received');
     console.log('[BDOC] : Language loaded', lang);
 

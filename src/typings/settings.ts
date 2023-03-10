@@ -31,6 +31,12 @@ export type settings = {
         hideTier5: [
             string
         ],
+        disclaimer: [
+            string
+        ],
+        chosenLang: [
+            string
+        ],
         "carrack-need-hide-completed": [
             string
         ]

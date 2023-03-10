@@ -171,85 +171,85 @@
         </UrchinSpine>
         <Hourglass>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Hourglass>
         <TreasureMap>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </TreasureMap>
         <SupplyBox>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </SupplyBox>
         <Binoculars>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Binoculars>
         <Stalactite>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Stalactite>
         <Teacup>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Teacup>
         <RoundKnife>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </RoundKnife>
         <Blood>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Blood>
         <Coat>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Coat>
         <SkullCarpet>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </SkullCarpet>
         <HerbPile>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </HerbPile>
         <Fishnet>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Fishnet>
         <AncientOrders>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </AncientOrders>
         <BlueCandle>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </BlueCandle>
@@ -347,13 +347,13 @@
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>0</ancado>
+            <ancado>5</ancado>
         </HerbalWine>
         <AzureQuartz>
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>0</ancado>
+            <ancado>1</ancado>
         </AzureQuartz>
         <Butterfly>
             <qty>0</qty>
@@ -365,7 +365,7 @@
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>0</ancado>
+            <ancado>2</ancado>
         </Tear>
         <GoldCandlestick>
             <qty>0</qty>
@@ -440,7 +440,7 @@
     <threshold>
         <iliya>8</iliya>
         <epheria>8</epheria>
-        <ancado>0</ancado>
+        <ancado>8</ancado>
     </threshold>
     <inventory>
         <cherrySeed>120</cherrySeed>
@@ -460,11 +460,5 @@
         <DeepTideDyedStandardizedTimberSquare>144</DeepTideDyedStandardizedTimberSquare>
         <EpheriaGalleassWhiteHornFigurehead>0</EpheriaGalleassWhiteHornFigurehead>
         <CoxPiratesArtifactCombat>0</CoxPiratesArtifactCombat>
-        <MoonScalePlywood>0</MoonScalePlywood>
-        <TideDyedStandardizedTimberSquare>0</TideDyedStandardizedTimberSquare>
     </inventory>
-    <carrackOrder>
-        <boat>advance</boat>
-        <items>CarrackTracking,CaravelPlatingTracking,CaravelProwTracking,CaravelCannonTracking,CaravelSailTracking</items>
-    </carrackOrder>
 </data>

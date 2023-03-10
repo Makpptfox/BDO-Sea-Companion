@@ -1,3 +1,14 @@
+/**
+ * @file BarterLeftItem.tsx
+ * @description Barter page left item component, displays the selected item in the list.
+ * @description If no item is selected, it displays nothing.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import React, { useEffect } from "react";
 
 import dataDict from "@src/typings/data";
@@ -9,12 +20,15 @@ type Props = {
     data: dataDict;
 }
 
+/**
+ * Barter page left item component, displays the selected item in the list.
+ * 
+ * If no item is selected, it displays nothing.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BarterLeftItem: React.FC<Props> = (_props: Props) => {
-    
-
-        
-
 
     const [icon, setIcon] = React.useState<string>(require('@assets/images/items/empty.png'));
     const [name, setName] = React.useState<string>("");
@@ -30,12 +44,12 @@ const BarterLeftItem: React.FC<Props> = (_props: Props) => {
             
             const oldContent = nameP.innerText;
             nameP.innerText = name;
-            if(nameP.offsetHeight > 22 && nameP.offsetHeight < 39) {
-                nameP.style.fontSize = '12px';
-            } else if(nameP.offsetHeight >= 39 && nameP.offsetHeight < 52) {
-                nameP.style.fontSize = '11px';
-            } else {
-                nameP.style.fontSize = '16px';
+
+            let fontSize = 16;
+
+            while(nameP.offsetHeight > 22 && fontSize > 11) {
+                fontSize--;
+                nameP.style.fontSize = (fontSize) + 'px';
             }
 
             nameP.innerText = oldContent;

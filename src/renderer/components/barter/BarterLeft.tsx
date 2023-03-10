@@ -1,3 +1,13 @@
+/**
+ * @file BarterLeft.tsx
+ * @description Barter page left component, it's used to display the hide buttons for each city (iliya, epheria, ancado), the search bar, the special items and the item focused.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import React, { useEffect } from 'react';
 
 import dataDict from '@src/typings/data';
@@ -16,6 +26,11 @@ type Props = {
     data: dataDict;
 }
 
+/**
+ * Barter Left Component, it's used to display the hide buttons for each city (iliya, epheria, ancado), the search bar, the special items and the item focused.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterLeft:React.FC<Props> = (props: Props) => {
 
     const [iliya, setIliya] = React.useState(null);
@@ -30,8 +45,9 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
     let epheriaTable:boolean[] = []
     let ancadoTable:boolean[] = []
     
+    // Launch the function when the component is mounted, and when the component is unmounted, unregister all the callbacks.
     useEffect(() => {
-        
+            // Check if the table contains some value that is under the threshold, if it's the case, set the state to true, else set it to false. We do this for each city.
             setTimeout(() => {
 
                 document.getElementsByClassName('iliya-table-viewer warning-thresold').length > 0 ? setIliya(true) : setIliya(false);

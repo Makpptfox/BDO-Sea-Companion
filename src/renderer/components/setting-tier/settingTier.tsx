@@ -28,16 +28,24 @@ type Props = {
     data: dataDict;
 }
 
+/**
+ * Setting Tier Page Component
+ * @param Props the props of the component: {@link Props}
+ * @returns the react component to render, type: {@link React.FC}
+ * @since 0.0.3
+ */
 const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
     
+    // show the page or not
     const [show, setShow] = React.useState(false);
 
+    // the state of the toggle button
     const [_ignoreAncado, setIgnoreAncado] = React.useState(props.data.settings.settings.ignoreAncado[0] === "true");
     const [_ignoreIliya, setIgnoreIliya] = React.useState(props.data.settings.settings.ignoreIliya[0] === "true");
     const [_ignoreEpheria, setIgnoreEpheria] = React.useState(props.data.settings.settings.ignoreEpheria[0] === "true");
 
+    // register the event to open the page
     let show_ = false;
-
     useEffect(()=>{
 
         subEventHelper.getInstance().registerCallback('open_setTier_page', (state?) => {
@@ -52,12 +60,34 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
         })
     },[])
 
+    
+
+        
+    useEffect(()=>{
+        if(show){
+            (document.getElementsByClassName("settingTier-page")[0] as HTMLDivElement).style.opacity = "0";
+            (document.getElementsByClassName("settingTier-page")[0] as HTMLDivElement).style.transition = "opacity 0.3s";
+            setTimeout(()=>{
+                (document.getElementsByClassName("settingTier-page")[0] as HTMLDivElement).style.opacity = "1";
+            }, 10);
+        }
+    }, [show])
+
+    const closePage = () => {
+        (document.getElementsByClassName("settingTier-page")[0] as HTMLDivElement).style.transition = "opacity 0.3s";
+        (document.getElementsByClassName("settingTier-page")[0] as HTMLDivElement).style.opacity = "0";
+
+        setTimeout(()=>{
+            subEventHelper.getInstance().callEvent('open_setTier_page', false);
+        }, 300);
+    }
+
+    // if the page is not shown, return null
     if(!show){
         return null;
     }
-
-    // subEventHelper.getInstance().callEvent('open_setTier_page', false);
-
+    
+    // the function to change the state of the toggle button for each city
     const ignoreAncado = (state: boolean) => {
         subEventHelper.getInstance().send('set-setting', {key: "ignoreAncado", value: state});
         props.data.settings.settings.ignoreAncado[0] = state.toString();
@@ -80,8 +110,9 @@ const SettingTier: React.FunctionComponent<Props> = (props: Props) => {
     }
 
 
+    // return the component
     return (
-        <div className="settingTier-page" onClick={(e: React.MouseEvent)=>{if(e.currentTarget === e.target){subEventHelper.getInstance().callEvent('open_setTier_page', false);}}}>
+        <div className="settingTier-page" onClick={(e: React.MouseEvent)=>{if(e.currentTarget === e.target){closePage();}}}>
             <div className="settingTier-page-content">
                 <div className="settingTier-page-content-list">
                     <div className="settingTier-page-content-item">

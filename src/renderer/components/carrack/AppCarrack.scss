@@ -38,6 +38,7 @@
             text-align: center;
             color: #b3ada6;
             box-sizing: border-box;
+            transition: all 0.5s ease-in-out;
             cursor: pointer;
             p{
                 font-size: 24px;
@@ -52,25 +53,37 @@
             grid-row: 1;
             grid-column: 1;
             background: linear-gradient(-180deg, #5e5443 0%, #5e5443 50%, #786b53 100%);
-            border: 1px solid #805a0f;
+            border: 2px solid #805a0f;
+            &:hover{
+                border: 2px solid #a77a20;
+            }
         }
         .carrack-balance{
             grid-row: 1;
             grid-column: 3;
             background: linear-gradient(-180deg, #3e594d 0%, #3e594d 50%, #2b4239 100%);
-            border: 1px solid #416e5b;
+            border: 2px solid #416e5b;
+            &:hover{
+                border: 2px solid #5c8c7a;
+            }
         }
         .carrack-volante{
             grid-row: 3;
             grid-column: 1;
             background: linear-gradient(-180deg, #455461 0%, #455461 50%, #212c36 100%);
-            border: 1px solid #0a4979;
+            border: 2px solid #0a4979;
+            &:hover{
+                border: 2px solid #0f6b9f;
+            }
         }
         .carrack-valor{
             grid-row: 3;
             grid-column: 3;
             background: linear-gradient(-180deg, #574142 0%, #574142 50%, #3d2325 100%);
-            border: 1px solid #80181c;
+            border: 2px solid #80181c;
+            &:hover{
+                border: 2px solid #a61e22;
+            }
         }
     }
 }

@@ -1,3 +1,12 @@
+/**
+ * @file BarterCenter.tsx
+ * @description Barter page center component, contains the table of items.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 import React, { ReactNode, useEffect } from "react";
 
 import dataDict from "@src/typings/data";
@@ -10,6 +19,11 @@ type Props = {
     data: dataDict;
 }
 
+/**
+ * Barter Center Component, contains the table of items.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterCenter: React.FC<Props> = (props: Props) => {
 
     const [isSearch, setIsSearch] = React.useState(false);
@@ -24,6 +38,7 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
     const [hideEpheria, setHideEpheria] = React.useState(true);
     const [hideAncado, setHideAncado] = React.useState(true);
 
+    // This function is used to hide or show the columns of each city in the table (iliya, epheria, ancado)
     const tagueuleetmarche = (hide: boolean, type: string) => {
         switch(type){
             case "iliya":
@@ -57,25 +72,33 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
             const data:ReactNode[] = [];
             Object.keys(props.data.item).map((key, index) => {
 
+                // If the user is not searching for an item
                 if(!isSearch){
                     data.push(
                         // eslint-disable-next-line react/jsx-key
                         <BarterCenterItem data={props.data} index={index} key={key} setValTotal={setValTotal} hideBool={tagueuleetmarche} hideIliya={hideIliya} hideEpheria={hideEpheria} hideAncado={hideAncado} />
                     )
-                } else {
+                } else { // Else, if the user is searching for an item
+
+                    // Get the item name and the item sub name and convert them to lowercase (to make the search case insensitive)
                     const itemName = props.data.lang.items[0][key][0].name[0].toLowerCase();
                     const itemSubName = props.data.lang.items[0][key][0].description[0].toLowerCase();
 
+                    // Split the search string by the "+" character to make the search multiple "items" compatible
                     const _search: string | string[] = search.split("+");
 
+                    // If the search string is an array, then we search for each item in the array
                     if(_search instanceof Array){
+                        // Once we found an item that match the search, we add it to the table
                         if(_search.find((s) => itemName.toLowerCase().includes(s.toLowerCase().trim())) || _search.find((s) => itemSubName.toLowerCase().includes(s.toLowerCase().trim()))){                            
                             data.push(
                                 // eslint-disable-next-line react/jsx-key
                                 <BarterCenterItem data={props.data} index={index} key={key} setValTotal={setValTotal} hideBool={tagueuleetmarche} hideIliya={hideIliya} hideEpheria={hideEpheria} hideAncado={hideAncado} />
                             )
                         }
-                    } else {
+                    } else { // Else, if the search string is not an array, then we search for the item
+
+                        // Once we found an item that match the search, we add it to the table
                         if(itemName.toLowerCase().includes(search.toLowerCase().trim()) || itemSubName.toLowerCase().includes(search.toLowerCase().trim())){
                             data.push(
 
@@ -87,8 +110,10 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
                 }
             })
 
+            // Once we have all the items, we send the data to the table
             resolve(data);
         }).then((data)=>{
+            // Then we set the table
             setTable(data);
             // console.trace(data)
             setState('loaded');
@@ -96,27 +121,33 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
     }, [isSearch, search]);
 
 
+    // Calculate the total value of the barter, and send it to the barterBottomRight component
     const setValTotal = (qty: number, tier: number) => {
 
         new Promise(()=>{
             switch(tier){
                 case 1:
+                    // If the tier is 1, the value is 0
                     _setValTotal(valTotal + (qty * 0));
                     subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 0));
                     break;
                 case 2:
+                    // If the tier is 2, the value is 0
                     _setValTotal(valTotal + (qty * 0));
                     subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 0));
                     break;
                 case 3:
+                    // If the tier is 3, the value is 1 000 000
                     _setValTotal(valTotal + (qty * 1000000));
                     subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 1000000));
                     break;
                 case 4:
+                    // If the tier is 4, the value is 2 000 000
                     _setValTotal(valTotal + (qty * 2000000));
                     subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 2000000));
                     break;
                 case 5:
+                    // If the tier is 5, the value is 5 000 000
                     _setValTotal(valTotal + (qty * 5000000));
                     subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 5000000));
                     break;
@@ -129,23 +160,27 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
 
     }
 
-    
+
+    // Register the search event when the component is mounted
     useEffect(()=>{
 
         subEventHelper.getInstance().registerCallback('search-barter', (search)=>{
 
             console.log(search)
 
+            // Remove the useless space
             if(search !== undefined ) search = search.trim();
     
+            // If the search is empty, we set the isSearch to false
             if(search === "" || search === undefined || search === null){
                 setIsSearch(false)
-            }else{
+            }else{ // Else we set the isSearch to true and the search value
                 setIsSearch(true)
                 setSearch(search)
             }
         }, 'BarterCenter')
         return(()=>{
+            // Unregister the event when the component is unmounted
             subEventHelper.getInstance().unregisterAllCallbacks("search-barter");
         })
     },[])

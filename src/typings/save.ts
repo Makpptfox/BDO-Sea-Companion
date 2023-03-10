@@ -43,6 +43,16 @@ interface saveData {
             ]
         }
     ],
+    carrackOrder: [
+        {
+            items: [
+                string
+            ]
+            boat: [
+                string
+            ]
+        }
+    ]
 }
 
 export function stringifySaveData(data: saveData):string {

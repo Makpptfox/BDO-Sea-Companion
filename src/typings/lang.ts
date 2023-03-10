@@ -34,6 +34,13 @@ type langDict = {
 
         }
     ]
+    language: [
+        {
+            selectLanguage: [
+                string
+            ]
+        }
+    ]
     barter: [
         {
             left:[

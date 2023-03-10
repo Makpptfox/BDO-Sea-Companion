@@ -12,8 +12,13 @@
 
     text-align: center;
     width: 100%;
+    transition: all 0.2s ease-in-out;
 
     cursor: pointer;
+    
+    &:hover:not(.select){
+        border: solid 2px lighten(#686975, 8%);
+    }
 
 }
 

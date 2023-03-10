@@ -1,3 +1,12 @@
+/**
+ * @file BarterBottomRight.tsx
+ * @description Barter page bottom right component.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 import React, { useEffect } from "react";
 
 import dataDict from "@src/typings/data";
@@ -9,8 +18,11 @@ type Props = {
     data: dataDict;
 }
 
-
-
+/**
+ * Barter Bottom Right Component.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
     const [total, setTotal] = React.useState(0);
@@ -29,8 +41,10 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
         let _total = 0;
     
+        // Calculate total value
         Object.keys(props.data.save.items[0]).forEach((key) => {
     
+            // If the item has no data, skip it and log an error
             if(props.data.item[key] === undefined){
                 console.log("Error: " + key + " has no data");
                 console.log("Please report this to the developer...");
@@ -40,6 +54,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                 return;
             }
 
+            // If the item has no tier, skip it and log an error
             if(props.data.item[key][0].tier === undefined){
                 console.log("Error: " + key + " has no tier");
                 console.log("Please report this to the developer...");
@@ -77,6 +92,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                 _total = 0
                 Object.keys(props.data.save.items[0]).forEach((key) => {
 
+                    // If the item has no data, skip it and log an error
                     if(props.data.item[key] === undefined){
                         console.log("Error: " + key + " has no data");
                         console.log("Please report this to the developer...");
@@ -84,8 +100,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                     }
 
                     const tier = parseInt(props.data.item[key][0].tier[0]);
-
-                    const qty = parseInt(props.data.save.items[0][key][0].iliya[0] + props.data.save.items[0][key][0].epheria[0] + props.data.save.items[0][key][0].ancado[0]);
+                    const qty = parseInt(props.data.save.items[0][key][0].iliya[0]) + parseInt(props.data.save.items[0][key][0].epheria[0]) + parseInt(props.data.save.items[0][key][0].ancado[0]);
     
     
                     switch(tier){

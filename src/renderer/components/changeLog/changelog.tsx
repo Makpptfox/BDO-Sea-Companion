@@ -1,3 +1,12 @@
+/**
+ * @file changelog.tsx
+ * @description This file contains the changelog component.
+ * @author Ward
+ * @version 0.0.3
+ * @license GPL-3.0
+ * @since 0.0.3
+ */
+
 import subEventHelper from "@common/subEvent";
 import { changeLog } from "@src/typings/changelog";
 import update from "@src/typings/update";
@@ -10,21 +19,37 @@ type Props = {
     changelog: changeLog
 }
 
+/**
+ * The changelog component, used to show the changelog
+ * @param props The props of the component: {@link Props}
+ * @returns the react component to render, type: {@link React.FC}
+ */
 const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
 
+    // register the callback to show the page
     useEffect(()=>{
         if(props.update.firstLaunch[0] === "true"){
             document.getElementById("changelog-back").style.display = "flex";
+            subEventHelper.getInstance().send('set-update', 'false');
         }
 
         const eventHelper = subEventHelper.getInstance();
 
+        // If the app is updated, show the changelog for the first time
         eventHelper.registerCallback('rOpenUpdate', ()=>{
+            
             document.getElementById("changelog-back").style.display = "flex";
+
+            document.getElementById("changelog-back").style.opacity = "0";
+            document.getElementById("changelog-back").style.transition = "opacity 0.3s";
+            setTimeout(()=>{
+                document.getElementById("changelog-back").style.opacity = "1";
+            }, 10);
         }, "changelog");
 
     },[])
 
+    // function to close the changelog
     const close = (e: React.MouseEvent) => {
 
         if(e.target !== e.currentTarget){
@@ -33,9 +58,15 @@ const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
 
         e.preventDefault();
 
-        document.getElementById("changelog-back").style.display = "none";
+        document.getElementById("changelog-back").style.transition = "opacity 0.3s";
+        document.getElementById("changelog-back").style.opacity = "0";
+
+        setTimeout(()=>{
+            document.getElementById("changelog-back").style.display = "none";
+        }, 300);
     }
 
+    // Return the changelog component
     return (
         <div id="changelog-back" onClick={close}>
             <div id="changelog-container">

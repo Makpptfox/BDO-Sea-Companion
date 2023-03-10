@@ -1,3 +1,13 @@
+/**
+ * @file BarterCenterItem.tsx
+ * @description Barter page center item component, this component is used as a row in the table.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import dataDict from "@src/typings/data";
 import React, { useEffect } from "react";
 import ElementMaker from './BarterCenterInput';
@@ -14,10 +24,13 @@ type Props = {
     hideAncado?: boolean;
 }
 
+/**
+ * Barter Center Item Component, this component is used as a row in the table.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterCenterItem: React.FC<Props> = (props: Props) => {
     
-
-                    
     const key = Object.keys(props.data.item)[props.index];
     const index = props.index;
 
@@ -157,12 +170,15 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                                 setIliyaCenter(parseInt(e.target.value))
                             }
                         }}
-                        handleDoubleClick={() =>
-                            setShowInputEleIliya(true)
+                        handleDoubleClick={(e) => 
+                            {
+                                setShowInputEleIliya(true);
+                            }
                         }
-                        handleBlur={() => {
+                        handleBlur={(e) => 
+                            {
                             setShowInputEleIliya(false)
-                            countQuantity()
+                            countQuantity();
                             }
                         }
                         showInputEle={showInputEleIliya}
@@ -176,12 +192,15 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                         handleChange={(e) =>
                             setEpheriaCenter(parseInt(e.target.value))
                         }
-                        handleDoubleClick={() =>
-                            setShowInputEleEpheria(true)
+                        handleDoubleClick={(e) =>
+                            {
+                                setShowInputEleEpheria(true);
+                            }
                         }
-                        handleBlur={() => {
+                        handleBlur={(e) => 
+                            {
                             setShowInputEleEpheria(false)
-                            countQuantity()
+                            countQuantity();
                             }
                         }
                         showInputEle={showInputEleEpheria}
@@ -194,12 +213,15 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                         handleChange={(e) =>
                             setAncadoCenter(parseInt(e.target.value))
                         }
-                        handleDoubleClick={() =>
-                            setShowInputEleAncado(true)
+                        handleDoubleClick={(e) =>
+                            {
+                                setShowInputEleAncado(true);
+                            }
                         }
-                        handleBlur={() => {
+                        handleBlur={(e) => 
+                            {
                             setShowInputEleAncado(false)
-                            countQuantity()
+                            countQuantity();
                             }
                         }
                         showInputEle={showInputEleAncado}

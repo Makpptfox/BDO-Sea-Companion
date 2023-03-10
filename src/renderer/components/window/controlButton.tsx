@@ -1,3 +1,12 @@
+/**
+ * @file controlButton.tsx
+ * @description This file contains the control button component.
+ * @author Ward
+ * @version 0.0.3
+ * @license GPL-3.0
+ * @since 0.0.1
+ */
+
 import React from "react";
 
 // This is a component that will be used to create the buttons in the top right corner of the window

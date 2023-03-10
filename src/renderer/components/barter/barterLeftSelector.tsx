@@ -1,7 +1,16 @@
+/**
+ * @file BarterLeftSelector.tsx
+ * @description Barter page left selector component, used to select if we want to hide a city in the table.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+
 import React, { useState } from 'react';
 
 import './BarterLeftSelector.scss';
-import win_ from '@src/typings/win';
 
 type Props = {
     default: boolean;
@@ -10,8 +19,11 @@ type Props = {
     warn: boolean
 }
 
-const win:win_ = window;
-
+/**
+ * Barter page left selector component, used to select if we want to hide a city in the table.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const BarterLeftSelector:React.FC<Props> = (props: Props) => {
 
     const [checked, setChecked] = useState(props.default);

@@ -1,11 +1,33 @@
+/**
+ * @file CarrackTrackerContent.tsx
+ * @description This file contains the main component for the carrack tracker content.
+ * @description This page is used to track the carrack.
+ * 
+ * @description The comments in this file are not up to date.
+ * @description This file is really messy and needs to be cleaned up, but it works, so I'm not going to do it right now. 
+ * @description The work on this part of the app was an hellish experience, and I'm not going to do it right now, I want to keep my sanity. 
+ * @description I'll do it later, when I'll have more time and when my brain will be able to handle it. 
+ * @description If I do it now, I'll probably break something, and I will cry, a lot.
+ * @description (Ward - 08/03/2023)
+ * 
+ * @author Ward
+ * @version 0.0.3
+ * @license GPL-3.0
+ * @since 0.0.3
+ */
 
+// TODO: Remove console.log and other debug stuff.. IN PROGRESS- Ward
+// TODO: Clean up this file..
+// TODO: Optimize this file..
+// TODO: Make this file more readable..
+// TODO: Cut this file in multiple files, maybe?..
+// TODO: Make comments up to date..
 import React, { useEffect } from 'react';
 
 import dataDict from '@src/typings/data';
 
 import './CarrackTrackerContent.scss'
 import subEventHelper from '@common/subEvent';
-import { stringify } from 'querystring';
 import tempHelper from '@common/temp';
 
 type Props = {
@@ -47,10 +69,7 @@ const CarrackTrackerContent  = (props: Props) => {
 
         let borderAdded = false;
 
-        console.log("Registering update-carrack-need callback")
-
         const temp = tempHelper.getInstance();
-        console.log("getting temp instance")
     
         // Get the current inventory data
         const data_ = ({...data});
@@ -61,6 +80,7 @@ const CarrackTrackerContent  = (props: Props) => {
         if(temp.has('carrack-order')){
 
             order = temp.get('carrack-order');
+
 
             if(order.boat !== boatType){
                 order = {
@@ -84,11 +104,13 @@ const CarrackTrackerContent  = (props: Props) => {
         }
 
         const reloadContent = (invCopy: any) => {
+            
+            
+            subEventHelper.getInstance().send('save-carrack-order', order);
 
             const inventory = JSON.parse(JSON.stringify(invCopy));
 
             // Change order of the need array to match the order of the order array
-            console.log("Ordering need array")
             
             Object.keys(need[0]).forEach((key) => {
                 if(order.items.indexOf(key) === -1){
@@ -120,8 +142,6 @@ const CarrackTrackerContent  = (props: Props) => {
                 contentPromises.push(new Promise<void>((resolve) => {
                 const promises: Promise<void>[] = [];    
 
-                console.log(`Iterating over ${key} (${index})`)
-
                 // Check if the current need type has sub-needs
                 if(need[0][key] !== undefined && need[0][key][0] !== undefined && need[0][key][0].need !== undefined){
                     // Initialize an array to hold the JSX elements for the sub-content
@@ -131,8 +151,6 @@ const CarrackTrackerContent  = (props: Props) => {
                     Object.keys(need[0][key][0].need[0]).forEach(async (key2) => {
 
                         const p = new Promise<void>((resolve) => {
-
-                            console.log(`Iterating over ${key2}`)
 
                             // Get the inventory data for the current sub-need
                             let inventoryHave =
@@ -185,8 +203,6 @@ const CarrackTrackerContent  = (props: Props) => {
     
                                 const onClick = () => {
 
-                                    console.log("Clicked on " + item_name)
-
                                     subEventHelper.getInstance().callEvent('focus-item', item_name);
 
                                 }
@@ -210,14 +226,10 @@ const CarrackTrackerContent  = (props: Props) => {
                             } else {
                                 import(`@assets/images/items/${info.image[0]}`).then((image) => {
     
-                                    console.log("Importing image for " + key2)
-    
                                     temp.set('img'+key2, image['default']);
                                     const item_image = image['default'];
     
                                     const onClick = () => {
-
-                                        console.log("Clicked on " + item_name)
     
                                         subEventHelper.getInstance().callEvent('focus-item', item_name);
     
@@ -238,6 +250,7 @@ const CarrackTrackerContent  = (props: Props) => {
                                         </div>
                                     );
                                 }).catch((err) => {
+                                    // If an error occurs, log it to the console
                                     console.log(err);
                                 }).finally(() => {
                                     resolve();
@@ -273,7 +286,6 @@ const CarrackTrackerContent  = (props: Props) => {
                     let next:HTMLElement = null;
 
                     Promise.all(promises).then(() => {
-                        console.log('promise all');
                         // Create a JSX element for the current need type and add the sub-content to it
                         contents.push(
                             <div key={key} className={`carrack-tracker-content-item multi-content-item`} id={key}>
@@ -337,12 +349,21 @@ const CarrackTrackerContent  = (props: Props) => {
                                         }
 
                                         if(test > 10) {
-                                            console.log("too many loops");
                                             return;
                                         }
 
                                         if(dropElement.id === key) {
-                                            console.log("same element");
+
+                                            if((e.clientY - dragY) < 50 && (e.clientY - dragY) > -50) {
+                                                if(borderElem.parentElement !== null) {
+                                                    borderElem.remove();
+                                                }
+
+                                                if(borderAdded) {
+                                                    borderAdded = false;
+                                                    dragY -= 70;
+                                                }
+                                            }
                                             return;
                                         }
 
@@ -365,6 +386,7 @@ const CarrackTrackerContent  = (props: Props) => {
 
                                             // Check if the dragged element is in the top half or bottom half of the element that is dropped on
                                             if((dropElement.getBoundingClientRect().height / 2) < e.clientY - dropElement.getBoundingClientRect().top) {
+                                                // Bottom half
                                                 
                                                 if(next !== null && next.id === dropElement.id && e.currentTarget.parentElement.parentElement.previousSibling !== null) { /* empty */ } else {
 
@@ -376,19 +398,28 @@ const CarrackTrackerContent  = (props: Props) => {
                                                     if(dropElement.nextSibling !== null && (dropElement.nextSibling as HTMLElement).id !== key) {
                                                         mainParent.insertBefore(borderElem, dropElement.nextSibling);
                                                     } else {
-                                                        if(e.currentTarget.parentElement.parentElement.previousSibling === null){
-                                                            mainParent.insertBefore(borderElem, dropElement.nextSibling);
-                                                        }
-                                                        if(borderAdded){
-                                                            dragY -= 70;
-                                                            borderAdded = false;
+                                                        if(e.currentTarget.parentElement.parentElement.previousSibling !== null){
+                                                            mainParent.insertBefore(borderElem, dropElement);
+                                                            if(!borderAdded){
+                                                                borderAdded = true;
+                                                                dragY += 70;
+                                                            }
+                                                        } else {
+                                                            if(borderAdded){
+                                                                dragY -= 70;
+                                                                borderAdded = false;
+                                                            }
                                                         }
                                                     }
                                                 }
                                                 
                                             } else {
+                                                // Top half
                                                     
-                                                if(next !== null && next.id === dropElement.id) { /* empty */ } else {
+                                                if(next !== null && next.id === dropElement.id) { 
+
+                                                    mainParent.insertBefore(borderElem, dropElement);
+                                                } else {
                                                     if(!borderAdded){
                                                         dragY +=  70;
                                                         borderAdded = true;
@@ -415,25 +446,39 @@ const CarrackTrackerContent  = (props: Props) => {
                                         if(next !== null) next.style.transform = "";
                                         next = null;
                                         borderElem.remove();
-                                        saveElm = null;
 
                                         e.currentTarget.parentElement.parentElement.style.transform = `translateY(0px)`;
                                         e.currentTarget.parentElement.parentElement.style.zIndex = "100";
+
+                                            
+
                                         // get the element where the element is dropped
-                                        let dropElement = document.elementFromPoint(dragX, e.clientY);
+                                        let dropElement = document.elementFromPoint(dragX, e.clientY) as HTMLElement;
+                                        if(dropElement != null){
+                                            saveElm = dropElement;
+                                        }
                                         let test = 0;
     
                                         borderElem.style.display = "none";
     
                                         if(dropElement === null){
-                                            console.log("drop element is null");
-                                            return;
+                                            // Check if the last dropElement is the last element in the list
+                                            if(saveElm !== null && saveElm.nextSibling === null){
+                                                dropElement = saveElm;
+                                            } else {
+                                                return;
+                                            }
+                                        }
+
+                                        if(dropElement.classList.contains("carrack-center")){
+                                            dropElement = dropElement.children[0] as HTMLElement;
+                                            dropElement = dropElement.children[0] as HTMLElement;
+                                            dropElement = dropElement.lastChild as HTMLElement;
                                         }
     
                                         while (!dropElement.classList?.contains("carrack-tracker-content-item") || test > 10) {
                                             dropElement = dropElement.parentElement;
                                             if(dropElement === null){
-                                                console.log("drop element is null");
                                                 return;
                                             }
                                             test += 1;
@@ -519,7 +564,6 @@ const CarrackTrackerContent  = (props: Props) => {
                                 </div>
                             </div>
                         );
-                        console.log('push content');
                         resolve();
 
                     });
@@ -540,8 +584,6 @@ const CarrackTrackerContent  = (props: Props) => {
                             inventory[key] !== undefined ? parseInt(inventory[key][0]) : 0;
 
                         let inventoryNeed;
-
-                        console.log(key);
 
                         // Calculate the total inventory needed for the current sub-need
                         if(need[0][key] === undefined || need[0][key][0] === undefined) {

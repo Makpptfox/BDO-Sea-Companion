@@ -1,4 +1,12 @@
-// ElementMaker.js
+/**
+ * @file BarterCenterInput.tsx
+ * @description Barter page center input component, it's used to switch between input and span.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 
 import React from "react";
 
@@ -13,9 +21,19 @@ type Props = {
     limit: number;
 }
 
+/**
+ * Barter Center Input Component, it's used to switch between input and span.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The component, type: {@link React.FC}
+ */
 const ElementMaker: React.FC<Props> = (props: Props) => {
     
     const value = isNaN(props.value) ? 0 : props.value;
+    window.addEventListener("keydown", function(e) {
+        if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+            e.preventDefault();
+        }
+    }, false);
 
     return(
         <span className="input-center-item" >
@@ -35,7 +53,10 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                                 case 'Escape':
                                     props.handleBlur();
                                     break;
+                                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                                    break;
                                 default:
+                                    e.preventDefault();
                                     break;
                             }
 
@@ -79,10 +100,17 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                                     // Check if the next element is the last one or not
                                     if(keyToFocusTR-1 <= -1) return;
 
-                                    // Get the next element to focus with array method
-                                    const nextIndex = parent.parentElement.parentElement.children[keyToFocusTR-1].children[keyToFocusTD].children[0].children[0] as HTMLSpanElement;
+                                    let key = keyToFocusTR-1;
 
-                                    if(nextIndex.parentElement.parentElement.style.display === 'none') return;
+                                    // Get the next element to focus with array method
+                                    let nextIndex = parent.parentElement.parentElement.children[keyToFocusTR-1].children[keyToFocusTD].children[0].children[0] as HTMLSpanElement;
+
+                                    while(nextIndex.parentElement.parentElement.parentElement.style.display === 'none'){
+                                        key--;
+                                        if(key <= -1) return;
+                                        nextIndex = parent.parentElement.parentElement.children[key].children[keyToFocusTD].children[0].children[0] as HTMLSpanElement;
+                                    }
+                                    
                                     
                                     // Blur the current element and focus the next one
                                     from.blur();
@@ -124,10 +152,19 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                                     // Check if the next element is the last one or not
                                     if(keyToFocusTR === -1 || keyToFocusTR+1 >= parent.parentElement.parentElement.children.length) return;
 
+                                    let key = keyToFocusTR+1;
+
                                     // Get the next element to focus
-                                    const nextIndex = parent.parentElement.parentElement.children[keyToFocusTR+1].children[keyToFocusTD].children[0].children[0] as HTMLSpanElement;
-                                    
-                                    if(nextIndex.parentElement.parentElement.style.display === 'none') return;
+                                    let nextIndex = parent.parentElement.parentElement.children[keyToFocusTR+1].children[keyToFocusTD].children[0].children[0] as HTMLSpanElement;
+
+                                    while(nextIndex.parentElement.parentElement.parentElement.style.display === 'none'){
+                                        key++;
+                                        if(key >= parent.parentElement.parentElement.children.length) return;
+                                        nextIndex = parent.parentElement.parentElement.children[key].children[keyToFocusTD].children[0].children[0] as HTMLSpanElement;
+                                    }
+
+                                    console.trace(nextIndex.parentElement.parentElement.parentElement)
+
                                     // Blur the current element and focus the next one
                                     from.blur();
                                     nextIndex.click();
@@ -222,7 +259,10 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                                     })
                                     break;
                                 }
+                                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                                    break;
                                 default:
+                                    e.preventDefault();
                                     break;
                             }
                         }}

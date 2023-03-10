@@ -1,4 +1,12 @@
-// TODO : Add the thresold warning for the barter tier button
+/**
+ * @file BarterRight.tsx
+ * @description Barter page right component, contains the tier checkboxes.
+ * 
+ * @author Ward
+ * @license GPL-3.0
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 import tempHelper from '@common/temp';
 import React, {useEffect} from 'react';
 
@@ -8,6 +16,11 @@ type Props = {
     onClick: (tier: number, hide:boolean) => void;
 };
 
+/**
+ * Barter Right Component, contains the tier checkboxes.
+ * @param props The props of the component, type: {@link Props}
+ * @returns The react component, type: {@link React.FC<Props>}
+ */
 const BarterRight:React.FC<Props> = (props: Props) => {
 
     const { onClick } = props;

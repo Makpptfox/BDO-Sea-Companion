@@ -27,7 +27,7 @@ mainEventHelper.getInstance().registerCallback('sUpdater', () => {
   console.log('sUpdate');
 
   createAppWindow(updateWindow);
-});
+}, true);
 
 /**
  * Emitted when the application is activated. Various actions can

@@ -1,3 +1,12 @@
+/**
+ * @file WindowFrame.tsx
+ * @description This file contains the window frame component.
+ * @author Ward
+ * @version 0.0.3
+ * @license GPL-3.0
+ * @since 0.0.1
+ */
+
 import React, {useState} from "react";
 import WindowControls from "./WindowControls";
 
@@ -13,9 +22,8 @@ type Props = {
 
 /**
  * The window frame component
- * @param Props the props of the component:
- * - children: the react children
- * @returns the react component
+ * @param Props the props of the component: {@link Props}
+ * @returns the react component to render, type: {@link React.FC}
  */
 const WindowFrame: React.FC<Props> = (props: Props) => {
 

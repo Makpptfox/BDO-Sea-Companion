@@ -53,7 +53,8 @@ table{
         width: var(--barter-table-body-width);
         max-width: var(--barter-table-body-width);
 
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
 
         min-height: var(--barter-table-body-height);
         max-height: var(--barter-table-body-height);
@@ -99,10 +100,13 @@ table{
             cursor: pointer;
             .table-edit{
                 color: white;
+                padding-left: 20%;
+                padding-right: 20%;
             }
             td{
                 .input-center-item{
                     cursor: text;
+                    overflow: scroll;
                 }
 
                 .input-number-barter{
@@ -135,22 +139,68 @@ table{
         .tier-1{
             /* global 92%+ browsers support */
             background:radial-gradient(ellipse at 0% 50%, #4b4b4b 0%, #17160F00 72%);
+            background-size: 150% 100%;
+            background-position: 80% 0;
+            
+            // tier-1 animation when any input is focused, the animation need to reverse when the input is not focused and the animation need to be forwards
+            &:focus-within{
+                animation: tierFocus .2s forwards;
+            }
+
         }
+
+        @keyframes tierFocus {
+            0% {
+                background-position: 80% 0;
+            }
+            100% {
+                background-position: 0% 0;
+            }
+        }
+
         .tier-2{
             /* global 92%+ browsers support */
             background:radial-gradient(ellipse at 0% 50%, #3f5429 0%, #17160F00 72%);
+            background-size: 150% 100%;
+            background-position: 80% 0;
+            
+            // tier-1 animation when any input is focused, the animation need to reverse when the input is not focused and the animation need to be forwards
+            &:focus-within{
+                animation: tierFocus .2s forwards;
+            }
         }
         .tier-3{
             /* global 92%+ browsers support */
             background:radial-gradient(ellipse at 0% 50%, #2c4a64 0%, #17160F00 72%);
+            background-size: 150% 100%;
+            background-position: 80% 0;
+            
+            // tier-1 animation when any input is focused, the animation need to reverse when the input is not focused and the animation need to be forwards
+            &:focus-within{
+                animation: tierFocus .2s forwards;
+            }
         }
         .tier-4{
             /* global 92%+ browsers support */
             background:radial-gradient(ellipse at 0% 50%, #7a5e1a 0%, #17160F00 72%);
+            background-size: 150% 100%;
+            background-position: 80% 0;
+            
+            // tier-1 animation when any input is focused, the animation need to reverse when the input is not focused and the animation need to be forwards
+            &:focus-within{
+                animation: tierFocus .2s forwards;
+            }
         }
         .tier-5{
             /* global 92%+ browsers support */
             background:radial-gradient(ellipse at 0% 50%, #781d1a 0%, #17160F00 72%);
+            background-size: 150% 100%;
+            background-position: 80% 0;
+            
+            // tier-1 animation when any input is focused, the animation need to reverse when the input is not focused and the animation need to be forwards
+            &:focus-within{
+                animation: tierFocus .2s forwards;
+            }
         }
 
         .warning-thresold{
