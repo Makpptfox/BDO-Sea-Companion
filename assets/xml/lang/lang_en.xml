@@ -12,6 +12,10 @@
         <carrack>Carrack</carrack>
     </navigation>
 
+    <language>
+        <selectLanguage>Select language</selectLanguage>
+    </language>
+    
     <!-- Translation of the items -->
     <items>
     <!-- Items of Tier 1 (Sorted as shown in the game's storage auto-arrange) -->
@@ -320,7 +324,7 @@
         <bottom>
             <left>
                 <title>Treshold Warning</title>
-                <tresholdAdvice>Any item below this limit will trigger the warning and put the concerned Storage in Red!</tresholdAdvice>
+                <tresholdAdvice>Any item reaching this limit or below will trigger the warning and put the concerned Storage in Red!</tresholdAdvice>
             </left>
             <right>
                 <totalStoragesValue>Total Value:</totalStoragesValue>

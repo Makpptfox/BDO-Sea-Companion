@@ -325,7 +325,7 @@
         <bottom>
             <left>
                 <title>Seuil d'avertissement</title>
-                <tresholdAdvice>Un cumul en dessous de ce seuil déclenchera l'avertissement et affichera le dépôt concerné en rouge !</tresholdAdvice>
+                <tresholdAdvice>Un cumul à partir (et en dessous) de ce seuil déclenchera l'avertissement et affichera le dépôt concerné en rouge !</tresholdAdvice>
             </left>
             <right>
                 <totalStoragesValue>Valeur totale :</totalStoragesValue>
