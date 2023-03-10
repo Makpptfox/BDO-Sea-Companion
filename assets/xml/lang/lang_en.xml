@@ -319,7 +319,7 @@
             <tier>Level</tier>
             <name>Name</name>
             <qty>Quantity</qty>
-            <tableAdvice>You can use the arrow up and down key to navigate faster between amounts!</tableAdvice>
+            <tableAdvice>You can use the arrow up, down, left or right key to navigate faster between amounts!</tableAdvice>
         </table>
         <bottom>
             <left>

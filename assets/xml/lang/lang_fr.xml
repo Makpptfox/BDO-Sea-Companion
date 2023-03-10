@@ -320,7 +320,7 @@
             <tier>Niveau</tier>
             <name>Nom</name>
             <qty>Quantité</qty>
-            <tableAdvice>Utilisez les flèches haut et bas pour naviguer plus facilement entre les montants !</tableAdvice>
+            <tableAdvice>Utilisez les flèches haut, bas, gauche ou droite du clavier pour naviguer plus facilement entre les montants !</tableAdvice>
         </table>
         <bottom>
             <left>
