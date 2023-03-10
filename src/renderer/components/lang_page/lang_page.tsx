@@ -40,7 +40,9 @@ const LangPage: React.FunctionComponent<Props> = (props: Props) => {
         // if the app is launched for the first time, open the language page automatically
         if(props.data.settings.settings.chosenLang[0] === "false"){
             subEventHelper.getInstance().callEvent('open_lang_page', true);
+            subEventHelper.getInstance().send('set-setting', {key: "chosenLang", value: "true"});
         }
+        
 
         return(()=>{
             
@@ -59,10 +61,6 @@ const LangPage: React.FunctionComponent<Props> = (props: Props) => {
     }, [show])
 
     const closePage = () => {
-
-        if(props.data.settings.settings.chosenLang[0]){
-            subEventHelper.getInstance().send('set-setting', {key: "chosenLang", value: "true"});
-        }
 
         (document.getElementsByClassName("lang-page")[0] as HTMLDivElement).style.transition = "opacity 0.3s";
         (document.getElementsByClassName("lang-page")[0] as HTMLDivElement).style.opacity = "0";

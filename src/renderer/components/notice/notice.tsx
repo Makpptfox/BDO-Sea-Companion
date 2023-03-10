@@ -57,7 +57,7 @@ const Notice: React.FunctionComponent<Props> = (props: Props) => {
         e.preventDefault();
 
         if(props.data.settings.settings.disclaimer[0] === "false"){
-            subEventHelper.getInstance().send('set-settings', {key: "disclaimer", value: "true"});
+            subEventHelper.getInstance().send('set-setting', {key: "disclaimer", value: "true"});
         }
 
         document.getElementById("notice-back").style.transition = "opacity 0.3s";
