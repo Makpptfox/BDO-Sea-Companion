@@ -120,7 +120,7 @@ module.exports = {
           owner: 'makpptfox',
           name: 'bdo-sea-companion'
         },
-        authToken: "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",
+        authToken: process.env.GITHUB_TOKEN,
         prerelease: true
       }
     }
