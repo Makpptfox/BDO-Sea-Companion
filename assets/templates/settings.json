@@ -2,7 +2,7 @@
     "for": "settings.xml",
     "versions": [
         {
-            "0.1.0": {
+            "0.1.0-beta": {
                 "settings":{
                     "lang": "en", 
                     "ignoreAncado": "false", 

@@ -2,7 +2,7 @@
     "for": "data/carrack_data.xml",
     "versions": [
         {
-            "0.0.1": {
+            "0.1.0-beta": {
                 "carrack": {
                     "boat": {
                         "advance": {

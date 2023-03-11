@@ -9,6 +9,8 @@ import { assert } from "console";
 
 import * as xml2js from 'xml2js';
 
+import Logger from 'electron-log';
+
 let userDataPath = ''
 
 if(process.env.NODE_ENV === 'development'){
@@ -49,6 +51,12 @@ function getXmlFiles() {
 
     // Get all xml files
     const files = fs.readdirSync(xmlPath);
+
+    if(files === undefined){
+        Logger.error('[fileManager] files is undefined');
+        return [];
+    }
+
     const xmlFiles = files.filter(file => file.endsWith('.xml'));
     return xmlFiles;
 }

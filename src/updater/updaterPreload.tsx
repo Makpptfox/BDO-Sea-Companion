@@ -13,7 +13,7 @@ const {
 const validChannelsSend: string[] = ['sUpdater'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = [];
+const validChannelsReceive: string[] = ['update-downloaded', 'update-not-available', 'error'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {

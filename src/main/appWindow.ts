@@ -220,7 +220,7 @@ export function createAppWindow(updateWindow: BrowserWindow): BrowserWindow {
   return appWindow;
 }
 
-export function createUpdateWindow(): BrowserWindow {
+export function createUpdateWindow(autoUpdater: any): BrowserWindow {
 
   // Create new window instance
   let updateWindow = new BrowserWindow({
@@ -261,6 +261,22 @@ export function createUpdateWindow(): BrowserWindow {
   
     // Register Inter Process Communication for main process
     registerMainIPC();
+
+    if(process.env.NODE_ENV !== 'development'){
+      autoUpdater.checkForUpdates();
+    }
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    updateWindow.webContents.send('update-downloaded');
+  });
+
+  autoUpdater.on('update-not-available', () => {
+    updateWindow.webContents.send('update-not-available');
+  });
+
+  autoUpdater.on('error', () => {
+    updateWindow.webContents.send('error');
   });
 
   // Close all windows when main window is closed

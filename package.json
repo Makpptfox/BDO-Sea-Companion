@@ -1,7 +1,7 @@
 {
   "name": "bdo_barter-calculator",
   "productName": "BDO Sea Companion",
-  "version": "0.1.1",
+  "version": "0.1.2-beta",
   "description": "An tool for BDO game",
   "main": ".webpack/main",
   "scripts": {
@@ -37,6 +37,9 @@
   "license": "GPL-3.0",
   "config": {
     "forge": "./tools/forge/forge.config.js"
+  },
+  "build": {
+    "appId": "fr.pts.bdo-sea-companion"
   },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.68",
@@ -78,7 +81,13 @@
     "webpack": "^5.74.0"
   },
   "dependencies": {
+    "@electron-forge/publisher-github": "^6.0.0",
+    "electron-builder": "^23.6.0",
+    "electron-forge-maker-nsis": "^24.0.0",
+    "electron-github-autoupdater": "^2.0.0",
+    "electron-log": "^5.0.0-beta.16",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^5.3.0",
     "jsdom": "^20.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

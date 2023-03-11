@@ -1,8 +1,10 @@
 import mainEventHelper from '@common/mainEvent';
 import { app, BrowserWindow } from 'electron';
 import { createAppWindow, createUpdateWindow } from './appWindow';
+import { autoUpdater, AutoUpdaterOptions } from 'electron-github-autoupdater'
+import Logger from 'electron-log';
 
-require('update-electron-app')()
+import path from 'path';
 
 /** Handle creating/removing shortcuts on Windows when installing/uninstalling. */
 if (require('electron-squirrel-startup')) {
@@ -11,7 +13,13 @@ if (require('electron-squirrel-startup')) {
 
 let updateWindow: BrowserWindow;
 
-//new logApi(app);
+const config: AutoUpdaterOptions = {
+  owner: 'Makpptfox',
+  repo: 'BDO-Sea-Companion',
+  accessToken: process.env.GITHUB_TOKEN,
+}
+
+const AutoUpdater = autoUpdater(config);
 
 /**
  * This method will be called when Electron has finished
@@ -19,7 +27,30 @@ let updateWindow: BrowserWindow;
  * Some APIs can only be used after this event occurs.
  */
 app.on('ready', ()=>{
-  updateWindow = createUpdateWindow();
+  updateWindow = createUpdateWindow(AutoUpdater);
+  const log = Logger.create({logId: 'main'});
+  log.initialize({preload: true});
+
+  const APP_DATA = app.getPath('userData');
+
+  log.transports.file.resolvePathFn = () => path.join(APP_DATA, 'logs/main.log');
+  log.transports.file.level = "debug"
+
+  AutoUpdater.on('error', (error) => {
+    log.error(error);
+  });
+
+  AutoUpdater.on('checking-for-update', () => {
+    log.log('checking-for-update');
+  });
+
+  AutoUpdater.on('update-downloaded', () => {
+    console.log('update-available');
+  });
+
+  AutoUpdater.on('update-not-available', () => {
+    log.log('update-not-available');
+  });
 });
 
 mainEventHelper.getInstance().registerCallback('sUpdater', () => {
@@ -42,7 +73,7 @@ app.on('activate', () => {
    * dock icon is clicked and there are no other windows open.
    */
   if (BrowserWindow.getAllWindows().length === 0) {
-    updateWindow = createUpdateWindow();
+    updateWindow = createUpdateWindow(AutoUpdater);
   }
 });
 

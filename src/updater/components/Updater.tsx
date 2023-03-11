@@ -9,18 +9,43 @@ const Updater: React.FC = () => {
     const [title, setTitle] = useState('Searching update');
     const [message, setMessage] = useState('Please wait...');
 
-    setTimeout(() => {
+    subEventHelper.getInstance().registerCallback('update-downloaded', () => {
+        
+        setTitle('Update found');
+        setMessage('It will be installed when you close the app');
+
+        setTimeout(() => {
+            // Send a message to the main process
+            subEventHelper.getInstance().send('sUpdater');
+        }, 2000);
+
+    }, 'updater');
+
+    subEventHelper.getInstance().registerCallback('error', ()=>{
+
+        setTitle('Launching app')
+
+        setMessage('No update found')
+        setTimeout(() => {
+            // Send a message to the main process
+            subEventHelper.getInstance().send('sUpdater');
+        }, 1000);
+
+    }, 'updater')
+
+    subEventHelper.getInstance().registerCallback('update-not-available', () => {
+
         console.log('Updater Window...');
 
         setTitle('Launching app')
 
         setMessage('No update found')
-
         setTimeout(() => {
             // Send a message to the main process
             subEventHelper.getInstance().send('sUpdater');
-        }, 200);
-    }, 1000);
+        }, 1000);
+
+    }, 'updater');
 
     const logo = require('@assets/images/Logo.png');
 

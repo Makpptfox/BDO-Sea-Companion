@@ -13,6 +13,7 @@
  */
 
 import { app } from 'electron';
+import Logger from 'electron-log';
 import * as fs from 'fs';
 import path from 'path';
 import semver from 'semver';
@@ -29,7 +30,7 @@ function getTemplatePath(): string{
 }
 
 // Description: This module is used to check the template version of the current project.
-export function templateCheck(version: string){
+export function templateCheck(version: string, error?: boolean){
 
     // Get each files in the templates folder
     // If the soft is in development mode, the templates folder is in the assets folder
@@ -43,6 +44,18 @@ export function templateCheck(version: string){
     fs.readdir(templatePath, (err, _files) => {
 
         console.trace("Files: ", _files);
+
+        if(_files === undefined){
+            if(error){
+                Logger.error('[templateChecker] files is undefined. It\'s the second time, the check is stopped.');
+                return [];
+            }
+            setTimeout(() => {
+                Logger.error('[templateChecker] files is undefined. Trying again in 1 second.');
+                templateCheck(version, true);
+            }, 1000);
+            return [];
+        }
 
         const files: string[] = _files.filter(file => file.endsWith('.json'));
 

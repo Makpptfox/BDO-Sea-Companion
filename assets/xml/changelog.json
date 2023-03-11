@@ -1,16 +1,13 @@
 {
-    "version": "0.1.1b",
+    "version": "0.1.2b",
     "date": "11/03/2023",
     "removals": [
         
     ],
     "additions": [
-        "Now you can see the \"disclaimer\" in English & French.",
-        "Added a button to reset ALL the data (like a 'factory reset'), with some confirmation.",
-        "Added an icon next to the changelog title to access to a page with all the changelog."
     ],
     "fixes": [
-        "Fixed the margin of the \"total value\"."
+        "Fixed an error with the data checker that occured when the software was launched for the first time."
     ],
     "notes": [
         "The program will - NORMALY - automatically update itself when you launch it. But I can't guarantee that it will work properly. If you have any problem, please look in the GitHub for a new version.",

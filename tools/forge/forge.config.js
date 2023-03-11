@@ -30,8 +30,7 @@ module.exports = {
   // Forge Makers
   makers: [
     {
-      // Squirrel.Windows is a no-prompt, no-hassle, no-admin method of installing
-      // Windows applications and is therefore the most user friendly you can get.
+      // NSIS Electron forge maker
       name: '@electron-forge/maker-squirrel',
       config: {
         name: 'bdo-sea-companion',
@@ -113,4 +112,17 @@ module.exports = {
       },
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'makpptfox',
+          name: 'bdo-sea-companion'
+        },
+        authToken: "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",
+        prerelease: true
+      }
+    }
+  ]
 };
