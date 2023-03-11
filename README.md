@@ -22,7 +22,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About BDOSC
 
-![Exemple picture of BDOSC](TODO)
+![Exemple picture of BDOSC](https://i.imgur.com/bPQFrrb.png)
 
 <h3 align="center">BDOSC is a Windows desktop app that helps you keep an eye on your bartering stocks and track the carrack(s) you're working towards. It was developed with the KISS principle in mind, which is dear to us, while wishing for a decent enough and ergonomic GUI.</h3>
 
