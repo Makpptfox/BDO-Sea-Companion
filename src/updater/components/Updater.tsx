@@ -19,8 +19,8 @@ const Updater: React.FC = () => {
         setTimeout(() => {
             // Send a message to the main process
             subEventHelper.getInstance().send('sUpdater');
-        }, 400);
-    }, 800);
+        }, 200);
+    }, 1000);
 
     const logo = require('@assets/images/Logo.png');
 

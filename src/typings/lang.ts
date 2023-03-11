@@ -200,6 +200,52 @@ type langDict = {
             ]
         }
     ]
+    reset: [
+        {
+            title: [
+                string
+            ]
+            content: [
+                {
+                    first: [
+                        string
+                    ]
+                    second: [
+                        string
+                    ]
+                    third: [
+                        string
+                    ]
+                }
+            ]
+            confirmation: [
+                {
+                    first: [
+                        string
+                    ]
+                    second: [
+                        string
+                    ]
+                    third: [
+                        string
+                    ]
+                }
+            ]
+            cancel: [
+                {
+                    first: [
+                        string
+                    ]
+                    second: [
+                        string
+                    ]
+                    third: [
+                        string
+                    ]
+                }
+            ]
+        }
+    ]
 }
 
 export default langDict;

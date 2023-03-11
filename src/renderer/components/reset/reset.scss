@@ -1,6 +1,6 @@
-// This is a modal type window that will display the notice for the current version of the app.
+// This is a modal type window that will display the reset for the current version of the app.
 // It will be displayed when the user launch for the first time the app after an update.
-#notice-back{
+#reset-back{
     background-color: rgba(0,0,0,0.5);
     position: fixed;
     width: 100%;
@@ -12,12 +12,12 @@
     align-items: center;
     justify-content: center;
 
-    #notice-container{
+    #reset-container{
         background-color: #31302d;
         box-shadow: #000000 0px 0px 16px 0px;
         border: 1px solid #686975;
-        width: 80%;
-        height: 50%;
+        width: 60%;
+        height: 35%;
         border-radius: 10px;
         padding: 20px;
         overflow: auto;
@@ -51,44 +51,62 @@
         }
 
 
-        .notice-header{
+        .reset-header{
             font-size: 1.2em;
             font-weight: bold;
+            text-align: center;
             h1{
                 margin: 0;
             }
         }
 
-        .notice-content{
+        .reset-content{
             font-size: 1.2em;
+            text-align: center;
+            height: 80px;
             
         }
-        .notice-button{
+        .reset-buttons{
             
-            margin-top: auto;
-            margin-bottom: auto;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 80px;
+            align-items: center;
 
-            width: fit-content;
+            .reset-confirm{
+                background:linear-gradient(180deg, #904444 0%, #6c2525 100%);
+                padding: 10px;
+                border-radius: 4px;
 
-            align-self: center;
-            justify-self: end;
+                border: 1px solid #8b595c;
 
-            cursor: pointer;
-            border-radius: 5px;
+                width: 150px;
 
-            color: white;
-            font-size: 1.2em;
-            border: 1px solid;
-            height: 60px;
-            background: var(--barter-right-button-all-background-gradient);
-            height: 30px;
-            border-color: #856348;
-            &:hover{
-                background: linear-gradient(to bottom, lighten(#5e483a, 5%) 60%, lighten(#96683e, 5%) 100%);
+                color: white;
+                font-size: 1.2em;
+    
+                &:hover{
+                    background:linear-gradient(180deg, lighten(#904444, 5%) 0%, lighten(#6c2525, 5%) 100%);
+                }
+                cursor: pointer;
+            }
+
+            .reset-cancel{
+                background:linear-gradient(180deg, #4c684a 0%, #628560 100%);
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #5b8b59;
+                width: 150px;
+                color: white;
+                font-size: 1.2em;
+                &:hover{
+                    background:linear-gradient(180deg, lighten(#4c684a, 5%) 0%, lighten(#628560, 5%) 100%);
+                }
+                cursor: pointer;
             }
         }
 
-        .notice-content-footer{
+        .reset-content-footer{
             display: flex;
             margin-top: 20px;
             flex-direction: column;
@@ -103,7 +121,7 @@
                 margin: 0;
             }
 
-            .notice-content-footer-notes{
+            .reset-content-footer-notes{
                 font-size: 1.2em;
                 margin-left: 20px;
             }

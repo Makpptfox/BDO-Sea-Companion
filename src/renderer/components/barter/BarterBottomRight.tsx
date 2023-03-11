@@ -21,7 +21,7 @@ type Props = {
 /**
  * Barter Bottom Right Component.
  * @param props The props of the component, type: {@link Props}
- * @returns The component, type: {@link React.FC}
+ * @returns The component, type: {@link React}
  */
 const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
@@ -37,7 +37,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
 
         const content = document.getElementsByClassName('app-barter-bottom-right-content')[0] as HTMLElement;
 
-        content.style.marginTop = titleThresoldWarning.offsetHeight + 11 + "px";
+        content.style.marginTop = titleThresoldWarning.offsetHeight + 14 + "px";
 
         let _total = 0;
     

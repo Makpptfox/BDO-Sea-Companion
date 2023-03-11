@@ -11,6 +11,7 @@ import tempHelper from '@common/temp';
 import React, {useEffect} from 'react';
 
 import './BarterRight.scss';
+import subEventHelper from '../../../common/subEvent';
 
 type Props = {
     onClick: (tier: number, hide:boolean) => void;
@@ -43,6 +44,9 @@ const BarterRight:React.FC<Props> = (props: Props) => {
     let tier3Table:boolean[] = []
     let tier4Table:boolean[] = []
     let tier5Table:boolean[] = []
+
+
+    const resetIcon = require('@assets/icons/reset.svg');
 
 
     useEffect(() => {
@@ -315,6 +319,15 @@ const BarterRight:React.FC<Props> = (props: Props) => {
                     setAll((Tier1 && Tier2 && Tier3 && Tier4 && !Tier5));
                 }}>Tier 5</button>
             </div>
+
+            <div className='barter-right__reset'>
+                <div className="barter-right-resetButton">
+                    <img src={resetIcon} alt="reset" onClick={() => {
+                        subEventHelper.getInstance().callEvent('rOpenReset')
+                    }}/>
+                </div>
+            </div>
+
         </div>
     );
 };

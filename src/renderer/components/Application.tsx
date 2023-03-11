@@ -20,6 +20,7 @@ import SettingTier from './setting-tier/settingTier';
 import ChangeLog from './changeLog/changelog';
 import Advice from './advice/advice';
 import Notice from './notice/notice';
+import Reset from './reset/reset';
 
 
 // Define the props
@@ -58,6 +59,8 @@ const Application: React.FC<Props> = (props: Props) => {
       <SettingTier data={props.data}/>
       <ChangeLog changelog={props.data.changelog} update={props.data.update}/>
       <Notice data={props.data}/>
+
+      <Reset data={props.data}/>
       
       <HashRouter>
       

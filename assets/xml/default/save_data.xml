@@ -347,13 +347,13 @@
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>5</ancado>
+            <ancado>0</ancado>
         </HerbalWine>
         <AzureQuartz>
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>1</ancado>
+            <ancado>0</ancado>
         </AzureQuartz>
         <Butterfly>
             <qty>0</qty>
@@ -365,7 +365,7 @@
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>2</ancado>
+            <ancado>0</ancado>
         </Tear>
         <GoldCandlestick>
             <qty>0</qty>
@@ -435,30 +435,28 @@
         </DragonFigurine>
     </items>
     <misc>
-        <lastBarter>250</lastBarter>
+        <lastBarter>0</lastBarter>
     </misc>
     <threshold>
-        <iliya>8</iliya>
-        <epheria>8</epheria>
-        <ancado>8</ancado>
+        <iliya>0</iliya>
+        <epheria>0</epheria>
+        <ancado>0</ancado>
     </threshold>
     <inventory>
-        <cherrySeed>120</cherrySeed>
-        <ration>9999999</ration>
-        <fishBone>5000</fishBone>
-        <t>5</t>
-        <g>0</g>
-        <x>0</x>
-        <BrilliantPearlShard>30</BrilliantPearlShard>
-        <MoonVeinFlaxFabric>180</MoonVeinFlaxFabric>
-        <RuddyManganeseNodule>50</RuddyManganeseNodule>
-        <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
-        <SeaweedStalk>125</SeaweedStalk>
-        <GreatOceanDarkIron>150</GreatOceanDarkIron>
-        <TearoftheOcean>50</TearoftheOcean>
-        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
-        <DeepTideDyedStandardizedTimberSquare>144</DeepTideDyedStandardizedTimberSquare>
+        <BrilliantPearlShard>0</BrilliantPearlShard>
+        <MoonVeinFlaxFabric>0</MoonVeinFlaxFabric>
+        <RuddyManganeseNodule>0</RuddyManganeseNodule>
+        <EnhancedIslandTreeCoatedPlywood>0</EnhancedIslandTreeCoatedPlywood>
+        <SeaweedStalk>0</SeaweedStalk>
+        <GreatOceanDarkIron>0</GreatOceanDarkIron>
+        <TearoftheOcean>0</TearoftheOcean>
+        <BrilliantRockSaltIngot>0</BrilliantRockSaltIngot>
+        <DeepTideDyedStandardizedTimberSquare>0</DeepTideDyedStandardizedTimberSquare>
         <EpheriaGalleassWhiteHornFigurehead>0</EpheriaGalleassWhiteHornFigurehead>
         <CoxPiratesArtifactCombat>0</CoxPiratesArtifactCombat>
+        <MoonScalePlywood>0</MoonScalePlywood>
+        <TideDyedStandardizedTimberSquare>0</TideDyedStandardizedTimberSquare>
+        <BrightReefPiece>0</BrightReefPiece>
+        <PurePearlCrystal>0</PurePearlCrystal>
     </inventory>
 </data>

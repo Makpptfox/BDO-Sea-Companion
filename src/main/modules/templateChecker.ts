@@ -195,10 +195,6 @@ function checkProperties(version: string, key: string, data: any, template: any,
                 rootTag = properties[i];
             }
 
-            // For debug purpose
-            console.log('rootTag', rootTag);
-            console.log('properties[i]', properties[i]);
-
             // Check if it's an definition property
             if(properties[i].includes("_")){
                 continue;

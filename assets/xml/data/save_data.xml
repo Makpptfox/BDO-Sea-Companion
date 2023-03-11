@@ -2,7 +2,7 @@
 <data>
     <items>
         <BlueRose>
-            <qty>100</qty>
+            <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
@@ -171,85 +171,85 @@
         </UrchinSpine>
         <Hourglass>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Hourglass>
         <TreasureMap>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </TreasureMap>
         <SupplyBox>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </SupplyBox>
         <Binoculars>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Binoculars>
         <Stalactite>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Stalactite>
         <Teacup>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Teacup>
         <RoundKnife>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </RoundKnife>
         <Blood>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Blood>
         <Coat>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Coat>
         <SkullCarpet>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </SkullCarpet>
         <HerbPile>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </HerbPile>
         <Fishnet>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </Fishnet>
         <AncientOrders>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </AncientOrders>
         <BlueCandle>
             <qty>0</qty>
-            <iliya>1</iliya>
+            <iliya>0</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </BlueCandle>
@@ -435,36 +435,28 @@
         </DragonFigurine>
     </items>
     <misc>
-        <lastBarter>250</lastBarter>
+        <lastBarter>0</lastBarter>
     </misc>
     <threshold>
-        <iliya>8</iliya>
-        <epheria>8</epheria>
+        <iliya>0</iliya>
+        <epheria>0</epheria>
         <ancado>0</ancado>
     </threshold>
     <inventory>
-        <cherrySeed>120</cherrySeed>
-        <ration>9999999</ration>
-        <fishBone>5000</fishBone>
-        <t>5</t>
-        <g>0</g>
-        <x>0</x>
-        <BrilliantPearlShard>30</BrilliantPearlShard>
-        <MoonVeinFlaxFabric>180</MoonVeinFlaxFabric>
-        <RuddyManganeseNodule>50</RuddyManganeseNodule>
-        <EnhancedIslandTreeCoatedPlywood>300</EnhancedIslandTreeCoatedPlywood>
-        <SeaweedStalk>125</SeaweedStalk>
-        <GreatOceanDarkIron>150</GreatOceanDarkIron>
-        <TearoftheOcean>50</TearoftheOcean>
-        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
-        <DeepTideDyedStandardizedTimberSquare>144</DeepTideDyedStandardizedTimberSquare>
+        <BrilliantPearlShard>0</BrilliantPearlShard>
+        <MoonVeinFlaxFabric>0</MoonVeinFlaxFabric>
+        <RuddyManganeseNodule>0</RuddyManganeseNodule>
+        <EnhancedIslandTreeCoatedPlywood>0</EnhancedIslandTreeCoatedPlywood>
+        <SeaweedStalk>0</SeaweedStalk>
+        <GreatOceanDarkIron>0</GreatOceanDarkIron>
+        <TearoftheOcean>0</TearoftheOcean>
+        <BrilliantRockSaltIngot>0</BrilliantRockSaltIngot>
+        <DeepTideDyedStandardizedTimberSquare>0</DeepTideDyedStandardizedTimberSquare>
         <EpheriaGalleassWhiteHornFigurehead>0</EpheriaGalleassWhiteHornFigurehead>
         <CoxPiratesArtifactCombat>0</CoxPiratesArtifactCombat>
         <MoonScalePlywood>0</MoonScalePlywood>
         <TideDyedStandardizedTimberSquare>0</TideDyedStandardizedTimberSquare>
+        <BrightReefPiece>0</BrightReefPiece>
+        <PurePearlCrystal>0</PurePearlCrystal>
     </inventory>
-    <carrackOrder>
-        <boat>advance</boat>
-        <items>CarrackTracking,CaravelPlatingTracking,CaravelProwTracking,CaravelCannonTracking,CaravelSailTracking</items>
-    </carrackOrder>
 </data>

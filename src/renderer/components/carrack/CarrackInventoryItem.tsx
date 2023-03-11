@@ -70,6 +70,7 @@ const CarrackInventoryItem = (props: Props) => {
                 const input = document.createElement('input');
                 input.type = 'number';
                 input.value = qty?.innerText || '0';
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 
                 // If the quantity element exists, replace it with the input element and focus it
                 if (qty) {
@@ -77,6 +78,9 @@ const CarrackInventoryItem = (props: Props) => {
                     qty.replaceWith(input)
                     input.focus();
                     input.select();
+                    input.addEventListener('input', (e: any)=>{
+                        changeHandler(e);
+                    })
                 }
         
             }
@@ -129,7 +133,7 @@ const CarrackInventoryItem = (props: Props) => {
                 } else if (e.key.match(/^[0-9]+$/) || e.key === 'Backspace' || e.key === 'Delete' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                     // If the key pressed is a number, backspace, delete, arrow up or arrow down, set the value to the input value
                     if(e.key.match(/^[0-9]+$/)){
-                        value = value + e.key;
+                        value = target.value;
                     } else if (e.key === 'Backspace' || e.key === 'Delete') {
                         // If the key pressed is backspace or delete, remove the last character of the value
                         value = value.slice(0, -1);
@@ -140,7 +144,31 @@ const CarrackInventoryItem = (props: Props) => {
                         // If the key pressed is arrow down, remove 1 to the value
                         value = (parseInt(value) - 1).toString();
                     }
+                } else {
+                    e.preventDefault();
                 }
+        
+                // If the value is NaN, empty or negative, set the value to 0
+                if(value === 'NaN' || value === '' || value.includes('-')){
+                    value = '0';
+                }
+        
+                // // Send the value to the CarrackInventory.tsx component
+                // subEventHelper.getInstance().send('carrack-inventory-save-qty', props.index, parseInt(value))
+
+                // // save the value in the save object
+                // props.data.save.inventory[0] = props.data.save.inventory[0] || {};
+                // props.data.save.inventory[0][props.index] = props.data.save.inventory[0][props.index] || ["0"];
+                // props.data.save.inventory[0][props.index][0] = value;
+
+                // // Call the update-carrack-need event to update the need list
+                // subEventHelper.getInstance().callEvent('update-carrack-need', props.data.save.inventory[0])
+            }
+
+            const changeHandler = (e: InputEvent) =>{
+
+                const target = e.target as HTMLInputElement;
+                let value = target.value;
         
                 // If the value is NaN, empty or negative, set the value to 0
                 if(value === 'NaN' || value === '' || value.includes('-')){

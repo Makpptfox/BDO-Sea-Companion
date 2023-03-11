@@ -1,4 +1,4 @@
-import { app, ipcMain, IpcMainEvent } from "electron";
+import { app, ipcMain, IpcMainEvent, shell } from "electron";
 
 // Import all events
 import onPagechange from "./events/onPageChange";
@@ -23,6 +23,7 @@ import fileHelper from "@common/file";
 import { settings } from "@src/typings/settings";
 import onSetSetting from "./events/onSetSetting";
 import onSaveCarrackOrder from "./events/onSaveCarrackOrder";
+import { stringifySaveData } from "@src/typings/save";
 
 const eventHelper = mainEventHelper.getInstance();
 
@@ -143,6 +144,90 @@ export function events(window: Electron.BrowserWindow){
             }
         });
     })
+    eventHelper.registerEvent('sResetApp');
+
+    eventHelper.registerCallback('sResetApp', (e: IpcMainEvent) => {
+
+        console.log('sResetApp');
+
+        const settings = findXmlFile('settings');
+        const update = findXmlFile('update');
+        let save = findXmlFile('data/save_data');
+        save = save.data;
+
+        update.update.firstLaunch[0] = true;
+
+        saveXmlFileContent('update.xml', JSONToXML(update));
+
+        settings.settings.lang[0] = 'en';
+        settings.settings.ignoreAncado[0] = "false";
+        settings.settings.ignoreEpheria[0] = "false";
+        settings.settings.ignoreIliya[0] = "false";
+        settings.settings.boatType[0] = "none";
+        settings.settings.hideTier1[0] = "false";
+        settings.settings.hideTier2[0] = "false";
+        settings.settings.hideTier3[0] = "false";
+        settings.settings.hideTier4[0] = "false";
+        settings.settings.hideTier5[0] = "false";
+        settings.settings.disclaimer[0] = "false";
+        settings.settings.chosenLang[0] = "false";
+        settings.settings['carrack-need-hide-completed'][0] = "0";
+
+        saveXmlFileContent('settings.xml', JSONToXML(settings));
+
+        console.log(save);
+
+        // Reset save data
+        Object.keys(save.items[0]).forEach((key) => {
+            save.items[0][key][0]['qty'] = "0";
+            save.items[0][key][0]['iliya'] = "0";
+            save.items[0][key][0]['epheria'] = "0";
+            save.items[0][key][0]['ancado'] = "0";
+        });
+
+        save.misc[0].lastBarter[0] = "0";
+        save.threshold[0].iliya[0] = "0";
+        save.threshold[0].epheria[0] = "0";
+        save.threshold[0].ancado[0] = "0";
+        Object.keys(save.inventory[0]).forEach((key) => {
+            save.inventory[0][key][0] = "0";
+        });
+        delete save.carrackOrder
+
+        saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
+
+        function JSONToXML(obj: any) {
+            let xml = '';
+            for (const prop in obj) {
+                // eslint-disable-next-line no-prototype-builtins
+                if (obj.hasOwnProperty(prop)) {
+                    if (isNaN(Number(prop))) {
+                        xml += "<" + prop + ">";
+                    }
+                    if (typeof obj[prop] == "object") {
+                        xml += JSONToXML(new Object(obj[prop]));
+                    } else {
+                        xml += obj[prop];
+                    }
+                    if (isNaN(Number(prop))) {
+                        xml += "</" + prop + ">";
+                    }
+                }
+            }
+            return xml;
+        }
+
+        setTimeout(() => {
+            app.relaunch();
+            app.exit();
+        }, 1000);
+    })
+            
+    // Open a website in the default browser of the user
+    eventHelper.registerCallback('openLink', (e, link: string) => {
+        shell.openExternal(link);
+    });        
+
     // FUNCTION EVENT
 
     eventHelper.registerCallback('set-setting', (e, data: {key: string, value: string}) => {

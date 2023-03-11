@@ -170,7 +170,6 @@ export function createAppWindow(updateWindow: BrowserWindow): BrowserWindow {
     frame: false,
     titleBarStyle: 'hidden',
     webPreferences: {
-      devTools: true,
       nodeIntegration: false,
       contextIsolation: true,
       nodeIntegrationInWorker: false,
@@ -238,7 +237,6 @@ export function createUpdateWindow(): BrowserWindow {
     fullscreenable: false,
     titleBarStyle: 'hidden',
     webPreferences: {
-      devTools: true,
       nodeIntegration: false,
       contextIsolation: true,
       nodeIntegrationInWorker: false,
@@ -256,7 +254,7 @@ export function createUpdateWindow(): BrowserWindow {
     updateWindow.show()
 
     // Check the template with the app version
-    // templateCheck(app.getVersion());
+    templateCheck(app.getVersion());
   
     // Check if the data files exist
     checkDataFiles();

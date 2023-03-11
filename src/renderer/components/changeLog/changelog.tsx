@@ -26,6 +26,8 @@ type Props = {
  */
 const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
 
+    const linkIcon = require("@assets/icons/linkChangelog.svg");
+
     // register the callback to show the page
     useEffect(()=>{
         if(props.update.firstLaunch[0] === "true"){
@@ -72,6 +74,7 @@ const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
             <div id="changelog-container">
                 <div className="changelog-header">
                     <h1>Changelog</h1>
+                    <img src = {linkIcon} alt="link icon" onClick={()=>subEventHelper.getInstance().send('openLink', 'https://github.com/Makpptfox/BDO-Sea-Companion')}/>
                 </div>
 
                 <div className="changelog-content">
