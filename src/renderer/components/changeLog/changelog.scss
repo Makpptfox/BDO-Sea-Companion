@@ -52,8 +52,27 @@
             font-size: 1.5em;
             font-weight: bold;
             margin-bottom: 15px;
+
+            display: flex;
+            align-items: baseline;
+
             h1{
                 margin-top: 0;
+            }
+
+            img{
+                margin-top: 18px;
+                margin-left: 10px;
+                filter: invert(100%);
+                align-self: flex-start;
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+                &:hover{
+                    filter: invert(75%);
+                }
+                &:active{
+                    transform: scale(0.9);
+                }
             }
         }
 

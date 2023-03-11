@@ -74,7 +74,7 @@ const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
             <div id="changelog-container">
                 <div className="changelog-header">
                     <h1>Changelog</h1>
-                    <img src = {linkIcon} alt="link icon" onClick={()=>subEventHelper.getInstance().send('openLink', 'https://github.com/Makpptfox/BDO-Sea-Companion')}/>
+                    <img src = {linkIcon} alt="link icon" onClick={()=>subEventHelper.getInstance().send('openLink', 'https://github.com/Makpptfox/BDO-Sea-Companion/tree/main/changelog')}/>
                 </div>
 
                 <div className="changelog-content">
