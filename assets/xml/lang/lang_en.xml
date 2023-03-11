@@ -11,6 +11,44 @@
         <barter>Barter</barter>
         <carrack>Carrack</carrack>
     </navigation>
+    
+    <!-- Translation of the reset window -->
+    <reset>
+        <title>Hard reset</title>
+        <content>
+            <first>
+                Do you want to reset EVERYTHING that you stored in there?
+            </first>
+            <second>
+                Be warned, this will delete everything and restart the app as if you had just installed it for the very first time!
+            </second>
+            <third>
+                This is your last warning!
+            </third>
+        </content>
+        <confirmation>
+            <first>
+                Yes
+            </first>
+            <second>
+                Ok
+            </second>
+            <third>
+                DO IT!
+            </third>
+        </confirmation>
+        <cancel>
+            <first>
+                No
+            </first>
+            <second>
+                Nevermind
+            </second>
+            <third>
+                Forget it
+            </third>
+        </cancel>
+    </reset>
 
     <language>
         <selectLanguage>Select language</selectLanguage>

@@ -11,6 +11,44 @@
         <barter>Troc</barter>
         <carrack>Caraque</carrack>
     </navigation>
+    
+    <!-- Traduction de l'option de réinitialisation -->
+    <reset>
+        <title>Réinitialisation complète</title>
+        <content>
+            <first>
+                Voulez-vous réinitialiser TOUT ce que vous avez stocké ?
+            </first>
+            <second>
+                Attention, cela effacera tout et redémarrera l'application comme si vous veniez de l'installer pour la toute première fois !
+            </second>
+            <third>
+                Ceci est votre dernière mise en garde !
+            </third>
+        </content>
+        <confirmation>
+            <first>
+                Oui
+            </first>
+            <second>
+                D'accord
+            </second>
+            <third>
+                COMPRIS !
+            </third>
+        </confirmation>
+        <cancel>
+            <first>
+                Non
+            </first>
+            <second>
+                Annuler
+            </second>
+            <third>
+                Laisser tomber
+            </third>
+        </cancel>
+    </reset>
 
     <language>
         <selectLanguage>Choisir une langue</selectLanguage>
