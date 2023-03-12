@@ -11,7 +11,7 @@
     An easy to use Windows app to help you keep track of your Bartering stock and assists you on your journey to get your Carrack(s?).
     <br />
     <br />
-    <a href="TODO">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=MTDFg1-E1Zk">View Demo</a>
     ·
     <a href="https://github.com/Makpptfox/BDO-Sea-Companion/releases/latest">Download the lastest release</a>
     ·
