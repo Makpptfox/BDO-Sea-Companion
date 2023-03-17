@@ -8,6 +8,9 @@
                     "ignoreAncado": "false", 
                     "ignoreIliya": "false", 
                     "ignoreEpheria": "false",
+                    "hideAncado": "true",
+                    "hideIliya": "true",
+                    "hideEpheria": "true",
                     "boatType": "none",
                     "disclaimer": "false",
                     "chosenLang": "false"

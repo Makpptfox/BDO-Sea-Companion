@@ -4,6 +4,7 @@ import { createAppWindow, createUpdateWindow } from './appWindow';
 import { autoUpdater, AutoUpdaterOptions } from 'electron-github-autoupdater'
 import Logger from 'electron-log';
 
+
 import path from 'path';
 
 /** Handle creating/removing shortcuts on Windows when installing/uninstalling. */
@@ -19,6 +20,7 @@ const config: AutoUpdaterOptions = {
   accessToken: process.env.GITHUB_TOKEN,
 }
 
+const log = Logger.create({logId: 'main'});
 const AutoUpdater = autoUpdater(config);
 
 /**
@@ -28,12 +30,13 @@ const AutoUpdater = autoUpdater(config);
  */
 app.on('ready', ()=>{
   updateWindow = createUpdateWindow(AutoUpdater);
-  const log = Logger.create({logId: 'main'});
   log.initialize({preload: true});
 
   const APP_DATA = app.getPath('userData');
 
   log.transports.file.resolvePathFn = () => path.join(APP_DATA, 'logs/main.log');
+  
+  log.transports.file.archiveLogFn(log.transports.file.getFile());
   log.transports.file.level = "debug"
 
   AutoUpdater.on('error', (error) => {

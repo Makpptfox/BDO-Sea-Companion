@@ -3,6 +3,7 @@
 .carrack-need{
     display: flex;
     flex-direction: column;
+    height: 100%;
     .carrack-need-title{
         width: 100%;
         border-bottom: 3px solid #444348;
@@ -138,6 +139,10 @@
 
     .hidden{
         display: none;
+    }
+
+    .carrack-need-footer{
+        height: 100%;
     }
 
 }

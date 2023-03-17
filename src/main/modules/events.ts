@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { app, ipcMain, IpcMainEvent, shell } from "electron";
 
 // Import all events
@@ -25,20 +26,38 @@ import onSetSetting from "./events/onSetSetting";
 import onSaveCarrackOrder from "./events/onSaveCarrackOrder";
 import { stringifySaveData } from "@src/typings/save";
 
+import Logger from 'electron-log';
+import path from "path";
+
+const APP_DATA = app.getPath('userData');
+
 const eventHelper = mainEventHelper.getInstance();
 
+const log = Logger.create({logId: 'events'});
+
+log.transports.file.level = "debug"
+log.transports.file.resolvePathFn = () => path.join(APP_DATA, 'logs/main_events.log');
+
+log.transports.file.archiveLogFn(log.transports.file.getFile());
+
 // Export all events in one function
-export function events(window: Electron.BrowserWindow){
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function events(_window: Electron.BrowserWindow){
+
+    log.info('Registering events');
 
     // Register page change event
     ipcMain.on('pageChange', (event, page) => {
+        log.info('pageChange => {page: "', page, '"}');
         onPagechange(page, event);
     });
 
     ipcMain.handle('getSettings', async () => {
-        
+
         // Get xml setting file
         const setting = findXmlFile('settings');
+
+        log.info('getSettings => {setting: "', setting, '"}');
 
         return setting;
 
@@ -53,6 +72,8 @@ export function events(window: Electron.BrowserWindow){
 
         // Get xml lang file
         const lang = findXmlFile('lang/lang_'+lang_);
+
+        log.info('getLangFile => {lang: "', lang_, '", dict: "', lang, '"}');
 
         return {lang: lang_, dict: lang};
 
@@ -75,6 +96,7 @@ export function events(window: Electron.BrowserWindow){
 
         const changelog = JSON.parse(fileHelper.getInstance(app).readFileFromUserdir('changelog.json'));
 
+        log.info('getDateFile => {lang: "', lang_, '", langDict: "', lang, '", itemDict: "', item, '", saveData: "', save, '", carrackDict: "', carrack, '", settings: "', _settings, '", update: "', update, '", changelog: "', changelog, '"}')
         return {lang: lang_, langDict: lang, itemDict: item, saveData: save, carrackDict: carrack, settings: _settings, update: update, changelog: changelog};
 
     });
@@ -82,25 +104,45 @@ export function events(window: Electron.BrowserWindow){
     // SAVE DATA EVENT
 
     ipcMain.on('save-item', async (e: Electron.IpcMainEvent, key: string, value:number, type:"iliya"|"epheria"|"ancado") => {
+
+        log.info('save-item => {key: "', key, '", value: "', value, '", type: "', type, '"}');
+
         handleSaveItem(key, value, type, e);
     });
 
     ipcMain.on('save-misc', async (e: Electron.IpcMainEvent, key: "lastBarter", value:string) => {
+
+        log.info('save-misc => {key: "', key, '", value: "', value, '"}');
+
         handleSaveMisc(key, value, e);
     });
 
     mainEventHelper.getInstance().registerCallback('carrack-inventory-save-qty', (e, key: string, value: number) => {
-        console.log('carrack-inventory-save-qty', key, value)
+        
+        log.info('carrack-inventory-save-qty => {key: "', key, '", value: "', value, '"}');
 
         handleSaveCarrackItem(key, value);
     });
 
     eventHelper.registerCallback('sAskStatusSelector', (e: IpcMainEvent, type: "iliya"|"epheria"|"ancado") => {
+
+        log.info('sAskStatusSelector => {type: "', type, '"}');
+
+        const settings = findXmlFile('settings') as settings;
+
+        const hideType = type.charAt(0).toUpperCase() + type.slice(1);
+        const status = settings.settings[("hide"+hideType as "hideIliya")][0];
+
+
         const temp = tempHelper.getInstance();
 
+        temp.set('statusSelector-'+type, status == "true" ? true : false);
+
         if(temp.has('statusSelector-'+type)) {
+            log.info('sAskStatusSelector => {type: "', type, '", status: "', temp.get('statusSelector-'+type), '"}');
             e.sender.send('rAskStatusSelector-'+type, temp.get('statusSelector-'+type));
         } else {
+            log.info('sAskStatusSelector => {type: "', type, '", status: "1"}');
             e.sender.send('rAskStatusSelector-'+type, 1);
         }
         
@@ -109,25 +151,21 @@ export function events(window: Electron.BrowserWindow){
     eventHelper.registerCallback('sStatusSelector', (e: IpcMainEvent, type: 'iliya'|'epheria'|'ancado', status: number) => {
         const temp = tempHelper.getInstance();
 
+        log.info('sStatusSelector => {type: "', type, '", status: "', status, '"}');
+
         temp.set('statusSelector-'+type, status);
+
+        const hideType = type.charAt(0).toUpperCase() + type.slice(1);
+
+        onSetSetting(e, 'hide'+hideType, status == 1 ? 'true' : 'false');
     })
 
-    eventHelper.registerCallback('sSaveInLog', (e: IpcMainEvent, log: string) => {
+    eventHelper.registerCallback('sSaveInLog', (e: IpcMainEvent, _log: string) => {
 
-        const file = fileHelper.getInstance(app);
-
-        const dateFull = new Date(Date.now())
-
-        const date = dateFull.getDay()+"-"+dateFull.getMonth()+"-"+dateFull.getFullYear()
-
-        file.checkFileExists('log/'+date+'.txt').then((exists) => {
-            if(exists){
-                file.appendFileToUserdir('log/'+date+'.txt', log);
-            }
-            else{
-                file.setFileToUserdir('log/'+date+'.txt', log);
-            }
-        });
+        log.info('sSaveInLog => {log: "', _log, '"}');
+        log.warn('sSaveIneLog => This event is deprecated, use the new logger system, check "electron-log" package.')
+        
+        return;
     })
 
     eventHelper.registerCallback('sCheckUpdate', (e: IpcMainEvent) => {
@@ -137,18 +175,18 @@ export function events(window: Electron.BrowserWindow){
             if(exists){
                 const data = file.readFileFromUserdir('update.xml');
 
+                log.info('sCheckUpdate => {data: "', data, '"}');
+
                 e.sender.send('rCheckUpdate', data);
             }
             else{
+                log.info('sCheckUpdate => {data: "null"}');
                 e.sender.send('rCheckUpdate', null);
             }
         });
     })
-    eventHelper.registerEvent('sResetApp');
 
-    eventHelper.registerCallback('sResetApp', (e: IpcMainEvent) => {
-
-        console.log('sResetApp');
+    eventHelper.registerCallback('sResetApp', () => {
 
         const settings = findXmlFile('settings');
         const update = findXmlFile('update');
@@ -196,6 +234,7 @@ export function events(window: Electron.BrowserWindow){
 
         saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         function JSONToXML(obj: any) {
             let xml = '';
             for (const prop in obj) {
@@ -217,7 +256,10 @@ export function events(window: Electron.BrowserWindow){
             return xml;
         }
 
+        log.info('sResetApp => {Reset: "ok"}');
+        log.info('sResetApp => Restarting app in 1 second...')
         setTimeout(() => {
+            log.info('sResetApp => Restarting app...')
             app.relaunch();
             app.exit();
         }, 1000);
@@ -225,26 +267,29 @@ export function events(window: Electron.BrowserWindow){
             
     // Open a website in the default browser of the user
     eventHelper.registerCallback('openLink', (e, link: string) => {
+        log.info('openLink => {link: "', link, '"}');
         shell.openExternal(link);
     });        
 
     // FUNCTION EVENT
 
     eventHelper.registerCallback('set-setting', (e, data: {key: string, value: string}) => {
-
+        log.info('set-setting => {key: "', data.key, '", value: "', data.value, '"}');
         onSetSetting(e, data.key, data.value);
     });
 
     eventHelper.registerCallback('set-update', (e, state)=>{
         // This is a function to set the "firstlaunch" property to false
-
+        log.info('set-update => {state: "', state, '"}');
         getXmlFileContent('update.xml').then((content) => {
 
-            console.log(content);
+            log.info('set-update => {content: "', content, '", saved: "pending"}');
 
             content.update.firstLaunch[0] = state;
 
             saveXmlFileContent('update.xml', JSONToXML(content));
+
+            log.info('set-update => {content: "', content, '", saved: "ok"}');
         });
 
         function JSONToXML(obj: any) {
@@ -271,23 +316,35 @@ export function events(window: Electron.BrowserWindow){
 
     ipcMain.on('hide-col-barter', async (e: Electron.IpcMainEvent, hide: boolean, type:"iliya"|"epheria"|"ancado") => {
         const data = {hide: hide, type: type}
+
+        log.info('hide-col-barter => {hide: "', hide, '", type: "', type, '"}');
+
         onHideColBarter(e, data);
     });
 
     ipcMain.on('barterItemSelect', async (e: Electron.IpcMainEvent, icon: string, tier: number, name: string) => {
         const data = {icon: icon, tier: tier, name: name}
+
+        log.info('barterItemSelect => {icon: "', icon, '", tier: "', tier, '", name: "', name, '"}');
+
         onBarterItemSelect(e, data);
     });
 
     ipcMain.on('search-barter', async (e: Electron.IpcMainEvent, search: string) => {
+
+        log.info('search-barter => {search: "', search, '"}');
         onSearchBarter(e, search);
     });
 
     ipcMain.on('total-value', async (e: Electron.IpcMainEvent, value: number) => {
+
+        log.info('total-value => {value: "', value, '"}');
         onTotalValue(e, value);
     });
 
     ipcMain.on('threshold-change', async (e: Electron.IpcMainEvent, name: string, value: number) => {
+
+        log.info('threshold-change => {name: "', name, '", value: "', value, '"}');
 
         handleSaveThreshold(name, value);
 
@@ -298,11 +355,14 @@ export function events(window: Electron.BrowserWindow){
 
         const data = {name: name, value: value}
 
+        log.info('threshold-warning => {name: "', name, '", value: "', value, '"}');
+
         onThresholdWarning(e, data);
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ipcMain.on('save-data-dict', async (e: Electron.IpcMainEvent, dict: any) => {
+        log.info('save-data-dict => {dict: "', dict, '"}');
         onSaveDataDict(e, dict);
     });
 
@@ -312,7 +372,7 @@ export function events(window: Electron.BrowserWindow){
 
     ipcMain.on('set-lang', async (e: Electron.IpcMainEvent, lang: string) => {
 
-        console.log('set-lang', lang)
+        log.info('set-lang => {lang: "', lang, '"}');
 
         onSaveLang(lang);
 
@@ -320,7 +380,7 @@ export function events(window: Electron.BrowserWindow){
     });
 
     ipcMain.on('save-carrack-order', async (e: Electron.IpcMainEvent, order: string[]) => {
-        console.log('save-carrack-order', order)
+        log.info('save-carrack-order => {order: "', order, '"}');
 
         onSaveCarrackOrder(e, order);
     });
@@ -329,14 +389,15 @@ export function events(window: Electron.BrowserWindow){
 
     ipcMain.on('check-threshold', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
 
-        console.error('USING DREPRECATED EVENT: check-threshold');
+
+        log.warn('USING DREPRECATED EVENT: check-threshold');
 
         e.sender.send('check-threshold', data);
     });
 
     ipcMain.on('ask-check-threshold', async (e: Electron.IpcMainEvent, data: {name: "iliya"|"epheria"|"ancado", value: number}) => {
 
-        console.error('USING DREPRECATED EVENT: ask-check-threshold');
+        log.warn('USING DREPRECATED EVENT: ask-check-threshold');
 
         e.sender.send('ask-check-threshold', data);
     });

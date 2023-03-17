@@ -6,6 +6,7 @@ import dataDict from '@src/typings/data';
 import './CarrackNeed.scss'
 import subEventHelper from '@common/subEvent';
 import tempHelper from '../../../common/temp';
+import CarrackPercentage from './CarrackPercentage';
 
 type Props = {
     data: dataDict;
@@ -69,6 +70,8 @@ const CarrackNeed  = (props: Props) => {
     // Initialize the content state with a loading message
     const [content, setContent] = React.useState([<p key={"null"}>loading...</p>]);
 
+    const [completionPercentage, setCompletionPercentage] = React.useState(0);
+
     // Initialize the checked state with the value from the temp helper
     const [checked, setChecked] = React.useState(tempHelper.getInstance().get('carrack-need-hide-completed'));
     
@@ -85,6 +88,10 @@ const CarrackNeed  = (props: Props) => {
     // Register a callback to update the need data when the 'update-carrack-need' event is emitted
     useEffect(() => {
 
+
+        let total = 0;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let completed: any[] = [];
         // Register a callback to update the focus need when the 'focus-need' event is emitted
         subEventHelper.getInstance().registerCallback('focus-need', (itemName: string)=>{
 
@@ -243,7 +250,7 @@ const CarrackNeed  = (props: Props) => {
                         }
                     }
             });
-
+            total = Object.keys(totalNeeded).length;
             // Create a JSX element for each of the total needed items
             totalNeeded.forEach((item) => {
 
@@ -284,7 +291,10 @@ const CarrackNeed  = (props: Props) => {
                 }, item.name);
 
                 // If the total needed is less than or equal to 1, do not display the item (it's an component, so it's not needed to be displayed)
-                if(item.qty <= 1) return;
+                if(item.qty <= 1) {
+                    total--;
+                    return;
+                }
 
                 // Set the class for the current item to be hidden if the user has the setting to hide completed items and the current item is completed
                 let classS = '';
@@ -300,6 +310,12 @@ const CarrackNeed  = (props: Props) => {
                     setTimeout( ()=>{
                         subEventHelper.getInstance().callEvent('isDone', item.name, false);
                     }, 150);
+                }
+
+                if(havingQTY == item.qty){
+                    if(!completed.includes(item.name)) completed.push(item.name);
+                } else {
+                    completed = completed.filter((item2) => item2 !== item.name);
                 }
 
                 // Add the current item to the contents array
@@ -356,8 +372,11 @@ const CarrackNeed  = (props: Props) => {
 
             // Set the content state with the JSX elements
             setContent(contents);
+        
+            setCompletionPercentage(Math.round((completed.length / total) * 100));
         }, 'CarrackNeed');
 
+    
     return(()=>{
         // Unsubscribe from the inventory data
         subEventHelper.getInstance().unregisterAllCallbacks('update-carrack-need');
@@ -419,6 +438,9 @@ const CarrackNeed  = (props: Props) => {
             </div>
             <div className='carrack-need-content'  onMouseOver={mouseHoverContent} onMouseOut={mouseOutContent}>
             {content}
+            </div>
+            <div className='carrack-need-footer'>
+                <CarrackPercentage percentage={completionPercentage}/>
             </div>
         </div>
     );

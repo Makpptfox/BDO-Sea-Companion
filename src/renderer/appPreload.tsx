@@ -29,7 +29,6 @@ contextBridge.exposeInMainWorld(
     send: (channel: string, ...data: any[]) => {
       // Only allow valid channels
       if (validChannelsSend.includes(channel)) {
-        console.log('[ERWT] : Send IPC event', channel, data);
         ipcRenderer.send(channel, ...data);
       } else {
         throw new Error('Invalid channel ' + channel);

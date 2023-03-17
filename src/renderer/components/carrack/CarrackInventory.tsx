@@ -48,11 +48,19 @@ const CarrackInventory = (props: Props) => {
     // Create a state to store the content
     const content: Array<JSX.Element> = [];
 
+    console.table(Object.keys(props.data.carrack.items[0]).sort());
+
     // Create a list of the items
     const orderedItems: any[] = Object.keys(props.data.carrack.items[0]).sort().reduce(
         (obj: any, key) => {
-            obj[key] = [{data: props.data.carrack.items[0][key], keyT: props.data.lang.carrack[0].items[0][key][0].name[0]}];
-            return obj;
+
+            if(key === "") {
+                console.log("empty key");
+                return obj;
+            } else {
+                obj[key] = [{data: props.data.carrack.items[0][key], keyT: props.data.lang.carrack[0].items[0][key][0].name[0]}];
+                return obj;
+            }
         },
         {}
     )

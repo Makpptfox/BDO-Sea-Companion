@@ -133,6 +133,8 @@ const BarterLeft:React.FC<Props> = (props: Props) => {
 
         subEventHelper.getInstance().registerCallback('rAskStatusSelector-ancado', (data) => {
 
+            console.log('ancado', data)
+
             if(!data) {
                 Object.keys(document.getElementsByClassName('ancado-table-viewer')).forEach((value:string, index:number) => {
                     const element = document.getElementsByClassName('ancado-table-viewer')[index] as HTMLElement;

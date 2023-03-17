@@ -13,6 +13,15 @@ export type settings = {
         ignoreEpheria: [
             string
         ],
+        hideAncado: [
+            string
+        ],
+        hideIliya: [
+            string
+        ],
+        hideEpheria: [
+            string
+        ],
         boatType: [
             string
         ],
