@@ -4,7 +4,6 @@ import { createAppWindow, createUpdateWindow } from './appWindow';
 import { autoUpdater, AutoUpdaterOptions } from 'electron-github-autoupdater'
 import Logger from 'electron-log';
 
-
 import path from 'path';
 
 /** Handle creating/removing shortcuts on Windows when installing/uninstalling. */
@@ -17,7 +16,7 @@ let updateWindow: BrowserWindow;
 const config: AutoUpdaterOptions = {
   owner: 'Makpptfox',
   repo: 'BDO-Sea-Companion',
-  accessToken: process.env.GITHUB_TOKEN,
+  accessToken: process.env.GT_TOKEN,
 }
 
 const log = Logger.create({logId: 'main'});

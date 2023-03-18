@@ -1,3 +1,6 @@
+
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   /**
    * This is the main entry point for your application, it's the first file
@@ -13,4 +16,9 @@ module.exports = {
     alias: require('./webpack.aliases'),
   },
   stats: 'minimal',
+  plugins: [
+    new Dotenv({
+      path: './.env',
+    }),
+  ]
 };
