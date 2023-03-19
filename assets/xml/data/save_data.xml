@@ -443,31 +443,34 @@
         <ancado>1</ancado>
     </threshold>
     <inventory>
-        <BrilliantPearlShard>0</BrilliantPearlShard>
-        <MoonVeinFlaxFabric>0</MoonVeinFlaxFabric>
+        <BrilliantPearlShard>999</BrilliantPearlShard>
+        <MoonVeinFlaxFabric>999</MoonVeinFlaxFabric>
         <RuddyManganeseNodule>500</RuddyManganeseNodule>
-        <EnhancedIslandTreeCoatedPlywood>0</EnhancedIslandTreeCoatedPlywood>
+        <EnhancedIslandTreeCoatedPlywood>999</EnhancedIslandTreeCoatedPlywood>
         <SeaweedStalk>500</SeaweedStalk>
-        <GreatOceanDarkIron>0</GreatOceanDarkIron>
+        <GreatOceanDarkIron>999</GreatOceanDarkIron>
         <TearoftheOcean>500</TearoftheOcean>
-        <BrilliantRockSaltIngot>0</BrilliantRockSaltIngot>
-        <DeepTideDyedStandardizedTimberSquare>0</DeepTideDyedStandardizedTimberSquare>
-        <EpheriaGalleassWhiteHornFigurehead>0</EpheriaGalleassWhiteHornFigurehead>
-        <CoxPiratesArtifactCombat>0</CoxPiratesArtifactCombat>
-        <MoonScalePlywood>0</MoonScalePlywood>
+        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
+        <DeepTideDyedStandardizedTimberSquare>999</DeepTideDyedStandardizedTimberSquare>
+        <EpheriaGalleassWhiteHornFigurehead>1</EpheriaGalleassWhiteHornFigurehead>
+        <CoxPiratesArtifactCombat>999</CoxPiratesArtifactCombat>
+        <MoonScalePlywood>999</MoonScalePlywood>
         <TideDyedStandardizedTimberSquare>180</TideDyedStandardizedTimberSquare>
-        <BrightReefPiece>0</BrightReefPiece>
-        <PurePearlCrystal>0</PurePearlCrystal>
-        <LuminousCobaltIngot>0</LuminousCobaltIngot>
-        <CoxPiratesArtifactParleyExpert>0</CoxPiratesArtifactParleyExpert>
-        <CoxPiratesArtifactParleyBeginner>0</CoxPiratesArtifactParleyBeginner>
-        <EpheriaCaravelVerishaCannon>0</EpheriaCaravelVerishaCannon>
-        <EpheriaCaravelEnhancedPlating>0</EpheriaCaravelEnhancedPlating>
-        <EpheriaCaravelBrassFigurehead>0</EpheriaCaravelBrassFigurehead>
-        <EpheriaCaravelWhiteWindSail>0</EpheriaCaravelWhiteWindSail>
+        <BrightReefPiece>999</BrightReefPiece>
+        <PurePearlCrystal>999</PurePearlCrystal>
+        <LuminousCobaltIngot>999</LuminousCobaltIngot>
+        <CoxPiratesArtifactParleyExpert>999</CoxPiratesArtifactParleyExpert>
+        <CoxPiratesArtifactParleyBeginner>999</CoxPiratesArtifactParleyBeginner>
+        <EpheriaCaravelVerishaCannon>1</EpheriaCaravelVerishaCannon>
+        <EpheriaCaravelEnhancedPlating>1</EpheriaCaravelEnhancedPlating>
+        <EpheriaCaravelBrassFigurehead>1</EpheriaCaravelBrassFigurehead>
+        <EpheriaCaravelWhiteWindSail>1</EpheriaCaravelWhiteWindSail>
+        <EpheriaGalleassVerishaCannon>1</EpheriaGalleassVerishaCannon>
+        <EpheriaGalleassEnhancedPlating>1</EpheriaGalleassEnhancedPlating>
+        <EpheriaGalleassWhiteWindSail>1</EpheriaGalleassWhiteWindSail>
     </inventory>
     <carrackOrder>
-        <boat>balance</boat>
-        <items/>
+        <boat>volante</boat>
+        <items>CarrackTracking,GalleassPlatingTracking,GalleassProwTracking,GalleassCannonTracking,GalleassSailTracking</items>
     </carrackOrder>
 </data>

@@ -292,7 +292,19 @@ const CarrackNeed  = (props: Props) => {
 
                 // If the total needed is less than or equal to 1, do not display the item (it's an component, so it's not needed to be displayed)
                 if(item.qty <= 1) {
-                    total--;
+
+                    if(havingQTY >= 1){
+                        if(!completed.includes(item.name)) completed.push(item.name);
+                        setTimeout( ()=>{
+                            subEventHelper.getInstance().callEvent('isDone', item.name, true);
+                        }, 60);
+                    } else {
+                        completed = completed.filter((item2) => item2 !== item.name);
+                        setTimeout( ()=>{
+                            subEventHelper.getInstance().callEvent('isDone', item.name, false);
+                        }, 60);
+                    }
+
                     return;
                 }
 
@@ -305,19 +317,14 @@ const CarrackNeed  = (props: Props) => {
                 if(havingQTY >= item.qty){
                     setTimeout( ()=>{
                         subEventHelper.getInstance().callEvent('isDone', item.name, true);
-                    }, 150);
+                    }, 60);
+                    if(!completed.includes(item.name)) completed.push(item.name);
                 } else {
                     setTimeout( ()=>{
                         subEventHelper.getInstance().callEvent('isDone', item.name, false);
-                    }, 150);
-                }
-
-                if(havingQTY == item.qty){
-                    if(!completed.includes(item.name)) completed.push(item.name);
-                } else {
+                    }, 60);
                     completed = completed.filter((item2) => item2 !== item.name);
                 }
-
                 // Add the current item to the contents array
                 contents.push(
                     <div key={item.name} id={`item-${item.name}`} className={`total-needed-item ${havingQTY == item.qty? 'complete':''} ${classS}`} onClick={()=>{

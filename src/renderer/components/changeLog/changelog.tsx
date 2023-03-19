@@ -103,7 +103,7 @@ const ChangeLog: React.FunctionComponent<Props> = (props: Props) => {
                             })}
                         </ul>
                         <h3 style={{display: props.changelog.fixes.length > 0 ? "block" : "none"}}>
-                            Fixe{props.changelog.fixes.length > 1 ? "s" : ""}:
+                            Fix{props.changelog.fixes.length > 1 ? "es" : ""}:
                         </h3>
                         <ul className="changelog-content-content-fixes" style={{display: props.changelog.fixes.length > 0 ? "block" : "none"}}>
                             {props.changelog.fixes.map((fix, index)=>{
