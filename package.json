@@ -1,7 +1,7 @@
 {
   "name": "bdo_barter-calculator",
   "productName": "BDO Sea Companion",
-  "version": "0.1.3-beta",
+  "version": "0.1.4-beta",
   "description": "An tool for BDO game",
   "main": ".webpack/main",
   "scripts": {
