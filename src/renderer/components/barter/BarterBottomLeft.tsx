@@ -26,22 +26,26 @@ type Props = {
  */
 const BarterBottomLeft: React.FC<Props> = (props: Props) => {
 
+
+
     // Thresholds states
-    const [iliyaThreshold, _setIliyaThreshold] = React.useState(props.data.save.threshold[0].iliya[0]);
-    const [epheriaThreshold, _setEpheriaThreshold] = React.useState(props.data.save.threshold[0].epheria[0]);
-    const [ancadoThreshold, _setAncadoThreshold] = React.useState(props.data.save.threshold[0].ancado[0]);
+    const [tier1Threshold, _setTier1Threshold] = React.useState(props.data.save.threshold[0].tier1[0]);
+    const [tier2Threshold, _setTier2Threshold] = React.useState(props.data.save.threshold[0].tier2[0]);
+    const [tier3Threshold, _setTier3Threshold] = React.useState(props.data.save.threshold[0].tier3[0]);
+    const [tier4Threshold, _setTier4Threshold] = React.useState(props.data.save.threshold[0].tier4[0]);
+    const [tier5Threshold, _setTier5Threshold] = React.useState(props.data.save.threshold[0].tier5[0]);
 
     const filter = require('../../../../assets/icons/filter.svg')
 
     
     /**
-     * Set Iliya Threshold
+     * Set Tier1 Threshold
      * @param event
      * @returns void
-     * @description Set Iliya Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
+     * @description Set Tier1 Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
      * @todo Save the value in the save_data.xml file in the user's home directory.
      */
-    const setIliyaThreshold = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const setTier1Threshold = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         let value = event.target.value;
 
@@ -49,22 +53,26 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
             value = "0";
         }
 
-        props.data.save.threshold[0].iliya[0] = value;
+        if(value.startsWith("0") && value.length > 1){
+            value = value.replace("0", "");
+        }
+
+        props.data.save.threshold[0].tier1[0] = value;
 
 
-        subEventHelper.getInstance().callEvent("threshold-change", "iliya", value);
+        subEventHelper.getInstance().send("threshold-change", "tier1", value);
 
-        _setIliyaThreshold(value);
+        _setTier1Threshold(value);
     }
 
     /**
-     * Set Epheria Threshold
+     * Set Tier2 Threshold
      * @param event
      * @returns void
-     * @description Set Epheria Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
+     * @description Set Tier2 Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
      * @todo Save the value in the save_data.xml file in the user's home directory.
      */
-    const setEpheriaThreshold = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const setTier2Threshold = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         let value = event.target.value;
 
@@ -72,21 +80,25 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
             value = "0";
         }
 
-        props.data.save.threshold[0].epheria[0] = value;
+        if(value.startsWith("0") && value.length > 1){
+            value = value.replace("0", "");
+        }
 
-        subEventHelper.getInstance().callEvent("threshold-change", "epheria", value);
+        props.data.save.threshold[0].tier2[0] = value;
 
-        _setEpheriaThreshold(value);
+        subEventHelper.getInstance().send("threshold-change", "tier2", value);
+
+        _setTier2Threshold(value);
     }
 
     /**
-     * Set Ancado Threshold
+     * Set Tier3 Threshold
      * @param event
      * @returns void
-     * @description Set Ancado Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
+     * @description Set Tier3 Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
      * @todo Save the value in the save_data.xml file in the user's home directory.
      */
-    const setAncadoThreshold = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const setTier3Threshold = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         let value = event.target.value;
 
@@ -94,11 +106,69 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
             value = "0";
         }
 
-        props.data.save.threshold[0].ancado[0] = value;
+        if(value.startsWith("0") && value.length > 1){
+            value = value.replace("0", "");
+        }
 
-        subEventHelper.getInstance().send("threshold-change", "ancado", value);
+        props.data.save.threshold[0].tier3[0] = value;
 
-        _setAncadoThreshold(value);
+        subEventHelper.getInstance().send("threshold-change", "tier3", value);
+
+        _setTier3Threshold(value);
+    }
+
+    /**
+     * Set Tier4 Threshold
+     * @param event
+     * @returns void
+     * @description Set Tier4 Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
+     * @todo Save the value in the save_data.xml file in the user's home directory.
+     */
+    const setTier4Threshold = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+        let value = event.target.value;
+
+        if(value === "" || value.includes("-")){
+            value = "0";
+        }
+
+        if(value.startsWith("0") && value.length > 1){
+            value = value.replace("0", "");
+        }
+
+        props.data.save.threshold[0].tier4[0] = value;
+
+
+        subEventHelper.getInstance().send("threshold-change", "tier4", value);
+
+        _setTier4Threshold(value);
+    }
+
+    /**
+     * Set Tier5 Threshold
+     * @param event
+     * @returns void
+     * @description Set Tier5 Threshold and send the value to the props data, then save it in the save_data.xml file in the user's home directory.
+     * @todo Save the value in the save_data.xml file in the user's home directory.
+     */
+    const setTier5Threshold = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+        let value = event.target.value;
+
+        if(value === "" || value.includes("-")){
+            value = "0";
+        }
+
+        if(value.startsWith("0") && value.length > 1){
+            value = value.replace("0", "");
+        }
+
+        props.data.save.threshold[0].tier5[0] = value;
+
+
+        subEventHelper.getInstance().send("threshold-change", "tier5", value);
+
+        _setTier5Threshold(value);
     }
 
     const openFilter = (e: React.MouseEvent) => {
@@ -124,6 +194,27 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
         subEventHelper.getInstance().callEvent("rAdvice", "");
     };
 
+    const mouseClick = (e: React.MouseEvent) => {
+
+        const input = e.currentTarget as HTMLInputElement;
+
+        input.select();
+    };
+
+    const input = (e: React.KeyboardEvent) => {
+        const input = e.currentTarget as HTMLInputElement;
+
+        if(input.value === "" || input.value.includes("-")){
+            input.value = "0";
+            input.textContent = input.value;
+        }
+
+        if(input.value.startsWith("0") && input.value.length > 1){
+            input.value = input.value.replace("0", "");
+        }
+    }
+
+
         return(
             <div className="app-barter-bottom-left">
                 <div className="app-barter-bottom-left-content-zone">
@@ -132,16 +223,24 @@ const BarterBottomLeft: React.FC<Props> = (props: Props) => {
                     </div>
                     <div className="app-barter-bottom-left-content-zone-content">
                         <div className="app-barter-bottom-left-content-zone-content-item">
-                            <input type="number" placeholder="0" defaultValue={iliyaThreshold} min="0" onChange={setIliyaThreshold} onMouseOver={mouseHover} onMouseOut={mouseOut}/>
-                            <p>Iliya</p>
+                            <input type="number" placeholder="0" defaultValue={tier1Threshold} min="0" onChange={setTier1Threshold} onMouseOver={mouseHover} onMouseOut={mouseOut} onClick={mouseClick} onKeyUpCapture={input}/>
+                            <p>Tier 1</p>
                         </div>
                         <div className="app-barter-bottom-left-content-zone-content-item">
-                            <input type="number" placeholder="0" defaultValue={epheriaThreshold} min="0" onChange={setEpheriaThreshold} onMouseOver={mouseHover} onMouseOut={mouseOut}/>
-                            <p>Epheria</p>
+                            <input type="number" placeholder="0" defaultValue={tier2Threshold} min="0" onChange={setTier2Threshold} onMouseOver={mouseHover} onMouseOut={mouseOut} onClick={mouseClick} onKeyUpCapture={input}/>
+                            <p>Tier 2</p>
                         </div>
                         <div className="app-barter-bottom-left-content-zone-content-item">
-                            <input type="number" placeholder="0" defaultValue={ancadoThreshold} min="0" onChange={setAncadoThreshold} onMouseOver={mouseHover} onMouseOut={mouseOut}/>
-                            <p>Ancado</p>
+                            <input type="number" placeholder="0" defaultValue={tier3Threshold} min="0" onChange={setTier3Threshold} onMouseOver={mouseHover} onMouseOut={mouseOut} onClick={mouseClick} onKeyUpCapture={input}/>
+                            <p>Tier 3</p>
+                        </div>
+                        <div className="app-barter-bottom-left-content-zone-content-item">
+                            <input type="number" placeholder="0" defaultValue={tier4Threshold} min="0" onChange={setTier4Threshold} onMouseOver={mouseHover} onMouseOut={mouseOut} onClick={mouseClick} onKeyUpCapture={input}/>
+                            <p>Tier 4</p>
+                        </div>
+                        <div className="app-barter-bottom-left-content-zone-content-item">
+                            <input type="number" placeholder="0" defaultValue={tier5Threshold} min="0" onChange={setTier5Threshold} onMouseOver={mouseHover} onMouseOut={mouseOut} onClick={mouseClick} onKeyUpCapture={input}/>
+                            <p>Tier 5</p>
                         </div>
                     </div>
                 </div>

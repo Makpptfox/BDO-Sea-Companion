@@ -2,6 +2,9 @@
 import * as xml2js from 'xml2js';
 
 interface saveData {
+    version: [
+        string
+    ],
     items: [
         {
             [key:string]:  [

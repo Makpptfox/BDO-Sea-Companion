@@ -163,6 +163,17 @@ function init(){
     win.api.receive('save-data-dict', (data: string) => {
       dataDict = JSON.parse(data);
     });
+    
+
+    // Check if the user has a save file
+    if(dataDict.save !== undefined){
+      // If the user has a save file, we check if he has old data keys
+      if(dataDict.save.version !== undefined){
+        eventHelper.send('save-version-check', dataDict.save.version[0]);
+      }else{
+        eventHelper.send('save-version-check', '0.0.0');
+      }
+    }
 
     if(dataDict.save.carrackOrder !== undefined){
       const carrackItemsOrder = dataDict.save.carrackOrder[0].items[0].split(',');
@@ -179,11 +190,11 @@ function init(){
     console.log('[BDOC] : Language dictionary received');
     console.log('[BDOC] : Language loaded', lang);
 
+
     eventHelper.registerEvent('total-value')
     eventHelper.registerEvent('threshold-change')
     eventHelper.registerEvent('barterItemSelect')
     eventHelper.registerEvent('search-barter')
-    eventHelper.registerEvent('threshold-change')
     eventHelper.registerEvent('r_hide-col-barter')
     eventHelper.registerEvent('set-lang');
     eventHelper.registerEvent('carrack-inventory-save-qty');
@@ -202,6 +213,14 @@ function init(){
       console.log('[BDOC] : Language dictionary', dataDict.lang);
       console.log('[BDOC] : Item dictionary', dataDict.item);
       console.log('[BDOC] : Save data', dataDict.save);
+    }
+
+    if(dataDict.save.threshold[0].tier1 === undefined){
+      dataDict.save.threshold[0].tier1 = ['0'];
+      dataDict.save.threshold[0].tier2 = ['0'];
+      dataDict.save.threshold[0].tier3 = ['0'];
+      dataDict.save.threshold[0].tier4 = ['0'];
+      dataDict.save.threshold[0].tier5 = ['0'];
     }
 
     // Render application in DOM

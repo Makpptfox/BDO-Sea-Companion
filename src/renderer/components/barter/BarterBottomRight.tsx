@@ -4,7 +4,7 @@
  * 
  * @author Ward
  * @license GPL-3.0
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 import React, { useEffect } from "react";
@@ -76,7 +76,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                     _total = _total + (qty * 2000000);
                     break;
                 case 5:
-                    _total = _total + (qty * 5000000);
+                    _total = _total + (qty * 7500000);
                     break;
             }
             
@@ -111,7 +111,7 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
                             _total = _total + (qty * 2000000);
                             break;
                         case 5:
-                            _total = _total + (qty * 5000000);
+                            _total = _total + (qty * 7500000);
                             break;
                     }
                     

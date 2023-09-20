@@ -20,6 +20,7 @@ module.exports = {
       path.resolve("assets/xml/data/item_data.xml"),
       path.resolve("assets/xml/default/save_data.xml"),
       path.resolve("assets/xml/default/update.xml"),
+      path.resolve("assets/xml/default/version.xml"),
       path.resolve("assets/xml/data/carrack_data.xml"),
       path.resolve("assets/xml/changelog.json"),
       path.resolve("assets/templates/carrack_data.json"),

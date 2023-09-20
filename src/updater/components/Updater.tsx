@@ -9,34 +9,44 @@ const Updater: React.FC = () => {
     const [title, setTitle] = useState('Searching update');
     const [message, setMessage] = useState('Please wait...');
 
+    let timeout: NodeJS.Timeout = null;
+
+    subEventHelper.getInstance().registerCallback('update-available', () => {
+        setTitle('Update found');
+        setMessage('Installing update...');
+
+        timeout = setTimeout(() => {
+            // Send a message to the main process
+            subEventHelper.getInstance().send('sUpdater');
+        }, 10000);
+    }, 'updater');
+
     subEventHelper.getInstance().registerCallback('update-downloaded', () => {
         
-        setTitle('Update found');
-        setMessage('It will be installed when you close the app');
+        setTitle('Update downloaded');
+        setMessage('The app will restart in 2 seconds...');
+
+        if(timeout !== null) clearTimeout(timeout);
 
         setTimeout(() => {
             // Send a message to the main process
-            subEventHelper.getInstance().send('sUpdater');
+            subEventHelper.getInstance().send('update-restart');
         }, 2000);
 
     }, 'updater');
 
     subEventHelper.getInstance().registerCallback('error', ()=>{
+        setTitle('Error while updating');
 
-        setTitle('Launching app')
-
-        setMessage('No update found')
+        setMessage('Please try again later or contact us on GitHub')
         setTimeout(() => {
             // Send a message to the main process
             subEventHelper.getInstance().send('sUpdater');
-        }, 1000);
+        }, 5000);
 
     }, 'updater')
 
     subEventHelper.getInstance().registerCallback('update-not-available', () => {
-
-        console.log('Updater Window...');
-
         setTitle('Launching app')
 
         setMessage('No update found')

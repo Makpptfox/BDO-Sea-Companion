@@ -438,9 +438,11 @@
         <lastBarter>0</lastBarter>
     </misc>
     <threshold>
-        <iliya>0</iliya>
-        <epheria>0</epheria>
-        <ancado>0</ancado>
+        <tier1>0</tier1>
+        <tier2>0</tier2>
+        <tier3>0</tier3>
+        <tier4>0</tier4>
+        <tier5>0</tier5>
     </threshold>
     <inventory>
         <BrilliantPearlShard>0</BrilliantPearlShard>
@@ -459,4 +461,5 @@
         <BrightReefPiece>0</BrightReefPiece>
         <PurePearlCrystal>0</PurePearlCrystal>
     </inventory>
+    <version>0.1.5</version>
 </data>

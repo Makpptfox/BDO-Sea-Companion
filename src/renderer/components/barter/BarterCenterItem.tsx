@@ -67,9 +67,11 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     const [countEpheria] = React.useState<boolean>(hideEpheria);
     const [countAncado] = React.useState<boolean>(hideAncado);
 
-    const [limitIliya, setLimitIliya] = React.useState(parseInt(props.data.save.threshold[0].iliya[0]));
-    const [limitEpheria, setLimitEpheria] = React.useState(parseInt(props.data.save.threshold[0].epheria[0]));
-    const [limitAncado, setLimitAncado] = React.useState(parseInt(props.data.save.threshold[0].ancado[0]));
+    const [limitTier1, setLimitTier1] = React.useState(parseInt(props.data.save.threshold[0].tier1[0]));
+    const [limitTier2, setLimitTier2] = React.useState(parseInt(props.data.save.threshold[0].tier2[0]));
+    const [limitTier3, setLimitTier3] = React.useState(parseInt(props.data.save.threshold[0].tier3[0]));
+    const [limitTier4, setLimitTier4] = React.useState(parseInt(props.data.save.threshold[0].tier4[0]));
+    const [limitTier5, setLimitTier5] = React.useState(parseInt(props.data.save.threshold[0].tier5[0]));
 
     const [content, setContent] = React.useState(null)
 
@@ -121,16 +123,24 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     
             new Promise((resolve)=>{
                 switch(type){
-                    case "iliya":
-                        setLimitIliya(threshold)
+                    case "tier1":
+                        setLimitTier1(threshold)
                         resolve(true)
                         break;
-                    case "epheria":
-                        setLimitEpheria(threshold)
+                    case "tier2":
+                        setLimitTier2(threshold)
                         resolve(true)
                         break;
-                    case "ancado":
-                        setLimitAncado(threshold)
+                    case "tier3":
+                        setLimitTier3(threshold)
+                        resolve(true)
+                        break;
+                    case "tier4":
+                        setLimitTier4(threshold)
+                        resolve(true)
+                        break;
+                    case "tier5":
+                        setLimitTier5(threshold)
                         resolve(true)
                         break;
                     default:
@@ -147,6 +157,42 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
     }, [])
 
     useEffect(()=>{
+
+        let warning_threshold_iliya = false;
+        let warning_threshold_epheria = false;
+        let warning_threshold_ancado = false;
+
+        switch(props.data.item[key][0].tier[0]){
+            case '1':
+                setThresholdWarning(limitTier1)
+                break;
+            case '2':
+                setThresholdWarning(limitTier2)
+                break;
+            case '3':
+                setThresholdWarning(limitTier3)
+                break;
+            case '4':
+                setThresholdWarning(limitTier4)
+                break;
+            case '5':
+                setThresholdWarning(limitTier5)
+                break;
+            default:
+                break;
+            }
+        
+        function setThresholdWarning(limit: number) {
+            if(iliya <= limit && enableThresholdIliya){
+                warning_threshold_iliya = true;
+            }
+            if(epheria <= limit && enableThresholdEpheria){
+                warning_threshold_epheria = true;
+            }
+            if(ancado <= limit && enableThresholdAncado){
+                warning_threshold_ancado = true;
+            }
+        }
         setContent(
             <tr key={index} className={className + ` ${props.hide ? 'hide' : ''}`} onClick={()=>{
     
@@ -160,7 +206,7 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                 <td>{props.data.item[key][0].tier[0]}</td>
                 <td>{props.data.lang.items[0][key]? props.data.lang.items[0][key][0].name[0] : key}</td>
                 <td>{quantity}</td>
-                <td className={`iliya-table-viewer ${(iliya <= limitIliya && (enableThresholdIliya)) ? 'warning-thresold ' : ' '}` + (!countIliya ? 'hide-h' : '')}>
+                <td className={`iliya-table-viewer ${(warning_threshold_iliya) ? 'warning-thresold ' : ' '}` + (!countIliya ? 'hide-h' : '')}>
                     <ElementMaker
                         value={iliya}
                         handleChange={(e) =>{
@@ -182,10 +228,9 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                             }
                         }
                         showInputEle={showInputEleIliya}
-                        limit={limitIliya}
                     />
                 </td>
-                <td className={`epheria-table-viewer  ${!countEpheria ? 'hide-h' : ''} ${(epheria <= limitEpheria && enableThresholdEpheria) ? 'warning-thresold' : ''}`}>
+                <td className={`epheria-table-viewer  ${!countEpheria ? 'hide-h' : ''} ${(warning_threshold_epheria) ? 'warning-thresold' : ''}`}>
                     
                     <ElementMaker
                         value={epheria}
@@ -204,10 +249,9 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                             }
                         }
                         showInputEle={showInputEleEpheria}
-                        limit={limitEpheria}
                     />
                 </td>
-                <td className={`ancado-table-viewer  ${!countAncado ? 'hide-h' : ''} ${(ancado <= limitAncado && enableThresholdAncado) ? 'warning-thresold' : ''}`}>
+                <td className={`ancado-table-viewer  ${!countAncado ? 'hide-h' : ''} ${(warning_threshold_ancado) ? 'warning-thresold' : ''}`}>
                     <ElementMaker
                         value={ancado}
                         handleChange={(e) =>
@@ -225,13 +269,12 @@ const BarterCenterItem: React.FC<Props> = (props: Props) => {
                             }
                         }
                         showInputEle={showInputEleAncado}
-                        limit={limitAncado}
                     />
                 </td>
             </tr>
             )
 
-    }, [quantity, iliya, epheria, ancado, showInputEleIliya, showInputEleEpheria, showInputEleAncado, limitIliya, limitEpheria, limitAncado, countIliya, countEpheria, countAncado, enableThresholdAncado, enableThresholdEpheria, enableThresholdIliya]);
+    }, [quantity, iliya, epheria, ancado, showInputEleIliya, showInputEleEpheria, showInputEleAncado, limitTier1, limitTier2, limitTier3, limitTier4, limitTier5, countIliya, countEpheria, countAncado, enableThresholdAncado, enableThresholdEpheria, enableThresholdIliya]);
 
     const countQuantity = () => {
 

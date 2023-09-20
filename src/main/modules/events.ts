@@ -28,6 +28,7 @@ import { stringifySaveData } from "@src/typings/save";
 
 import Logger from 'electron-log';
 import path from "path";
+import handleVersionChange from "./events/onHandleVersionChange";
 
 const APP_DATA = app.getPath('userData');
 
@@ -39,6 +40,26 @@ log.transports.file.level = "debug"
 log.transports.file.resolvePathFn = () => path.join(APP_DATA, 'logs/main_events.log');
 
 log.transports.file.archiveLogFn(log.transports.file.getFile());
+
+// The code compares two version numbers and returns a boolean value indicating whether the first version number is less than the second version number. The code also compares two version numbers and returns a boolean value indicating whether the first version number is greater than the second version number.
+
+function compareVersions(version1: string, version2: string) {
+    const v1 = version1.split('.').map(Number);
+    const v2 = version2.split('.').map(Number);
+
+    for (let i = 0; i < Math.max(v1.length, v2.length); i++) {
+        const num1 = v1[i] || 0;
+        const num2 = v2[i] || 0;
+
+        if (num1 < num2) {
+        return true;
+        } else if (num1 > num2) {
+        return false;
+        }
+    }
+
+    return false;
+}
 
 // Export all events in one function
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -105,7 +126,7 @@ export function events(_window: Electron.BrowserWindow){
 
     ipcMain.on('save-item', async (e: Electron.IpcMainEvent, key: string, value:number, type:"iliya"|"epheria"|"ancado") => {
 
-        log.info('save-item => {key: "', key, '", value: "', value, '", type: "', type, '"}');
+        // log.info('save-item => {key: "', key, '", value: "', value, '", type: "', type, '"}');
 
         handleSaveItem(key, value, type, e);
     });
@@ -350,6 +371,31 @@ export function events(_window: Electron.BrowserWindow){
 
         e.sender.send('threshold-change', name, value);
     });
+
+    ipcMain.on('save-version-check', async (e: Electron.IpcMainEvent, version: string) => {
+
+        log.info('save-version-check => {version: "', version, '"}');
+
+        const version_data = findXmlFile('version');
+
+        const version_data_list = Object.keys(version_data.versionData);
+
+        const version_change: string[] = [];
+
+        version_data_list.forEach((v:string) => {
+
+            console.trace('save-version-check => {compareVersions(', version, ', ', v, '): ', compareVersions(version, v.replace('v', '')), '}');
+
+            if(compareVersions(version, v.replace('v', ''))) {
+                version_change.push(v);
+            }
+        });
+
+        handleVersionChange(version_data, version_change);
+
+    });
+
+
 
     ipcMain.on('threshold-warning', async (e: Electron.IpcMainEvent, name: "iliya"|"epheria"|"ancado", value: number) => {
 

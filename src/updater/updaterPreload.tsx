@@ -10,10 +10,10 @@ const {
 } = require("electron");
 
 // Define valid channels to send ipc event
-const validChannelsSend: string[] = ['sUpdater'];
+const validChannelsSend: string[] = ['sUpdater', 'update-restart'];
 
 // Define valid channels to receive ipc event
-const validChannelsReceive: string[] = ['update-downloaded', 'update-not-available', 'error'];
+const validChannelsReceive: string[] = ['update-downloaded', 'update-not-available', 'error', 'update-available'];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type srcFrom = {

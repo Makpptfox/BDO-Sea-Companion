@@ -90,10 +90,17 @@ function findXmlFile(fileName: string):any {
     const filePath = path.join(xmlPath, fileName);
     const fileContent = fs.readFileSync(filePath, 'utf8');
 
+    // Check if fileContent is null
+    if (fileContent === null) {
+        throw new Error('fileContent is null');
+    }
+
+
     // Check if fileContent is a valid xml string
     if (!isValidXML(fileContent)) {
         throw new Error('fileContent is not a valid xml string');
     }
+    console.trace('fileContent: ' + fileContent)
 
     // Convert xml to json
     let jsonContent: unknown;

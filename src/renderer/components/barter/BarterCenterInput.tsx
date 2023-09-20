@@ -4,7 +4,7 @@
  * 
  * @author Ward
  * @license GPL-3.0
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 
@@ -18,7 +18,6 @@ type Props = {
     handleChange: (event?: React.ChangeEvent<HTMLInputElement>) => void;
     handleBlur: (event?: React.FocusEvent<HTMLInputElement>) => void;
     handleDoubleClick: (event?: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
-    limit: number;
 }
 
 /**
@@ -53,7 +52,7 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                                 case 'Escape':
                                     props.handleBlur();
                                     break;
-                                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case 'Backspace': case 'Delete':
                                     break;
                                 default:
                                     e.preventDefault();
@@ -259,7 +258,7 @@ const ElementMaker: React.FC<Props> = (props: Props) => {
                                     })
                                     break;
                                 }
-                                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case 'Backspace': case 'Delete':
                                     break;
                                 default:
                                     e.preventDefault();

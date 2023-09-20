@@ -16,6 +16,8 @@ declare const UPDATE_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 let appWindow: BrowserWindow;
 
+const cmdLog = log.scope('cmd');
+
 /**
  * Check if the data files exist
  * If not, create them
@@ -67,6 +69,7 @@ function checkDataFiles(): void {
     log.info('Save data does not exist');
     if(!fs.existsSync(path.join(dataFolder, 'save_data.xml'))){
       log.info('Copying save data to user data folder');
+
       // If it doesn't, copy the one in the resources folder to the user data folder then delete it from the resources folder
       fs.copyFileSync(path.join(resources, 'save_data.xml'), path.join(dataFolder, 'save_data.xml'));
       
@@ -80,6 +83,25 @@ function checkDataFiles(): void {
   // Check if the settings data exists in the user data folder
   if(fs.existsSync(path.join(xmlFolder, 'settings.xml'))){
     log.info('Settings data exists');
+    // If it does, delete the one in the resources folder
+    if(fs.existsSync(path.join(resources, 'settings.xml'))){
+      log.info('Deleting settings data from resources folder');
+      fs.rmSync(path.join(resources, 'settings.xml'));
+    }
+  } else {
+    log.info('Settings data does not exist');
+    // If it doesn't, copy the one in the resources folder to the user data folder then delete it from the resources folder
+    if(fs.existsSync(path.join(resources, 'settings.xml'))){
+      log.info('Copying settings data to user data folder');
+      fs.copyFileSync(path.join(resources, 'settings.xml'), path.join(xmlFolder, 'settings.xml'));
+      log.info('Deleting settings data from resources folder');
+      fs.rmSync(path.join(resources, 'settings.xml'));
+    }
+  }
+
+  // Check if the settings data exists in the user data folder
+  if(fs.existsSync(path.join(xmlFolder, 'version.xml'))){
+    log.info('Version data exists');
     // If it does, delete the one in the resources folder
     if(fs.existsSync(path.join(resources, 'settings.xml'))){
       log.info('Deleting settings data from resources folder');
@@ -189,6 +211,15 @@ function checkDataFiles(): void {
     fs.copyFileSync(path.join(resources, 'update.xml'), path.join(xmlFolder, 'update.xml'));
     log.info('Deleting Update data from resources folder');
     fs.rmSync(path.join(resources, 'update.xml'));
+  }
+
+  if(fs.existsSync(path.join(resources, 'version.xml'))){
+    log.info('Version data exists in resources folder');
+    // If it does, copy it to the user data folder then delete it from the resources folder
+    log.info('Copying Version data to user data folder');
+    fs.copyFileSync(path.join(resources, 'version.xml'), path.join(xmlFolder, 'version.xml'));
+    log.info('Deleting Version data from resources folder');
+    fs.rmSync(path.join(resources, 'version.xml'));
   }
 }
 
@@ -319,7 +350,19 @@ export function createUpdateWindow(autoUpdater: any): BrowserWindow {
     // Register Inter Process Communication for main process
     registerMainIPC();
 
-    if(process.env.NODE_ENV !== 'development'){
+    if(!fs.existsSync(app.getPath('userData')  + '\\local') || !fs.existsSync(app.getPath('userData') + '\\local\\restart-after-update.bat')){
+
+      fs.mkdirSync(app.getPath('userData')  + '\\local');
+
+      const exePath = app.getPath('exe');
+
+      exePath.replace('BDO Sea Companion.exe', '');
+
+      log.info('Creating restart-after-update.bat');
+      fs.writeFileSync(app.getPath('userData')  + '\\local\\restart-after-update.bat', `@echo off \r echo Restarting after update... \r timeout 5 \r start "" "" \r exit`);
+    }
+
+    if(process.env.NODE_ENV !== 'development' && process.argv[1] !== '--squirrel-firstrun'){
       log.info('Checking for updates');
       autoUpdater.checkForUpdates();
     } else {
@@ -330,23 +373,62 @@ export function createUpdateWindow(autoUpdater: any): BrowserWindow {
 
   autoUpdater.on('update-downloaded', () => {
     log.info('Update downloaded');
-    updateWindow.webContents.send('update-downloaded');
+    try{
+      updateWindow.webContents.send('update-downloaded');
+    } catch(e){
+      log.warn('Update window is destroyed');
+      log.warn(e);
+    }
+  });
+
+  autoUpdater.on('update-available', () => {
+    log.info('Update available');
+    try{
+      updateWindow.webContents.send('update-available');
+    } catch(e){
+      log.warn('Update window is destroyed');
+      log.warn(e);
+    }
   });
 
   autoUpdater.on('update-not-available', () => {
     log.info('Update not available');
-    updateWindow.webContents.send('update-not-available');
+    try{
+      updateWindow.webContents.send('update-not-available');
+    } catch(e){
+      log.warn('Update window is destroyed');
+      log.warn(e);
+    }
   });
 
   autoUpdater.on('error', () => {
     log.warn('Error while checking for updates');
-    updateWindow.webContents.send('error');
+
+    autoUpdater.clearCache();
+
+    try{
+      updateWindow.webContents.send('error');
+    } catch(e){
+      log.warn('Update window is destroyed');
+      log.warn(e);
+    }
   });
 
   // Close all windows when main window is closed
   updateWindow.on('close', () => {
     log.info('Closing Update Window');
     updateWindow = null;
+  });
+
+  mainEventHelper.getInstance().registerCallback('update-restart', () => {
+    log.info('Restarting application');
+    cmdLog.info('Restarting application');
+
+    app.quit();
+  });
+
+  autoUpdater.on('quit-and-install', () => {
+    log.info('Quitting and installing update');
   });
 
   process.on('warning', e => log.warn(e.stack));

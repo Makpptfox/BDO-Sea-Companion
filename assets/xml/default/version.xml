@@ -1,0 +1,25 @@
+<versionData>
+    <v0.1.5>
+        <save>
+            <remove>
+                <threshold>
+                    <iliya></iliya>
+                    <ancado></ancado>
+                    <epheria></epheria>
+                </threshold>
+            </remove>
+            <add>
+                <version>
+                    0.1.5
+                </version>
+                <threshold>
+                    <tier1>0</tier1>
+                    <tier2>0</tier2>
+                    <tier3>0</tier3>
+                    <tier4>0</tier4>
+                    <tier5>0</tier5>
+                </threshold>
+            </add>
+        </save>
+</v0.1.5>
+</versionData>

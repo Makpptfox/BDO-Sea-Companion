@@ -11,6 +11,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+
 let updateWindow: BrowserWindow;
 
 const config: AutoUpdaterOptions = {
@@ -40,18 +41,6 @@ app.on('ready', ()=>{
 
   AutoUpdater.on('error', (error) => {
     log.error(error);
-  });
-
-  AutoUpdater.on('checking-for-update', () => {
-    log.log('checking-for-update');
-  });
-
-  AutoUpdater.on('update-downloaded', () => {
-    console.log('update-available');
-  });
-
-  AutoUpdater.on('update-not-available', () => {
-    log.log('update-not-available');
   });
 });
 

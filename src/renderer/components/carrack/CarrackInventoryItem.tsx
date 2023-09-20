@@ -152,17 +152,6 @@ const CarrackInventoryItem = (props: Props) => {
                 if(value === 'NaN' || value === '' || value.includes('-')){
                     value = '0';
                 }
-        
-                // // Send the value to the CarrackInventory.tsx component
-                // subEventHelper.getInstance().send('carrack-inventory-save-qty', props.index, parseInt(value))
-
-                // // save the value in the save object
-                // props.data.save.inventory[0] = props.data.save.inventory[0] || {};
-                // props.data.save.inventory[0][props.index] = props.data.save.inventory[0][props.index] || ["0"];
-                // props.data.save.inventory[0][props.index][0] = value;
-
-                // // Call the update-carrack-need event to update the need list
-                // subEventHelper.getInstance().callEvent('update-carrack-need', props.data.save.inventory[0])
             }
 
             const changeHandler = (e: InputEvent) =>{

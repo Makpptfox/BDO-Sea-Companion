@@ -3,13 +3,13 @@
     <items>
         <BlueRose>
             <qty>0</qty>
-            <iliya>0</iliya>
+            <iliya>61</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </BlueRose>
         <FishBone>
             <qty>0</qty>
-            <iliya>0</iliya>
+            <iliya>2</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </FishBone>
@@ -341,7 +341,7 @@
             <qty>0</qty>
             <iliya>0</iliya>
             <epheria>0</epheria>
-            <ancado>0</ancado>
+            <ancado>5</ancado>
         </OctogonalBox>
         <HerbalWine>
             <qty>0</qty>
@@ -387,7 +387,7 @@
         </Caterpillar>
         <FishScale>
             <qty>0</qty>
-            <iliya>0</iliya>
+            <iliya>100</iliya>
             <epheria>0</epheria>
             <ancado>0</ancado>
         </FishScale>
@@ -438,9 +438,11 @@
         <lastBarter>0</lastBarter>
     </misc>
     <threshold>
-        <iliya>0</iliya>
-        <epheria>0</epheria>
-        <ancado>1</ancado>
+        <tier1>5</tier1>
+        <tier2>012</tier2>
+        <tier3>1000</tier3>
+        <tier4>12</tier4>
+        <tier5>45</tier5>
     </threshold>
     <inventory>
         <BrilliantPearlShard>999</BrilliantPearlShard>
@@ -450,7 +452,7 @@
         <SeaweedStalk>500</SeaweedStalk>
         <GreatOceanDarkIron>999</GreatOceanDarkIron>
         <TearoftheOcean>500</TearoftheOcean>
-        <BrilliantRockSaltIngot>30</BrilliantRockSaltIngot>
+        <BrilliantRockSaltIngot>35</BrilliantRockSaltIngot>
         <DeepTideDyedStandardizedTimberSquare>999</DeepTideDyedStandardizedTimberSquare>
         <EpheriaGalleassWhiteHornFigurehead>1</EpheriaGalleassWhiteHornFigurehead>
         <CoxPiratesArtifactCombat>999</CoxPiratesArtifactCombat>
@@ -470,7 +472,8 @@
         <EpheriaGalleassWhiteWindSail>1</EpheriaGalleassWhiteWindSail>
     </inventory>
     <carrackOrder>
-        <boat>volante</boat>
-        <items>CarrackTracking,GalleassPlatingTracking,GalleassProwTracking,GalleassCannonTracking,GalleassSailTracking</items>
+        <boat>advance</boat>
+        <items/>
     </carrackOrder>
+    <version>0.1.5</version>
 </data>

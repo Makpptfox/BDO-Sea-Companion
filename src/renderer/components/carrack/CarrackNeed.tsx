@@ -89,7 +89,6 @@ const CarrackNeed  = (props: Props) => {
     useEffect(() => {
 
 
-        let total = 0;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let completed: any[] = [];
         // Register a callback to update the focus need when the 'focus-need' event is emitted
@@ -122,6 +121,8 @@ const CarrackNeed  = (props: Props) => {
         // Register a callback to update the inventory data when the 'update-carrack-need' event is emitted
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         subEventHelper.getInstance().registerCallback('update-carrack-need', (data: any) => {
+            let total = 0;
+            let totalComplete = 0;
 
             // Update the inventory data
             inventory = ({...data});
@@ -250,11 +251,11 @@ const CarrackNeed  = (props: Props) => {
                         }
                     }
             });
-            total = Object.keys(totalNeeded).length;
             // Create a JSX element for each of the total needed items
             totalNeeded.forEach((item) => {
 
                 let havingQTY = 0;
+                total += item.qty;
 
                 // Check if the current item is not in the inventory
                 if(inventory[item.name] !== undefined) {
@@ -267,6 +268,8 @@ const CarrackNeed  = (props: Props) => {
                         havingQTY = parseInt(inventory[item.name][0]);
                     }
                 }
+
+                totalComplete += havingQTY;
 
                 // Register a callback for the current item to open the detail
                 subEventHelper.getInstance().registerCallback('rOpenCarrackNeed', (itemName: string) =>{
@@ -379,8 +382,17 @@ const CarrackNeed  = (props: Props) => {
 
             // Set the content state with the JSX elements
             setContent(contents);
+
+            console.trace(totalComplete)
+            console.trace(total)
+            // console.trace(totalComplete % total);
+            // console.trace(Math.round((totalComplete / total) * 100))
         
-            setCompletionPercentage(Math.round((completed.length / total) * 100));
+            if(totalComplete / total != 1 && Math.round((totalComplete / total) * 100) == 100) {
+                setCompletionPercentage(99);
+            } else {
+                setCompletionPercentage(Math.round((totalComplete / total) * 100));
+            }
         }, 'CarrackNeed');
 
     
