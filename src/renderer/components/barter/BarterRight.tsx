@@ -278,38 +278,6 @@ const BarterRight:React.FC<Props> = (props: Props) => {
 
                     
                 }}>All</button>
-                <button className={`barter-right__button ${Tier1 ? 'active' : 'not-active'} ${tier1Warning? 'warn' : ''}`} onClick={() => {
-                    setTier1(!Tier1);
-                    onClick(1, !Tier1);
-
-                    tempHelper.getInstance().set('barterTier1', !Tier1);
-                    tempHelper.getInstance().set('barterAll', (!Tier1 && Tier2 && Tier3 && Tier4 && Tier5));
-                    setAll((!Tier1 && Tier2 && Tier3 && Tier4 && Tier5));
-                }}>Tier 1</button>
-                <button className={`barter-right__button ${Tier2 ? 'active' : 'not-active'} ${tier2Warning? 'warn' : ''}`} onClick={() => {
-                    setTier2(!Tier2);
-                    onClick(2, !Tier2);
-
-                    tempHelper.getInstance().set('barterTier2', !Tier2);
-                    tempHelper.getInstance().set('barterAll', (Tier1 && !Tier2 && Tier3 && Tier4 && Tier5));
-                    setAll((Tier1 && !Tier2 && Tier3 && Tier4 && Tier5));
-                }}>Tier 2</button>
-                <button className={`barter-right__button ${Tier3 ? 'active' : 'not-active'} ${tier3Warning? 'warn' : ''}`} onClick={() => {
-                    setTier3(!Tier3);
-                    onClick(3, !Tier3);
-
-                    tempHelper.getInstance().set('barterTier3', !Tier3);
-                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && !Tier3 && Tier4 && Tier5));
-                    setAll((Tier1 && Tier2 && !Tier3 && Tier4 && Tier5));
-                }}>Tier 3</button>
-                <button className={`barter-right__button ${Tier4 ? 'active' : 'not-active'} ${tier4Warning? 'warn' : ''}`} onClick={() => {
-                    setTier4(!Tier4);
-                    onClick(4, !Tier4);
-
-                    tempHelper.getInstance().set('barterTier4', !Tier4);
-                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && Tier3 && !Tier4 && Tier5));
-                    setAll((Tier1 && Tier2 && Tier3 && !Tier4 && Tier5));
-                }}>Tier 4</button>
                 <button className={`barter-right__button ${Tier5 ? 'active' : 'not-active'} ${tier5Warning? 'warn' : ''}`} onClick={() => {
                     setTier5(!Tier5);
                     onClick(5, !Tier5);
@@ -318,6 +286,38 @@ const BarterRight:React.FC<Props> = (props: Props) => {
                     tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && Tier3 && Tier4 && !Tier5));
                     setAll((Tier1 && Tier2 && Tier3 && Tier4 && !Tier5));
                 }}>Tier 5</button>
+                <button className={`barter-right__button ${Tier4 ? 'active' : 'not-active'} ${tier4Warning? 'warn' : ''}`} onClick={() => {
+                    setTier4(!Tier4);
+                    onClick(4, !Tier4);
+
+                    tempHelper.getInstance().set('barterTier4', !Tier4);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && Tier3 && !Tier4 && Tier5));
+                    setAll((Tier1 && Tier2 && Tier3 && !Tier4 && Tier5));
+                }}>Tier 4</button>
+                <button className={`barter-right__button ${Tier3 ? 'active' : 'not-active'} ${tier3Warning? 'warn' : ''}`} onClick={() => {
+                    setTier3(!Tier3);
+                    onClick(3, !Tier3);
+
+                    tempHelper.getInstance().set('barterTier3', !Tier3);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && Tier2 && !Tier3 && Tier4 && Tier5));
+                    setAll((Tier1 && Tier2 && !Tier3 && Tier4 && Tier5));
+                }}>Tier 3</button>
+                <button className={`barter-right__button ${Tier2 ? 'active' : 'not-active'} ${tier2Warning? 'warn' : ''}`} onClick={() => {
+                    setTier2(!Tier2);
+                    onClick(2, !Tier2);
+
+                    tempHelper.getInstance().set('barterTier2', !Tier2);
+                    tempHelper.getInstance().set('barterAll', (Tier1 && !Tier2 && Tier3 && Tier4 && Tier5));
+                    setAll((Tier1 && !Tier2 && Tier3 && Tier4 && Tier5));
+                }}>Tier 2</button>
+                <button className={`barter-right__button ${Tier1 ? 'active' : 'not-active'} ${tier1Warning? 'warn' : ''}`} onClick={() => {
+                    setTier1(!Tier1);
+                    onClick(1, !Tier1);
+
+                    tempHelper.getInstance().set('barterTier1', !Tier1);
+                    tempHelper.getInstance().set('barterAll', (!Tier1 && Tier2 && Tier3 && Tier4 && Tier5));
+                    setAll((!Tier1 && Tier2 && Tier3 && Tier4 && Tier5));
+                }}>Tier 1</button>
             </div>
 
             <div className='barter-right__reset'>

@@ -138,18 +138,18 @@ const BarterCenter: React.FC<Props> = (props: Props) => {
                     break;
                 case 3:
                     // If the tier is 3, the value is 1 000 000
-                    _setValTotal(valTotal + (qty * 1000000));
-                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 1000000));
+                    _setValTotal(valTotal + (qty * 1_000_000));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 1_000_000));
                     break;
                 case 4:
                     // If the tier is 4, the value is 2 000 000
-                    _setValTotal(valTotal + (qty * 2000000));
-                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 2000000));
+                    _setValTotal(valTotal + (qty * 2_000_000));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 2_000_000));
                     break;
                 case 5:
                     // If the tier is 5, the value is 5 000 000
-                    _setValTotal(valTotal + (qty * 5000000));
-                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 5000000));
+                    _setValTotal(valTotal + (qty * 10_000_000));
+                    subEventHelper.getInstance().callEvent('total-value', valTotal + (qty * 10_000_000));
                     break;
                 default:
                     _setValTotal(valTotal + (qty * 0));

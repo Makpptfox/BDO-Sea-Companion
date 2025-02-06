@@ -70,13 +70,13 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
     
             switch(tier){
                 case 3:
-                    _total = _total + (qty * 1000000);
+                    _total = _total + (qty * 1_000_000);
                     break;
                 case 4:
-                    _total = _total + (qty * 2000000);
+                    _total = _total + (qty * 2_000_000);
                     break;
                 case 5:
-                    _total = _total + (qty * 7500000);
+                    _total = _total + (qty * 10_000_000);
                     break;
             }
             
@@ -105,13 +105,13 @@ const BarterBottomRight: React.FC<Props> = (props: Props) => {
     
                     switch(tier){
                         case 3:
-                            _total = _total + (qty * 1000000);
+                            _total = _total + (qty * 1_000_000);
                             break;
                         case 4:
-                            _total = _total + (qty * 2000000);
+                            _total = _total + (qty * 2_000_000);
                             break;
                         case 5:
-                            _total = _total + (qty * 7500000);
+                            _total = _total + (qty * 10_000_000);
                             break;
                     }
                     

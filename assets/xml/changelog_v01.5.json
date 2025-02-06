@@ -1,0 +1,22 @@
+{
+    "version": "0.1.5",
+    "date": "20/09/2023",
+    "removals": [
+        "Removed the threshold by port (\"Ancado\", \"Epheria\" and \"Iliya\")."
+    ],
+    "additions": [
+        "Added the threshold by tier."
+    ],
+    "fixes": [
+        "Updated T5 prices (5m -> 7.5m).",
+        "Fixed the percentage of the carrack tracker.",
+        "Fixed the order of the item list in the barter, now it's in the same order as the game auto-sort.",
+        "Fixed the image of the Pirates' Gunpowder (the image was too big, so the name was out of the box)."
+    ],
+    "notes": [
+        "Due to change to the threshold by tier, the saved data has changed, you will have no loss of data, but you will have to reconfigure the thresholds.",
+        "The program will - NORMALY - automatically update itself when you launch it. But I can't guarantee that it will work properly. If you have any problem, please look in the GitHub for a new version.",
+        "The verification of all the data files is in test, so if you find any problem, please report it on GitHub.",
+        "This software is still in development, so if you find any problem, please report it on GitHub. Thank you!"
+    ]
+}

@@ -28,7 +28,6 @@ export default function handleSaveItem(key: string, value: number, type: "iliya"
         // Save the new value in the save data
         save.items[0][key][0][type][0] = value.toString();
     
-    
         // Save the new save data by stringifying it
         saveXmlFileContent('data/save_data.xml', stringifySaveData(save));
     });

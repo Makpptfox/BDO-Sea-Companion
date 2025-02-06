@@ -1,5 +1,5 @@
 <versionData>
-    <v0.1.5>
+    <v0.1.6>
         <save>
             <remove>
                 <threshold>
@@ -10,7 +10,7 @@
             </remove>
             <add>
                 <version>
-                    0.1.5
+                    0.1.6
                 </version>
                 <threshold>
                     <tier1>0</tier1>
@@ -21,5 +21,5 @@
                 </threshold>
             </add>
         </save>
-</v0.1.5>
+</v0.1.6>
 </versionData>
